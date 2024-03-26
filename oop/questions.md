@@ -1,0 +1,52 @@
+# OOP questions
+- OOP main definitions
+- Polymorphism vs inheritance
+- [Design patterns - main types](https://github.com/dradisic/interview_preparations/blob/main/src/oop/answers/list_of_design_patterns.md#differences-between-design-patterns-types)
+- [List of design patterns](https://github.com/dradisic/interview_preparations/blob/main/src/oop/answers/list_of_design_patterns.md)
+- Design patterns used in popular php frameworks
+- Example of pattern usage in your personal projects
+- Positive examples of Singleton pattern usage
+- Describe patterns
+    - Singleton
+    - Factory
+    - Adapter
+    - Decorator
+    - Proxy
+    - Observer
+    - Data Mapper
+    - Command Bus
+- SOLID principles. Usage examples
+- Active Record pattern
+- Active Record VS Data Mapper
+- Composition VS Aggregation
+- IoC (DiC)
+- Composition vs Inheritance
+- Invariance vs Covariance vs Contrvariance
+- Why getters and setters are bad
+- What is an object's behavior
+- Service Locator VS Inversion of Control (Dependency Injection) Container
+- Registry pattern VS Service Locator
+- Dependency Injection VS Composition VS Inversion of Control
+
+## Software design
+- DDD
+- Entity VS Data Transfer Object vs Value Object
+- CQRS
+- Event Sourcing
+- GRASP patterns. Low coupling vs high cohesion
+- Demetra's law
+- Anemic model
+- Onion architecture
+- Hexagonal architecture
+- Immutable objects
+- Why service classes should be stateless
+- KISS, DRY, YAGNI - explain abbreviations
+- DTO vs Command (ps. dto is usually serialized, but command object is not)
+- Separation of Concerns
+- TDD
+- BDD
+
+## Tricky questions
+- Does adding a public field in an extended class violate Liskov Substitution principle?
+- Does throwing and exception inside method of an extended class violate Liskov Substitution principle?
+- How to guarantee creating valid object? (shortly: create it via constructor)
