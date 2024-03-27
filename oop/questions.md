@@ -1,8 +1,9 @@
 # OOP questions
+
 - OOP main definitions
 - Polymorphism vs inheritance
-- [Design patterns - main types](https://github.com/dradisic/interview_preparations/blob/main/src/oop/answers/list_of_design_patterns.md#differences-between-design-patterns-types)
-- [List of design patterns](https://github.com/dradisic/interview_preparations/blob/main/src/oop/answers/list_of_design_patterns.md)
+- [Design patterns - main types](./answers/list_of_design_patterns.md#differences-between-design-patterns-types)
+- [List of design patterns](./answers/list_of_design_patterns.md)
 - Design patterns used in popular php frameworks
 - Example of pattern usage in your personal projects
 - Positive examples of Singleton pattern usage
@@ -29,9 +30,10 @@
 - Dependency Injection VS Composition VS Inversion of Control
 
 ## Software design
-- DDD
+
+- [DDD](../ddd/questions.md)
 - Entity VS Data Transfer Object vs Value Object
-- CQRS
+- [CQRS](sqrs.md)
 - Event Sourcing
 - GRASP patterns. Low coupling vs high cohesion
 - Demetra's law
@@ -39,14 +41,16 @@
 - Onion architecture
 - Hexagonal architecture
 - Immutable objects
-- Why service classes should be stateless
+- [Why service classes should be stateless](./stateless_service.md)
 - KISS, DRY, YAGNI - explain abbreviations
-- DTO vs Command (ps. dto is usually serialized, but command object is not)
-- Separation of Concerns
+- [DTO vs Command](./dto_vs_command.md) (ps. dto is usually serialized, but command object is not)
+- [Separation of Concerns](./soc.md)
 - TDD
 - BDD
 
 ## Tricky questions
-- Does adding a public field in an extended class violate Liskov Substitution principle?
-- Does throwing and exception inside method of an extended class violate Liskov Substitution principle?
+
+- Does adding a public field in an extended class violate Liskov Substitution principle? NO
+- Does throwing and exception inside method of an extended class violate Liskov Substitution principle? NO if
+  superclass's method documentation specifies that it can throw exceptions of a certain type under specific conditions
 - How to guarantee creating valid object? (shortly: create it via constructor)

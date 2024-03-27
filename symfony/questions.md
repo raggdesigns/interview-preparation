@@ -1,25 +1,25 @@
 # Symfony questions
 
-- [Request-Response lifecycle](https://github.com/dradisic/interview_preparations/blob/main/src/symfony/answers/request_response_lifecycle.md)
-- [Design patterns examples in Symfony and Doctrine](https://github.com/dradisic/interview_preparations/blob/main/src/symfony/answers/Design_patterns_examples_in_symfony_and_doctrine.md) (WIP)
-- Autowiring
-- Autoconfigure
-- How to autowire two instances on the same service in one class
-- How to avoid cyclic references in serialization process (serialization groups/DTO/serialization depth handler)
-- How to write REST API in Symfony
-- What is Symfony Flex
-- Sync vs Async transport in Messenger
-- [What is a CompilerPass](https://github.com/dradisic/interview_preparations/blob/main/src/symfony/answers/what_is_a_compiler_pass.md)
-- How route is parsed to become mapped with controller action
-- List of Symfony Kernel Events
-- Lazy Loading for classes
-- How to validate requests using Forms component
+- [Request-Response lifecycle](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/request_response_lifecycle.md)
+- [Design patterns examples in Symfony and Doctrine](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/design_patterns_in_symfony_and_doctrine.md) (WIP)
+- [Autowiring](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/autowiring.md)
+- [Autoconfigure](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/autoconfigure.md)
+- [How to autowire two instances on the same service in one class](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/autowire_two_instances_same_service.md)
+- [How to avoid cyclic references in serialization process serialization groups/DTO/serialization depth handler](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/avoiding_cyclic_references_in_serialization.md)
+- [How to write REST API in Symfony](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/writing_rest_api_in_symfony.md)
+- [What is Symfony Flex](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/symfony_flex_explanation.md)
+- [Sync vs Async transport in Messenger](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/sync_vs_async_transport_symfony_messenger.md)
+- [What is a CompilerPass](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/compiler_pass_in_symfony.md)
+- [How route is parsed to become mapped with controller action](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/symfony_routing_explanation.md)
+- [List of Symfony Kernel Events](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/symfony_kernel_events_explanation.md)
+- [Lazy Loading for classes](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/lazy_loading_for_classes)
+- [How to validate requests](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/validating_requests_in_symfony.md)
 
-Components:
-- Serialization Component
-- Messenger Component
-- HttpKernel Component
-- Security Component
-- Validator Component
-- DependencyInjection Component
-- EventDispatcher Component
+# Components:
+- [Serialization Component](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/components/serialization_component.md)
+- [Messenger Component](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/components/messenger_component.md)
+- [HttpKernel Component](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/components/httpkernel_component.md)
+- [Security Component](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/components/security_component.md)
+- [Validator Component](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/components/validator_component.md)
+- [DependencyInjection Component](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/components/dependency_injection_component.md)
+- [EventDispatcher Component](https://github.com/dradisic/interview_preparations/blob/main/symfony/answers/components/event_dispatcher_component.md)
