@@ -7,6 +7,15 @@ interfaces). This principle consists of two key parts:
 1. High-level modules should not depend on low-level modules. Both should depend on abstractions.
 2. Abstractions should not depend on details. Details should depend on abstractions.
 
+When subclass changes the parent class will not need to change. Its inverse of control.The high level class takes
+control of dependency by using
+defined injection with interface.
+
+## Workflow Mindset
+
+- Classes should depend on interfaces instead of concrete classes.
+- Those interfaces should be design by the class that uses them not by the classes that will implement them.
+
 ### Violating DIP
 
 A common violation of DIP occurs when a high-level module directly depends on a low-level module.

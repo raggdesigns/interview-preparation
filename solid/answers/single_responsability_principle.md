@@ -4,6 +4,11 @@ The Single Responsibility Principle (SRP), one of the SOLID principles of object
 should have only one reason to change. This means each class should be responsible for a single part of the
 functionality provided by the software, and that responsibility should be entirely encapsulated by the class.
 
+## Workflow Mindset
+- Gather together the things that change for the same reason. 
+- Separate those things that change for different reasons. 
+- Keep only the related things together
+
 ## Violating SRP
 
 Consider a PHP class that handles both user data management and user notifications. This class violates the SRP because

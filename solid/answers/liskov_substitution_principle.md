@@ -77,3 +77,16 @@ letTheBirdFly(new Sparrow()); // Works fine
 - **Enhanced Model Accuracy**: Better represents real-world scenarios.
 - **Increased Robustness**: System is less prone to errors as objects are used more predictably.
 - **Improved Code Reusability**: Clearer contracts lead to components that are easier to reuse.
+
+
+### Different definitions of LSP
+1. **Liskov Substitution Principle (LSP)**: This principle states that objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program. In essence, subclasses should extend the base class without changing its behavior.
+
+2. **Behavioral Subtypability**: Another way to describe LSP is that it defines that a subtype must be behaviorally compatible with its supertype, meaning that a user of the supertype should not be able to distinguish between the supertype and the subtype.
+
+3. **Stronger Precondition Relaxation**: The LSP asserts that the preconditions for any method in the subclass should not be stronger than that of the superclass. This means the subclass can work at least in all situations where the superclass can.
+
+4. **Weaker Postcondition Guarantee**: From the postcondition perspective, the LSP requires that the subclass ensures at least the same, if not a stronger, postcondition compared to the superclass. The results or side effects should be consistent or more refined when using the subclass.
+
+5. **History Constraint Preservation**: LSP also encompasses the "history constraint" which implies that the subclass should respect the invariants and the history of the superclass. This means the subclass should not allow state changes that would be impossible in the superclass.
+

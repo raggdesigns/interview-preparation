@@ -17,36 +17,36 @@
     - [Data Mapper](design_patterns/data_mapper.md)
     - [Command Bus](design_patterns/command_bus.md)
 - [SOLID principles. Usage examples](solid_usage_examples.md)
-- Active Record pattern
-- Active Record VS Data Mapper
-- Composition VS Aggregation
-- IoC (DiC)
-- Composition vs Inheritance
-- Invariance vs Covariance vs Contravariance
+- [Active Record VS Data Mapper](active_record_vs_data_mapper.md)
+- [Composition vs Inheritance](composition_vs_inheritance.md)
 - [Why getters and setters are bad](why_getter_and_setters_are_bad.md)
-- What is an object's behavior
-- Service Locator VS Inversion of Control (Dependency Injection) Container
-- Registry pattern VS Service Locator
-- Dependency Injection VS Composition VS Inversion of Control
+- [Active Record pattern](active_record_pattern.md)
+- [Composition VS Aggregation](composition_vs_aggregation.md)
+- [IoC (DiC)](ioc.md)
+- [Invariance vs Covariance vs Contravariance](invariance_vs_covariance_vs_contravariance.md)
+- [What is an object's behavior](what_is_an_objects_behavior.md)
+- [Service Locator VS Inversion of Control (Dependency Injection) Container](service_locator_vs_di_container.md)
+- [Registry pattern VS Service Locator](registry_pattern_vs_service_locator.md)
+- [Dependency Injection VS Composition VS Inversion of Control](di_vs_composition_vs_ioc.md)
 
 ## Software design
 
 - [DDD](../ddd/questions.md)
-- Entity VS Data Transfer Object vs Value Object
+- [Entity VS Data Transfer Object vs Value Object](entity_vs_data_transfer_object_vs_value_object.md)
 - [CQRS](sqrs.md)
-- Event Sourcing
+- [Event Sourcing](event_sourcing.md)
 - [GRASP patterns. Low coupling vs high cohesion](grasp.md)
-- Demetra's law
-- Anemic model
-- Onion architecture
-- Hexagonal architecture
-- Immutable objects
-- [Why service classes should be stateless](./stateless_service.md)
-- KISS, DRY, YAGNI - explain abbreviations
-- [DTO vs Command](./dto_vs_command.md) (ps. dto is usually serialized, but command object is not)
-- [Separation of Concerns](./soc.md)
-- TDD
-- BDD
+- [Demetra's law](lod.md)
+- [Anemic model](anemic_model.md)
+- [Onion architecture](onion_architecture.md)
+- [Hexagonal architecture](hexagonal_architecture.md)
+- [Immutable objects](immutable_objects.md)
+- [Why service classes should be stateless](stateless_service.md)
+- [KISS, DRY, YAGNI - explain abbreviations](kiss_dry_yagni.md)
+- [DTO vs Command](dto_vs_command.md) (ps. dto is usually serialized, but command object is not)
+- [Separation of Concerns](soc.md)
+- [TDD](tdd.md)
+- [BDD](bdd.md)
 
 ## Tricky questions
 
