@@ -1,5 +1,9 @@
 The Observer pattern is a behavioral design pattern where an object, known as the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods. It is mainly used to implement distributed event handling systems and is a foundational aspect of the Model-View-Controller (MVC) architectural pattern. The Observer pattern promotes loose coupling since the subject doesn't need to know anything about the observers, other than that they implement a certain interface.
 
+### Short definition
+
+The Observer pattern allow a bunch of objects to be notified by central object if something happens.
+
 ### Key Concepts of the Observer Pattern:
 
 - **Subject**: The entity being observed. It maintains a list of observers and notifies them of changes to its state.

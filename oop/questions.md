@@ -1,7 +1,7 @@
 # OOP questions
 
-- OOP main definitions
-- Polymorphism vs inheritance
+- [OOP main definitions](oop_main_definitions.md)
+- [Polymorphism vs inheritance](polymorphism_vs_inheritance.md)
 - [Design patterns - main types](./design_patterns/list_of_design_patterns.md#differences-between-design-patterns-types)
 - [List of design patterns](./design_patterns/list_of_design_patterns.md)
 - Design patterns used in popular php frameworks
@@ -12,6 +12,7 @@
     - [Factory](design_patterns/factory.md)
     - [Adapter](design_patterns/adapter.md)
     - [Decorator](design_patterns/decorator.md)
+    - [Strategy](design_patterns/strategy.md)
     - [Proxy](design_patterns/proxy.md)
     - [Observer](design_patterns/observer.md)
     - [Data Mapper](design_patterns/data_mapper.md)
@@ -47,6 +48,7 @@
 - [Separation of Concerns](soc.md)
 - [TDD](tdd.md)
 - [BDD](bdd.md)
+- [The Reactor pattern](reactor_pattern.md)
 
 ## Tricky questions
 
