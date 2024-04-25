@@ -3,7 +3,7 @@
 - How PHP-FPM works with Nginx
 - [How to optimize single insert in a big table](how_to_optimize_single_insert_in_a_big_table.md)
 - [Tools for analyzing problems on database side of an application](tools_for_analyzing_problems_on_database_side_of_an_application.md)
-- How to narrow problems on php side of an application
+- [How to narrow problems on php side of an application](how_to_narrow_problems_on_php_side_of_an_application.md)
 - [Sharding. Vertical vs Horizontal sharding](sharding.md)
 - Partitioning - benefits for read and write operations
 - How to deal with deadlocks in MySQL
