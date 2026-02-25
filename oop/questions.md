@@ -4,11 +4,11 @@
 - [Polymorphism vs inheritance](polymorphism_vs_inheritance.md)
 - [Design patterns - main types](./design_patterns/list_of_design_patterns.md#differences-between-design-patterns-types)
 - [List of design patterns](./design_patterns/list_of_design_patterns.md)
-- Design patterns used in popular php frameworks
+- [Design patterns used in popular php frameworks](design_patterns_in_php_frameworks.md)
 - Example of pattern usage in your personal projects
 - [Positive examples of Singleton pattern usage](positive_examples_of_singleton_pattern_usage.md)
 - Describe patterns
-    - Singleton
+    - [Singleton](design_patterns/singleton.md)
     - [Factory](design_patterns/factory.md)
     - [Adapter](design_patterns/adapter.md)
     - [Decorator](design_patterns/decorator.md)
@@ -25,8 +25,8 @@
 - [Dependency Injection VS Composition VS Inversion of Control (IoC/DiC)](di_vs_composition_vs_ioc.md)
 - [Invariance vs Covariance vs Contravariance](invariance_vs_covariance_vs_contravariance.md)
 - [What is an object's behavior](what_is_an_objects_behavior.md)
-- Service Locator VS Inversion of Control (Dependency Injection) Container
-- Registry pattern VS Service Locator
+- [Service Locator VS Inversion of Control (Dependency Injection) Container](service_locator_vs_di_container.md)
+- [Registry pattern VS Service Locator](registry_pattern_vs_service_locator.md)
 
 ## Software design
 

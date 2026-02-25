@@ -4,17 +4,17 @@ Narrowing down problems in the PHP side of an application involves a systematic 
 
 - **Configure PHP Error Reporting**: Ensure your PHP environment is configured to display or log errors appropriately. For development, enable all error reporting.
 
-  +++php
+  ```php
   ini_set('display_errors', 1);
   error_reporting(E_ALL);
-  +++
+  ```
 
 - **Log Errors**: For production environments, errors should be logged to a server file rather than displayed on the user's screen.
 
-  +++php
+  ```php
   ini_set('log_errors', 1);
   ini_set('error_log', '/path/to/php-error.log');
-  +++
+  ```
 
 ### 2. Debugging Tools
 
@@ -31,7 +31,7 @@ Narrowing down problems in the PHP side of an application involves a systematic 
 - **PHPUnit**: Use PHPUnit for comprehensive unit testing. Writing tests for your code can help you catch errors early in the development cycle.
 - **Test Driven Development (TDD)**: Adopt TDD practices to ensure each component of your application behaves as expected.
 
-  +++php
+  ```php
   class StackTest extends PHPUnit\\Framework\\TestCase {
   public function testPushAndPop() {
   $stack = [];
@@ -43,7 +43,7 @@ Narrowing down problems in the PHP side of an application involves a systematic 
   $this->assertSame(0, count($stack));
   }
   }
-  +++
+  ```
 
 ### 5. Static Analysis Tools
 

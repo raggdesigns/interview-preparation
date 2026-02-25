@@ -13,12 +13,12 @@
 - [REST API (HTTP) - POST vs PUT vs PATCH](rest_api_post_vs_put_vs_patch.md)
 
 ## HTTP
-- HTTP protocol: request and response structure
+- [HTTP protocol: request and response structure](http_protocol_structure.md)
 - [HTTP streaming](http_streaming.md)
-- 4** VS 5** errors
+- [4** VS 5** errors](http_4xx_vs_5xx_errors.md)
 
 ## Security
-- OWASP Top 10
-- Main attacks on web applications and how to prevent them
-- What is CSRF
-- What is CORS
+- [OWASP Top 10](owasp_top_10.md)
+- [Main attacks on web applications and how to prevent them](web_application_attacks.md)
+- [What is CSRF](csrf.md)
+- [What is CORS](cors.md)
