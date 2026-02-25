@@ -92,3 +92,7 @@ between different copies of the same title.
 The distinction between Entities and Value Objects is not just academic; it has practical implications for the design
 and functionality of your system. Properly applied, these concepts can create a domain model that is robust, flexible,
 and aligned with business realities, facilitating future enhancements and adjustments to meet evolving requirements.
+
+### See Also
+
+- [Entity vs DTO vs Value Object (OOP perspective)](../../oop/entity_vs_data_transfer_object_vs_value_object.md)

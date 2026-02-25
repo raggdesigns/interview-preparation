@@ -15,4 +15,6 @@
 - Test environment - how to prepare it (all aspects)
 
 ## Other
+- [TDD](tdd.md)
+- [BDD](bdd.md)
 - [Mutational testing - tools and benefits](mutational_testing_tools_and_benefits.md)

@@ -98,6 +98,11 @@ class EmailAddress {
 - **Usage Context**: Entities represent business objects with identity. Value Objects describe characteristics of these
   objects. DTOs simplify data transfer between parts of a system or across networks.
 
+### See Also
+
+- [Entities and Value Objects in DDD context](../ddd/answers/entities_and_value_objects.md)
+- [DTO vs Command](dto_vs_command.md)
+
 ### Conclusion
 
 Understanding the differences between Entity, DTO, and Value Object is crucial for designing clear, maintainable

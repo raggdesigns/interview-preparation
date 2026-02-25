@@ -90,6 +90,48 @@ class AppKernel extends Kernel
   only available at runtime.
 - **Advanced Service Decorations**: Using CompilerPasses to decorate services based on dynamic conditions.
 
+## Alternative: Implementing CompilerPassInterface in the Kernel
+
+Instead of creating a separate CompilerPass class, the kernel can implement `CompilerPassInterface` directly. This is
+useful for simple cases, especially when working with tagged services:
+
+```php
+namespace App;
+
+use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Kernel as BaseKernel;
+
+class Kernel extends BaseKernel implements CompilerPassInterface
+{
+    use MicroKernelTrait;
+
+    public function process(ContainerBuilder $container): void
+    {
+        // manipulate the service container:
+        $container->getDefinition('app.some_private_service')->setPublic(true);
+
+        // processing tagged services:
+        foreach ($container->findTaggedServiceIds('some_tag') as $id => $tags) {
+            // ...
+        }
+    }
+}
+```
+
+## What Container Compilation Does
+
+Compiling the service container allows:
+- Preventing circular references in service dependencies
+- Resolving parameters beforehand
+- Removing unused dependencies
+
+The `compile()` method uses Compiler Passes for the compilation. Some Compiler Passes are predefined for proper
+container compilation, while custom ones allow you to manipulate other service definitions.
+
+[Official docs for compiler passes](https://symfony.com/doc/current/service_container/compiler_passes.html)
+
 ## Conclusion
 
 CompilerPasses are a powerful feature in Symfony that provides developers with the capability to programmatically modify

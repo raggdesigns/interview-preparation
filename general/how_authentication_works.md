@@ -1,39 +1,86 @@
-JSON Web Token (JWT) authorization is a widely used method for securing APIs and web applications. JWTs enable secure information exchange between parties as JSON objects that can be digitally signed or encrypted. Here's an overview of how JWT authorization works:
+# How Authentication Works
 
-### Components of a JWT
+Authentication is the process of verifying the identity of a user, device, or system. It answers the question: **"Who are you?"** (as opposed to authorization, which answers "What are you allowed to do?").
 
-A JWT consists of three parts, separated by dots (`.`): Header, Payload, and Signature.
+## Common Authentication Methods
 
-- **Header**: Contains metadata about the token, including the type (`typ`) of token, which is JWT, and the signing algorithm (`alg`), such as HMAC SHA256 or RSA.
-- **Payload**: Contains the claims, which are statements about an entity (typically, the user) and additional data. There are three types of claims: registered, public, and private claims.
-- **Signature**: Created by encoding the header and payload with a secret key using the algorithm specified in the header.
+### 1. Password-Based Authentication (Knowledge Factor)
 
-### How JWT Authorization Works
+The most traditional method. The user provides a username and password, which the server verifies against stored credentials.
 
-1. **User Authentication**: The user logs in using their credentials. The authentication server verifies the credentials and creates a JWT token if the credentials are valid.
+**Flow**:
+1. User submits credentials (username + password).
+2. Server hashes the password and compares it against the stored hash (e.g., bcrypt, argon2).
+3. If the hash matches, the user is authenticated.
 
-2. **Token Issuance**: The server encodes the header and payload, signs them to create the signature, and then concatenates these parts to form the JWT. This token is sent back to the user.
+**Best Practices**:
+- Never store passwords in plain text — always use a strong hashing algorithm (bcrypt, argon2id).
+- Enforce password complexity and length requirements.
+- Implement rate limiting and account lockout to prevent brute-force attacks.
 
-3. **Client Stores JWT**: The client (usually a web browser) stores the JWT, often in local storage or as an HTTP cookie.
+### 2. Session-Based Authentication
 
-4. **Sending JWT in Requests**: For subsequent requests, the client sends the JWT, typically as an Authorization header with the Bearer schema.
+After successful credential verification, the server creates a session and stores it server-side (in memory, database, or cache like Redis).
 
-5. **Token Verification**: The server receiving a request with a JWT verifies the token's signature and parses the payload. If the signature is valid and the token hasn't expired, the request is allowed to proceed. The server may use the information in the payload (claims) to identify the user and authorize access to resources.
+**Flow**:
+1. User logs in with credentials.
+2. Server creates a session (unique session ID) and stores session data server-side.
+3. Server sends the session ID to the client as a cookie (`Set-Cookie` header).
+4. Client sends the session cookie with every subsequent request.
+5. Server looks up the session ID to identify the user.
 
-6. **Token Expiry and Renewal**: JWTs often have an expiration (`exp`) claim. If a token is expired, the server will reject requests with that token. The client may need to re-authenticate or refresh the token.
+**Pros**: Server controls session lifecycle (can invalidate immediately).
+**Cons**: Requires server-side state; harder to scale horizontally without shared session storage.
 
-### Advantages of Using JWT
+### 3. Token-Based Authentication (e.g., JWT)
 
-- **Statelessness**: The server doesn't need to store session information, making JWT suitable for scalable applications and microservices.
-- **Flexibility**: JWTs can be used across different domains, enabling single sign-on (SSO) and simplifying authorization for distributed systems.
-- **Performance**: Reduces the need for database lookups, as the token contains all necessary user information.
+Stateless approach where the server issues a signed token after successful login. See [How JWT Authorization Works](how_jwt_authorization_works.md) for detailed JWT flow.
 
-### Security Considerations
+**Key Difference from Sessions**: No server-side session storage needed — the token itself carries user identity and claims.
 
-- **Token Storage**: Ensure tokens are stored securely on the client side to prevent XSS (Cross-Site Scripting) and CSRF (Cross-Site Request Forgery) attacks.
-- **Sensitive Information**: Avoid putting sensitive data in the JWT payload, as it can be decoded if not encrypted.
-- **HTTPS**: Always use HTTPS to prevent token interception during transmission.
+### 4. Multi-Factor Authentication (MFA)
 
-### Conclusion
+Combines two or more independent authentication factors:
 
-JWT authorization provides a compact and self-contained way for securely transmitting information between parties as a JSON object. By understanding the components and lifecycle of a JWT, developers can implement secure authorization mechanisms in their applications, leveraging JWT's advantages of statelessness, flexibility, and performance.
+- **Something you know** — password, PIN
+- **Something you have** — phone (SMS/TOTP), hardware key (YubiKey)
+- **Something you are** — fingerprint, face recognition
+
+### 5. OAuth 2.0 / OpenID Connect
+
+Delegated authentication where a third-party identity provider (Google, GitHub, etc.) verifies the user's identity.
+
+**Flow (Authorization Code Grant)**:
+1. App redirects user to the identity provider's login page.
+2. User authenticates with the provider.
+3. Provider redirects back to the app with an authorization code.
+4. App exchanges the code for an access token (and optionally an ID token).
+5. App uses the token to identify the user.
+
+### 6. API Key Authentication
+
+Simple method for machine-to-machine communication. The client includes an API key in request headers.
+
+**Limitations**: No user context, harder to manage fine-grained permissions, key rotation is manual.
+
+## Authentication vs Authorization
+
+| Aspect | Authentication | Authorization |
+|--------|---------------|---------------|
+| Question | "Who are you?" | "What can you do?" |
+| Happens | First | After authentication |
+| Determines | Identity | Permissions |
+| Example | Login with password | Access control checks |
+
+## Security Considerations
+
+- **HTTPS**: Always use encrypted connections to prevent credential interception.
+- **Secure Storage**: Hash passwords with bcrypt/argon2; never store plain text.
+- **Rate Limiting**: Prevent brute-force attacks on login endpoints.
+- **CSRF Protection**: Use CSRF tokens for session-based auth.
+- **Token Expiration**: Set reasonable TTLs for sessions and tokens.
+
+## See Also
+
+- [How Authorization Works](how_authorization_works.md)
+- [How JWT Authorization Works](how_jwt_authorization_works.md)
