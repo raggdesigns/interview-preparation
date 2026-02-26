@@ -8,6 +8,7 @@
 - [Partitioning - benefits for read and write operations](partitioning.md)
 - [How to deal with deadlocks in MySQL](deadlocks_in_mysql.md)
 - [Optimistic/pessimistic lock](optimistic_pessimistic_lock.md)
+- [Load balancer and sessions](load_balancer_and_sessions.md)
 
 ## Tricky questions
 1. [There is an GET endpoint which can't generate response without timeout error. This endpoint

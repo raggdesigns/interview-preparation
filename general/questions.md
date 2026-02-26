@@ -17,6 +17,11 @@
 - [HTTP streaming](http_streaming.md)
 - [4** VS 5** errors](http_4xx_vs_5xx_errors.md)
 
+## Web services and architecture
+- [SOAP vs REST (including WSDL)](soap_vs_rest.md)
+- [SOA architecture](soa_architecture.md)
+- [Data structures overview (hash table, linked list, tree, stack, queue)](data_structures_overview.md)
+
 ## Security
 - [OWASP Top 10](owasp_top_10.md)
 - [Main attacks on web applications and how to prevent them](web_application_attacks.md)

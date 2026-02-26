@@ -21,6 +21,7 @@
 - [Reflection practical usage examples](reflection_practical_usage_examples.md)
 - [Purpose of immutable objects existence (e.g. DateTimeImmutable)](immutable_objects_in_php.md)
 - [Popular SPL functions](popular_spl_functions.md)
+- [PHP arrays internals (hash table implementation)](php_arrays_internals.md)
 - [What are the main risks of using PHP as a daemon](main_risks_of_using_php_as_daemon_and_how_to_manage_them.md) (Swoole, ReactPHP, Roadrunner etc.) and how to manage them
 
 ## Traits

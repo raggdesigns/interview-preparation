@@ -2,6 +2,8 @@
 
 - [OOP main definitions](oop_main_definitions.md)
 - [Polymorphism vs inheritance](polymorphism_vs_inheritance.md)
+- [Abstract classes vs interfaces](abstract_classes_vs_interfaces.md)
+- [MVC pattern](mvc_pattern.md)
 - [Design patterns - main types](./design_patterns/list_of_design_patterns.md#differences-between-design-patterns-types)
 - [List of design patterns](./design_patterns/list_of_design_patterns.md)
 - [Design patterns used in popular php frameworks](design_patterns_in_php_frameworks.md)

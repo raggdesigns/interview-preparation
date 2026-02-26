@@ -1,9 +1,58 @@
-HTTP status codes are three-digit numbers that tell the client what happened with their request. They are grouped by the first digit. The two most important groups for interviews are **4xx** (client errors) and **5xx** (server errors).
+HTTP status codes are three-digit numbers that tell the client what happened with their request. They are grouped by the first digit. The most important groups for interviews are **3xx** (redirects), **4xx** (client errors), and **5xx** (server errors).
 
 ### The Difference
 
+- **3xx errors** mean the resource has **moved** or the client should look elsewhere. The server tells the client the new location.
 - **4xx errors** mean the **client** made a mistake. The request was wrong, unauthorized, or the resource does not exist. The client needs to fix the request before trying again.
 - **5xx errors** mean the **server** had a problem. The request might be valid, but the server could not process it. The client can try again later.
+
+### 3xx — Redirects
+
+| Code | Name | Meaning |
+|------|------|---------|
+| 301 | Moved Permanently | Resource has permanently moved to a new URL. Browsers and search engines update their links. |
+| 302 | Found | Resource is temporarily at a different URL. Client should keep using the original URL. |
+| 303 | See Other | After POST, redirect to a GET endpoint (e.g., after form submission) |
+| 304 | Not Modified | Resource has not changed since last request — use cached version |
+| 307 | Temporary Redirect | Like 302 but guarantees the HTTP method is preserved (POST stays POST) |
+| 308 | Permanent Redirect | Like 301 but guarantees the HTTP method is preserved |
+
+#### Common Confusion: 301 vs 302
+
+- **301 Moved Permanently** — "This page has moved forever. Update your bookmarks." Search engines transfer SEO ranking to the new URL.
+- **302 Found** — "This page is temporarily somewhere else. Keep using the old URL." Search engines keep the old URL indexed.
+
+```
+# 301 — Old domain redirects to new domain permanently
+GET http://old-site.com/about
+→ 301 Moved Permanently
+Location: https://new-site.com/about
+
+# 302 — Maintenance page, temporary redirect
+GET https://example.com/dashboard
+→ 302 Found
+Location: https://example.com/maintenance
+```
+
+```php
+// Symfony — redirect examples
+#[Route('/old-page')]
+public function oldPage(): Response
+{
+    // 301 — permanent redirect
+    return $this->redirectToRoute('new_page', [], 301);
+}
+
+#[Route('/login')]
+public function login(): Response
+{
+    if ($this->getUser()) {
+        // 302 — temporary redirect (default)
+        return $this->redirectToRoute('dashboard');
+    }
+    // ...
+}
+```
 
 ### 4xx — Client Errors
 
