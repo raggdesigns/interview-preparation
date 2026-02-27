@@ -1,5 +1,8 @@
 # Interview Preparations
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Markdown checks](https://github.com/dradisic/interview_preparations/actions/workflows/lint.yml/badge.svg)](https://github.com/dradisic/interview_preparations/actions/workflows/lint.yml)
+
 A collection of notes and answers for software engineering interview topics, organized by domain.
 
 ## Topics
@@ -24,3 +27,15 @@ A collection of notes and answers for software engineering interview topics, org
 - Each folder has a `questions.md` serving as a table of contents
 - Answer files are either in the same folder or in an `answers/` subfolder
 - Links without answer files are topics not yet written (TODO)
+
+## Contributing
+
+Contributions are welcome.
+
+- Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a PR
+- Use [TOPIC_TEMPLATE.md](TOPIC_TEMPLATE.md) for new topics
+- Keep changes focused and content-oriented
+
+## License
+
+This repository is licensed under the [MIT License](LICENSE).
