@@ -1,62 +1,85 @@
-Optimizing a GET endpoint that times out due to reading from a large table involves improving the efficiency of data
-retrieval and processing. Without altering the response body, focus on enhancing the underlying data access and handling
-mechanisms. Here are strategies to achieve this:
+# Optimizing a Slow GET Endpoint
 
-### 1. Indexing
+If a GET endpoint times out on a large table, the first goal is to remove the biggest bottleneck without changing the response contract.
+In interviews, this topic checks whether you can debug in the right order: measure, find bottleneck, apply targeted fixes, and verify impact.
 
-- **Implement Indexes**: Ensure that the database table has appropriate indexes for the columns used in WHERE clauses,
-  JOIN conditions, or as part of an ORDER BY. Indexes can drastically reduce data retrieval times.
+## Prerequisites
 
-### 2. Query Optimization
+- You can read SQL and run `EXPLAIN`
+- You know request latency basics (p95, timeout threshold)
+- You understand indexes and cache invalidation at a basic level
 
-- **Optimize Queries**: Analyze and optimize the query for efficiency. Use EXPLAIN plans to identify slow parts of the
-  query and adjust it to reduce full table scans, unnecessary joins, or to leverage indexes better.
-- **Pagination**: If the response includes a large dataset, implement pagination to limit the number of records returned
-  in a single request. This reduces the load on both the database and the application server.
+## Fast Triage Flow
 
-### 3. Caching
+1. Confirm where time is spent: database, app layer, or network.
+2. Capture one real slow query from logs or APM.
+3. Run `EXPLAIN` and check rows scanned, index usage, and sort strategy.
+4. Apply one change at a time and re-measure p95 latency.
 
-- **Response Caching**: Implement caching mechanisms to store the response of the endpoint. Use cache tags or keys that
-  reflect the query parameters to invalidate the cache correctly when underlying data changes.
-- **Database Caching**: Utilize database-level caching if supported. This can cache frequent queries or result sets at
-  the database level, reducing data access time.
+## Most Common Fixes (in order)
 
-### 4. Database Performance
+### 1) Query and index fixes
 
-- **Database Configuration**: Review and tune database configuration settings for performance, such as memory
-  allocation, connection pooling, and query cache settings.
-- **Read Replicas**: Use read replicas to offload read queries from the primary database server, distributing the load
-  and improving response times.
+- Add or adjust composite indexes for `WHERE + ORDER BY` patterns.
+- Avoid selecting columns you do not return.
+- Replace offset-heavy pagination with cursor/keyset pagination for deep pages.
 
-### 5. Load Balancing
+### 2) Response-level caching
 
-- **Distribute Requests**: Use a load balancer to distribute incoming requests across multiple instances of the
-  application or database, reducing the load on any single instance.
+- Cache stable responses with keys based on filter parameters.
+- Use short TTL plus explicit invalidation on writes.
 
-### 6. Asynchronous Processing
+### 3) Data access architecture
 
-- **Background Jobs**: For data that doesn't change in real-time, consider generating the response asynchronously
-  through a scheduled job and serving the precomputed response to the GET request.
+- Move read-heavy traffic to read replicas.
+- Precompute expensive aggregations in a background job when real-time is not required.
 
-### 7. Architectural Changes
+## Practical Example
 
-- **Data Partitioning**: Partition the large table into smaller, more manageable pieces based on access patterns or data
-  characteristics.
-- **Data Denormalization**: Denormalize the data model if necessary to reduce complex joins that may be causing delays.
+Problem:
 
-### 8. Use of Faster Data Stores
+- Endpoint: `GET /orders?user_id=42&status=paid&page=120`
+- p95 latency: 8.2s
+- DB plan shows full scan and filesort on a table with 40M rows.
 
-- **In-Memory Stores**: For frequently accessed data, consider using an in-memory data store like Redis or Memcached as
-  a caching layer or even as a primary data store for specific high-read scenarios.
+Before:
 
-### 9. Content Delivery Network (CDN)
+```sql
+SELECT *
+FROM orders
+WHERE user_id = 42 AND status = 'paid'
+ORDER BY created_at DESC
+LIMIT 50 OFFSET 5950;
+```
 
-- **CDN for Static Content**: If the response includes static content (images, files), use a CDN to serve these
-  resources, reducing the load on the application server.
+After:
 
-### Conclusion
+```sql
+CREATE INDEX idx_orders_user_status_created_at
+ON orders (user_id, status, created_at DESC);
 
-Optimizing a slow GET endpoint requires a multifaceted approach targeting both the application and the database. Through
-careful analysis and application of these strategies, you can significantly improve endpoint performance without
-changing the response body. Regular monitoring and iterative optimization based on observed performance metrics are key
-to maintaining optimal endpoint efficiency.
+SELECT id, total_amount, created_at, status
+FROM orders
+WHERE user_id = 42
+  AND status = 'paid'
+  AND created_at < '2026-02-01 10:12:00'
+ORDER BY created_at DESC
+LIMIT 50;
+```
+
+Result (example metrics):
+
+- rows examined: 2.3M -> 1.2K
+- p95 latency: 8.2s -> 220ms
+- timeout rate: 14% -> <1%
+
+## Interview Notes
+
+- Start with measurement, not assumptions.
+- Explain why each optimization is chosen for this query pattern.
+- Mention trade-offs: cache staleness, replica lag, index write overhead.
+
+## Conclusion
+
+For slow GET endpoints, the highest-value path is: identify the slow query, fix access pattern and indexing, then add caching and read scaling only when needed.
+This keeps the response unchanged while making performance predictable.

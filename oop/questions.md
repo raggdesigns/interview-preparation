@@ -44,6 +44,7 @@
 - [Immutable objects](immutable_objects.md)
 - [Why service classes should be stateless](stateless_service.md)
 - [KISS, DRY, YAGNI - explain abbreviations](kiss_dry_yagni.md)
+- [Refactoring legacy code: techniques, patterns, approach](refactoring_legacy_code.md)
 - [DTO vs Command](dto_vs_command.md) (ps. dto is usually serialized, but command object is not)
 - [Separation of Concerns](soc.md)
 - [The Reactor pattern](../architecture/reactor_pattern.md)

@@ -1,61 +1,130 @@
-Object-Oriented Programming (OOP) is a programming paradigm based on the concept of "objects", which can contain data in
-the form of fields (often known as attributes or properties), and code in the form of procedures (often known as
-methods). OOP aims to increase the flexibility and maintainability of code through its main concepts: Encapsulation,
-Abstraction, Inheritance, and Polymorphism.
+# OOP Main Definitions
 
-### Encapsulation
+Object-Oriented Programming (OOP) is a way to model code around domain concepts (objects) instead of only around functions.
+In interviews, this topic is often used to check whether you can design maintainable code, not just write syntax.
+The four core ideas are encapsulation, abstraction, inheritance, and polymorphism.
 
-Encapsulation is the bundling of data (attributes) and methods that operate on the data into a single unit, or class,
-and restricting access to some of the object's components. This concept is often used to hide the internal
-representation, or state, of an object from the outside.
+## Prerequisites
 
-**Example in PHP**:
+- Basic PHP class syntax (`class`, `public`, `private`)
+- Difference between object state (properties) and behavior (methods)
+- Basic understanding of interfaces or parent classes
+
+## Encapsulation
+
+Encapsulation means the object controls how its internal state is read and changed.
+You expose safe operations and hide direct state changes.
 
 ```php
-class BankAccount {
-    private $balance = 0; // Data encapsulation
-    
-    public function deposit($amount) { // Encapsulated method to modify the data
-        if ($amount > 0) {
-            $this->balance += $amount;
+<?php
+
+class BankAccount
+{
+    private int $balance = 0;
+
+    public function deposit(int $amount): void
+    {
+        if ($amount <= 0) {
+            throw new InvalidArgumentException('Amount must be positive');
         }
+
+        $this->balance += $amount;
     }
-    
-    public function getBalance() { // Encapsulated method to access the data
+
+    public function withdraw(int $amount): void
+    {
+        if ($amount <= 0 || $amount > $this->balance) {
+            throw new InvalidArgumentException('Invalid withdrawal amount');
+        }
+
+        $this->balance -= $amount;
+    }
+
+    public function balance(): int
+    {
         return $this->balance;
     }
 }
 ```
 
-In this example, the `$balance` attribute is encapsulated within the `BankAccount` class, exposing only the `deposit`
-and `getBalance` methods to interact with it.
+Why this matters: code outside the class cannot put the object into an invalid state.
 
-### Abstraction
+## Abstraction
 
-Abstraction is the concept of hiding the complex reality while exposing only the necessary parts. It is a process of
-reducing the complexity by hiding the unnecessary details from the user.
+Abstraction means exposing what the object does, while hiding how it does it.
+Consumers use a small, clear API and do not depend on internal steps.
 
-**Example in PHP** (Continuation from Encapsulation):
+In the `BankAccount` example above, callers do not need to know how validation or state updates are implemented; they only use `deposit`, `withdraw`, and `balance`.
 
-The `BankAccount` class itself is an abstraction. Users of the class don't need to understand the inner workings of
-the `deposit` and `getBalance` methods to use its functionality; they just need to know what these methods do.
+## Inheritance
 
-### Inheritance
+Inheritance allows a child class to reuse behavior from a parent class and extend it.
+Use it only when there is a true “is-a” relationship.
 
-Inheritance is a mechanism where a new class is derived from an existing class. The new class inherits all the
-properties and behaviors of the existing class, allowing for reuse and extension of existing code without modification.
+```php
+<?php
 
-**Example in PHP** ( `Animal`, `Dog`, and `Cat`).
+abstract class Animal
+{
+    public function __construct(protected string $name)
+    {
+    }
 
-### Polymorphism
+    abstract public function sound(): string;
 
-Polymorphism is the ability of different classes to respond to the same method or message in different ways. It allows
-objects of different types to be treated as objects of a common super-type.
+    public function describe(): string
+    {
+        return $this->name . ' says ' . $this->sound();
+    }
+}
 
-**Example in PHP** (Continuation from the Inheritance example with `Animal`, `Dog`, and `Cat`).
+class Dog extends Animal
+{
+    public function sound(): string
+    {
+        return 'woof';
+    }
+}
 
-### Conclusion
+class Cat extends Animal
+{
+    public function sound(): string
+    {
+        return 'meow';
+    }
+}
+```
 
-The main concepts of OOP—Encapsulation, Abstraction, Inheritance, and Polymorphism—work together to help developers
-create more flexible, modular, and reusable code. By leveraging these principles, OOP promotes greater simplicity in
-application development and maintenance.
+## Polymorphism
+
+Polymorphism means code can work with a parent type and still run child-specific behavior.
+
+```php
+<?php
+
+function printAnimalSounds(array $animals): void
+{
+    foreach ($animals as $animal) {
+        echo $animal->describe() . PHP_EOL;
+    }
+}
+
+printAnimalSounds([
+    new Dog('Rex'),
+    new Cat('Milo'),
+]);
+```
+
+`printAnimalSounds` treats all objects as `Animal`, but each child returns its own sound.
+
+## Common Interview Angles
+
+- When does inheritance become a problem?
+- How do encapsulation and validation reduce bugs?
+- Why is polymorphism useful for extensibility?
+- When should composition be preferred over inheritance?
+
+## Conclusion
+
+Encapsulation protects state, abstraction reduces cognitive load, inheritance enables reuse, and polymorphism enables extension.
+Together they help you build code that is easier to change and safer to evolve.

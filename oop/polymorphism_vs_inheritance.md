@@ -1,72 +1,98 @@
-Polymorphism and Inheritance are two fundamental concepts in object-oriented programming (OOP) that work together to
-allow programmers to create flexible and reusable code. Understanding the distinction between these concepts is crucial
-for effective OOP design.
+# Polymorphism vs Inheritance
 
-### Inheritance
+These terms are related, but they are not the same thing.
+In interviews, a good answer is: inheritance is one way to model relationships between classes, while polymorphism is a way to use different implementations through one common type.
 
-Inheritance allows a class to inherit properties and methods from another class, known as the parent class. This
-mechanism provides a way to create a new class based on an existing class, extending or modifying its behavior.
+## Prerequisites
 
-**Example in PHP**:
+- You know class inheritance basics (`extends`)
+- You know interfaces in PHP
+- You understand method overriding
+
+## Inheritance
+
+Inheritance creates an “is-a” relationship.
 
 ```php
-class Animal {
-    public function makeSound() {
-        echo "Some generic sound\\n";
+<?php
+
+class Animal
+{
+    public function makeSound(): string
+    {
+        return 'Some generic sound';
     }
 }
 
-class Dog extends Animal {
-    public function makeSound() {
-        echo "Bark\\n";
-    }
-}
-
-class Cat extends Animal {
-    public function makeSound() {
-        echo "Meow\\n";
+class Dog extends Animal
+{
+    public function makeSound(): string
+    {
+        return 'Bark';
     }
 }
 ```
 
-In this example, `Dog` and `Cat` inherit from `Animal`. Each subclass overrides the `makeSound` method to produce a
-specific sound, demonstrating how inheritance is used to extend the functionality of the base class.
+`Dog` inherits behavior from `Animal` and can override parts of it.
 
-### Polymorphism
+## Polymorphism
 
-Polymorphism allows objects of different classes to be treated as objects of a common superclass. It is the ability of
-different objects to respond, each in their own way, to the same message (or method call).
-
-**Example in PHP** (Continuing from the Inheritance example):
+Polymorphism means client code works with a common type and each implementation behaves differently.
+This common type can be a parent class or an interface.
 
 ```php
-function letAnimalMakeSound(Animal $animal) {
-    $animal->makeSound();
+<?php
+
+interface Notifier
+{
+    public function send(string $message): void;
 }
 
-$dog = new Dog();
-$cat = new Cat();
+class EmailNotifier implements Notifier
+{
+    public function send(string $message): void
+    {
+        echo 'Email: ' . $message . PHP_EOL;
+    }
+}
 
-letAnimalMakeSound($dog); // Outputs: Bark
-letAnimalMakeSound($cat); // Outputs: Meow
+class SmsNotifier implements Notifier
+{
+    public function send(string $message): void
+    {
+        echo 'SMS: ' . $message . PHP_EOL;
+    }
+}
+
+function notifyAll(array $notifiers, string $message): void
+{
+    foreach ($notifiers as $notifier) {
+        $notifier->send($message);
+    }
+}
 ```
 
-Despite `letAnimalMakeSound` expecting an `Animal` type, it can accept any subclass of `Animal` due to polymorphism.
-Each class responds to `makeSound` in its own way, fulfilling the polymorphic behavior.
+`notifyAll` is polymorphic: same call, different runtime behavior.
 
-### Polymorphism vs Inheritance
+## Key Difference
 
-- **Inheritance** is about creating a "is-a" relationship between a base class and derived classes, enabling code reuse
-  and extension of base class functionality.
-- **Polymorphism** allows objects of different classes to be treated interchangeably, with each object responding to the
-  same method call in a class-specific way.
+- Inheritance: how classes are related.
+- Polymorphism: how client code uses related or unrelated implementations through one type.
 
-While inheritance establishes a relationship between classes for code reuse, polymorphism leverages this relationship to
-enable different behaviors to be executed through a common interface, enhancing the flexibility of the code.
+You can have polymorphism without inheritance by using interfaces.
 
-### Conclusion
+## Practical Rule of Thumb
 
-Both inheritance and polymorphism are pillars of OOP that enable developers to write more modular, maintainable, and
-reusable code. Inheritance provides a mechanism for class extension and reuse, while polymorphism offers a way to
-interact with different objects through a uniform interface, promoting flexibility and reducing complexity in code
-structure.
+- Use inheritance for clear “is-a” hierarchies and shared behavior.
+- Use polymorphism (often via interfaces) to keep high-level code flexible and easy to extend.
+
+## Common Interview Follow-up
+
+Why do teams often prefer composition + interface polymorphism over deep inheritance trees?
+
+Short answer: it reduces tight coupling and makes changes safer.
+
+## Conclusion
+
+Inheritance is a design mechanism; polymorphism is a usage mechanism.
+They often work together, but polymorphism is usually the bigger goal for extensible code.

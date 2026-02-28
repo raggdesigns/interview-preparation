@@ -1,34 +1,65 @@
-OPCache is an opcode cache that's integrated into PHP. It improves PHP performance by precompiling script bytecode and storing it in shared memory, eliminating the need for PHP to load and parse scripts on each request. This mechanism significantly reduces server response time and increases the throughput of your PHP application.
+# What Is OPCache
 
-### How OPCache Works
+OPCache is a built-in PHP engine component that stores compiled script instructions in shared memory.
+Without OPCache, PHP parses and compiles files on many requests; with OPCache, most requests skip that step.
+In interviews, this topic tests whether you understand real production performance basics in PHP.
 
-- **Compilation**: When a PHP script is executed, the PHP engine compiles the script into opcodes (operation codes) that the machine understands. Without OPCache, this compilation happens every time the script is requested.
-- **Caching**: OPCache stores these opcodes in memory after the first compilation. Subsequent requests for the same script can then bypass the compilation phase, executing the opcodes directly from the cache.
-- **Optimization**: Besides caching, OPCache also optimizes the bytecode, making the execution of scripts faster even on the first cache.
+## Prerequisites
 
-### Benefits of Using OPCache
+- You know PHP files are compiled to opcodes before execution
+- You know what `php.ini` controls in runtime behavior
+- You understand basic deployment flow (new release, reload, warm-up)
 
-- **Improved Performance**: Reduces the time needed to execute PHP scripts by avoiding repetitive compilation.
-- **Reduced Server Load**: Decreases the CPU and memory consumption on your server, allowing it to serve more users simultaneously.
-- **Scalability**: Helps applications scale by improving response times and reducing resource consumption.
+## Core Idea
 
-### Configuration
+Request flow with OPCache:
 
-OPCache can be configured and fine-tuned through your `php.ini` file. Key configuration directives include:
+1. First request compiles the PHP file and stores opcodes in shared memory.
+2. Next requests reuse cached opcodes.
+3. CPU cost and response latency drop because repeated compilation is avoided.
 
-- `opcache.enable`: Enables or disables OPCache.
-- `opcache.memory_consumption`: The size of the memory allocated to OPCache.
-- `opcache.interned_strings_buffer`: The amount of memory for interned strings in MB.
-- `opcache.max_accelerated_files`: The maximum number of scripts that can be cached.
-- `opcache.revalidate_freq`: How often (in seconds) to check script timestamps for changes, triggering recompilation if needed.
-- `opcache.validate_timestamps`: Whether to check for timestamp updates to ensure script consistency.
+## Why It Matters
 
-### Best Practices
+- Lower CPU usage on PHP-FPM workers
+- Lower average and p95 response time
+- Better throughput on the same hardware
 
-- **Monitoring and Tuning**: Regularly monitor the performance metrics provided by OPCache and adjust the configuration as needed to optimize cache hit rates and resource usage.
-- **Code Deployment**: When deploying new code versions, ensure OPCache is properly cleared or reset to prevent serving outdated code. This can be done via PHP scripts that use `opcache_reset()` or through server management commands.
-- **Compatibility Checks**: While OPCache works well with most PHP applications, testing is recommended after enabling OPCache, especially for complex or legacy applications that might have unique caching considerations.
+## Practical Configuration Example
 
-### Conclusion
+```ini
+opcache.enable=1
+opcache.memory_consumption=256
+opcache.interned_strings_buffer=16
+opcache.max_accelerated_files=50000
+opcache.validate_timestamps=1
+opcache.revalidate_freq=2
+```
 
-OPCache is a vital component for optimizing PHP applications, offering significant performance improvements with relatively minimal configuration. By compiling PHP scripts into bytecode and caching them, OPCache reduces the need for compilation on every request, leading to faster response times and lower server resource usage. Properly configuring and managing OPCache can lead to substantial improvements in application performance and scalability.
+How to explain these quickly:
+
+- `memory_consumption`: cache size for opcodes
+- `max_accelerated_files`: number of cached scripts
+- `validate_timestamps` and `revalidate_freq`: how code changes are detected
+
+## Deployment Considerations
+
+- In development, timestamp validation is usually enabled.
+- In production, teams often reduce checks and reset cache during deploy.
+- After deploy, warm up critical routes to avoid first-hit latency spikes.
+
+## Common Pitfalls
+
+- Cache too small causes frequent eviction.
+- Huge codebase with low `max_accelerated_files` reduces hit rate.
+- Incorrect deploy process can serve stale code for a short time.
+
+## Interview Questions
+
+- What does OPCache optimize exactly?
+- Which settings would you check first on a busy API?
+- Why can deploy strategy affect OPCache behavior?
+
+## Conclusion
+
+OPCache is one of the highest-impact, lowest-risk PHP performance improvements.
+If configured and deployed correctly, it cuts repeated compile work and improves request latency consistency.
