@@ -45,7 +45,7 @@ class SendConfirmationEmail
 
 Symfony-ov HTTP kernel obrađuje zahteve kroz lanac event listenera. Svaki listener može da obradi zahtev, modifikuje ga ili prosledi sledećem.
 
-```
+```text
 Request → kernel.request listeners → Controller → kernel.response listeners → Response
 ```
 

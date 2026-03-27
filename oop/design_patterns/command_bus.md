@@ -4,7 +4,7 @@ routes it to the appropriate handler. The handler then executes the intended act
 in complex applications with a large number of operations or in scenarios where operations need to be executed in a
 specific way, such as asynchronously or on a different thread.
 
-### Key Concepts of the Command Bus Pattern:
+### Key Concepts of the Command Bus Pattern
 
 - **Command**: A plain object that represents an instruction to perform a specific action. It contains all the necessary
   information for the action to be executed.
@@ -13,7 +13,7 @@ specific way, such as asynchronously or on a different thread.
 - **Command Handler**: A service that performs the operation encapsulated by the command. Each type of command has its
   own handler.
 
-### Benefits:
+### Benefits
 
 - **Decoupling**: The sender of a command is decoupled from the receiver that executes the command, enhancing modularity
   and maintainability.
@@ -24,7 +24,7 @@ specific way, such as asynchronously or on a different thread.
 - **Organization**: Centralizes the execution of commands, making the system's operations easier to understand and
   manage.
 
-### Example in PHP:
+### Example in PHP
 
 Let's consider a simple example where a command bus is used to execute a user registration command.
 
@@ -67,7 +67,7 @@ class CommandBus {
 }
 ```
 
-### Usage:
+### Usage
 
 ```php
 $commandBus = new CommandBus();

@@ -4,7 +4,7 @@ In Domain-Driven Design (DDD), the architecture of a software application is typ
 This layered architecture promotes separation of concerns, making the system more manageable and adaptable to changes in
 business requirements or technology.
 
-### Core Layers:
+### Core Layers
 
 1. **Presentation Layer**: This outermost layer is responsible for interacting with the user. It displays information
    and interprets user commands.
@@ -15,7 +15,7 @@ business requirements or technology.
 4. **Infrastructure Layer**: Provides technical capabilities that support the other layers. This includes persistence
    mechanisms, file systems, network access, database access, etc.
 
-### Incorrect Decision Example:
+### Incorrect Decision Example
 
 An incorrect decision might occur when business logic, which should reside in the **Domain Layer**, is implemented in
 the **Application Layer** or even in the **Presentation Layer**. This muddles the separation of concerns, making the
@@ -25,14 +25,14 @@ For instance, if validation logic that belongs to the domain model (like ensurin
 placed in the application layer, it leads to a scenario where the core business rules are scattered across the system,
 reducing the system's cohesion and making the domain logic harder to understand and maintain.
 
-### Corrective Action:
+### Corrective Action
 
 The corrective action would involve refactoring the misplaced business logic back into the domain layer. In our example,
 this means moving the validation logic for the order total into an appropriate domain service or entity within the *
 *Domain Layer**. This ensures that the business rules are encapsulated within the domain model, where they belong,
 improving the maintainability and understandability of the code.
 
-### Conclusion:
+### Conclusion
 
 Adhering to a layered architecture in DDD helps ensure that each component of the system focuses on its intended role.
 It enhances the system's maintainability and flexibility, making it easier to adapt to new requirements or technologies

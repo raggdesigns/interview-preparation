@@ -4,16 +4,16 @@ HTTP (HyperText Transfer Protocol) je protokol baziran na tekstu koji se koristi
 
 HTTP zahtev ima četiri dela:
 
-```
+```text
 [METODA] [URL] [HTTP VERZIJA]
 [ZAGLAVLJA]
 [PRAZAN RED]
 [TELO (opciono)]
 ```
 
-#### Realni primer:
+#### Realni primer
 
-```
+```text
 POST /api/users HTTP/1.1
 Host: example.com
 Content-Type: application/json
@@ -26,6 +26,7 @@ Content-Length: 45
 #### 1. Linija Zahteva
 
 Prva linija sadrži tri dela:
+
 - **Metoda** — koja akcija se izvodi: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `OPTIONS`, `HEAD`
 - **URL** (putanja) — resurs: `/api/users`, `/products/123`
 - **HTTP verzija** — obično `HTTP/1.1` ili `HTTP/2`
@@ -56,16 +57,16 @@ Telo sadrži podatke poslate serveru. GET i DELETE zahtevi obično nemaju telo. 
 
 HTTP odgovor takođe ima četiri dela:
 
-```
+```text
 [HTTP VERZIJA] [STATUS KOD] [STATUS TEKST]
 [ZAGLAVLJA]
 [PRAZAN RED]
 [TELO]
 ```
 
-#### Realni primer:
+#### Realni primer
 
-```
+```text
 HTTP/1.1 201 Created
 Content-Type: application/json
 Location: /api/users/42
@@ -107,7 +108,7 @@ Stvarni podaci koje vraća server — HTML stranica, JSON odgovor, slika, fajl, 
 
 HTTP/1.1 šalje zahteve jedan za drugim na konekciji. Ako je jedan zahtev spor, blokira ostale (head-of-line blokiranje). HTTP/2 rešava ovo multipleksiranjem — šaljući više zahteva i odgovora istovremeno na jednoj konekciji.
 
-```
+```text
 HTTP/1.1:
 Client ──req1──> Server ──res1──> Client ──req2──> Server ──res2──>
 
@@ -136,7 +137,7 @@ Client ──req1──>
 
 Pretraživač učitava web stranicu. Evo šta se dešava:
 
-```
+```text
 1. Pretraživač šalje:
    GET /index.html HTTP/1.1
    Host: example.com

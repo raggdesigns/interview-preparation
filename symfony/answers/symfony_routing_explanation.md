@@ -7,7 +7,7 @@ In Symfony, the routing component is responsible for mapping HTTP requests to co
 
 Routes can be defined in YAML, XML, PHP, or via annotations in controller comments. Each route must have a unique name and specify a path, along with the controller action it maps to.
 
-### Example using Annotations:
+### Example using Annotations
 
 ```php
 // src/Controller/BookController.php

@@ -3,7 +3,7 @@ representation from the database's persistence layer. Rather than having an obje
 to load or save that data to a database, the Data Mapper pattern uses a separate mapper class to move data between
 objects and the database while keeping them independent of each other.
 
-### Key Concepts of the Data Mapper Pattern:
+### Key Concepts of the Data Mapper Pattern
 
 - **Domain Model**: These are the application's business objects, which should be agnostic of the database details.
 - **Data Mapper**: A layer responsible for transferring data between the database and the objects (Domain Model).
@@ -11,14 +11,14 @@ objects and the database while keeping them independent of each other.
 - **Data Source Layer**: The layer where the database resides. This layer is interacted with by the Data Mapper rather
   than the Domain Model directly.
 
-### Benefits:
+### Benefits
 
 - **Separation of Concerns**: Keeps the domain model and persistence logic decoupled, leading to cleaner, more
   maintainable code.
 - **Flexibility**: Allows the domain model to evolve independently of the database schema, and vice versa.
 - **Reusability**: The mapping logic can be reused across different parts of the application.
 
-### Example in PHP:
+### Example in PHP
 
 Consider a simple scenario with a `User` domain model and a corresponding `UserMapper` to handle database operations.
 
@@ -65,7 +65,7 @@ class UserMapper {
 }
 ```
 
-### Usage:
+### Usage
 
 ```php
 // Assuming $pdo is a previously configured PDO object

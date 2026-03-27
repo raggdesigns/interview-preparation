@@ -21,7 +21,7 @@ Od PHP 7, nizovi koriste strukturu nazvanu `HashTable` u C. Svaki niz se sastoji
 2. **Bucket** — sadrži ključ, vrednost i hash ključa
 3. **Packed vs hash mod** — PHP optimizuje za nizove sa integer indeksima
 
-```
+```text
 PHP Array (HashTable)
 ├── nTableSize: 8         (allocated bucket slots, always power of 2)
 ├── nNumOfElements: 3     (actual elements stored)
@@ -64,7 +64,7 @@ unset($arr[1]);                             // Hash — gap in sequence after un
 
 Dva različita ključa mogu proizvesti istu hash vrednost. Ovo se naziva **kolizija**. PHP rukuje kolizijama koristeći **povezane liste** — kada dva ključa heširaju na istu poziciju bucket-a, ulančavaju se zajedno.
 
-```
+```text
 Bucket slot 3: "name" → "Dragan" → (next) "city" → "Belgrade"
                         Both "name" and "city" hashed to slot 3
 ```
@@ -74,6 +74,7 @@ U praksi, kolizije su retke. PHP menja veličinu hash tabele kada se previše na
 ### Korišćenje memorije
 
 PHP nizovi koriste znatno više memorije od jednostavnih C nizova jer svaki element skladišti:
+
 - Vrednost (zval — 16 bajtova)
 - Ključ (string ključ + hash, ili integer ključ)
 - Pokazivače za redosled i lance kolizija
@@ -189,6 +190,7 @@ foreach ($orders as $order) {
 ```
 
 Sa 10.000 aktivnih korisnika i 50.000 narudžbina:
+
 - `in_array`: do 10.000 × 50.000 = 500 miliona poređenja
 - `isset`: 50.000 hash pretraga = praktično trenutno
 

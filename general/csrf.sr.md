@@ -4,7 +4,7 @@ CSRF (Cross-Site Request Forgery) je napad u kome zlonamerna veb stranica navodi
 
 Napad eksploatiše činjenicu da pregledači automatski šalju kolačiće (uključujući sesijske kolačiće) uz svaki zahtev prema veb stranici.
 
-#### Korak po korak:
+#### Korak po korak
 
 1. **Korisnik se prijavljuje** na `bank.com`. Pregledač čuva sesijski kolačić.
 2. **Korisnik poseti** zlonamerni sajt (`evil.com`) dok je i dalje prijavljen na `bank.com`.
@@ -19,14 +19,14 @@ Napad eksploatiše činjenicu da pregledači automatski šalju kolačiće (uklju
 <script>document.getElementById('attack').submit();</script>
 ```
 
-4. **Pregledač šalje** zahtev ka `bank.com` sa korisnikovim sesijskim kolačićem priloženim.
-5. **bank.com prima** zahtev i vidi validnu sesiju → obrađuje prenos.
+1. **Pregledač šalje** zahtev ka `bank.com` sa korisnikovim sesijskim kolačićem priloženim.
+2. **bank.com prima** zahtev i vidi validnu sesiju → obrađuje prenos.
 
 Korisnik nije nameravao da izvrši prenos. Nije čak ni video formular — bio je skriven i automatski podnet.
 
 #### Zašto funkcioniše
 
-```
+```text
 Pregledač korisnika ima kolačić: session_id=abc123
 
 Kada evil.com šalje zahtev ka bank.com:
@@ -42,6 +42,7 @@ Server ne može razlikovati legitimni zahtev korisnika od falsifikovanog zahteva
 ### Šta CSRF može da uradi
 
 CSRF napadi mogu izvršiti bilo koju akciju koju korisnik sme da uradi:
+
 - Prenos novca
 - Promena email-a ili lozinke
 - Promena podešavanja naloga
@@ -171,7 +172,7 @@ REST API-ji koji koriste autentikaciju zasnovanu na tokenima (Bearer tokeni u Au
 - Token mora biti eksplicitno dodat od strane JavaScript-a
 - Stranica napadača ne može pristupiti tokenu (Same-Origin Policy)
 
-```
+```text
 // Cookie-based auth — RANJIVO na CSRF
 POST /api/transfer
 Cookie: session_id=abc123    ← pregledač automatski šalje

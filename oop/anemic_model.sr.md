@@ -1,6 +1,6 @@
 Anemični domenski model je termin koji je skovao Martin Fowler za opisivanje anti-obrasca u dizajnu softvera gde je domenski model fokusiran isključivo na podatke bez enkapsuliranja ikakve domenske logike. U ovom obrascu, poslovna logika se tipično implementira u posebnim klasama, kao što su servisi, koji manipulišu stanjem domenskih objekata. Ovaj pristup je suprotan bogatom domenskom modelu, gde su logika i podaci kombinovani da bi se bolje modelovale realne poslovne entitete.
 
-### Ključne Karakteristike Anemičnog Domenskog Modela:
+### Ključne Karakteristike Anemičnog Domenskog Modela
 
 - **Entiteti samo sa podacima**: Entiteti u modelu prvenstveno sadrže polja podataka bez ikakve poslovne logike.
 - **Poslovna logika u servisnom sloju**: Poslovna logika je implementirana izvan domenskog modela, često u servisnim klasama ili transakcionim skriptama.
@@ -38,7 +38,7 @@ class OrderService {
 
 U ovom primeru, klasa `Order` je čist kontejner podataka bez ikakve poslovne logike. Klasa `OrderService` sadrži sve operacije koje se mogu izvršiti na `Order`-u, kao što je računanje ukupnog iznosa ili dodavanje linije narudžbine.
 
-### Kritike Anemičnog Domenskog Modela:
+### Kritike Anemičnog Domenskog Modela
 
 - **Kršenje principa objektno-orijentisanog dizajna**: Odvajanje stanja i ponašanja je suprotno osnovnim principima OOP-a, gde bi objekti trebalo da enkapsuliraju i podatke i ponašanje.
 - **Povećana složenost**: Logika koja je van modela može dovesti do naduvanih servisnih klasa i otežati održavanje i razumevanje baze koda.

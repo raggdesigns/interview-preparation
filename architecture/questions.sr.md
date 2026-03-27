@@ -1,4 +1,5 @@
 # Pitanja o arhitekturi
+
 - [CQRS](cqrs.sr.md)
 - [Event Sourcing](event_sourcing.sr.md)
 - [Onion arhitektura](onion_architecture.sr.md)

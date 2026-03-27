@@ -8,6 +8,7 @@
 - **VARCHAR(n)**: Promenljiva dužina. Koristi samo onoliko prostora koliko zauzima stvarni string plus 1–2 bajta overhead-a za čuvanje dužine. Efikasniji za prostor za podatke promenljive veličine.
 
 **Kada koristiti koji:**
+
 - Koristi `CHAR` za vrednosti koje su uvek (ili skoro uvek) iste dužine: šifre zemalja, šifre valuta, MD5 hash-ovi.
 - Koristi `VARCHAR` za vrednosti nepredvidive dužine: imena, email adrese, opisi.
 

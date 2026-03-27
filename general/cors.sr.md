@@ -6,7 +6,7 @@ CORS (Cross-Origin Resource Sharing) je bezbednosni mehanizam pregledača koji k
 
 Podrazumevano, pregledači blokiraju JavaScript od upućivanja zahteva drugom poreklu. "Poreklo" je kombinacija **protokola + domena + porta**:
 
-```
+```text
 https://example.com:443  — ovo je jedno poreklo
 
 Isto poreklo:
@@ -32,7 +32,7 @@ CORS koristi HTTP zaglavlja da govori pregledaču: "Ovom drugom poreklu je dozvo
 
 Za jednostavne zahteve (GET, POST sa osnovnim tipovima sadržaja), pregledač šalje zahtev direktno i proverava zaglavlja odgovora:
 
-```
+```text
 1. Pregledač na https://app.mysite.com šalje zahtev:
    GET /api/users
    Origin: https://app.mysite.com
@@ -52,7 +52,7 @@ Za jednostavne zahteve (GET, POST sa osnovnim tipovima sadržaja), pregledač š
 
 Za "nesimplistične" zahteve (PUT, DELETE, prilagođena zaglavlja, JSON tip sadržaja), pregledač prvo šalje OPTIONS zahtev koji se zove **preflight**:
 
-```
+```text
 1. Pregledač želi da pošalje:
    DELETE /api/users/123
    Origin: https://app.mysite.com
@@ -84,7 +84,7 @@ Server kontroliše sve ovo putem specifičnih HTTP zaglavlja.
 
 ### CORS zaglavlja objašnjena
 
-#### Zaglavlja odgovora (šalje server):
+#### Zaglavlja odgovora (šalje server)
 
 | Zaglavlje | Svrha | Primer |
 |-----------|-------|--------|
@@ -95,12 +95,12 @@ Server kontroliše sve ovo putem specifičnih HTTP zaglavlja.
 | `Access-Control-Max-Age` | Keširaj preflight rezultat (sekunde) | `3600` |
 | `Access-Control-Expose-Headers` | Zaglavlja koja pregledač može čitati | `X-Total-Count` |
 
-#### Važna pravila:
+#### Važna pravila
 
 - `Access-Control-Allow-Origin: *` — dozvoljava sva porekla, ali se **ne može** koristiti sa kredencijalima
 - Da bi se dozvolili kredencijali (kolačići), mora se navesti tačno poreklo i postaviti `Allow-Credentials: true`
 
-```
+```text
 # Dozvoli sva porekla (bez kredencijala)
 Access-Control-Allow-Origin: *
 
@@ -198,7 +198,7 @@ function handleCors(Request $request): ?Response
 
 #### 1. Wildcard sa kredencijalima
 
-```
+```text
 # Ovo NE funkcioniše — pregledač to odbija
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
@@ -210,14 +210,14 @@ Access-Control-Allow-Credentials: true
 
 #### 2. Nedostaje OPTIONS handler
 
-```
+```text
 # Ako server vraća 405 za OPTIONS zahteve, preflight ne uspeva
 # Proveri da li tvoj veb server ili framework obrađuje OPTIONS
 ```
 
 #### 3. Nedostaju zaglavlja u stvarnom odgovoru
 
-```
+```text
 # CORS zaglavlja moraju biti prisutna I u preflightu I u stvarnom odgovoru
 # Ne samo u OPTIONS odgovoru
 ```
@@ -234,7 +234,7 @@ CSRF (Cross-Site Request Forgery) je napad u kome zlonamerna veb stranica navodi
 
 Koristeći naš scenario — korisnik je prijavljen na `https://app.mysite.com`, i pregledač čuva sesijski kolačić za `https://api.mysite.com`:
 
-```
+```text
 1. Korisnik se prijavi na https://app.mysite.com
    → Pregledač čuva sesijski kolačić za https://api.mysite.com
 
@@ -293,7 +293,7 @@ Za potpuni pregled metoda prevencije CSRF-a, pogledaj [Šta je CSRF](csrf.sr.md)
 
 Imaš React frontend na `https://app.mysite.com` i Symfony API na `https://api.mysite.com`. Bez CORS konfiguracije:
 
-```
+```text
 Frontend (React):
 fetch('https://api.mysite.com/api/users')
 → Pregledač blokira: "No 'Access-Control-Allow-Origin' header present"

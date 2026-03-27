@@ -2,7 +2,7 @@ Onion Architecture is a software architecture pattern that aims to maintain the 
 business logic) independent of infrastructure and technical details. It emphasizes the separation of concerns by
 layering the application such that external dependencies (like databases and frameworks) do not influence the core code.
 
-### Core Concepts of Onion Architecture:
+### Core Concepts of Onion Architecture
 
 - **Core Domain**: At the center of the architecture, containing the domain model and business rules.
 - **Application Layer**: Surrounds the domain layer, containing application logic and defines how domain objects are
@@ -13,7 +13,7 @@ layering the application such that external dependencies (like databases and fra
 - **Infrastructure Layer**: The outermost layer, containing code that communicates with external systems (databases,
   third-party services, UI). This layer implements interfaces defined in the application layer.
 
-### Principles:
+### Principles
 
 - **Dependency Inversion**: Inner layers define interfaces that outer layers implement, inverting traditional dependency
   management.
@@ -21,7 +21,7 @@ layering the application such that external dependencies (like databases and fra
 - **Core Independence**: The application core remains independent of frameworks and databases, facilitating easier
   testing and maintenance.
 
-### Benefits:
+### Benefits
 
 - **Flexibility**: By decoupling the application core from infrastructure concerns, it becomes easier to change or
   replace external components without affecting the core logic.

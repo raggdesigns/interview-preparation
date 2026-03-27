@@ -69,4 +69,3 @@ By implementing autoscaling, the Content Delivery Service can adjust its resourc
 optimizing costs. The Analytics Service, with variable workloads, benefits from a serverless model, reducing operational
 costs. Shared caching mechanisms reduce backend calls for the User Management and Subscription Services, further
 optimizing resource usage and costs.
-

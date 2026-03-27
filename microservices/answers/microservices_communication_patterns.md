@@ -39,4 +39,3 @@ Consider an Online Retail Platform utilizing various communication patterns:
 - **Shipping Service**: Handles order shipping logistics.
 
 The Catalog Service exposes a RESTful API for synchronous requests from the front end. The Order and Inventory Services communicate asynchronously using message queues to decouple the ordering process from inventory management, improving resilience and scalability. A service mesh ensures secure and efficient service-to-service communication within the platform, while an API Gateway routes customer requests to the appropriate services.
-

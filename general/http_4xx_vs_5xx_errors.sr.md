@@ -22,7 +22,7 @@ HTTP status kodovi su trocifeni brojevi koji govore klijentu šta se desilo sa n
 - **301 Moved Permanently** — "Ova stranica je trajno premeštena. Ažurirajte obeleživače." Pretraživači prenose SEO rangiranje na novu URL adresu.
 - **302 Found** — "Ova stranica je privremeno negde drugde. Nastavite da koristite staru URL adresu." Pretraživači zadržavaju staru URL adresu indeksiranu.
 
-```
+```text
 # 301 — Stari domen trajno preusmerava na novi domen
 GET http://old-site.com/about
 → 301 Moved Permanently
@@ -72,7 +72,7 @@ public function login(): Response
 - **401 Unauthorized** — "Ko si ti?" — nije pružena autentikacija ili je token istekao
 - **403 Forbidden** — "Znam ko si, ali ne možeš ovo da uradiš" — autentifikovan, ali nema dozvolu
 
-```
+```text
 # Nema tokena — 401
 GET /api/admin/users
 → 401 Unauthorized
@@ -88,7 +88,7 @@ Authorization: Bearer user-token-123
 - **400 Bad Request** — sam zahtev je pokvaren (nevažeći JSON, pogrešan Content-Type)
 - **422 Unprocessable Entity** — zahtev je dobro formiran, ali podaci nisu važeći (pogrešan format email-a, nedostaje obavezno polje)
 
-```
+```text
 # Pokvaren JSON — 400
 POST /api/users
 Content-Type: application/json
@@ -115,7 +115,7 @@ Body: {"name": "", "email": "not-an-email"}
 - **502 Bad Gateway** — upstream server (PHP-FPM) je odgovorio, ali odgovor je bio nevažeći ili je proces pao
 - **504 Gateway Timeout** — upstream server uopšte nije odgovorio u okviru vremenskog ograničenja
 
-```
+```text
 Nginx → PHP-FPM
 
 502: PHP-FPM proces pao ili vratio nešto nerazumljivo → Nginx ne može da razume odgovor
@@ -180,7 +180,7 @@ Radi potpunosti, evo svih pet grupa:
 
 Korisnik pokušava da ažurira profil putem API-ja:
 
-```
+```text
 1. Korisnik šalje zahtev bez tokena:
    PUT /api/profile  →  401 Unauthorized
 

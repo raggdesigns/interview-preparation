@@ -94,7 +94,7 @@ PSR-4 je najčešći standard za autoloading. Mapira delove namespace-a na struk
 
 Radite na e-commerce projektu. Vaš projekat ima ovu strukturu:
 
-```
+```text
 src/
   Controller/
     CartController.php    → class App\Controller\CartController

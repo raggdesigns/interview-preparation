@@ -3,7 +3,7 @@ application from the perspective of its stakeholders. It emphasizes collaboratio
 non-technical or business participants in a software project. BDD encourages teams to use conversation and concrete
 examples to formalize a shared understanding of how the application should behave.
 
-### Core Concepts of BDD:
+### Core Concepts of BDD
 
 - **Ubiquitous Language**: Using a common language that all stakeholders understand to describe the behavior of the
   application, often encapsulated in user stories.
@@ -12,7 +12,7 @@ examples to formalize a shared understanding of how the application should behav
 - **Outside-In Development**: Starting development from the outside layers (UI, external interfaces) and working inward
   toward the domain logic, guided by the behavior specifications.
 
-### Benefits:
+### Benefits
 
 - **Improved Communication**: Encourages better communication between technical and non-technical team members by
   focusing on behavior rather than technical details.

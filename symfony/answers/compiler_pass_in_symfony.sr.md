@@ -14,7 +14,7 @@ Glavna svrha CompilerPass-a je da omogući programerima modifikaciju kontejnera 
 
 Da biste kreirali CompilerPass, potrebno je da kreirate klasu koja implementira `CompilerPassInterface` i definišete svoje modifikacije u metodi `process`.
 
-### Primer:
+### Primer
 
 ```php
 namespace App\DependencyInjection\Compiler;
@@ -39,7 +39,7 @@ class MyCustomCompilerPass implements CompilerPassInterface
 
 Nakon kreiranja CompilerPass-a, potrebno je da ga registrujete u `build` metodi vašeg bundla ili, ako ne koristite bundlove, u vašem kernelu.
 
-### Primer za Bundle:
+### Primer za Bundle
 
 ```php
 namespace App;
@@ -59,7 +59,7 @@ class AppBundle extends Bundle
 }
 ```
 
-### Primer za Kernel (Symfony 4+ bez Bundle-a):
+### Primer za Kernel (Symfony 4+ bez Bundle-a)
 
 ```php
 namespace App;
@@ -115,6 +115,7 @@ class Kernel extends BaseKernel implements CompilerPassInterface
 ## Šta radi kompajliranje kontejnera
 
 Kompajliranje kontejnera servisa omogućava:
+
 - Sprečavanje kružnih referenci u zavisnostima servisa
 - Prethodno rešavanje parametara
 - Uklanjanje nekorišćenih zavisnosti

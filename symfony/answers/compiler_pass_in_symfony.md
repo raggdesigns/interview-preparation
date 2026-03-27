@@ -18,7 +18,7 @@ loaded and before the container is compiled. This is particularly useful for:
 To create a CompilerPass, you need to create a class that implements the `CompilerPassInterface` and define your
 modifications in the `process` method.
 
-### Example:
+### Example
 
 ```php
 namespace App\DependencyInjection\Compiler;
@@ -44,7 +44,7 @@ class MyCustomCompilerPass implements CompilerPassInterface
 After creating your CompilerPass, you need to register it in your bundle's `build` method or, if you're not using
 bundles, in your kernel.
 
-### Example for Bundle:
+### Example for Bundle
 
 ```php
 namespace App;
@@ -64,7 +64,7 @@ class AppBundle extends Bundle
 }
 ```
 
-### Example for Kernel (Symfony 4+ without Bundle):
+### Example for Kernel (Symfony 4+ without Bundle)
 
 ```php
 namespace App;
@@ -123,6 +123,7 @@ class Kernel extends BaseKernel implements CompilerPassInterface
 ## What Container Compilation Does
 
 Compiling the service container allows:
+
 - Preventing circular references in service dependencies
 - Resolving parameters beforehand
 - Removing unused dependencies

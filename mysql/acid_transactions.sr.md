@@ -35,6 +35,7 @@ COMMIT;
 ```
 
 Konzistentnost se sprovodi kroz:
+
 - **Ograničenja** — NOT NULL, UNIQUE, FOREIGN KEY, CHECK
 - **Trigger-e** — prilagođena validaciona logika
 - **Logiku aplikacije** — PHP kod validira podatke pre čuvanja
@@ -45,7 +46,7 @@ Izolacija znači da se konkurentne transakcije ne mešaju jedna sa drugom. Svaka
 
 **Problem bez izolacije:**
 
-```
+```text
 Transakcija A: čita balance = 1000
 Transakcija B: čita balance = 1000
 Transakcija A: postavlja balance = 1000 - 200 = 800
@@ -82,6 +83,7 @@ SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;
 Trajnost znači da jednom kada je transakcija commitovana, podaci su trajno sačuvani. Čak i ako server padne, izgubi struju ili disk otkaže — commitovani podaci preživljavaju.
 
 Kako baze podataka osiguravaju trajnost:
+
 - **Write-Ahead Log (WAL)** — promene se prvo pišu u log fajl na disku, zatim u stvarne fajlove podataka. Ako server padne, reprodukuje log pri ponovnom pokretanju
 - **Flushovanje na disk** — COMMIT komanda forsira pisanje podataka na trajno skladište pre vraćanja uspeha klijentu
 - **Replikacija** — podaci se kopiraju na druge servere za redundantnost

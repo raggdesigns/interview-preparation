@@ -83,7 +83,7 @@ GROUP BY u.id;
 
 Output:
 
-```
+```text
 +----+------+-------+------+---------------+---------+------+------+-------------+
 | id | type | table | key  | possible_keys | rows    | Extra               |
 +----+------+-------+------+---------------+---------+---------------------+
@@ -93,6 +93,7 @@ Output:
 ```
 
 Reading this:
+
 1. MySQL first finds active users using `idx_status` index (2300 rows)
 2. For each user, it looks up orders using `idx_user` index (about 12 rows per user)
 3. Total estimated work: 2300 × 12 = ~27,600 row lookups (instead of millions with full scans)
@@ -105,7 +106,7 @@ Reading this:
 EXPLAIN ANALYZE SELECT * FROM users WHERE status = 'active' AND city = 'Belgrade';
 ```
 
-```
+```text
 -> Filter: ((users.status = 'active') AND (users.city = 'Belgrade'))
     -> Table scan on users  (cost=512345 rows=5000000)
        (actual time=0.05..3456.00 rows=5000000 loops=1)
@@ -207,6 +208,7 @@ LIMIT 20;
 ```
 
 Step 2 — Read the output:
+
 - `type: ALL` on products table (bad — full table scan)
 - `key: NULL` (no index used)
 - `rows: 3,000,000`
@@ -219,6 +221,7 @@ CREATE INDEX idx_status_price_created ON products(status, price, created_at);
 ```
 
 Step 4 — Run EXPLAIN again:
+
 - `type: range` (good — uses index range scan)
 - `key: idx_status_price_created`
 - `rows: 4,500`

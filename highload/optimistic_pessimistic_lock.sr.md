@@ -149,7 +149,7 @@ try {
 
 ### Kada koristiti koje
 
-#### Koristi pesimistično zaključavanje kada:
+#### Koristi pesimistično zaključavanje kada
 
 - Mnoge transakcije se takmiče za iste redove (visoko sukobljavanje)
 - Trošak neuspele transakcije je visok (npr. finansijske operacije)
@@ -174,7 +174,7 @@ try {
 }
 ```
 
-#### Koristi optimistično zaključavanje kada:
+#### Koristi optimistično zaključavanje kada
 
 - Konflikti su retki (malo sukobljavanja)
 - Transakcije mogu biti duge (npr. korisnik uređuje formular minutima)
@@ -200,7 +200,7 @@ try {
 
 Onlajn prodavnica ima proizvod sa 3 komada na stanju. Dva kupca pokušavaju da kupe istovremeno.
 
-#### Sa optimističnim zaključavanjem:
+#### Sa optimističnim zaključavanjem
 
 ```php
 // Kupac A čita: stock = 3, version = 1
@@ -218,7 +218,7 @@ UPDATE products SET stock = 1, version = 3 WHERE id = 1 AND version = 2;
 // → 1 red pogođen → uspeh!
 ```
 
-#### Sa pesimističnim zaključavanjem:
+#### Sa pesimističnim zaključavanjem
 
 ```php
 // Kupac A:

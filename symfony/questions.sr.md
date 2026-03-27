@@ -15,7 +15,8 @@
 - [Lazy Loading za klase](./answers/lazy_loading_for_classes.sr.md)
 - [Kako validirati zahteve](./answers/validating_requests_in_symfony.sr.md)
 
-# Komponente:
+# Komponente
+
 - [Serializacija komponenta](./answers/components/serialization_component.sr.md)
 - [Messenger komponenta](./answers/components/messenger_component.sr.md)
 - [HttpKernel komponenta](./answers/components/httpkernel_component.sr.md)

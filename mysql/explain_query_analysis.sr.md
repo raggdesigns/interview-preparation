@@ -83,7 +83,7 @@ GROUP BY u.id;
 
 Izlaz:
 
-```
+```text
 +----+------+-------+------+---------------+---------+------+------+-------------+
 | id | type | table | key  | possible_keys | rows    | Extra               |
 +----+------+-------+------+---------------+---------+---------------------+
@@ -93,6 +93,7 @@ Izlaz:
 ```
 
 Čitanje ovoga:
+
 1. MySQL najpre pronalazi aktivne korisnike koristeći `idx_status` indeks (2300 redova)
 2. Za svakog korisnika, pronalazi narudžbine koristeći `idx_user` indeks (oko 12 redova po korisniku)
 3. Ukupno procenjeni posao: 2300 × 12 = ~27,600 pretraga redova (umesto miliona sa punim skeniranjima)
@@ -105,7 +106,7 @@ Izlaz:
 EXPLAIN ANALYZE SELECT * FROM users WHERE status = 'active' AND city = 'Belgrade';
 ```
 
-```
+```text
 -> Filter: ((users.status = 'active') AND (users.city = 'Belgrade'))
     -> Table scan on users  (cost=512345 rows=5000000)
        (actual time=0.05..3456.00 rows=5000000 loops=1)
@@ -207,6 +208,7 @@ LIMIT 20;
 ```
 
 Korak 2 — Čitaj izlaz:
+
 - `type: ALL` na tabeli products (loše — puno skeniranje tabele)
 - `key: NULL` (nijedan indeks se ne koristi)
 - `rows: 3,000,000`
@@ -219,6 +221,7 @@ CREATE INDEX idx_status_price_created ON products(status, price, created_at);
 ```
 
 Korak 4 — Ponovo pokreni EXPLAIN:
+
 - `type: range` (dobro — koristi skeniranje opsega indeksa)
 - `key: idx_status_price_created`
 - `rows: 4,500`

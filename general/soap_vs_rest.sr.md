@@ -35,7 +35,7 @@ SOAP je protokol za razmenu strukturiranih podataka između servisa. Svaka SOAP 
 
 ### REST — Isti Zahtev
 
-```
+```text
 GET /api/users/42 HTTP/1.1
 Host: example.com
 Authorization: Bearer abc123
@@ -68,6 +68,7 @@ Accept: application/json
 ### WSDL — Web Services Description Language
 
 WSDL je XML fajl koji potpuno opisuje SOAP servis. Definiše:
+
 - Koje **operacije** servis nudi
 - Koje **parametre** svaka operacija očekuje
 - Koji **tipovi podataka** se koriste

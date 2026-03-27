@@ -12,3 +12,6 @@ Desktop.ini
 
 # Node (for markdownlint tooling)
 node_modules/
+
+# Internal docs (plans, specs, generated content)
+docs/

@@ -99,7 +99,7 @@ Here is what happens step by step when you run `composer install`:
 
 6. **Run post-install scripts** — If `composer.json` defines any scripts for the `post-install-cmd` event, they run now. Symfony, for example, clears cache and installs assets in this step.
 
-```
+```text
 composer install
 ├── 1. Read composer.lock
 ├── 2. Check vendor/ for existing packages

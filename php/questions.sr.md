@@ -1,6 +1,7 @@
 # PHP pitanja
 
 ## Karakteristike jezika
+
 - [Tipovi podataka u PHP-u. Opišite Resource i Callable tipove](data_types_in_php.sr.md)
 - [this VS self, self VS static, parent VS self](this_vs_self_vs_parent.sr.md)
 - [Lista magičnih konstanti. Da li vrednost magične konstante zavisi od mesta gde se poziva?](magic_constants.sr.md)
@@ -25,12 +26,14 @@
 - [Koji su glavni rizici korišćenja PHP-a kao demona](main_risks_of_using_php_as_daemon_and_how_to_manage_them.sr.md) (Swoole, ReactPHP, Roadrunner itd.) i kako njima upravljati
 
 ## Traits
+
 - [Traits - kako ih dodati. Nasleđivanje i instanciranje traits-a](traits.sr.md)
 - [Kako su traits uključeni na niskom nivou](traits.sr.md)
 - [Da li možete dodati konstantu u trait? Kako možete koristiti tu konstantu?](traits.sr.md)
 - [Da li možete koristiti privatne ili zaštićene metode u trait-u?](traits.sr.md)
 
 ## PHP verzije
+
 - [Nove funkcionalnosti u PHP7 (glavne razlike od PHP5)](new_features_in_php7.sr.md)
 - [Nove funkcionalnosti u PHP7.4](new_features_in_php74.sr.md)
 - [Nove funkcionalnosti u PHP 8.0](new_features_in_php80.sr.md)
@@ -41,6 +44,7 @@
 - [Nove funkcionalnosti u PHP 8.5](new_features_in_php85.sr.md)
 
 ## Alati
+
 - [Composer - svrha i mogućnosti](composer.sr.md)
 - [composer install vs composer update](composer.sr.md)
 - [Glavni koraci komande 'composer install'](composer.sr.md)
@@ -48,6 +52,7 @@
 ------
 
 ## [Teška pitanja](tricky_questions.sr.md)
+
 1. [Postoji niz sa ključevima 0, 1, 2, 3 i "Hello". Koji će biti ključ za sledeću vrednost?](tricky_questions.sr.md)
 2. [Postoje klase A, B, C sa određenim ograničenjima: A sa javnim konstruktorom, B sa privatnim konstruktorom, C proširuje B — koji konstruktor će biti nasleđen u klasi C?](tricky_questions.sr.md)
 3. [Kako možete pozvati metodu sa istim imenom iz roditeljske klase unutar podklase?](tricky_questions.sr.md)

@@ -82,4 +82,3 @@ Autoconfiguration takes care of setting up the command without needing explicit 
 ## Conclusion
 
 Autoconfigure simplifies the setup of Symfony applications by reducing boilerplate service configuration. It works seamlessly with autowiring, further enhancing the developer experience by focusing on conventions over configuration.
-

@@ -2,7 +2,7 @@ Deadlock se dešava kada dve ili više transakcija čekaju jedna na drugu da otp
 
 ### Kako se deadlock dešava
 
-```
+```text
 Transaction A:                          Transaction B:
 1. UPDATE accounts SET balance=100
    WHERE id=1;
@@ -24,7 +24,7 @@ Transaction A:                          Transaction B:
 
 InnoDB detektuje ovo kružno čekanje i poništava jednu od transakcija (obično onu koja je uradila najmanje posla). Druga transakcija nastavlja.
 
-```
+```text
 ERROR 1213 (40001): Deadlock found when trying to get lock; try restarting transaction
 ```
 
@@ -32,7 +32,7 @@ ERROR 1213 (40001): Deadlock found when trying to get lock; try restarting trans
 
 InnoDB koristi **wait-for graph**. Prati koja transakcija čeka na koje zaključavanje. Kada detektuje ciklus u grafu, odmah poništava jednu transakciju. Detekcija je skoro trenutna.
 
-```
+```text
 Wait-for graph:
   Transaction A → waits for → Transaction B
   Transaction B → waits for → Transaction A
@@ -51,7 +51,7 @@ SHOW ENGINE INNODB STATUS\G
 
 Izlaz uključuje sekciju `LATEST DETECTED DEADLOCK`:
 
-```
+```text
 ------------------------
 LATEST DETECTED DEADLOCK
 ------------------------
@@ -242,7 +242,7 @@ Aplikacija za e-commerce obrađuje mnoge istovremene narudžbine. Svako ažurira
 
 Istraživanje sa `SHOW ENGINE INNODB STATUS` pokazuje:
 
-```
+```text
 Transaction A: UPDATE inventory WHERE product_id=5, then UPDATE orders WHERE id=100
 Transaction B: UPDATE orders WHERE id=101 (coincidentally locks a gap), then UPDATE inventory WHERE product_id=5
 ```

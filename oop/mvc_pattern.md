@@ -3,16 +3,19 @@ MVC (Model-View-Controller) is an architectural pattern that separates applicati
 ### The Three Components
 
 **Model** — business logic and data. The Model knows nothing about how data is displayed or how user input arrives. It handles:
+
 - Database queries and data persistence
 - Business rules and validation
 - Domain logic
 
 **View** — presentation layer. The View renders data from the Model in a format the user can see. It handles:
+
 - HTML templates in traditional web apps
 - JSON/XML responses in REST APIs
 - Console output in CLI applications
 
 **Controller** — input handler. The Controller receives user input, calls the appropriate Model logic, and selects a View to present the result. It handles:
+
 - Receiving HTTP requests
 - Validating input
 - Calling services/repositories
@@ -20,7 +23,7 @@ MVC (Model-View-Controller) is an architectural pattern that separates applicati
 
 ### How MVC Works — The Flow
 
-```
+```text
 User Request → Controller → Model → Controller → View → Response
 
 1. User sends HTTP request: GET /users/42

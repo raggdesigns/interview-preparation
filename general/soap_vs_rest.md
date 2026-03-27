@@ -35,7 +35,7 @@ SOAP is a protocol for exchanging structured data between services. Every SOAP m
 
 ### REST — The Same Request
 
-```
+```text
 GET /api/users/42 HTTP/1.1
 Host: example.com
 Authorization: Bearer abc123
@@ -68,6 +68,7 @@ Accept: application/json
 ### WSDL — Web Services Description Language
 
 WSDL is an XML file that describes a SOAP service completely. It defines:
+
 - What **operations** the service offers
 - What **parameters** each operation expects
 - What **data types** are used

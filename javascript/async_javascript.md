@@ -166,6 +166,7 @@ async function loadUser(id) {
 ```
 
 **Rules:**
+
 - `await` can only be used inside an `async` function
 - `await` pauses the function execution until the Promise resolves
 - `async` functions always return a Promise
@@ -258,7 +259,7 @@ async function getUser(id) {
 
 Understanding why async works requires knowing the event loop:
 
-```
+```text
 ┌───────────────────────────┐
 │        Call Stack          │  ← Executes synchronous code
 │  (one thing at a time)    │

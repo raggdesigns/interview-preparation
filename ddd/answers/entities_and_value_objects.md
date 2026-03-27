@@ -8,9 +8,9 @@ Entities are objects that are defined not by their attributes, but by a thread o
 entity is unique within the system, even if its attributes change over time. The identity of an entity is constant from
 the moment it's created until it ceases to exist within the system.
 
-#### Example of an Entity:
+#### Example of an Entity
 
-```
+```text
 class User {
     private $userId;
     private $name;
@@ -24,6 +24,7 @@ class User {
     // Getters and setters...
 }
 ```
+
 Consider a `User` in a social media platform. A user can change their name, email, or profile picture, but they remain
 the same user. This is represented by a unique identifier (like a user ID) that doesn't change, even though other
 attributes might.
@@ -34,9 +35,9 @@ Value Objects, on the other hand, are defined by their attributes. If you change
 essentially becomes a new object. Value Objects do not have a unique identifier that tracks them throughout their
 lifecycle, and they are often used to describe aspects of an entity.
 
-#### Example of a Value Object:
+#### Example of a Value Object
 
-```
+```text
 class Address {
     private $street;
     private $city;
@@ -50,6 +51,7 @@ class Address {
     // Getters...
 }
 ```
+
 An `Address` used in a shipping system can be a Value Object. It's defined by its attributes (street, city, postal
 code), and changing any of these attributes would result in a different address.
 
@@ -58,15 +60,16 @@ code), and changing any of these attributes would result in a different address.
 A common misinterpretation in DDD is treating an object that should be an Entity as a Value Object. This mistake can
 manifest significant issues as the system evolves.
 
-#### Incorrect Decision Example:
+#### Incorrect Decision Example
 
 Imagine an online bookstore system where every book is initially modeled as a Value Object, under the mistaken
 assumption that all that identifies a book is its combination of title, author, and ISBN. This decision leads to
 complications when the system needs to track individual copies of books for inventory purposes or handle sales and
 returns, as Value Objects do not have a unique identifier.
 
-### Corrective Action:
-```
+### Corrective Action
+
+```text
 class Book {
     private $bookId;
     private $title;
@@ -82,10 +85,10 @@ class Book {
     // Getters...
 }
 ```
+
 To address these issues, the development team needs to refactor the model, treating `Book` as an Entity rather than a
 Value Object. This involves assigning a unique identifier to each `Book` instance, allowing the system to distinguish
 between different copies of the same title.
-
 
 ### Conclusion
 

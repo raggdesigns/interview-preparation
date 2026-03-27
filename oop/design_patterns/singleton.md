@@ -3,6 +3,7 @@ The Singleton pattern ensures that a class has only one instance in the entire a
 ### Structure
 
 A Singleton class has three key features:
+
 1. **Private constructor** — prevents creating instances with `new`
 2. **Static instance variable** — holds the single instance
 3. **Static method** — returns the instance, creating it on first call

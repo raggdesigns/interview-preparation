@@ -99,7 +99,7 @@ Evo šta se dešava korak po korak kada pokrenete `composer install`:
 
 6. **Pokretanje post-install skripti** — Ako `composer.json` definiše skripte za `post-install-cmd` događaj, one se sada pokreću. Symfony, na primer, čisti keš i instalira assete u ovom koraku.
 
-```
+```text
 composer install
 ├── 1. Read composer.lock
 ├── 2. Check vendor/ for existing packages

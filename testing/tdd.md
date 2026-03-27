@@ -3,7 +3,7 @@ advocates for the creation of automated tests that define desired improvements o
 itself is implemented. The process is characterized by a short and repetitive development cycle that aims to increase
 code quality and understandability.
 
-### Core Process of TDD:
+### Core Process of TDD
 
 1. **Write a Test**: Start by writing a test for the next bit of functionality you want to add.
 2. **Run the Tests**: Run the test suite. The new test should fail because the functionality it tests isn't implemented
@@ -16,7 +16,7 @@ code quality and understandability.
 
 This cycle repeats for each new piece of functionality.
 
-### Benefits:
+### Benefits
 
 - **Early Bug Detection**: Writing tests first helps identify problems early in the development cycle.
 - **Design Improvement**: TDD encourages simpler, clearer, and more modular designs by requiring developers to think

@@ -6,52 +6,65 @@ Dizajn obrasci igraju ključnu ulogu u arhitekturi frameworka poput Symfony-ja i
 ## Factory obrazac
 
 ### Opis
+
 Factory obrazac se koristi za kreiranje objekata bez specificiranja tačne klase objekta koji će biti kreiran.
 
 ### Upotreba u Symfony-ju
+
 Symfony koristi Factory obrazac u komponenti formi (`FormFactoryInterface`), koja kreira instance formi. Servisi definisani u `services.yaml` takođe mogu koristiti fabričke metode za instanciranje objekata.
 
 ### Upotreba u Doctrine-u
+
 Doctrine koristi Factory obrazac za kreiranje entiteta ili repozitorijuma, na primer kroz fabriku repozitorijuma `EntityManager`-a.
 
 ## Observer obrazac
 
 ### Opis
+
 Observer obrazac definiše zavisnost jedan-prema-mnogo između objekata tako da kada jedan objekat promeni stanje, svi njegovi zavisnici budu automatski obavešteni i ažurirani.
 
 ### Upotreba u Symfony-ju
+
 EventDispatcher komponenta Symfony-ja je odličan primer Observer obrasca, gde se događaji (promene stanja) šalju registrovanim listenerima ili subscriberima koji zatim reaguju na ove događaje.
 
 ## Strategy obrazac
 
 ### Opis
+
 Strategy obrazac se koristi za definisanje porodice algoritama, enkapsuliranje svakog od njih i čini ih zamenljivim. Strategy omogućava algoritmu da varira nezavisno od klijenata koji ga koriste.
 
 ### Upotreba u Symfony-ju
+
 Strategy obrazac je evidentan u HTTP Kernel komponenti Symfony-ja, gde se mogu definisati i menjati različiti handleri zahteva (`HttpKernelInterface`) na osnovu potreba aplikacije.
 
 ## Data Mapper obrazac
 
 ### Opis
+
 Data Mapper obrazac uključuje sloj mapera koji premešta podatke između objekata i baze podataka, čuvajući ih nezavisnim jedne od drugih i od samog mapera.
 
 ### Upotreba u Doctrine-u
+
 Doctrine ORM je odličan primer Data Mapper obrasca, gde se entiteti (objekti u memoriji) mapiraju na tabele baze podataka. Doctrine-ov `EntityManager` i repozitorijumi deluju kao maperski sloj, transparentno rukujući mapiranjem objekat-baza podataka.
 
 ## Dependency Injection obrazac
 
 ### Opis
+
 Dependency Injection je tehnika gde jedan objekat obezbeđuje zavisnosti drugog objekta, smanjujući sprezanje između komponenti i povećavajući fleksibilnost.
 
 ### Upotreba u Symfony-ju
+
 Symfony-jev Dependency Injection kontejner je fundamentalni deo frameworka, omogućavajući injektovanje servisa u klase umesto da klase same kreiraju zavisnosti.
 
 ## Proxy obrazac
 
 ### Opis
+
 Proxy obrazac pruža zamenu ili mesto za drugi objekat radi kontrole pristupa njemu, često se koristi za lazy loading ili kontrolu objekta.
 
 ### Upotreba u Doctrine-u
+
 Doctrine koristi Proxy obrazac za entitete pri radu sa lazy loadingom. Proxy-ji su automatski generisane klase koje proširuju entitete radi dodavanja mogućnosti lazy loadinga.
 
 ## Zaključak

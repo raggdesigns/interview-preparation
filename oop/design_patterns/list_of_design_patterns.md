@@ -2,57 +2,57 @@
 
 <table>
 <tr>
-	<th colspan="3">Design Patterns</th>
+ <th colspan="3">Design Patterns</th>
 </tr>
 <tr>
-	<td>Creational</td>
-	<td>Behavioral</td>
-	<td>Structural</td>
+ <td>Creational</td>
+ <td>Behavioral</td>
+ <td>Structural</td>
 </tr>
 <tr>
-	<td >
-		<ul>
-			<li>Singleton</li>
-			<li>Simple Factory</li>
-			<li>Abstract Factory</li>
-			<li>Factory Method</li>
-			<li>Static Factory</li>
-			<li>Object Pool</li>
-			<li>Builder</li>
-			<li>Prototype</li>
-		</ul>
-	</td>
-	<td >
-		<ul>
-			<li>Chain of Responsibilities</li>
-			<li>Command</li>
-			<li>Iterator</li>
-			<li>Mediator</li>
-			<li>Memento</li>
-			<li>NullObject</li>
-			<li>Observer</li>
-			<li>Specification</li>
-			<li>State</li>
-			<li>Strategy</li>
-			<li>TemplateMethod</li>
-			<li>Visitor</li>
-		</ul>
-	</td>
-	<td>
-		<ul>
-			<li>Decorator</li>
-			<li>Facade</li>
-			<li>Adapter</li>
-			<li>Bridge</li>
-			<li>Composite</li>
-			<li>DataMapper</li>
-			<li>Dependency Injection</li>
-			<li>Fluent Interface</li>
-			<li>Flyweight</li>
-			<li>Proxy</li>
-			<li>Registry</li>
-		</ul>
-	</td>
+ <td >
+  <ul>
+   <li>Singleton</li>
+   <li>Simple Factory</li>
+   <li>Abstract Factory</li>
+   <li>Factory Method</li>
+   <li>Static Factory</li>
+   <li>Object Pool</li>
+   <li>Builder</li>
+   <li>Prototype</li>
+  </ul>
+ </td>
+ <td >
+  <ul>
+   <li>Chain of Responsibilities</li>
+   <li>Command</li>
+   <li>Iterator</li>
+   <li>Mediator</li>
+   <li>Memento</li>
+   <li>NullObject</li>
+   <li>Observer</li>
+   <li>Specification</li>
+   <li>State</li>
+   <li>Strategy</li>
+   <li>TemplateMethod</li>
+   <li>Visitor</li>
+  </ul>
+ </td>
+ <td>
+  <ul>
+   <li>Decorator</li>
+   <li>Facade</li>
+   <li>Adapter</li>
+   <li>Bridge</li>
+   <li>Composite</li>
+   <li>DataMapper</li>
+   <li>Dependency Injection</li>
+   <li>Fluent Interface</li>
+   <li>Flyweight</li>
+   <li>Proxy</li>
+   <li>Registry</li>
+  </ul>
+ </td>
 </tr>
 </table>
 

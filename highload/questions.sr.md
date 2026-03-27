@@ -1,4 +1,5 @@
 # Pitanja o visokim opterećenjima
+
 - [Kako funkcioniše PHP-FPM](php_fpm.sr.md)
 - [Kako PHP-FPM funkcioniše sa Nginx-om](php_fpm.sr.md#how-php-fpm-works-with-nginx)
 - [Kako optimizovati pojedinačni insert u velikoj tabeli](how_to_optimize_single_insert_in_a_big_table.sr.md)
@@ -12,4 +13,5 @@
 - [Load balancer i sesije](load_balancer_and_sessions.sr.md)
 
 ## Teška pitanja
+
 1. [Postoji GET endpoint koji ne može da generiše odgovor bez greške timeout-a. Ovaj endpoint čita podatke iz velike tabele. Kako optimizovati ovaj endpoint bez promene tela odgovora?](optimizing_slow_get_endpoint.sr.md)

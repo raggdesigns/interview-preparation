@@ -3,7 +3,7 @@ automatizovanih testova koji definišu željena poboljšanja ili nove funkcije p
 implementira. Proces karakteriše kratki i ponavljajući razvojni ciklus koji ima za cilj povećanje kvaliteta i
 razumljivosti koda.
 
-### Osnovni proces TDD-a:
+### Osnovni proces TDD-a
 
 1. **Napišite test**: Počnite pisanjem testa za sledeći deo funkcionalnosti koji želite da dodate.
 2. **Pokrenite testove**: Pokrenite test suite. Novi test bi trebalo da ne prolazi jer funkcionalnost koju testira
@@ -16,7 +16,7 @@ razumljivosti koda.
 
 Ovaj ciklus se ponavlja za svaki novi deo funkcionalnosti.
 
-### Prednosti:
+### Prednosti
 
 - **Rano otkrivanje grešaka**: Pisanje testova pre pomaže u ranom identifikovanju problema u razvojnom ciklusu.
 - **Poboljšanje dizajna**: TDD podstiče jednostavnije, jasnije i modularnije dizajne zahtevajući od programera da

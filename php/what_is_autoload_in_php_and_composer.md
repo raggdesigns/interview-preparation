@@ -94,7 +94,7 @@ PSR-4 is the most common autoloading standard. It maps namespace parts to folder
 
 You work on an e-commerce project. Your project has this structure:
 
-```
+```text
 src/
   Controller/
     CartController.php    → class App\Controller\CartController

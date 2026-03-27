@@ -2,7 +2,7 @@ A deadlock happens when two or more transactions are waiting for each other to r
 
 ### How a Deadlock Happens
 
-```
+```text
 Transaction A:                          Transaction B:
 1. UPDATE accounts SET balance=100      
    WHERE id=1;                          
@@ -24,7 +24,7 @@ Transaction A:                          Transaction B:
 
 InnoDB detects this circular wait and rolls back one of the transactions (typically the one that has done the least work). The other transaction continues.
 
-```
+```text
 ERROR 1213 (40001): Deadlock found when trying to get lock; try restarting transaction
 ```
 
@@ -32,7 +32,7 @@ ERROR 1213 (40001): Deadlock found when trying to get lock; try restarting trans
 
 InnoDB uses a **wait-for graph**. It tracks which transaction is waiting for which lock. When it detects a cycle in the graph, it immediately rolls back one transaction. The detection is near-instant.
 
-```
+```text
 Wait-for graph:
   Transaction A → waits for → Transaction B
   Transaction B → waits for → Transaction A
@@ -51,7 +51,7 @@ SHOW ENGINE INNODB STATUS\G
 
 The output includes a `LATEST DETECTED DEADLOCK` section:
 
-```
+```text
 ------------------------
 LATEST DETECTED DEADLOCK
 ------------------------
@@ -242,7 +242,7 @@ An e-commerce application processes many concurrent orders. Each order update mo
 
 Investigation with `SHOW ENGINE INNODB STATUS` shows:
 
-```
+```text
 Transaction A: UPDATE inventory WHERE product_id=5, then UPDATE orders WHERE id=100
 Transaction B: UPDATE orders WHERE id=101 (coincidentally locks a gap), then UPDATE inventory WHERE product_id=5
 ```

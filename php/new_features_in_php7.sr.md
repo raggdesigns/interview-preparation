@@ -117,7 +117,7 @@ try {
 
 I `Error` i `Exception` implementiraju interfejs `Throwable`:
 
-```
+```text
 Throwable
 ├── Error
 │   ├── TypeError

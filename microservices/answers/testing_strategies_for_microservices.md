@@ -48,4 +48,3 @@ Consider a Logistics Management System designed with microservices:
 - **Notification Service**: Sends status updates to customers.
 
 For this system, unit and integration testing ensure that each service and its interactions work as intended. Contract testing between the Order Management and Route Optimization services verifies that route requests and responses adhere to agreed-upon formats. End-to-end testing checks the entire order processing workflow. Performance testing assesses the system’s responsiveness during peak order times, and resilience testing ensures the system gracefully handles service failures, such as an unavailable Inventory Service.
-

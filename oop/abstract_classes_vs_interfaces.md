@@ -13,6 +13,7 @@ interface PaymentGateway
 ```
 
 **Rules for interfaces:**
+
 - All methods are public (no private or protected)
 - No method bodies (except in PHP 8.0+ with default implementations â€” rare)
 - No properties (only constants)
@@ -70,6 +71,7 @@ abstract class AbstractNotificationSender
 ```
 
 **Rules for abstract classes:**
+
 - Can have abstract AND concrete methods
 - Can have properties (including private ones)
 - Can have constructors
@@ -114,6 +116,7 @@ Both `EmailSender` and `SmsSender` get `sendWithRetry()` and `log()` for free â€
 ### When to Use Interface
 
 Use an interface when:
+
 - You need to define a **contract** that multiple unrelated classes follow
 - You need **multiple implementations** that share no code
 - You want to enable **dependency injection** and easy testing
@@ -142,6 +145,7 @@ class OrderService
 ### When to Use Abstract Class
 
 Use an abstract class when:
+
 - Multiple classes share **common behavior** (not just a contract)
 - You want to provide **default implementations** that subclasses inherit
 - You need to define a **template method** (fixed algorithm with customizable steps)

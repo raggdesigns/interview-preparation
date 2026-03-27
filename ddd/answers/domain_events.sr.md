@@ -1,13 +1,14 @@
 Domain Events su ključni koncept u Domain-Driven Design-u (DDD) koji predstavlja nešto smisleno što se desilo unutar domene. Koriste se za komunikaciju promena ili značajnih dešavanja unutar sistema, omogućavajući različitim delovima sistema da reaguju na te promene na dekouplovan način. U suštini, Domain Events enkapsuliraju ideju arhitekture vođene događajima unutar konteksta DDD-a, promovišući:
-  * slabo sprezanje
-  * povećanje reaktivnosti sistema
-  * fleksibilnost
 
-### Karakteristike Domain Events:
+* slabo sprezanje
+* povećanje reaktivnosti sistema
+* fleksibilnost
 
-- **Nepromenljivi**: Jednom kada je Domain Event kreiran, njegovo stanje se ne menja. Ova nepromenljivost osigurava pouzdanost događaja dok se propagira kroz sistem.
-- **Naziv događaja**: Opisuje šta se desilo, obično u prošlom vremenu (npr. OrderPlaced, ItemShipped).
-- **Podaci događaja**: Sadrži detalje relevantne za događaj, kao što su ID-evi entiteta, vremenske oznake i druge pertinentne informacije.
+### Karakteristike Domain Events
+
+* **Nepromenljivi**: Jednom kada je Domain Event kreiran, njegovo stanje se ne menja. Ova nepromenljivost osigurava pouzdanost događaja dok se propagira kroz sistem.
+* **Naziv događaja**: Opisuje šta se desilo, obično u prošlom vremenu (npr. OrderPlaced, ItemShipped).
+* **Podaci događaja**: Sadrži detalje relevantne za događaj, kao što su ID-evi entiteta, vremenske oznake i druge pertinentne informacije.
 
 ### Primer Domain Events
 
@@ -25,7 +26,7 @@ Ovaj događaj ukazuje da je artikal iz narudžbine poslat. Može sadržati detal
 
 Pojednostavljena PHP implementacija OrderPlaced događaja može izgledati ovako:
 
-```
+```text
 class OrderPlaced {
     private $orderId;
     private $customerId;

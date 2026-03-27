@@ -3,6 +3,7 @@ Particionisanje je podela velike tabele baze podataka na manje delove zvane **pa
 ### Zašto particionisati tabelu?
 
 Kada tabela ima milione ili milijarde redova:
+
 - Upiti postaju spori jer su indeksi ogromni
 - INSERT operacije se usporavaju jer indeksi moraju biti ažurirani
 - Operacije održavanja (backup, ALTER TABLE) traju veoma dugo
@@ -91,6 +92,7 @@ SELECT * FROM orders WHERE created_at BETWEEN '2024-01-01' AND '2024-12-31';
 ```
 
 Možeš proveriti sa `EXPLAIN`:
+
 ```sql
 EXPLAIN SELECT * FROM orders WHERE created_at = '2024-06-15';
 -- Prikazuje: partitions: p2024  (skenirana samo jedna particija)
@@ -99,6 +101,7 @@ EXPLAIN SELECT * FROM orders WHERE created_at = '2024-06-15';
 #### Manji indeksi
 
 Svaka particija ima sopstveni indeks. Umesto jednog ogromnog B-tree indeksa koji pokriva 100 miliona redova, imaš više manjih indeksa. Manji indeksi:
+
 - Bolje se uklapaju u memoriju (buffer pool)
 - Imaju manje nivoa → manje čitanja sa diska
 - Brže se pretražuju
@@ -113,7 +116,7 @@ Neke konfiguracije skladištenja dozvoljavaju čitanje iz više particija parale
 
 Kada se umeće u particionisanu tabelu, MySQL mora samo da ažurira indeks ciljne particije, a ne jedan ogromni globalni indeks:
 
-```
+```text
 Neparticionisana tabela:
   INSERT → ažuriraj jedan ogromni indeks (100M unosa) → sporo
 

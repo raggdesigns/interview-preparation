@@ -4,7 +4,7 @@ implemented in separate classes, such as services, which manipulate the state of
 contrasts with a rich domain model, where logic and data are combined to model real-world business entities more
 closely.
 
-### Key Characteristics of the Anemic Domain Model:
+### Key Characteristics of the Anemic Domain Model
 
 - **Data-Only Entities**: Entities in the model primarily contain data fields without any business logic.
 - **Service-Layer Business Logic**: Business logic is implemented outside the domain model, often in service classes or
@@ -46,7 +46,7 @@ class OrderService {
 In this example, the `Order` class is purely a data container without any business logic. The `OrderService` class
 contains all the operations that can be performed on an `Order`, such as calculating the total or adding an order line.
 
-### Criticisms of the Anemic Domain Model:
+### Criticisms of the Anemic Domain Model
 
 - **Violation of Object-Oriented Design Principles**: The separation of state and behavior goes against the basic
   principles of object-oriented design, where objects are supposed to encapsulate both data and behavior.

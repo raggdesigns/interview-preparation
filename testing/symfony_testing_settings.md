@@ -17,6 +17,7 @@ MAILER_DSN=null://null
 ```
 
 Symfony loads environment files in this order:
+
 1. `.env` — base values
 2. `.env.test` — test-specific overrides
 3. `.env.test.local` — local overrides (not committed to git)
@@ -187,12 +188,12 @@ You can automate this in a Makefile or CI pipeline:
 
 ```makefile
 test-setup:
-	php bin/console doctrine:database:drop --env=test --force --if-exists
-	php bin/console doctrine:database:create --env=test
-	php bin/console doctrine:migrations:migrate --env=test --no-interaction
+ php bin/console doctrine:database:drop --env=test --force --if-exists
+ php bin/console doctrine:database:create --env=test
+ php bin/console doctrine:migrations:migrate --env=test --no-interaction
 
 test: test-setup
-	php bin/phpunit
+ php bin/phpunit
 ```
 
 ### DAMADoctrineTestBundle
@@ -226,7 +227,7 @@ You join a Symfony project and need to set up tests. Here is a typical setup pro
 6. Create a Makefile target that drops, creates, and migrates the test database
 7. Organize tests in `tests/Unit/`, `tests/Integration/`, `tests/Functional/`
 
-```
+```text
 tests/
 ├── bootstrap.php
 ├── Unit/

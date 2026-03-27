@@ -7,7 +7,7 @@ U Symfony-u, komponenta za rutiranje je odgovorna za mapiranje HTTP zahteva na a
 
 Rute se mogu definisati u YAML, XML, PHP formatu ili putem anotacija u komentarima kontrolera. Svaka ruta mora da ima jedinstveno ime i da navede putanju, zajedno sa akcijom kontrolera na koji se mapira.
 
-### Primer korišćenjem anotacija:
+### Primer korišćenjem anotacija
 
 ```php
 // src/Controller/BookController.php

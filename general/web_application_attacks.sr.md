@@ -4,7 +4,7 @@ Web aplikacije suočavaju se sa mnogo vrsta napada. Evo najčešćih, kako funkc
 
 Napadač ubacuje SQL kod u polja korisničkog unosa da bi manipulisao upitima baze podataka.
 
-#### Kako funkcioniše:
+#### Kako funkcioniše
 
 ```php
 // Ranjivi kod
@@ -16,7 +16,7 @@ $query = "SELECT * FROM users WHERE email = '$email'";
 // Ovo vraća SVE korisnike iz baze podataka
 ```
 
-#### Prevencija:
+#### Prevencija
 
 ```php
 // Koristite prepared statements (parametrizovane upite)
@@ -39,13 +39,13 @@ $query->setParameter('email', $email);
 
 Napadač ubacuje JavaScript kod u web stranicu koju će videti drugi korisnici.
 
-#### Tipovi:
+#### Tipovi
 
 1. **Skladišteni XSS** — zlonamerna skripta se čuva u bazi podataka (npr. u komentaru) i prikazuje svim korisnicima
 2. **Reflektovani XSS** — zlonamerna skripta je u URL-u i reflektuje se nazad u odgovor
 3. **DOM-bazirani XSS** — skripta se izvršava putem JavaScript-a na strani klijenta
 
-#### Kako funkcioniše:
+#### Kako funkcioniše
 
 ```php
 // Ranjivo — izlaz korisničkih podataka bez eskejpiranja
@@ -55,7 +55,7 @@ echo "<h1>Hello, " . $_GET['name'] . "</h1>";
 // Skripta se izvršava u pretraživaču žrtve i krade njene kolačiće
 ```
 
-#### Prevencija:
+#### Prevencija
 
 ```php
 // Eskejpiranje izlaza
@@ -67,7 +67,8 @@ echo "<h1>Hello, " . htmlspecialchars($_GET['name'], ENT_QUOTES, 'UTF-8') . "</h
 ```
 
 Takođe postavite ova HTTP zaglavlja:
-```
+
+```text
 Content-Security-Policy: default-src 'self'
 X-Content-Type-Options: nosniff
 ```
@@ -78,16 +79,18 @@ X-Content-Type-Options: nosniff
 
 Napadač vara prijavljenog korisnika da izvrši akciju na veb sajtu bez njegovog znanja.
 
-#### Kako funkcioniše:
+#### Kako funkcioniše
 
 1. Korisnik je prijavljen na svoju banku na `bank.com`
 2. Korisnik poseti zlonamernu stranicu koja sadrži:
+
 ```html
 <img src="https://bank.com/transfer?to=attacker&amount=1000">
 ```
-3. Pretraživač šalje zahtev na `bank.com` sa korisničkim kolačićima → transfer se dešava
 
-#### Prevencija:
+1. Pretraživač šalje zahtev na `bank.com` sa korisničkim kolačićima → transfer se dešava
+
+#### Prevencija
 
 ```php
 // 1. CSRF tokeni — uključite jedinstveni token u svaki obrazac
@@ -113,7 +116,7 @@ session.cookie_samesite = "Lax"  // ili "Strict"
 
 Napadač učitava vaš veb sajt unutar nevidljivog iframe-a na svojoj stranici. Kada korisnik klikne na napadačevu stranicu, zapravo klikće na vaš veb sajt.
 
-#### Kako funkcioniše:
+#### Kako funkcioniše
 
 ```html
 <!-- Napadačeva stranica -->
@@ -124,9 +127,9 @@ Napadač učitava vaš veb sajt unutar nevidljivog iframe-a na svojoj stranici. 
 <iframe src="https://bank.com/transfer?to=attacker&amount=1000"></iframe>
 ```
 
-#### Prevencija:
+#### Prevencija
 
-```
+```text
 # HTTP Zaglavlja
 X-Frame-Options: DENY
 Content-Security-Policy: frame-ancestors 'none'
@@ -143,16 +146,16 @@ $response->headers->set('X-Frame-Options', 'DENY');
 
 Napadač pokušava mnogo lozinki (ili korisničkih imena) da bi dobio pristup nalogu.
 
-#### Kako funkcioniše:
+#### Kako funkcioniše
 
-```
+```text
 POST /login  email=admin@site.com&password=123456
 POST /login  email=admin@site.com&password=password
 POST /login  email=admin@site.com&password=admin123
 ... hiljade pokušaja više
 ```
 
-#### Prevencija:
+#### Prevencija
 
 ```php
 // Ograničenje brzine
@@ -171,6 +174,7 @@ public function login(Request $request, RateLimiterFactory $loginLimiter): Respo
 ```
 
 Ostale zaštite:
+
 - Blokada naloga nakon N neuspelih pokušaja
 - CAPTCHA nakon neuspelih pokušaja
 - Dvofaktorska autentikacija (2FA)
@@ -182,7 +186,7 @@ Ostale zaštite:
 
 Napadač tera server da šalje HTTP zahteve internim resursima koji nisu trebali biti dostupni spolja.
 
-#### Kako funkcioniše:
+#### Kako funkcioniše
 
 ```php
 // Ranjivo — preuzmi bilo koji URL koji korisnik pruži
@@ -194,7 +198,7 @@ $content = file_get_contents($url);
 // Napadač šalje: ?url=file:///etc/passwd  → čitanje lokalnih fajlova
 ```
 
-#### Prevencija:
+#### Prevencija
 
 ```php
 function fetchExternalUrl(string $url): string
@@ -228,13 +232,13 @@ function fetchExternalUrl(string $url): string
 
 Napadač krade ID sesije korisnika da bi se lažno predstavio.
 
-#### Kako funkcioniše:
+#### Kako funkcioniše
 
 1. Napadač dobija ID sesije putem XSS-a, njuškanja mreže ili fiksacije sesije
 2. Napadač šalje zahteve sa ukradenim ID-om sesije
 3. Server misli da je napadač legitimni korisnik
 
-#### Prevencija:
+#### Prevencija
 
 ```php
 // Bezbedna konfiguracija sesije (php.ini ili Symfony konfiguracija)

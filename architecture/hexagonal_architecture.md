@@ -3,7 +3,7 @@ application's design from the inside out, focusing on the application's core log
 the application and external agents such as databases, web services, or user interfaces. The primary goal is to allow
 the application's core functionality to be unaffected by changes in external services or client requirements.
 
-### Core Concepts of Hexagonal Architecture:
+### Core Concepts of Hexagonal Architecture
 
 - **Ports**: Interfaces that define how external agents can communicate with the application. Ports can be categorized
   into primary (driven by the application) and secondary (driving the application) ports.
@@ -13,7 +13,7 @@ the application's core functionality to be unaffected by changes in external ser
   adapters, hence the "hexagonal" metaphor, implying that the core can easily be connected to different external
   components without modification.
 
-### Benefits:
+### Benefits
 
 - **Decoupling**: The application core is decoupled from external concerns, making it easier to modify or replace
   external components (databases, UI frameworks, etc.) without affecting the core business logic.

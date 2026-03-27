@@ -166,6 +166,7 @@ async function loadUser(id) {
 ```
 
 **Pravila:**
+
 - `await` se može koristiti samo unutar `async` funkcije
 - `await` pauzira izvršavanje funkcije dok se Promise ne razreši
 - `async` funkcije uvek vraćaju Promise
@@ -258,7 +259,7 @@ async function getUser(id) {
 
 Razumevanje zašto async funkcioniše zahteva poznavanje event loop-a:
 
-```
+```text
 ┌───────────────────────────┐
 │        Call Stack          │  ← Izvršava sinhroni kod
 │  (jedna stvar odjednom)   │

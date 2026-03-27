@@ -45,4 +45,3 @@ based on JWT tokens issued by the Authentication Service. Communication between 
 records for an appointment or generating a prescription, is secured through mutual TLS, ensuring that data in transit is
 encrypted and accessed only by authenticated and authorized services. Secret management tools securely handle service
 credentials and encryption keys, ensuring that sensitive information is protected.
-

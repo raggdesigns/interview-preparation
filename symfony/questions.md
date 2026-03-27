@@ -15,7 +15,8 @@
 - [Lazy Loading for classes](./answers/lazy_loading_for_classes.md)
 - [How to validate requests](./answers/validating_requests_in_symfony.md)
 
-# Components:
+# Components
+
 - [Serialization Component](./answers/components/serialization_component.md)
 - [Messenger Component](./answers/components/messenger_component.md)
 - [HttpKernel Component](./answers/components/httpkernel_component.md)

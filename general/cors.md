@@ -6,7 +6,7 @@ CORS (Cross-Origin Resource Sharing) is a browser security mechanism that contro
 
 By default, browsers block JavaScript from making requests to a different origin. An "origin" is the combination of **protocol + domain + port**:
 
-```
+```text
 https://example.com:443  — this is one origin
 
 Same origin:
@@ -32,7 +32,7 @@ CORS uses HTTP headers to tell the browser: "This other origin is allowed to acc
 
 For simple requests (GET, POST with basic content types), the browser sends the request directly and checks the response headers:
 
-```
+```text
 1. Browser at https://app.mysite.com makes request:
    GET /api/users
    Origin: https://app.mysite.com
@@ -52,7 +52,7 @@ For simple requests (GET, POST with basic content types), the browser sends the 
 
 For "non-simple" requests (PUT, DELETE, custom headers, JSON content type), the browser first sends an OPTIONS request called a **preflight**:
 
-```
+```text
 1. Browser wants to send:
    DELETE /api/users/123
    Origin: https://app.mysite.com
@@ -84,7 +84,7 @@ The server controls all of this via specific HTTP headers.
 
 ### CORS Headers Explained
 
-#### Response Headers (sent by server):
+#### Response Headers (sent by server)
 
 | Header | Purpose | Example |
 |--------|---------|---------|
@@ -95,12 +95,12 @@ The server controls all of this via specific HTTP headers.
 | `Access-Control-Max-Age` | Cache preflight result (seconds) | `3600` |
 | `Access-Control-Expose-Headers` | Headers the browser can read | `X-Total-Count` |
 
-#### Important Rules:
+#### Important Rules
 
 - `Access-Control-Allow-Origin: *` — allows any origin, but **cannot** be used with credentials
 - To allow credentials (cookies), you must specify the exact origin and set `Allow-Credentials: true`
 
-```
+```text
 # Allow any origin (no credentials)
 Access-Control-Allow-Origin: *
 
@@ -198,7 +198,7 @@ function handleCors(Request $request): ?Response
 
 #### 1. Wildcard with Credentials
 
-```
+```text
 # This does NOT work — browser rejects it
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
@@ -210,14 +210,14 @@ Access-Control-Allow-Credentials: true
 
 #### 2. Missing OPTIONS Handler
 
-```
+```text
 # If your server returns 405 for OPTIONS requests, preflight fails
 # Make sure your web server or framework handles OPTIONS
 ```
 
 #### 3. Missing Headers in Actual Response
 
-```
+```text
 # CORS headers must be present in BOTH the preflight AND the actual response
 # Not just the OPTIONS response
 ```
@@ -234,7 +234,7 @@ CSRF (Cross-Site Request Forgery) is an attack where a malicious website tricks 
 
 Using our scenario — the user is logged into `https://app.mysite.com`, and the browser holds a session cookie for `https://api.mysite.com`:
 
-```
+```text
 1. User logs into https://app.mysite.com
    → Browser stores session cookie for https://api.mysite.com
 
@@ -293,7 +293,7 @@ For a complete breakdown of CSRF prevention methods, see [What is CSRF](csrf.md)
 
 You have a React frontend at `https://app.mysite.com` and a Symfony API at `https://api.mysite.com`. Without CORS configuration:
 
-```
+```text
 Frontend (React):
 fetch('https://api.mysite.com/api/users')
 → Browser blocks: "No 'Access-Control-Allow-Origin' header present"

@@ -41,4 +41,3 @@ Consider an online retail platform that utilizes microservices hosted on a cloud
 By deploying these services on a cloud platform, the retail platform can dynamically allocate resources during sales
 events, ensure high availability during peak shopping times, and maintain a seamless customer experience through
 efficient load balancing and service discovery.
-

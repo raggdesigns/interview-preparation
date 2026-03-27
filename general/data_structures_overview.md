@@ -4,12 +4,13 @@ Data structures are ways of organizing data in memory so that operations like re
 
 A hash table stores **key-value pairs**. It uses a **hash function** to convert a key into an array index, giving O(1) average-time access.
 
-```
+```text
 Key "name" → hash("name") → index 5 → Value "Dragan"
 Key "role" → hash("role") → index 2 → Value "developer"
 ```
 
 **Where you use it daily:**
+
 - PHP arrays (associative) — `['name' => 'Dragan']`
 - Redis — the entire database is a hash map
 - HTTP headers — `Content-Type: application/json`
@@ -44,12 +45,13 @@ if (isset($config['db_port'])) { ... }
 
 A linked list is a sequence of **nodes** where each node contains a value and a **pointer** to the next node. Unlike arrays, elements are not stored in continuous memory.
 
-```
+```text
 [value: "A" | next: →] → [value: "B" | next: →] → [value: "C" | next: null]
      Node 1                    Node 2                    Node 3
 ```
 
 **Types:**
+
 - **Singly linked** — each node points to the next
 - **Doubly linked** — each node points to next AND previous
 
@@ -62,6 +64,7 @@ A linked list is a sequence of **nodes** where each node contains a value and a 
 | Search | O(n) | O(n) |
 
 **Where you encounter it:**
+
 - PHP's `SplDoublyLinkedList` — for queues and stacks
 - Git commit history — each commit points to its parent
 - Blockchain — each block links to the previous
@@ -86,7 +89,7 @@ while ($list->valid()) {
 
 A tree is a hierarchical structure where each node has a value and zero or more **child nodes**. The topmost node is called the **root**.
 
-```
+```text
             [CEO]                    ← Root
            /     \
       [CTO]       [CFO]             ← Children of root
@@ -95,12 +98,14 @@ A tree is a hierarchical structure where each node has a value and zero or more 
 ```
 
 **Common types:**
+
 - **Binary tree** — each node has at most 2 children
 - **Binary Search Tree (BST)** — left child < parent < right child → O(log n) search
 - **B-Tree** — used by MySQL indexes (many children per node, optimized for disk)
 - **DOM tree** — HTML/XML document structure
 
 **Where you encounter trees:**
+
 - **MySQL indexes** — B-Tree/B+Tree for fast lookups
 - **XML/HTML parsing** — DOM tree
 - **File system** — directories are a tree
@@ -130,7 +135,7 @@ foreach ($doc->book as $book) {
 
 **B-Tree in MySQL:**
 
-```
+```text
                     [50]
                    /    \
             [20, 35]    [70, 85]
@@ -144,7 +149,7 @@ When you run `SELECT * FROM users WHERE id = 25`, MySQL does not scan all rows. 
 
 A stack works like a stack of plates — you can only add or remove from the **top**. The last element added is the first one removed.
 
-```
+```text
     Push "C" →  [C]  ← Top (last in, first out)
                 [B]
                 [A]  ← Bottom (first in, last out)
@@ -159,6 +164,7 @@ A stack works like a stack of plates — you can only add or remove from the **t
 | Peek (look at top) | O(1) |
 
 **Where you encounter stacks:**
+
 - **Function call stack** — when function A calls function B, A is pushed on the stack. When B returns, A is popped and continues
 - **Undo operations** — each action is pushed on the stack, undo pops the last one
 - **Expression parsing** — compilers use stacks to evaluate `(3 + 4) * (2 - 1)`
@@ -186,7 +192,7 @@ echo "Undoing: $lastAction\n";
 
 A queue works like a line at a shop — the first person in line is the first one served. Elements are added at the **back** and removed from the **front**.
 
-```
+```text
     Enqueue "C" →  [A] [B] [C]
                     ↑           ↑
                   Front        Back
@@ -201,6 +207,7 @@ A queue works like a line at a shop — the first person in line is the first on
 | Peek (look at front) | O(1) |
 
 **Where you encounter queues — this is critical for backend developers:**
+
 - **RabbitMQ** — message broker that processes jobs in order
 - **Redis lists** — `LPUSH` + `RPOP` creates a queue
 - **Symfony Messenger** — dispatches messages to a queue for async processing

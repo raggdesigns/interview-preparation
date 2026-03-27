@@ -134,6 +134,7 @@ $report->printInfo(); // "Info"
 Kada PHP kompajlira klasu koja koristi trait, efektivno kopira metode i propertije traita u klasu. Rezultat je isti kao da ste direktno napisali te metode u klasi. Ovo se dešava pri kompajliranju, a ne pri pokretanju.
 
 Ovo znači:
+
 - Metode traita postaju deo klase
 - `$this` unutar traita referiše na objekat klase koja koristi trait
 - Traitovi ne postoje kao posebni objekti u memoriji

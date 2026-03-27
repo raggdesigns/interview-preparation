@@ -40,4 +40,3 @@ Consider a Financial Services Platform that leverages microservices for its dive
 - **Infrastructure Team**: Provides platform and tooling support for development and operations.
 
 Each team operates autonomously, owning their respective services from conception to deployment, supported by a shared infrastructure team that ensures consistent DevOps practices. This structure facilitates rapid development and iteration, allowing the platform to adapt quickly to changing financial regulations and customer needs.
-

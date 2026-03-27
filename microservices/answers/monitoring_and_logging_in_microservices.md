@@ -44,4 +44,3 @@ content discovery to video streaming, enabling the identification of latency iss
 Metrics on streaming quality, user load, and service health are monitored in real time, with alerts set up to notify the
 operations team of any service degradation or outages. Health checks ensure each service is functioning as expected,
 with orchestration tools automatically replacing unhealthy instances to maintain service availability.
-

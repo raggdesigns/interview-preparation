@@ -5,8 +5,9 @@ should have only one reason to change. This means each class should be responsib
 functionality provided by the software, and that responsibility should be entirely encapsulated by the class.
 
 ## Workflow Mindset
-- Gather together the things that change for the same reason. 
-- Separate those things that change for different reasons. 
+
+- Gather together the things that change for the same reason.
+- Separate those things that change for different reasons.
 - Keep only the related things together
 
 ## Violating SRP
@@ -34,7 +35,7 @@ $userManager->sendEmail('john.doe@example.com');
 
 ## Refactored Code Applying SRP
 
-```
+```text
 class UserManager {
     public function createUser($userData) {
         // Logic to create a user
@@ -54,6 +55,7 @@ class UserNotifier {
 $userManager = new UserManager();
 $userManager->createUser(['name' => 'John Doe', 'email' => 'john.doe@example.com']);
 ```
+
 To adhere to the SRP, we can refactor the above scenario by splitting it into two classes: one for managing user
 data (`UserManager`) and another for handling user notifications (`UserNotifier`).
 

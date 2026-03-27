@@ -141,11 +141,13 @@ Ovo su isti razlozi zbog kojih je DI Container sa injektovanjem kroz konstruktor
 ### Kada se koristi koji
 
 **Registry** se ponekad koristi u:
+
 - Jednostavnim legacy aplikacijama
 - Čuvanju konfiguracijskih vrednosti
 - Test fixture-ima
 
 **Service Locator** se ponekad koristi u:
+
 - Legacy frejmvorcima
 - Sistemima dodataka (plugin-ova) gde se servisi otkrivaju u vreme izvršavanja
 - Symfony-jevom `ServiceSubscriberInterface` (kontrolisana, ograničena forma)

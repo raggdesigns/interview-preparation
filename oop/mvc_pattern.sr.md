@@ -3,16 +3,19 @@ MVC (Model-View-Controller) je arhitekturalni obrazac koji razdvaja logiku aplik
 ### Tri komponente
 
 **Model** — poslovna logika i podaci. Model ne zna ništa o tome kako se podaci prikazuju ili kako korisnički unos stiže. On se bavi:
+
 - Upitima prema bazi podataka i trajnošću podataka
 - Poslovnim pravilima i validacijom
 - Domenskom logikom
 
 **View** — prezentacijski sloj. View prikazuje podatke iz Modela u formatu koji korisnik može videti. On se bavi:
+
 - HTML šablonima u tradicionalnim veb aplikacijama
 - JSON/XML odgovorima u REST API-jima
 - Izlazom konzole u CLI aplikacijama
 
 **Controller** — upravljač unosom. Controller prima korisnički unos, poziva odgovarajuću logiku Modela i bira View za prikaz rezultata. On se bavi:
+
 - Primanjem HTTP zahteva
 - Validacijom unosa
 - Pozivanjem servisa/repozitorijuma
@@ -20,7 +23,7 @@ MVC (Model-View-Controller) je arhitekturalni obrazac koji razdvaja logiku aplik
 
 ### Kako MVC funkcioniše — Tok
 
-```
+```text
 User Request → Controller → Model → Controller → View → Response
 
 1. User sends HTTP request: GET /users/42
