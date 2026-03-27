@@ -150,7 +150,7 @@ Priority based on file count and interview relevance:
    - `caching` (5 files) — caching strategies
    - `javascript` (3 files) — JS fundamentals
 
-Total: 197 translatable files (excluding `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `LICENSE`, `.github/`, `docs/`). Plus 2 root docs (`README.md`, `TOPIC_TEMPLATE.md`) = 199 files.
+Total: 195 domain files (13 domains including `questions.md` per domain) + 2 root docs (`README.md`, `TOPIC_TEMPLATE.md`) = 197 translatable files.
 
 ## Implementation Notes
 
