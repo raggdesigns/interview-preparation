@@ -20,6 +20,7 @@ Kolekcija beleški i odgovora za teme iz intervjua iz softverskog inženjerstva,
 | [php/](php/questions.sr.md) | PHP jezičke karakteristike, sesije, generatori, OPCache |
 | [solid/](solid/questions.sr.md) | SOLID principi sa PHP primerima |
 | [symfony/](symfony/questions.sr.md) | Symfony framework: komponente, životni ciklus, DI, rutiranje |
+| [javascript/](javascript/questions.sr.md) | JavaScript osnove, async/await, Promise-i |
 | [testing/](testing/questions.sr.md) | PHPUnit, mockovanje, TDD, BDD, mutaciono testiranje |
 
 ## Konvencije

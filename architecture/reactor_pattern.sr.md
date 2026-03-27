@@ -23,7 +23,7 @@ Reactor pattern je dizajn pattern za konkurentnost koji se koristi za efikasno r
 
 ### Primer u PHP-u:
 
-PHP biblioteke zasnovane na događajima poput ReactPHP implementiraju Reactor pattern, pružajući event loop za asinhronо rukovanje I/O operacijama.
+PHP biblioteke zasnovane na događajima poput ReactPHP implementiraju Reactor pattern, pružajući event loop za asinhrono rukovanje I/O operacijama.
 
 ```php
 use React\EventLoop\Factory;

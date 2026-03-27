@@ -1,6 +1,6 @@
 Behavior-Driven Development (BDD) je proširenje Test-Driven Development (TDD) pristupa koje se fokusira na ponašanje
 aplikacije iz perspektive njenih stejkholdera. Naglašava saradnju između programera, QA inženjera i
-nетehničkih ili poslovnih učesnika u softverskom projektu. BDD podstiče timove da koriste razgovor i konkretne
+netehničkih ili poslovnih učesnika u softverskom projektu. BDD podstiče timove da koriste razgovor i konkretne
 primere kako bi formalizovali zajedničko razumevanje očekivanog ponašanja aplikacije.
 
 ### Osnovni koncepti BDD-a:
@@ -14,7 +14,7 @@ primere kako bi formalizovali zajedničko razumevanje očekivanog ponašanja apl
 
 ### Prednosti:
 
-- **Poboljšana komunikacija**: Podstiče bolju komunikaciju između tehničkih i nетehničkih članova tima
+- **Poboljšana komunikacija**: Podstiče bolju komunikaciju između tehničkih i netehničkih članova tima
   fokusiranjem na ponašanje umesto na tehničke detalje.
 - **Jasnije zahteve**: Pomaže da se osigura da razvojni tim razume šta je potrebno iz poslovne
   perspektive.
@@ -78,5 +78,5 @@ aplikacija ponaša kako se očekuje.
 ### Zaključak
 
 BDD je kolaborativni pristup koji proširuje principe TDD-a fokusiranjem na eksterno ponašanje
-aplikacije, čineći je pristupačnijom za nетehničke stejkholdere. Podsticanjem jasne komunikacije i zajedničkog
+aplikacije, čineći je pristupačnijom za netehničke stejkholdere. Podsticanjem jasne komunikacije i zajedničkog
 razumevanja, BDD pomaže timovima da grade softver koji je usko usklađen sa poslovnim zahtevima i očekivanjima.

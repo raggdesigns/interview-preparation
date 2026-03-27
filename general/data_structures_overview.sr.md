@@ -269,4 +269,4 @@ RPOP order_queue  # Gets the first message added (FIFO)
 
 Kao backend programer, ove strukture podataka koristiš svakodnevno — PHP nizovi su hash tabele, MySQL indeksi su B-stabla, RabbitMQ i Symfony Messenger koriste redove, a function call stack je stek. Razumevanje njihove vremenske kompleksnosti pomaže ti da odabereš pravi alat: koristi hash mape za brze pretrage po ključu, redove za asinhronnu obradu poslova, i budi svestan da je `in_array()` O(n) dok je `isset()` O(1). Na intervjuima se fokusiraj na to kada koristiti svaku strukturu i njihove primene u realnom svetu, umesto na memorisanje detalja implementacije.
 
-> Vidi takođe: [PHP arrays internals](../php/php_arrays_internals.md), [Redis basics](../caching/redis_basics.md), [Kako internet funkcioniše](how_internet_works.sr.md)
+> Vidi takođe: [PHP arrays internals](../php/php_arrays_internals.sr.md), [Redis basics](../caching/redis_basics.sr.md), [Kako internet funkcioniše](how_internet_works.sr.md)

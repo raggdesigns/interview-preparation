@@ -12,7 +12,7 @@ Konvejov zakon sugeriše da je dizajn sistema odraz komunikacione strukture orga
 
 ### DevOps kultura
 
-Pristup mikroservisa nalaže DevOps kulturu, naglašavajući saradnju izmedju razvojnih i operativnih timova. Ova saradnja je kritična za postizanje brzog i pouzdanog isporučivanja softvera koje je karakteristično za mikroservise.
+Pristup mikroservisa nalaže DevOps kulturu, naglašavajući saradnju između razvojnih i operativnih timova. Ova saradnja je kritična za postizanje brzog i pouzdanog isporučivanja softvera koje je karakteristično za mikroservise.
 
 ### Domain-Driven Design (DDD)
 
@@ -21,13 +21,13 @@ DDD igra značajnu ulogu u strukturiranju timova i servisa. Uskladjivanjem timov
 ### Izazovi
 
 - **Komunikacioni overhead**: Kako se broj servisa i timova povećava, upravljanje komunikacijom postaje izazovno.
-- **Koordinacija**: Koordinacija deplojmenta i promena izmedju timova zahteva efikasne strategije i alate.
+- **Koordinacija**: Koordinacija deplojmenta i promena između timova zahteva efikasne strategije i alate.
 - **Konzistentnost**: Održavanje konzistentnosti praksi i tehnologija u svim timovima može biti teško.
 
 ### Strategije
 
 - **Vlasništvo nad servisima**: Dodeljivati jasno vlasništvo nad servisima specifičnim timovima, osiguravajući odgovornost i fokus.
-- **Komunikacija izmedju timova**: Uspostaviti komunikacione kanale i redovne sinhronizacije izmedju timova radi olakšavanja koordinacije i razmene znanja.
+- **Komunikacija između timova**: Uspostaviti komunikacione kanale i redovne sinhronizacije između timova radi olakšavanja koordinacije i razmene znanja.
 - **Zajednički alati i prakse**: Usvojiti zajedničke alate i prakse u svim timovima radi pojednostavljivanja razvojnih i deplojment procesa.
 
 ### Primer: Platforma za finansijske usluge

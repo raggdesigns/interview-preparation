@@ -222,7 +222,7 @@ Pridružujete se Symfony projektu i treba da podesite testove. Evo tipičnog pro
 2. Konfigurisati `phpunit.xml.dist` sa test suitovima i `APP_ENV=test`
 3. Kreirati `tests/bootstrap.php` za učitavanje promenljivih okruženja
 4. Dodati `services_test.yaml` za nadjačavanje servisa (npr. zamena mailer-a lažnim)
-5. Instalirati `DAMADoctrineTestBundle` za rollback transakcija izmedju testova
+5. Instalirati `DAMADoctrineTestBundle` za rollback transakcija između testova
 6. Kreirati Makefile target koji briše, kreira i migrira test bazu podataka
 7. Organizovati testove u `tests/Unit/`, `tests/Integration/`, `tests/Functional/`
 

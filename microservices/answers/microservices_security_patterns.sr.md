@@ -1,13 +1,13 @@
 ## Bezbednosni obrasci u mikroservisima
 
 Obezbedjivanje bezbednosti u arhitekturi mikroservisa podrazumeva zaštitu svakog mikroservisa i komunikacije
-izmedju njih. Ovo kompleksno okruženje zahteva sveobuhvatan pristup bezbednosti koji obuhvata nekoliko obrazaca i
+između njih. Ovo kompleksno okruženje zahteva sveobuhvatan pristup bezbednosti koji obuhvata nekoliko obrazaca i
 praksi.
 
 ### Autentikacija i autorizacija
 
 Implementirati robusne mehanizme autentikacije i autorizacije kako za korisnike, tako i za servise. Korišćenje OAuth,
-OpenID Connect i JSON Web Tokens (JWT) su uobičajene strategije za obezbedjivanje komunikacije servis-servis i
+OpenID Connect i JSON Web Tokens (JWT) su uobičajene strategije za obezbeđivanje komunikacije servis-servis i
 korisnik-servis.
 
 ### API Gateway
@@ -17,14 +17,14 @@ za spoljne klijente, čime se smanjuje površina napada na mikroservise.
 
 ### Enkripcija
 
-Enkriptovati podatke u prenosu izmedju servisa korišćenjem TLS, kao i podatke u mirovanju, radi zaštite osetljivih
+Enkriptovati podatke u prenosu između servisa korišćenjem TLS, kao i podatke u mirovanju, radi zaštite osetljivih
 informacija i osiguravanja usklađenosti sa privatnošću.
 
 ### Service Mesh
 
-Service mesh pruža namjenski infrastrukturni sloj za upravljanje komunikacijom izmedju servisa, omogućavajući
+Service mesh pruža namjenski infrastrukturni sloj za upravljanje komunikacijom između servisa, omogućavajući
 implementaciju konzistentnih bezbednosnih politika, uključujući mutual TLS za enkriptovanu i autentifikovanu
-komunikaciju izmedju servisa.
+komunikaciju između servisa.
 
 ### Upravljanje tajnama
 
@@ -42,7 +42,7 @@ podacima pacijenata:
 - **Servis za recepte**: Upravlja ljekarskim receptima i evidencijom pacijentskih lekova.
 
 U ovom sistemu, API Gateway funkcioniše kao bezbedna ulazna tačka, primenjujući politike autentikacije i autorizacije
-zasnovane na JWT tokenima koje izdaje servis za autentikaciju. Komunikacija izmedju servisa, kao što je pristup
-kartonima pacijenata za termin ili generisanje recepta, obezbedjuje se kroz mutual TLS, čime se osigurava da su podaci
+zasnovane na JWT tokenima koje izdaje servis za autentikaciju. Komunikacija između servisa, kao što je pristup
+kartonima pacijenata za termin ili generisanje recepta, obezbeđuje se kroz mutual TLS, čime se osigurava da su podaci
 u prenosu enkriptovani i dostupni samo autentifikovanim i ovlašćenim servisima. Alati za upravljanje tajnama bezbedno
 rukuju akreditivima servisa i ključevima za enkripciju, osiguravajući zaštitu osetljivih informacija.

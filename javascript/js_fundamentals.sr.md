@@ -320,4 +320,4 @@ function outer() {
 
 JavaScript funkcije mogu biti deklarisane (hoistovane) ili izražene (nisu hoistovane). Strelice pružaju kraću sintaksu i nasleđuju `this` iz okolnog opsega — čineći ih idealnim za callback-ove. Zatvorenja dozvoljavaju funkcijama da pamte promenljive iz opsega kreiranja, omogućavajući privatno stanje, fabrike funkcija i event handler-e sa stanjem. Ključna razlika od PHP zatvorenja je da JavaScript hvata promenljive automatski dok PHP zahteva ključnu reč `use`. Razumevanje ovih koncepata je neophodno za rad sa modernim JavaScript-om i za tehničke intervjue.
 
-> Vidi takođe: [Asinhroni JavaScript — Promise-i, async/await, fetch](async_javascript.sr.md), [PHP zatvorenja](../php/closure_vs_anonymous_function.md)
+> Vidi takođe: [Asinhroni JavaScript — Promise-i, async/await, fetch](async_javascript.sr.md), [PHP zatvorenja](../php/closure_vs_anonymous_function.sr.md)

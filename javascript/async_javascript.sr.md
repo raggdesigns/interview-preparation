@@ -333,4 +333,4 @@ async function loadDashboard() {
 
 JavaScript obrađuje asinhrone operacije kroz Promise-e i event loop. Promise-i predstavljaju buduće vrednosti sa tri stanja (pending, fulfilled, rejected). Async/await je sintaksni šećer koji čini Promise lance čitljivim. `fetch()` je ugrađeni HTTP klijent koji vraća Promise-e — zapamti da proveriš `response.ok` za HTTP greške. Koristi `Promise.all()` za paralelno pokretanje nezavisnih zahteva. Event loop obrađuje mikrozadatke (Promise-e) pre makrozadataka (setTimeout). Ovi koncepti se često pojavljuju na intervjuima čak i za backend programere jer moderne aplikacije intenzivno interaguju sa JavaScript frontend-ima.
 
-> Vidi takođe: [Funkcije, strelice i zatvorenja](js_fundamentals.sr.md), [REST API arhitektura](../general/rest_api_architecture.md), [HTTP streaming](../general/http_streaming.md)
+> Vidi takođe: [Funkcije, strelice i zatvorenja](js_fundamentals.sr.md), [REST API arhitektura](../general/rest_api_architecture.sr.md), [HTTP streaming](../general/http_streaming.sr.md)

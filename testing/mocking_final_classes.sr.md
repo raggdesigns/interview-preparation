@@ -97,7 +97,7 @@ class OrderServiceTest extends TestCase
 }
 ```
 
-Možete takodje ograničiti koje klase dobijaju "uklonjen final":
+Možete takođe ograničiti koje klase dobijaju "uklonjen final":
 
 ```php
 // Only bypass finals for specific namespaces
@@ -139,7 +139,7 @@ class PaymentTest extends TestCase
 }
 ```
 
-Mockery takodje može koristiti "overloading" za zamenu instanciranja klase:
+Mockery takođe može koristiti "overloading" za zamenu instanciranja klase:
 
 ```php
 $gateway = Mockery::mock('overload:' . PaymentGateway::class);

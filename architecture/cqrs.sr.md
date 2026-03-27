@@ -56,7 +56,7 @@ class UserAccount {
 }
 ```
 
-U ovom primeru, metoda `createUser` obavlja i operaciju komande (dodavanje korisnika u niz `users`) i operaciju upita (vraćanje detalja novododinaog korisnika), mešajući odgovornosti komandi i upita u jednoj metodi.
+U ovom primeru, metoda `createUser` obavlja i operaciju komande (dodavanje korisnika u niz `users`) i operaciju upita (vraćanje detalja novododatog korisnika), mešajući odgovornosti komandi i upita u jednoj metodi.
 
 ### Ispravna primena CQRS-a
 

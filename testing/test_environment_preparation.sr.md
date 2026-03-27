@@ -126,7 +126,7 @@ Mane: Sporo za velike skupove podataka
 
 #### 3. Rekreiranje šeme (najčistije ali najsporije)
 
-Brisanje i rekreiranje celokupne baze podataka izmedju test suitova:
+Brisanje i rekreiranje celokupne baze podataka između test suitova:
 
 ```bash
 php bin/console doctrine:schema:drop --env=test --force
@@ -290,7 +290,7 @@ tests/
         └── AuthControllerTest.php
 ```
 
-### Čišćenje izmedju testova
+### Čišćenje između testova
 
 Osigurati da svaki test ne ostavlja nuspojave:
 
@@ -366,6 +366,6 @@ php bin/phpunit tests/Unit/Service/PriceCalculatorTest.php
 
 ### Zaključak
 
-Priprema okruženja za testiranje podrazumeva: odvojenu konfiguraciju (`.env.test`), namjensku test bazu podataka sa fixtures, upravljanje stanjem izmedju testova (rollback transakcije sa DAMADoctrineTestBundle je najbrži), Docker za konzistentnost na svim mašinama i CI/CD pipeline za automatizovano testiranje pri svakom push-u. Cilj je da svaki programer može da klonira repozitorijum, pokrene jednu ili dve komande i da svi testovi odmah prolaze.
+Priprema okruženja za testiranje podrazumeva: odvojenu konfiguraciju (`.env.test`), namjensku test bazu podataka sa fixtures, upravljanje stanjem između testova (rollback transakcije sa DAMADoctrineTestBundle je najbrži), Docker za konzistentnost na svim mašinama i CI/CD pipeline za automatizovano testiranje pri svakom push-u. Cilj je da svaki programer može da klonira repozitorijum, pokrene jednu ili dve komande i da svi testovi odmah prolaze.
 
-> Videti takodje: [Symfony podešavanja za testiranje](symfony_testing_settings.sr.md), [Kako mockovati konekciju na bazu podataka](mocking_database_connection.sr.md)
+> Videti takođe: [Symfony podešavanja za testiranje](symfony_testing_settings.sr.md), [Kako mockovati konekciju na bazu podataka](mocking_database_connection.sr.md)

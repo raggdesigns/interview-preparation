@@ -203,4 +203,4 @@ $this->em->wrapInTransaction(function () use ($seatId, $userId) {
 
 ACID osigurava pouzdane transakcije u bazi podataka. **Atomičnost** garantuje izvršavanje sve-ili-ništa. **Konzistentnost** čuva bazu u validnom stanju sprovođenjem ograničenja. **Izolacija** sprečava mešanje konkurentnih transakcija — MySQL podrazumevano koristi REPEATABLE READ. **Trajnost** osigurava da commitovani podaci preživljavaju padove kroz write-ahead log-ove. U PHP-u, koristi `PDO::beginTransaction()` + `commit()`/`rollBack()` ili Doctrine-ov `wrapInTransaction()` za bezbedan rad sa transakcijama.
 
-> Vidi takođe: [Relacije entiteta](entity_relationships.sr.md), [Deadlocks u MySQL-u](../highload/deadlocks_in_mysql.md), [Optimistično/Pesimistično zaključavanje](../highload/optimistic_pessimistic_lock.sr.md)
+> Vidi takođe: [Relacije entiteta](entity_relationships.sr.md), [Deadlocks u MySQL-u](../highload/deadlocks_in_mysql.sr.md), [Optimistično/Pesimistično zaključavanje](../highload/optimistic_pessimistic_lock.sr.md)

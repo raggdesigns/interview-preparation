@@ -1,6 +1,6 @@
 ## Mikroservisi vs. Monolitna arhitektura
 
-Prilikom razvoja softverskih aplikacija, arhitekte moraju da biraju izmedju dva glavna arhitekturna stila: **Mikroservisi** i **Monolitna arhitektura**. Oba pristupa imaju svoje prednosti i izazove, a izbor uglavnom zavisi od specifičnih potreba projekta.
+Prilikom razvoja softverskih aplikacija, arhitekte moraju da biraju između dva glavna arhitekturna stila: **Mikroservisi** i **Monolitna arhitektura**. Oba pristupa imaju svoje prednosti i izazove, a izbor uglavnom zavisi od specifičnih potreba projekta.
 
 ### Monolitna arhitektura
 
@@ -27,7 +27,7 @@ Arhitektura mikroservisa, s druge strane, deli aplikaciju na manje, nezavisne se
 
 #### Primer:
 
-Zamislimo platformu za e-trgovinu izgradjenu korišćenjem mikroservisa:
+Zamislimo platformu za e-trgovinu izgrađenu korišćenjem mikroservisa:
 
 ````plaintext
 - User Service: Handles user registration, authentication, and profile management.
@@ -45,4 +45,4 @@ Svaki servis se razvija, deplojuje i skalira nezavisno, što omogućava fleksibi
 - **Razvoj i održavanje**: Mikroservise mogu razvijati i održavati zasebni timovi, potencijalno koristeći različite tehnološke stekove najpogodnije za njihove specifične funkcionalnosti. Monolitne aplikacije, mada su inicijalno jednostavnije za razvoj, mogu postati teške za održavanje kako rastu.
 - **Izolacija grešaka**: Greške u arhitekturi mikroservisa su izolovane na zahvaćeni servis, smanjujući rizik od sistema-opsežnog ispada. Nasuprot tome, greška u monolitnoj aplikaciji može srušiti ceo sistem.
 
-Izbor izmedju mikroservisa i monolitne arhitekture zavisi od raznih faktora, uključujući veličinu i opseg projekta, organizacionu kulturu i specifične tehničke zahteve. Mikroservisi nude veću fleksibilnost i skalabilnost, čineći ih privlačnim izborom za složene, promenljive aplikacije. Monolitna arhitektura, medjutim, može biti jednostavnija za deplojment i upravljanje kod manjih, manje složenih aplikacija.
+Izbor između mikroservisa i monolitne arhitekture zavisi od raznih faktora, uključujući veličinu i opseg projekta, organizacionu kulturu i specifične tehničke zahteve. Mikroservisi nude veću fleksibilnost i skalabilnost, čineći ih privlačnim izborom za složene, promenljive aplikacije. Monolitna arhitektura, međutim, može biti jednostavnija za deplojment i upravljanje kod manjih, manje složenih aplikacija.

@@ -219,4 +219,4 @@ users (N) ──── (N) roles  (pivot: user_roles)
 
 Relacije entiteta u relacionim bazama podataka su 1:1 (jedan-prema-jedan), 1:N (jedan-prema-mnogo) i M:N (mnogo-prema-mnogo). Strani ključ uvek ide na "mnogo" strani. M:N relacije zahtevaju pivot tabelu jer ih relacione baze podataka ne mogu direktno predstaviti. Pivot tabele mogu nositi dodatne podatke kao što su količina ili vremenske oznake. U Doctrine ORM-u, uvek modifikuj vlasničku stranu relacije da bi promene bile persistirane. Koristi `ON DELETE CASCADE` ili `SET NULL` da kontrolišeš šta se dešava kada se parent redovi obrišu.
 
-> Vidi takođe: [ACID transakcije](acid_transactions.sr.md), [Deadlocks u MySQL-u](../highload/deadlocks_in_mysql.md)
+> Vidi takođe: [ACID transakcije](acid_transactions.sr.md), [Deadlocks u MySQL-u](../highload/deadlocks_in_mysql.sr.md)
