@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude mcp:*)"
+    ]
+  },
+  "hooks": {
+    "PreCommit": [
+      {
+        "command": "bash scripts/translation-sync-hook.sh",
+        "description": "Check translation sync status"
+      }
+    ]
+  }
+}
