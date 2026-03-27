@@ -3,6 +3,7 @@
 DTO je objekat koji prenosi podatke između procesa, s ciljem smanjenja broja poziva metoda, posebno u mrežnom okruženju. Često se koristi za prenos podataka sa servera ka klijentu radi prikaza, ali ne i za poslovnu logiku ili interakciju sa bazom podataka. DTO objekti se često serijalizuju u formate poput JSON ili XML radi lakšeg prenosa.
 
 **Karakteristike**:
+
 - Koristi se za enkapsulaciju podataka radi prenosa.
 - Pojednostavljuje strukturu podataka, često ravnajući složene podatke.
 - Imutabilan: jednom kreiran, ne treba da se menja.
@@ -36,6 +37,7 @@ function getUserData($userId) {
 Command objekat enkapsulira sve informacije potrebne za izvođenje akcije ili pokretanje događaja u nekom trenutku. To uključuje naziv metode, objekat koji je vlasnik metode i vrednosti parametara metode. Command objekti su deo Command obrasca, koji odvaja objekat koji poziva operaciju od onog koji zna kako da je izvrši.
 
 **Karakteristike**:
+
 - Enkapsulira zahtev kao objekat.
 - Sadrži sve informacije potrebne za akciju: naziv metode, parametre.
 - Može biti proširen da uključuje funkcionalnost poništavanja (undo).

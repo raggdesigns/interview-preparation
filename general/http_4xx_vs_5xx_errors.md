@@ -22,7 +22,7 @@ HTTP status codes are three-digit numbers that tell the client what happened wit
 - **301 Moved Permanently** — "This page has moved forever. Update your bookmarks." Search engines transfer SEO ranking to the new URL.
 - **302 Found** — "This page is temporarily somewhere else. Keep using the old URL." Search engines keep the old URL indexed.
 
-```
+```text
 # 301 — Old domain redirects to new domain permanently
 GET http://old-site.com/about
 → 301 Moved Permanently
@@ -72,7 +72,7 @@ public function login(): Response
 - **401 Unauthorized** — "Who are you?" — no authentication provided, or token is expired
 - **403 Forbidden** — "I know who you are, but you cannot do this" — authenticated but lacks permission
 
-```
+```text
 # No token — 401
 GET /api/admin/users
 → 401 Unauthorized
@@ -88,7 +88,7 @@ Authorization: Bearer user-token-123
 - **400 Bad Request** — the request itself is broken (invalid JSON, wrong content type)
 - **422 Unprocessable Entity** — the request is well-formed but data is invalid (email format wrong, required field missing)
 
-```
+```text
 # Broken JSON — 400
 POST /api/users
 Content-Type: application/json
@@ -115,7 +115,7 @@ Body: {"name": "", "email": "not-an-email"}
 - **502 Bad Gateway** — the upstream server (PHP-FPM) responded, but the response was invalid or the process crashed
 - **504 Gateway Timeout** — the upstream server did not respond at all within the time limit
 
-```
+```text
 Nginx → PHP-FPM
 
 502: PHP-FPM process crashed or returned garbage → Nginx can't understand the response
@@ -180,7 +180,7 @@ For completeness, here are all five groups:
 
 A user tries to update their profile through an API:
 
-```
+```text
 1. User sends request without token:
    PUT /api/profile  →  401 Unauthorized
 

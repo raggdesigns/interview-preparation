@@ -54,6 +54,7 @@ $service = new OrderService(new FakePaymentGateway(alwaysSucceeds: true));
 ```
 
 Tri oblika DI:
+
 1. **Injekcija kroz konstruktor** — najčešća i preporučena
 2. **Injekcija kroz setter** — `setLogger(LoggerInterface $logger)` — za opcione zavisnosti
 3. **Injekcija kroz metodu** — prosleđivanje zavisnosti u specifičan poziv metode
@@ -162,13 +163,14 @@ class RegistrationService
 ```
 
 Drugi primeri IoC-a:
+
 - **Event dispatcher** — registrujete listenere, frejmvork ih poziva kada se događaji dese
 - **HTTP kernel** — pišete kontrolere, frejmvork ih poziva kada se ruta poklopi
 - **Lifecycle hooks** — frejmvork poziva `setUp()` i `tearDown()` u PHPUnit-u
 
 ### Kako DI, Kompozicija i IoC su Povezani
 
-```
+```text
 ┌─────────────────────────────────────────────────┐
 │  IoC (Princip)                                  │
 │  "Frejmvork kontroliše tok"                     │

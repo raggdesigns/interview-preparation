@@ -45,7 +45,7 @@ class SendConfirmationEmail
 
 Symfony's HTTP kernel processes requests through a chain of event listeners. Each listener can handle the request, modify it, or pass it to the next one.
 
-```
+```text
 Request → kernel.request listeners → Controller → kernel.response listeners → Response
 ```
 

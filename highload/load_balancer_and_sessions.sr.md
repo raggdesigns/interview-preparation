@@ -4,7 +4,7 @@ Load balancer raspoređuje dolazni saobraćaj po više servera kako nijedan serv
 
 Load balancer se nalazi između klijenta i tvojih aplikacijskih servera. Prima sve dolazne zahteve i prosleđuje ih jednom od dostupnih backend servera.
 
-```
+```text
                         ┌──────────┐
                    ┌───→│ Server 1 │
                    │    └──────────┘
@@ -64,7 +64,7 @@ server {
 
 Podrazumevano, PHP čuva sesije kao **fajlove na lokalnom serveru** (`/tmp/sess_abc123`). Kada imaš više servera iza load balancera, ovo se kvari:
 
-```
+```text
 Zahtev 1: Korisnik se prijavljuje → Load Balancer → Server 1
            Server 1 kreira fajl sesije: /tmp/sess_abc123
 
@@ -98,17 +98,20 @@ upstream backend {
 ```
 
 **Kako funkcioniše:**
-```
+
+```text
 Zahtev 1: Korisnik → LB → Server 1 (LB postavlja cookie: srv_id=server1)
 Zahtev 2: Korisnik → LB vidi cookie srv_id=server1 → Server 1 ✓
 Zahtev 3: Korisnik → LB vidi cookie srv_id=server1 → Server 1 ✓
 ```
 
 **Prednosti:**
+
 - Jednostavno konfigurisati
 - Nema promena u kodu aplikacije
 
 **Nedostaci:**
+
 - Ako Server 1 padne, svi njegovi korisnici gube sesije
 - Neravnomerno opterećenje — neki serveri mogu dobiti više "sticky" korisnika
 - Teško skalirati gore/dole
@@ -117,7 +120,7 @@ Zahtev 3: Korisnik → LB vidi cookie srv_id=server1 → Server 1 ✓
 
 Čuvaj sesije na centralnom mestu dostupnom svim serverima — tipično **Redis** ili **Memcached**. Ovo je standardno rešenje u produkciji.
 
-```
+```text
 ┌──────────┐     ┌──────────┐     ┌──────────┐
 │ Server 1 │     │ Server 2 │     │ Server 3 │
 └─────┬────┘     └─────┬────┘     └─────┬────┘
@@ -173,12 +176,14 @@ session_start();
 ```
 
 **Prednosti:**
+
 - Sesije preživljavaju padove servera
 - Svaki server može obraditi svaki zahtev — pravo balansiranje opterećenja
 - Lako skalirati gore/dole servere
 - Redis je brz — čitanje sesija traje < 1ms
 
 **Nedostaci:**
+
 - Redis postaje jedinstvena tačka otkaza (ublaži sa Redis Sentinel ili Cluster)
 - Malo mrežno kašnjenje za čitanje sesija (zanemarljivo u praksi)
 
@@ -275,7 +280,7 @@ class HealthController extends AbstractController
 
 Imaš e-commerce aplikaciju koja radi na 3 servera iza Nginx-a. Korisnici se žale da se nasumično odjavljuju:
 
-```
+```text
 Problem: Sesije sačuvane u lokalnim fajlovima → korisnici gube sesiju kada LB šalje
          zahtev na drugi server.
 
@@ -302,6 +307,7 @@ upstream app {
 ```
 
 Rezultat:
+
 - Korisnici nikada ne gube sesije — svaki server može obraditi svaki zahtev
 - Ako Server 2 padne, saobraćaj ide na Server 1 i Server 3 — sesije i dalje rade
 - Možeš dodati Server 4 i Server 5 bez ikakvih problema sa sesijama

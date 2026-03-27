@@ -25,10 +25,11 @@ Memcached only stores strings (or serialized data as strings). Redis supports ma
 **Memcached**: No persistence. All data is lost when the server restarts. It is purely a cache.
 
 **Redis**: Supports two persistence methods:
+
 - **RDB (snapshots)** — saves the dataset to disk at configured intervals
 - **AOF (Append-Only File)** — logs every write operation, can replay them on restart
 
-```
+```text
 # Redis persistence configuration (redis.conf)
 save 900 1        # Save if at least 1 key changed in 900 seconds
 save 300 10       # Save if at least 10 keys changed in 300 seconds
@@ -41,7 +42,7 @@ appendonly yes     # Enable AOF
 
 **Redis**: Built-in master-replica replication. Redis Sentinel provides automatic failover. Redis Cluster supports sharding data across multiple nodes.
 
-```
+```text
 # Redis replication — replica configuration
 replicaof 192.168.1.100 6379
 ```
@@ -51,6 +52,7 @@ replicaof 192.168.1.100 6379
 **Memcached**: Uses a slab allocator. Memory is pre-allocated in chunks of fixed sizes. This can lead to memory waste if your data sizes vary a lot.
 
 **Redis**: Uses `jemalloc` for memory allocation. Supports memory policies for eviction when memory is full:
+
 - `allkeys-lru` — remove least recently used keys
 - `volatile-lru` — remove LRU keys that have an expiration set
 - `noeviction` — return errors when memory is full
@@ -128,6 +130,7 @@ $redis->expire($key, 60); // Reset counter every 60 seconds
 ### Real Scenario
 
 You build an e-commerce platform. You need:
+
 1. **Page caching** — both Memcached and Redis work fine
 2. **Shopping cart** — Redis is better (hash data type stores cart items naturally)
 3. **Product ranking** — Redis sorted sets handle this perfectly

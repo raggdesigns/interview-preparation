@@ -118,4 +118,3 @@ The `SendEmailMessage` is created and dispatched via the message bus. It is then
 ## Conclusion
 
 The Messenger component provides a powerful and flexible way to handle tasks asynchronously, improving the user experience and the application's scalability. By decoupling components and centralizing task handling, Symfony's Messenger component makes it easier to build and maintain large applications.
-

@@ -4,7 +4,7 @@ creation, controlling access to sensitive objects, or adding additional behavior
 when an object is accessed. The Proxy pattern is particularly useful when you want to add a layer of abstraction over
 the actual handling of object interactions.
 
-### Key Concepts of the Proxy Pattern:
+### Key Concepts of the Proxy Pattern
 
 - **Subject Interface**: Defines the common interface for both the RealSubject and the Proxy, allowing a Proxy to be
   used anywhere a RealSubject is expected.
@@ -13,7 +13,7 @@ the actual handling of object interactions.
   and deletion. The Proxy often performs additional tasks when it forwards requests to the RealSubject, such as lazy
   initialization, logging, or access control.
 
-### Types of Proxy:
+### Types of Proxy
 
 - **Virtual Proxy**: Delays the creation and initialization of expensive objects until they are needed.
 - **Protective Proxy**: Controls access to sensitive objects by implementing access control.
@@ -21,7 +21,7 @@ the actual handling of object interactions.
   communication required to send requests to the object.
 - **Smart Proxy**: Adds additional behaviors (e.g., reference counting or logging) when an object is accessed.
 
-### Example in PHP:
+### Example in PHP
 
 Let's consider a simple example where we use a Proxy to control access to a sensitive `BankAccount` object.
 
@@ -68,7 +68,7 @@ class BankAccountProxy implements BankAccount {
 }
 ```
 
-### Usage:
+### Usage
 
 ```php
 $bankAccount = new BankAccountProxy('unauthorized');

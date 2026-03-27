@@ -1,6 +1,6 @@
 U Domain-Driven Design (DDD), aggregate je grupa povezanih domenskih objekata koji se tretiraju kao jedna jedinica u svrhu primene poslovnih pravila i održavanja konzistentnosti podataka. Svaki aggregate ima jednu ulaznu tačku poznatu kao aggregate root, kroz koji se sprovode sve interakcije sa aggregatom.
 
-### Karakteristike aggregata:
+### Karakteristike aggregata
 
 - **Enkapsulacija**: Aggregate Root enkapsulira cijeli aggregate, primenjujući njegove invarijante i osiguravajući da aggregate ostane u konzistentnom stanju.
 - **Granica**: Granica aggregate-a je definisana root entitetom. Samo objekti unutar ove granice mogu direktno pristupati jedni drugima.
@@ -11,7 +11,7 @@ U Domain-Driven Design (DDD), aggregate je grupa povezanih domenskih objekata ko
 
 Razmotrite e-commerce aplikaciju gde biste mogli imati `Order` aggregate. Ovaj aggregate uključuje nekoliko entiteta i value objekata, kao što su `OrderLines` (svaki predstavlja proizvod i količinu), informacije o plaćanju, informacije o isporuci, itd. Entitet `Order` bi bio Aggregate Root, kroz koji se vrše sve modifikacije i interakcije sa podacima narudžbine.
 
-```
+```text
 class Order {
     private $orderId;
     private $orderLines = [];

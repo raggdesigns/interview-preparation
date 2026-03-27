@@ -7,6 +7,7 @@ PHP-FPM ima **master proces** i **worker procese**.
 #### Master proces
 
 Master proces se pokreće kada se PHP-FPM pokrene. Njegov posao je:
+
 - Čitanje konfiguracionih fajlova
 - Kreiranje i upravljanje worker procesima
 - Slušanje na socketu (TCP ili Unix) za dolazne zahteve
@@ -15,13 +16,14 @@ Master proces se pokreće kada se PHP-FPM pokrene. Njegov posao je:
 #### Worker procesi
 
 Svaki worker proces obrađuje jedan zahtev odjednom. Worker:
+
 1. Prima FastCGI zahtev od mastera
 2. Inicijalizuje PHP okruženje (učitava ekstenzije, autoload klase)
 3. Izvršava PHP skriptu
 4. Šalje odgovor nazad kroz master
 5. Resetuje stanje i čeka sledeći zahtev
 
-```
+```text
 Master proces (PID 1)
 ├── Worker 1 (PID 100) ← obrađuje zahtev
 ├── Worker 2 (PID 101) ← obrađuje zahtev
@@ -107,7 +109,7 @@ Nginx je web server koji obrađuje HTTP konekcije. **Ne** izvršava PHP kod. Ume
 
 #### Kompletan tok zahteva
 
-```
+```text
 Klijent (Browser)
     │
     │ HTTP zahtev: GET /api/users
@@ -170,6 +172,7 @@ server {
 ```
 
 Šta se dešava:
+
 1. Zahtev za `/css/style.css` → Nginx servira fajl direktno (PHP nije uključen)
 2. Zahtev za `/api/users` → `try_files` ne uspeva → prepisuje u `/index.php` → prosleđuje PHP-FPM-u
 3. PHP-FPM worker izvršava `index.php` → Symfony/Laravel router → controller → odgovor
@@ -189,7 +192,8 @@ server {
 Najvažnije podešavanje. Prenisko → zahtevi čekaju u redu. Previsoko → serveru ponestaje memorije.
 
 Formula:
-```
+
+```text
 max_children = Dostupna memorija / Prosečna memorija po worker-u
 
 Primer:
@@ -202,6 +206,7 @@ Primer:
 ```
 
 Proveri stvarnu memoriju po worker-u:
+
 ```bash
 # Prikaži memoriju PHP-FPM worker-a
 ps -eo pid,rss,command | grep php-fpm | awk '{print $1, $2/1024 " MB", $3}'
@@ -232,6 +237,7 @@ curl http://localhost/fpm-status
 ```
 
 Ključne metrike za praćenje:
+
 - **listen queue** — zahtevi koji čekaju slobodnog worker-a (treba biti 0)
 - **active processes** — worker-i koji trenutno obrađuju zahteve
 - **max children reached** — ako je > 0, treba ti više worker-a

@@ -17,6 +17,7 @@ MAILER_DSN=null://null
 ```
 
 Symfony učitava fajlove okruženja sledećim redosledom:
+
 1. `.env` — osnovne vrednosti
 2. `.env.test` — nadjačavanja specifična za testiranje
 3. `.env.test.local` — lokalna nadjačavanja (nije commitovano u git)
@@ -187,12 +188,12 @@ Ovo možete automatizovati u Makefile-u ili CI pipeline-u:
 
 ```makefile
 test-setup:
-	php bin/console doctrine:database:drop --env=test --force --if-exists
-	php bin/console doctrine:database:create --env=test
-	php bin/console doctrine:migrations:migrate --env=test --no-interaction
+ php bin/console doctrine:database:drop --env=test --force --if-exists
+ php bin/console doctrine:database:create --env=test
+ php bin/console doctrine:migrations:migrate --env=test --no-interaction
 
 test: test-setup
-	php bin/phpunit
+ php bin/phpunit
 ```
 
 ### DAMADoctrineTestBundle
@@ -226,7 +227,7 @@ Pridružujete se Symfony projektu i treba da podesite testove. Evo tipičnog pro
 6. Kreirati Makefile target koji briše, kreira i migrira test bazu podataka
 7. Organizovati testove u `tests/Unit/`, `tests/Integration/`, `tests/Functional/`
 
-```
+```text
 tests/
 ├── bootstrap.php
 ├── Unit/

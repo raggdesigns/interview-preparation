@@ -15,7 +15,7 @@ composer require symfony/form symfony/validator
 
 Define a form class that represents the form fields and validation rules. Use the `Symfony\Component\Form\AbstractType` class for form definitions and the `Symfony\Component\Validator\Constraints` namespace for validation rules.
 
-### Example:
+### Example
 
 ```php
 namespace App\Form;
@@ -58,7 +58,7 @@ class TaskType extends AbstractType
 
 In your controller, create and handle the form with the request data. Use the `createForm` method to create a form instance, and the `handleRequest` method to populate the form with request data and validate it.
 
-### Example:
+### Example
 
 ```php
 namespace App\Controller;
@@ -93,9 +93,7 @@ class TaskController extends AbstractController
 
 Using Symfony's Form component to validate requests not only simplifies form handling and validation but also ensures that your application adheres to best practices for data integrity and user feedback. By defining form types with embedded validation constraints, you streamline the validation process and enhance the overall security and usability of your application.
 
-
 ---
-
 
 # Validating Data in REST APIs without the Form Component
 
@@ -105,7 +103,7 @@ In REST API development with Symfony, directly using the Serializer and Validato
 
 Use the Serializer component to convert JSON or XML request content into a PHP object. This object can then be validated using Symfony's Validator component.
 
-### Example:
+### Example
 
 ```php
 namespace App\Controller;
@@ -148,9 +146,7 @@ After deserialization, use the Validator component to validate the PHP object. T
 
 While Symfony's Form component is powerful for handling and validating data in traditional web applications, REST APIs can benefit from a more direct approach using the Serializer and Validator components. This method offers simplicity, performance, and flexibility, making it well-suited for the stateless and diverse data handling needs of REST APIs.
 
-
 ---
-
 
 # Using Validation Groups for Different CRUD Operations in Symfony
 
@@ -160,7 +156,7 @@ In scenarios where an entity in Symfony requires different validation rules for 
 
 Validation constraints can be associated with one or more groups in the entity class. This is done using the `groups` option in the constraint annotations.
 
-### Example:
+### Example
 
 ```php
 namespace App\Entity;
@@ -188,7 +184,7 @@ In this example, the `name` field must not be blank during the "creation" operat
 
 When validating an entity, specify the validation groups to apply. This is typically done in the controller handling the CRUD operation.
 
-### Example for Create Operation:
+### Example for Create Operation
 
 ```php
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -208,7 +204,7 @@ public function createAction(Request $request, ValidatorInterface $validator)
 }
 ```
 
-### Example for Update Operation:
+### Example for Update Operation
 
 ```php
 public function updateAction(Request $request, ValidatorInterface $validator, $taskId)
@@ -230,6 +226,4 @@ public function updateAction(Request $request, ValidatorInterface $validator, $t
 
 Validation groups in Symfony offer a powerful mechanism to apply different sets of validation rules for different CRUD operations on the same entity. By defining groups within your entity and specifying which groups to use during validation in your controller, you can ensure that your application enforces the appropriate constraints for each operation.
 
-
 ---
-

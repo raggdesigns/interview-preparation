@@ -15,7 +15,7 @@ composer require symfony/form symfony/validator
 
 Definišite klasu forme koja predstavlja polja forme i pravila validacije. Koristite klasu `Symfony\Component\Form\AbstractType` za definicije formi i imenski prostor `Symfony\Component\Validator\Constraints` za pravila validacije.
 
-### Primer:
+### Primer
 
 ```php
 namespace App\Form;
@@ -58,7 +58,7 @@ class TaskType extends AbstractType
 
 U svom kontroleru, kreirajte i rukujte formom sa podacima iz zahteva. Koristite metodu `createForm` za kreiranje instance forme, a metodu `handleRequest` za popunjavanje forme podacima iz zahteva i njenu validaciju.
 
-### Primer:
+### Primer
 
 ```php
 namespace App\Controller;
@@ -93,9 +93,7 @@ class TaskController extends AbstractController
 
 Korišćenje Symfony-jeve Form komponente za validaciju zahteva ne samo da pojednostavljuje rukovanje formama i validaciju, već i osigurava da vaša aplikacija prati dobre prakse za integritet podataka i povratne informacije korisnicima. Definisanjem tipova formi sa ugrađenim ograničenjima validacije, unapređujete proces validacije i poboljšavate ukupnu bezbednost i upotrebljivost vaše aplikacije.
 
-
 ---
-
 
 # Validacija podataka u REST API-jima bez Form komponente
 
@@ -105,7 +103,7 @@ U razvoju REST API-ja sa Symfony-om, direktno korišćenje Serializer i Validato
 
 Koristite Serializer komponentu za konvertovanje JSON ili XML sadržaja zahteva u PHP objekat. Ovaj objekat se zatim može validirati korišćenjem Symfony-jevog Validator komponente.
 
-### Primer:
+### Primer
 
 ```php
 namespace App\Controller;
@@ -148,9 +146,7 @@ Nakon deserijalizacije, koristite Validator komponentu za validaciju PHP objekta
 
 Dok je Symfony-jeva Form komponenta moćna za rukovanje i validaciju podataka u tradicionalnim web aplikacijama, REST API-ji mogu imati koristi od direktnijeg pristupa korišćenjem Serializer i Validator komponenti. Ovaj metod nudi jednostavnost, performanse i fleksibilnost, što ga čini dobro prilagođenim za upravljanje podacima bez stanja i raznovrsnim podacima karakterističnim za REST API-je.
 
-
 ---
-
 
 # Korišćenje validacionih grupa za različite CRUD operacije u Symfony-u
 
@@ -160,7 +156,7 @@ U scenarijima gde entitet u Symfony-u zahteva različita pravila validacije za r
 
 Ograničenja validacije mogu biti pridružena jednoj ili više grupa u klasi entiteta. Ovo se radi korišćenjem opcije `groups` u anotacijama ograničenja.
 
-### Primer:
+### Primer
 
 ```php
 namespace App\Entity;
@@ -188,7 +184,7 @@ U ovom primeru, polje `name` ne sme biti prazno tokom operacije "creation", a po
 
 Prilikom validacije entiteta, navedite validacione grupe koje treba primeniti. Ovo se obično radi u kontroleru koji rukuje CRUD operacijom.
 
-### Primer za operaciju kreiranja:
+### Primer za operaciju kreiranja
 
 ```php
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -208,7 +204,7 @@ public function createAction(Request $request, ValidatorInterface $validator)
 }
 ```
 
-### Primer za operaciju ažuriranja:
+### Primer za operaciju ažuriranja
 
 ```php
 public function updateAction(Request $request, ValidatorInterface $validator, $taskId)
@@ -229,6 +225,5 @@ public function updateAction(Request $request, ValidatorInterface $validator, $t
 ## Zaključak
 
 Validacione grupe u Symfony-u nude moćan mehanizam za primenu različitih skupova pravila validacije za različite CRUD operacije na istom entitetu. Definisanjem grupa unutar vašeg entiteta i navođenjem koje grupe koristiti tokom validacije u vašem kontroleru, možete osigurati da vaša aplikacija primenjuje odgovarajuća ograničenja za svaku operaciju.
-
 
 ---

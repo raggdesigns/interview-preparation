@@ -1,17 +1,18 @@
 Domain Events are a key concept in Domain-Driven Design (DDD) that represent something meaningful that happened within
 the domain. They are used to communicate changes or significant occurrences within the system, allowing different parts
 of the system to react to these changes in a decoupled way. Essentially, Domain Events encapsulate the idea of an
-event-driven architecture within the context of DDD, promoting 
-  * loose coupling 
-  * enhancing the system's responsiveness 
-  * flexibility
+event-driven architecture within the context of DDD, promoting
 
-### Characteristics of Domain Events:
+* loose coupling
+* enhancing the system's responsiveness
+* flexibility
 
-- **Immutable**: Once a Domain Event is created, its state does not change. This immutability ensures the event's
+### Characteristics of Domain Events
+
+* **Immutable**: Once a Domain Event is created, its state does not change. This immutability ensures the event's
   reliability as it propagates through the system.
-- **Event Name**: Describes what has happened, usually in the past tense (e.g., OrderPlaced, ItemShipped).
-- **Event Data**: Contains the details relevant to the event, such as entity IDs, timestamps, and other pertinent
+* **Event Name**: Describes what has happened, usually in the past tense (e.g., OrderPlaced, ItemShipped).
+* **Event Data**: Contains the details relevant to the event, such as entity IDs, timestamps, and other pertinent
   information.
 
 ### Example of Domain Events
@@ -33,7 +34,7 @@ shipment date, and tracking number.
 
 A simplified PHP implementation of the OrderPlaced event could look like this:
 
-```
+```text
 class OrderPlaced {
     private $orderId;
     private $customerId;

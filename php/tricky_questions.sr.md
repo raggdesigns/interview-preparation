@@ -21,7 +21,8 @@ print_r($arr);
 ```
 
 Izlaz:
-```
+
+```text
 Array
 (
     [0] => a
@@ -35,7 +36,7 @@ Array
 
 **Ključno pravilo:** PHP ignoriše string ključeve pri računanju sledećeg integer indeksa. Gleda samo najviši integer ključ (koji je 3) i dodaje 1 da bi dobio 4.
 
-#### Zamršena varijacija:
+#### Zamršena varijacija
 
 ```php
 $arr = [
@@ -185,7 +186,7 @@ function findSecondLargest(array $numbers): int|float
 
 **Korak-po-korak primer** sa `[3, 1, 7, 5, 2]`:
 
-```
+```text
 Start:   first = -∞,  second = -∞
 
 num = 3: 3 > -∞ → first = 3,  second = -∞
@@ -205,7 +206,7 @@ Result: first = 7, second = 5 ✓
 
 `empty()` proverava da li je vrednost "prazna" (falsy). `is_null()` proverava da li je vrednost tačno `null`.
 
-#### Šta `empty()` smatra praznim:
+#### Šta `empty()` smatra praznim
 
 ```php
 empty('');        // true — empty string
@@ -221,7 +222,7 @@ empty(1);         // false
 empty([1, 2]);    // false
 ```
 
-#### Šta `is_null()` smatra nullom:
+#### Šta `is_null()` smatra nullom
 
 ```php
 is_null(null);    // true
@@ -232,7 +233,7 @@ is_null(false);   // false
 is_null([]);      // false
 ```
 
-#### Tabela ključnih razlika:
+#### Tabela ključnih razlika
 
 | Vrednost | `empty()` | `is_null()` |
 |----------|-----------|-------------|
@@ -245,7 +246,7 @@ is_null([]);      // false
 | `'hello'` | `false` | `false` |
 | `1` | `false` | `false` |
 
-#### Još jedna važna razlika:
+#### Još jedna važna razlika
 
 `empty()` **ne** okida upozorenje za nedefinisane promenljive:
 

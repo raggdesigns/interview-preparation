@@ -5,6 +5,7 @@ U kontekstu rešenja za keširanje za web aplikacije, Memcache i Memcached se č
 Memcache, koji se često pominje u kontekstu PHP-a, je visoko-performansni distribuirani sistem keširanje u memoriji dizajniran za ubrzavanje dinamičnih web aplikacija smanjujući opterećenje baze podataka. Odnosi se na celu tehnologiju i ekosistem oko rešenja keširanje koji koriste Memcache protokol.
 
 **Ključne karakteristike**:
+
 - Lagan i jednostavan za korišćenje.
 - Podrška API-ja u više jezika.
 - Nedostaju neke napredne funkcionalnosti u poređenju sa Memcached-om.
@@ -14,6 +15,7 @@ Memcache, koji se često pominje u kontekstu PHP-a, je visoko-performansni distr
 Memcached je ekstenzija i demon za PHP koji pruža interfejs prema Memcached sistemu keširanje. Dok "Memcache" može takođe referisati na demon, "Memcached" posebno referira na noviju PHP ekstenziju koja nudi više funkcionalnosti i bolje performanse.
 
 **Ključne karakteristike**:
+
 - Nudi robusnije i opsežnije funkcionalnosti od Memcache ekstenzije.
 - Podržava novije protokole i komande.
 - Pruža bolje performanse i efikasniju upotrebu memorije.
@@ -32,6 +34,7 @@ Memcached je ekstenzija i demon za PHP koji pruža interfejs prema Memcached sis
 ### Primer upotrebe u PHP-u
 
 **Memcache**:
+
 ```php
 $memcache = new Memcache;
 $memcache->connect('localhost', 11211);
@@ -40,6 +43,7 @@ echo $memcache->get('key');
 ```
 
 **Memcached**:
+
 ```php
 $memcached = new Memcached;
 $memcached->addServer('localhost', 11211);

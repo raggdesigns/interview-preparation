@@ -25,10 +25,11 @@ Memcached čuva samo stringove (ili serijalizovane podatke kao stringove). Redis
 **Memcached**: Nema persistencije. Svi podaci se gube kada se server restartuje. Čisto je keš.
 
 **Redis**: Podržava dve metode persistencije:
+
 - **RDB (snimci)** — čuva skup podataka na disk u konfigurisanim intervalima
 - **AOF (Append-Only File)** — beleži svaku operaciju pisanja, može ih reprodukovati pri restartovanju
 
-```
+```text
 # Konfiguracija persistencije Redis-a (redis.conf)
 save 900 1        # Sačuvaj ako se barem 1 ključ promenio u 900 sekundi
 save 300 10       # Sačuvaj ako se barem 10 ključeva promenilo u 300 sekundi
@@ -41,7 +42,7 @@ appendonly yes     # Omogući AOF
 
 **Redis**: Ugrađena master-replika replikacija. Redis Sentinel pruža automatski failover. Redis Cluster podržava šardovanje podataka po više čvorova.
 
-```
+```text
 # Redis replikacija — konfiguracija replike
 replicaof 192.168.1.100 6379
 ```
@@ -51,6 +52,7 @@ replicaof 192.168.1.100 6379
 **Memcached**: Koristi slab alokator. Memorija je unapred alocirana u blokovima fiksnih veličina. Ovo može dovesti do rasipanja memorije ako veličine podataka mnogo variraju.
 
 **Redis**: Koristi `jemalloc` za alokaciju memorije. Podržava politike memorije za evikaciju kada je memorija puna:
+
 - `allkeys-lru` — ukloni najmanje nedavno korišćene ključeve
 - `volatile-lru` — ukloni LRU ključeve koji imaju postavljeno isticanje
 - `noeviction` — vraća greške kada je memorija puna
@@ -128,6 +130,7 @@ $redis->expire($key, 60); // Resetuj brojač svakih 60 sekundi
 ### Realni scenario
 
 Gradiš e-commerce platformu. Trebaš:
+
 1. **Keširanje stranica** — oba Memcached i Redis rade dobro
 2. **Korpa za kupovinu** — Redis je bolji (tip podataka hash prirodno čuva stavke korpe)
 3. **Rangiranje proizvoda** — Redis sortirani skupovi ovo savršeno obrađuju

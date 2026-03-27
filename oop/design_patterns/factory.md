@@ -1,18 +1,18 @@
 The Factory pattern is a creational design pattern that provides an interface for creating objects in a superclass but allows subclasses to alter the type of objects that will be created. Essentially, it involves using a factory method to deal with the problem of creating objects without having to specify the exact class of the object that will be created. This is particularly useful in situations where a system needs to be independent of how its objects are created, composed, or represented.
 
-### Key Concepts of the Factory Pattern:
+### Key Concepts of the Factory Pattern
 
 - **Factory Method**: A method that returns objects of a base class but is overridden by derived classes to return objects of different types.
 - **Product**: The objects being created by the factory method. The product is typically based on a common interface or base class.
 - **Client**: The part of the application that calls the factory method to create an object. The client doesn’t need to know the concrete class of the object being created.
 
-### Benefits:
+### Benefits
 
 - **Flexibility**: Clients are decoupled from the specific classes needed to create an instance of a desired object. Adding new products requires no change in the client code, adhering to the open/closed principle.
 - **Reusability**: The factory method can be applied to create instances for various contexts with different requirements.
 - **Isolation of Class Creation Complexity**: Encapsulates the instantiation logic making the system easier to understand and maintain.
 
-### Example in PHP:
+### Example in PHP
 
 Suppose you are developing an application to manage documents. You have different types of documents (e.g., `WordDocument`, `PdfDocument`), but you want your application to be open for future extensions with more document types without changing the client code.
 

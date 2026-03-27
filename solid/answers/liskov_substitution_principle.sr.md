@@ -78,8 +78,8 @@ letTheBirdFly(new Sparrow()); // Works fine
 - **Povećana robusnost**: Sistem je manje sklon greškama jer se objekti koriste predvidivije.
 - **Poboljšana ponovna upotrebljivost koda**: Jasniji ugovori dovode do komponenti koje je lakše ponovo koristiti.
 
-
 ### Različite definicije LSP
+
 1. **Liskov Substitution Principle (LSP)**: Ovaj princip navodi da objekti superklase trebaju biti zamenljivi objektima podklase bez uticaja na ispravnost programa. Suštinski, podklase treba da proširuju baznu klasu bez promene njenog ponašanja.
 
 2. **Ponašajna podtipabilnost**: Drugi način opisivanja LSP je da definiše da podtip mora biti ponašajno kompatibilan sa svojim supertipom, što znači da korisnik supertipa ne bi trebao moći da razlikuje supertype od podtipa.

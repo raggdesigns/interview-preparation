@@ -24,7 +24,7 @@ Redis is an open-source, in-memory data structure store, used as a database, cac
 
 ### Getting Started with Redis in PHP
 
-To use Redis as a caching layer or session store in PHP, you'll need the `redis` extension installed and configured with your PHP environment. 
+To use Redis as a caching layer or session store in PHP, you'll need the `redis` extension installed and configured with your PHP environment.
 
 ```php
 $redis = new Redis();

@@ -6,52 +6,65 @@ Design patterns play a crucial role in the architecture of frameworks like Symfo
 ## Factory Pattern
 
 ### Description
+
 The Factory pattern is used to create objects without specifying the exact class of object that will be created.
 
 ### Usage in Symfony
+
 Symfony uses the Factory pattern in the form component (`FormFactoryInterface`), which creates form instances. Services defined in `services.yaml` can also use factory methods to instantiate objects.
 
 ### Usage in Doctrine
+
 Doctrine utilizes the Factory pattern to create entities or repositories, for instance, through the `EntityManager`'s repository factory.
 
 ## Observer Pattern
 
 ### Description
+
 The Observer pattern defines a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
 
 ### Usage in Symfony
+
 Symfony's EventDispatcher component is a prime example of the Observer pattern, where events (state changes) are dispatched to registered listeners or subscribers, which then react to these events.
 
 ## Strategy Pattern
 
 ### Description
+
 The Strategy pattern is used to define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
 
 ### Usage in Symfony
+
 The Strategy pattern is evident in Symfony's HTTP Kernel component, where different request handlers (`HttpKernelInterface`) can be defined and switched based on the application's needs.
 
 ## Data Mapper Pattern
 
 ### Description
+
 The Data Mapper pattern involves a layer of mappers that move data between objects and a database while keeping them independent of each other and the mapper itself.
 
 ### Usage in Doctrine
+
 Doctrine ORM is a prime example of the Data Mapper pattern, where entities (in-memory objects) are mapped to database tables. Doctrine's `EntityManager` and repositories act as the mapper layer, handling the object-database mapping transparently.
 
 ## Dependency Injection Pattern
 
 ### Description
+
 Dependency Injection is a technique whereby one object supplies the dependencies of another object, reducing coupling between components and increasing flexibility.
 
 ### Usage in Symfony
+
 Symfony's Dependency Injection Container is a fundamental part of the framework, allowing services to be injected into classes rather than classes creating dependencies themselves.
 
 ## Proxy Pattern
 
 ### Description
+
 The Proxy pattern provides a surrogate or placeholder for another object to control access to it, often used for lazy loading or controlling the object.
 
 ### Usage in Doctrine
+
 Doctrine uses the Proxy pattern for entities when working with lazy loading. Proxies are automatically generated classes that extend entities to add lazy loading capabilities.
 
 ## Conclusion

@@ -54,6 +54,7 @@ $label = match($status) {
 ```
 
 Important differences from `switch`:
+
 - `match` uses strict comparison (`===`), not loose (`==`)
 - `match` returns a value
 - No need for `break` — only one branch runs

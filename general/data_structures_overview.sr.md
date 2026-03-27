@@ -4,12 +4,13 @@ Strukture podataka su načini organizovanja podataka u memoriji tako da operacij
 
 Hash tabela čuva **parove ključ-vrednost**. Koristi **hash funkciju** da pretvori ključ u indeks niza, dajući O(1) prosečno vreme pristupa.
 
-```
+```text
 Key "name" → hash("name") → index 5 → Value "Dragan"
 Key "role" → hash("role") → index 2 → Value "developer"
 ```
 
 **Gde je koristiš svakodnevno:**
+
 - PHP nizovi (asocijativni) — `['name' => 'Dragan']`
 - Redis — cela baza podataka je hash mapa
 - HTTP zaglavlja — `Content-Type: application/json`
@@ -44,12 +45,13 @@ if (isset($config['db_port'])) { ... }
 
 Linked list je niz **čvorova** gde svaki čvor sadrži vrednost i **pokazivač** na sledeći čvor. Za razliku od nizova, elementi nisu smešteni u kontinuiranoj memoriji.
 
-```
+```text
 [value: "A" | next: →] → [value: "B" | next: →] → [value: "C" | next: null]
      Node 1                    Node 2                    Node 3
 ```
 
 **Tipovi:**
+
 - **Jednostruko ulančana** — svaki čvor pokazuje na sledeći
 - **Dvostruko ulančana** — svaki čvor pokazuje na sledeći I prethodni
 
@@ -62,6 +64,7 @@ Linked list je niz **čvorova** gde svaki čvor sadrži vrednost i **pokazivač*
 | Pretraga | O(n) | O(n) |
 
 **Gde se susrećeš sa njom:**
+
 - PHP-ova `SplDoublyLinkedList` — za redove i stekove
 - Git istorija komitova — svaki komit pokazuje na svog roditelja
 - Blockchain — svaki blok je vezan za prethodni
@@ -86,7 +89,7 @@ while ($list->valid()) {
 
 Stablo je hijerarhijska struktura gde svaki čvor ima vrednost i nula ili više **dečjih čvorova**. Čvor na vrhu se zove **koren**.
 
-```
+```text
             [CEO]                    ← Root
            /     \
       [CTO]       [CFO]             ← Children of root
@@ -95,12 +98,14 @@ Stablo je hijerarhijska struktura gde svaki čvor ima vrednost i nula ili više 
 ```
 
 **Uobičajeni tipovi:**
+
 - **Binarno stablo** — svaki čvor ima najviše 2 dece
 - **Binary Search Tree (BST)** — levo dete < roditelj < desno dete → O(log n) pretraga
 - **B-stablo** — koristi MySQL indeksi (mnogo dece po čvoru, optimizovano za disk)
 - **DOM stablo** — struktura HTML/XML dokumenta
 
 **Gde se susrećeš sa stablima:**
+
 - **MySQL indeksi** — B-stablo/B+stablo za brze pretrage
 - **XML/HTML parsiranje** — DOM stablo
 - **Fajl sistem** — direktorijumi su stablo
@@ -130,7 +135,7 @@ foreach ($doc->book as $book) {
 
 **B-stablo u MySQL-u:**
 
-```
+```text
                     [50]
                    /    \
             [20, 35]    [70, 85]
@@ -144,7 +149,7 @@ Kada pokreneš `SELECT * FROM users WHERE id = 25`, MySQL ne skenira sve redove.
 
 Stek radi kao gomila tanjira — možeš dodavati ili uklanjati samo sa **vrha**. Poslednji dodati element je prvi koji se uklanja.
 
-```
+```text
     Push "C" →  [C]  ← Top (last in, first out)
                 [B]
                 [A]  ← Bottom (first in, last out)
@@ -159,6 +164,7 @@ Stek radi kao gomila tanjira — možeš dodavati ili uklanjati samo sa **vrha**
 | Peek (pogledaj vrh) | O(1) |
 
 **Gde se susrećeš sa stekom:**
+
 - **Call stack funkcija** — kada funkcija A poziva funkciju B, A se gura na stek. Kada se B vrati, A se skida i nastavlja
 - **Undo operacije** — svaka akcija se gura na stek, undo skida poslednju
 - **Parsiranje izraza** — kompajleri koriste stekove za evaluaciju `(3 + 4) * (2 - 1)`
@@ -186,7 +192,7 @@ echo "Undoing: $lastAction\n";
 
 Red funkcioniše kao red u prodavnici — prva osoba u redu se prva uslužuje. Elementi se dodaju na **kraj** i uklanjaju sa **prednje strane**.
 
-```
+```text
     Enqueue "C" →  [A] [B] [C]
                     ↑           ↑
                   Front        Back
@@ -201,6 +207,7 @@ Red funkcioniše kao red u prodavnici — prva osoba u redu se prva uslužuje. E
 | Peek (pogledaj prednju stranu) | O(1) |
 
 **Gde se susrećeš sa redovima — kritično za backend programere:**
+
 - **RabbitMQ** — message broker koji obrađuje poslove redom
 - **Redis liste** — `LPUSH` + `RPOP` kreira red
 - **Symfony Messenger** — šalje poruke u red za asinhronnu obradu

@@ -25,6 +25,7 @@ CREATE TABLE user_profiles (
 The `UNIQUE` constraint on `user_id` guarantees that each user can have only one profile. Without `UNIQUE`, it would become a one-to-many relationship.
 
 **When to use 1:1:**
+
 - Separate rarely accessed data from frequently accessed data (performance)
 - Store optional information in a separate table to keep the main table clean
 - Security — sensitive data (e.g., billing) in a separate table with different access rules
@@ -161,6 +162,7 @@ class User
 ```
 
 Key Doctrine terms:
+
 - **owning side** — the side that has the `JoinColumn` or `JoinTable` (this side writes to the database)
 - **inverse side** — uses `mappedBy` (read-only, does not trigger SQL)
 - Always add/remove entities on the **owning side** for changes to be persisted
@@ -198,7 +200,7 @@ FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
 
 You are building an e-commerce platform. The data model looks like this:
 
-```
+```text
 users (1) ──── (N) orders
                       │
 orders (1) ──── (N) order_items (N) ──── (1) products

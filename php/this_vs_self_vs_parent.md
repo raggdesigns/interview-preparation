@@ -6,6 +6,7 @@ In PHP, understanding the differences between `this`, `self`, `static`, and `par
 - **`self`**: Refers to the current class. It's used for accessing static properties, constants, and methods. Unlike `$this`, `self` does not refer to an instance of a class but to the class itself.
 
 **Key Differences**:
+
 - `$this` is used within object context to refer to the object itself, while `self` is used within a class context to refer to the class itself, even in instances.
 
 ### self vs static
@@ -14,6 +15,7 @@ In PHP, understanding the differences between `this`, `self`, `static`, and `par
 - **`static`**: In the context of late static bindings, `static` refers to the called class. Unlike `self`, which always refers to the class in which it is used, `static` can be used to refer to the class that was initially called at runtime.
 
 **Key Differences**:
+
 - `self` resolves to the class in which it is used, which may not always be the class that was called. `static`, however, uses the PHP feature of late static bindings to refer to the class that was called at runtime, supporting polymorphic behavior.
 
 ### parent vs self
@@ -22,6 +24,7 @@ In PHP, understanding the differences between `this`, `self`, `static`, and `par
 - **`self`**: Refers to the current class itself.
 
 **Key Differences**:
+
 - Use `parent` when you need to access a method or property in the parent class that may have been overridden in the current class. `self` is used to access elements that are self-contained within the current class.
 
 ### Examples

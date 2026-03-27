@@ -9,7 +9,7 @@ A service in SOA has four key characteristics:
 3. **Loosely coupled** — it can be changed without affecting other services
 4. **Reusable** — multiple applications can use the same service
 
-```
+```text
 ┌──────────────────────────────────────────────────┐
 │                    Enterprise                     │
 │                                                  │
@@ -33,7 +33,7 @@ A service in SOA has four key characteristics:
 
 In a monolith, all features live in one big application:
 
-```
+```text
 Monolith:
 ┌──────────────────────────────────────┐
 │  Orders + Payments + Users +          │
@@ -64,19 +64,21 @@ SOA and microservices are related but different:
 | Typical context | Enterprise (banks, telecom) | Startups, modern web apps |
 
 Think of it this way:
+
 - **SOA** = "Let's organize our enterprise systems into reusable services connected through a central bus"
 - **Microservices** = "Let's break our application into tiny, independent services that each do one thing"
 
 ### Enterprise Service Bus (ESB)
 
 The ESB is a central component in SOA that handles:
+
 - **Message routing** — directing requests to the right service
 - **Protocol transformation** — converting SOAP to REST, XML to JSON
 - **Message enrichment** — adding data from other services
 - **Error handling** — retries, dead letter queues
 - **Orchestration** — coordinating multi-step business processes
 
-```
+```text
 Client Request: "Create Order"
        │
        ▼
@@ -107,7 +109,7 @@ In microservices, there is no ESB. Services communicate directly or through ligh
 
 A bank uses SOA to connect its different systems:
 
-```
+```text
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │  Mobile App │     │  Web Portal │     │  ATM System │
 └──────┬──────┘     └──────┬──────┘     └──────┬──────┘
@@ -165,12 +167,14 @@ class OrderController extends AbstractController
 ### When to Use SOA
 
 **SOA makes sense when:**
+
 - You have a large enterprise with many applications that need to share services
 - Different teams or departments need to use the same business logic
 - You need to integrate legacy systems (SOAP) with modern ones (REST)
 - You need centralized governance and monitoring
 
 **SOA is overkill when:**
+
 - You have a single application
 - Your team is small (< 10 developers)
 - You don't need to share services across applications

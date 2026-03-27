@@ -141,11 +141,13 @@ These are the same reasons why DI Container with constructor injection is prefer
 ### When Each Is Used
 
 **Registry** is sometimes used in:
+
 - Simple legacy applications
 - Storing configuration values
 - Test fixtures
 
 **Service Locator** is sometimes used in:
+
 - Legacy frameworks
 - Plugin systems where services are discovered at runtime
 - Symfony's `ServiceSubscriberInterface` (controlled, limited form)

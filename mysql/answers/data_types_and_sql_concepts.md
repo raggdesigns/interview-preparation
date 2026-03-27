@@ -8,6 +8,7 @@
 - **VARCHAR(n)**: Variable length. Only uses as much space as the actual string plus 1–2 bytes of overhead to store the length. More space-efficient for variable-size data.
 
 **When to use which:**
+
 - Use `CHAR` for values that are always (or nearly always) the same length: country codes, currency codes, MD5 hashes.
 - Use `VARCHAR` for values with unpredictable length: names, emails, descriptions.
 

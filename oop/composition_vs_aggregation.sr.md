@@ -5,6 +5,7 @@ Kompozicija i agregacija su dva osnovna koncepta u objektno-orijentisanom dizajn
 Kompozicija je jaka relacija "ima" gde komponovani objekat ne može postojati nezavisno od kompozitnog objekta. Ako se kompozitni objekat uništi, njegovi komponovani objekti se takođe uništavaju. Kompozicija podrazumeva vlasništvo i upravljanje životnim ciklusom komponovanih objekata od strane kompozitnog objekta.
 
 **Karakteristike**:
+
 - **Jako vlasništvo**: Kompozitni objekat ima punu odgovornost za životni ciklus komponovanih objekata.
 - **Vreme trajanja**: Životni ciklus komponovanih objekata je vezan za životni ciklus kompozitnog objekta.
 - **Jedan vlasnik**: Komponovani objekti se ne dele između kompozitnih objekata.
@@ -37,6 +38,7 @@ U ovom primeru, objekat `Car` poseduje objekat `Engine`, a životni ciklus `Engi
 Agregacija je slabija relacija "ima" u poređenju sa kompozicijom. Označava odnos gde dete može postojati nezavisno od roditelja. To je oblik asocijacije sa jednosmernim odnosom, implicirajući da je agregatni objekat kolekcija drugih objekata.
 
 **Karakteristike**:
+
 - **Labavo vlasništvo**: Roditeljski objekat nema direktnu kontrolu nad životnim ciklusom dece.
 - **Nezavisan životni ciklus**: Deca objekti mogu postojati nezavisno od roditeljskog objekta.
 - **Deljeno vlasništvo**: Deca objekti mogu biti povezani sa više roditeljskih objekata.

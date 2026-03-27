@@ -21,7 +21,7 @@ Since PHP 7, arrays use a structure called `HashTable` in C. Each array consists
 2. **Bucket** — holds the key, the value, and a hash of the key
 3. **Packed vs hash mode** — PHP optimizes for integer-indexed arrays
 
-```
+```text
 PHP Array (HashTable)
 ├── nTableSize: 8         (allocated bucket slots, always power of 2)
 ├── nNumOfElements: 3     (actual elements stored)
@@ -64,7 +64,7 @@ unset($arr[1]);                             // Hash — gap in sequence after un
 
 Two different keys can produce the same hash value. This is called a **collision**. PHP handles collisions using **linked lists** — when two keys hash to the same bucket position, they are chained together.
 
-```
+```text
 Bucket slot 3: "name" → "Dragan" → (next) "city" → "Belgrade"
                         Both "name" and "city" hashed to slot 3
 ```
@@ -74,6 +74,7 @@ In practice, collisions are rare. PHP resizes the hash table when it gets too fu
 ### Memory Usage
 
 PHP arrays use significantly more memory than simple C arrays because each element stores:
+
 - The value (zval — 16 bytes)
 - The key (string key + hash, or integer key)
 - Pointers for ordering and collision chains
@@ -189,6 +190,7 @@ foreach ($orders as $order) {
 ```
 
 With 10,000 active users and 50,000 orders:
+
 - `in_array`: up to 10,000 × 50,000 = 500 million comparisons
 - `isset`: 50,000 hash lookups = practically instant
 

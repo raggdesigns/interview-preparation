@@ -2,7 +2,7 @@ In Domain-Driven Design (DDD), an aggregate is a group of related domain objects
 the purpose of enforcing business rules and maintaining data consistency. Each aggregate has a single entry point known
 as the aggregate root, through which all interactions with the aggregate are conducted.
 
-### Characteristics of Aggregates:
+### Characteristics of Aggregates
 
 - **Encapsulation**: The Aggregate Root encapsulates the entire aggregate, enforcing its invariants and ensuring that
   the aggregate remains in a consistent state.
@@ -19,7 +19,7 @@ and value objects, such as `OrderLines` (each representing a product and quantit
 information, etc. The `Order` entity would be the Aggregate Root, through which all modifications and interactions with
 the order data occur.
 
-```
+```text
 class Order {
     private $orderId;
     private $orderLines = [];

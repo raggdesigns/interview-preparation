@@ -1,19 +1,19 @@
 The Decorator pattern is a structural design pattern that allows behavior to be added to individual objects, either statically or dynamically, without affecting the behavior of other objects from the same class. This pattern is particularly useful for adhering to the open/closed principle, one of the SOLID principles, which states that software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification.
 
-### Key Concepts of the Decorator Pattern:
+### Key Concepts of the Decorator Pattern
 
 - **Component Interface**: This defines the interface for objects that can have responsibilities added to them dynamically.
 - **Concrete Component**: Defines an object to which additional responsibilities can be attached.
 - **Decorator**: Maintains a reference to a Component object and defines an interface that conforms to Component's interface.
 - **Concrete Decorators**: Concrete implementations of the Decorator that add responsibilities to the component.
 
-### Benefits:
+### Benefits
 
 - **Flexibility**: Decorators provide a flexible alternative to subclassing for extending functionality.
 - **Reusability**: You can design new Decorators to implement new behavior at runtime, promoting reusability.
 - **Modularity**: Individual pieces of functionality are encapsulated in their own class, following single responsibility and open/closed principles.
 
-### Example in PHP:
+### Example in PHP
 
 Imagine a simple text processing application where you want to dynamically add formatting to text.
 
@@ -57,7 +57,7 @@ class ItalicTextDecorator extends TextDecorator {
 }
 ```
 
-### Usage:
+### Usage
 
 ```php
 $plainText = new PlainText("Hello, World!");

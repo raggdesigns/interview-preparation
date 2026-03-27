@@ -1,6 +1,6 @@
 Event Sourcing je arhitekturalni pattern u kome se promene stanja aplikacije čuvaju kao niz događaja. Umesto da čuva samo trenutno stanje podataka u domenu, event sourcing takođe čuva niz akcija izvršenih nad tim podacima. Događaji se čuvaju u log-u samo za dodavanje i mogu se koristiti za rekonstrukciju prošlih stanja, reviziju promena i napredovanje stanja aplikacije.
 
-### Ključni koncepti Event Sourcing-a:
+### Ključni koncepti Event Sourcing-a
 
 - **Događaji**: Nepromenljivi zapisi koji beleže činjenicu ili akciju u sistemu, kao što su 'UserRegistered' ili 'OrderPlaced'. Svaki događaj predstavlja promenu stanja.
 - **Event Store**: Mehanizam za skladištenje događaja. Deluje kao izvor istine za stanje aplikacije.
@@ -8,7 +8,7 @@ Event Sourcing je arhitekturalni pattern u kome se promene stanja aplikacije ču
 - **Projekcije**: Modeli za čitanje kreirani iz događaja koji su optimizovani za upite.
 - **Event Handlers**: Logika koja reaguje na događaje, bilo ažuriranjem stanja, pokretanjem sporednih efekata ili generisanjem novih događaja.
 
-### Prednosti:
+### Prednosti
 
 - **Revizija**: Pošto su sve promene sačuvane kao događaji, pruža kompletnu istoriju promena stanja.
 - **Fleksibilnost**: Nove funkcionalnosti mogu biti dodate uvođenjem novih događaja i handler-a bez modifikacije postojećeg koda.
@@ -55,7 +55,7 @@ class EventStore {
 }
 ```
 
-### Upotreba:
+### Upotreba
 
 ```php
 $eventStore = new EventStore();

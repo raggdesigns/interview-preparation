@@ -17,7 +17,7 @@ that bridges the two.
 
 #### Domain Model (E-commerce System)
 
-```
+```text
 class Product {
     private $id;
     private $name;
@@ -37,7 +37,7 @@ class Product {
 
 #### External Model (Inventory System)
 
-```
+```text
 class ExternalProduct {
     public $productId;
     public $description;
@@ -53,7 +53,7 @@ class ExternalProduct {
 The ACL includes a translator that converts ExternalProduct instances from the inventory system into Product instances
 for the e-commerce domain.
 
-```
+```text
 class ProductTranslator {
     public static function translate(ExternalProduct $externalProduct): Product {
         $id = $externalProduct->productId;
@@ -71,7 +71,7 @@ class ProductTranslator {
 This is how you might use the ACL to fetch product data from the external inventory system and convert it into the
 domain model of the e-commerce application.
 
-```
+```text
 // Simulate fetching an external product representation
 $externalProduct = new ExternalProduct();
 $externalProduct->productId = "123";
@@ -87,7 +87,7 @@ $product = ProductTranslator::translate($externalProduct);
 
 #### Conclusion
 
-```
+```text
 This example abstracts a lot of the complexities that might exist in real-world scenarios, such as dealing with APIs,
 error handling, and more sophisticated translation logic. However, it demonstrates the core idea behind the
 Anti-Corruption Layer: isolating your domain model from external systems by translating between different models, thus

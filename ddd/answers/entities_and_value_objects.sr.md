@@ -4,9 +4,9 @@ Entiteti i Value Objects su dva fundamentalna koncepta u Domain-Driven Design-u 
 
 Entiteti su objekti koji su definisani ne atributima, već nitom kontinuiteta i identiteta. To znači da je entitet jedinstven unutar sistema, čak i ako se njegovi atributi menjaju tokom vremena. Identitet entiteta je konstantan od trenutka kreiranja do prestanka postojanja unutar sistema.
 
-#### Primer entiteta:
+#### Primer entiteta
 
-```
+```text
 class User {
     private $userId;
     private $name;
@@ -20,15 +20,16 @@ class User {
     // Getteri i seteri...
 }
 ```
+
 Razmotri `User` na platformi društvenih mreža. Korisnik može promeniti ime, email ili profilnu sliku, ali ostaje isti korisnik. Ovo je predstavljeno jedinstvenim identifikatorom (kao što je ID korisnika) koji se ne menja, čak i kada se drugi atributi menjaju.
 
 ### Value Objects
 
 Value Objects, s druge strane, su definisani atributima. Ako promeniš bilo koji atribut Value Object-a, on u suštini postaje novi objekat. Value Objects nemaju jedinstveni identifikator koji ih prati tokom životnog ciklusa, i često se koriste za opisivanje aspekata entiteta.
 
-#### Primer Value Object-a:
+#### Primer Value Object-a
 
-```
+```text
 class Address {
     private $street;
     private $city;
@@ -42,18 +43,20 @@ class Address {
     // Getteri...
 }
 ```
+
 `Address` koji se koristi u sistemu za dostavu može biti Value Object. Definisan je atributima (ulica, grad, poštanski broj), a promena bilo kojeg od ovih atributa rezultira drugom adresom.
 
 ### Pogrešna interpretacija i njeni efekti
 
 Uobičajena pogrešna interpretacija u DDD-u je tretiranje objekta koji bi trebao biti Entitet kao Value Object. Ova greška može manifestovati značajne probleme kako se sistem razvija.
 
-#### Primer pogrešne odluke:
+#### Primer pogrešne odluke
 
 Zamislite sistem onlajn knjižare gde je svaka knjiga inicijalno modelovana kao Value Object, pod pogrešnom pretpostavkom da je sve što identifikuje knjigu kombinacija naslova, autora i ISBN-a. Ova odluka dovodi do komplikacija kada sistem treba da prati pojedinačne primerke knjiga za potrebe upravljanja inventarom ili rukuje prodajom i povratom, jer Value Objects nemaju jedinstveni identifikator.
 
-### Korektivna akcija:
-```
+### Korektivna akcija
+
+```text
 class Book {
     private $bookId;
     private $title;
@@ -69,8 +72,8 @@ class Book {
     // Getteri...
 }
 ```
-Za rešavanje ovih problema, razvojni tim treba da refaktoriše model, tretirajući `Book` kao Entitet umesto Value Object-a. Ovo uključuje dodeljivanje jedinstvenog identifikatora svakoj instanci `Book-a`, omogućavajući sistemu da razlikuje različite primerke istog naslova.
 
+Za rešavanje ovih problema, razvojni tim treba da refaktoriše model, tretirajući `Book` kao Entitet umesto Value Object-a. Ovo uključuje dodeljivanje jedinstvenog identifikatora svakoj instanci `Book-a`, omogućavajući sistemu da razlikuje različite primerke istog naslova.
 
 ### Zaključak
 

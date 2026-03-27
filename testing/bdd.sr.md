@@ -3,7 +3,7 @@ aplikacije iz perspektive njenih stejkholdera. Naglašava saradnju između progr
 netehničkih ili poslovnih učesnika u softverskom projektu. BDD podstiče timove da koriste razgovor i konkretne
 primere kako bi formalizovali zajedničko razumevanje očekivanog ponašanja aplikacije.
 
-### Osnovni koncepti BDD-a:
+### Osnovni koncepti BDD-a
 
 - **Sveprisutni jezik (Ubiquitous Language)**: Korišćenje zajedničkog jezika koji svi stejkholderi razumeju za opisivanje ponašanja
   aplikacije, često obuhvaćenog kroz korisničke priče.
@@ -12,7 +12,7 @@ primere kako bi formalizovali zajedničko razumevanje očekivanog ponašanja apl
 - **Razvoj spolja prema unutra (Outside-In Development)**: Započinjanje razvoja od spoljnih slojeva (UI, spoljni interfejsi) i rad prema unutra
   ka domenskoj logici, vođeno specifikacijama ponašanja.
 
-### Prednosti:
+### Prednosti
 
 - **Poboljšana komunikacija**: Podstiče bolju komunikaciju između tehničkih i netehničkih članova tima
   fokusiranjem na ponašanje umesto na tehničke detalje.

@@ -5,6 +5,7 @@ Running PHP as a daemon, especially with tools like Swoole, ReactPHP, or Roadrun
 **Risk**: Unlike the standard PHP lifecycle where resources are automatically cleaned up after serving a request, long-running PHP processes can accumulate memory over time due to leaks, potentially leading to performance degradation or crashes.
 
 **Management**:
+
 - **Regular Monitoring**: Use monitoring tools to track memory usage over time.
 - **Coding Practices**: Adopt strict coding practices to avoid circular references and manually unset large variables or objects when they're no longer needed.
 - **Garbage Collection**: Leverage PHP's garbage collection capabilities and consider manually triggering garbage collection in long-running loops or tasks.
@@ -14,6 +15,7 @@ Running PHP as a daemon, especially with tools like Swoole, ReactPHP, or Roadrun
 **Risk**: The traditional PHP model is stateless. Running PHP as a daemon introduces statefulness between requests, which can lead to unpredictable behavior if not carefully managed.
 
 **Management**:
+
 - **State Isolation**: Ensure that request processing is isolated, avoiding global state where possible, and resetting any shared state at the beginning or end of each request.
 - **Dependency Injection**: Use dependency injection patterns to manage the lifecycle of stateful services, ensuring they are scoped appropriately to the request or task.
 
@@ -22,6 +24,7 @@ Running PHP as a daemon, especially with tools like Swoole, ReactPHP, or Roadrun
 **Risk**: Long-running processes have a higher risk of crashing due to unhandled exceptions or fatal errors. A crash can disrupt service until the daemon is manually restarted.
 
 **Management**:
+
 - **Error Handling**: Implement comprehensive error handling and logging to catch and address issues early.
 - **Supervision**: Use process managers like Supervisor or systemd to automatically restart the PHP daemon if it crashes.
 - **Health Checks**: Implement health checks and use orchestration tools to ensure the daemon is functioning correctly and to facilitate automatic recovery or scaling.
@@ -31,6 +34,7 @@ Running PHP as a daemon, especially with tools like Swoole, ReactPHP, or Roadrun
 **Risk**: Persistent PHP processes might accumulate sensitive data in memory, or bugs in the daemon can introduce security vulnerabilities that are persistently exploitable.
 
 **Management**:
+
 - **Regular Security Audits**: Conduct security audits of the codebase and dependencies.
 - **Data Sanitization**: Actively clear sensitive information from memory after use.
 - **Use of Latest PHP Versions**: Always use the latest PHP version with security patches applied.
@@ -41,6 +45,7 @@ Running PHP as a daemon, especially with tools like Swoole, ReactPHP, or Roadrun
 **Risk**: Deploying and managing long-running PHP processes can be more complex than traditional PHP applications, requiring additional tooling and infrastructure configuration.
 
 **Management**:
+
 - **Automation**: Use CI/CD pipelines for testing, building, and deploying the daemon, ensuring consistency across environments.
 - **Documentation**: Maintain thorough documentation for the deployment process and environment setup.
 - **Configuration Management**: Use configuration management tools to manage environment-specific configurations.

@@ -4,7 +4,7 @@ Web applications face many types of attacks. Here are the most common ones, how 
 
 An attacker inserts SQL code into user input fields to manipulate database queries.
 
-#### How it works:
+#### How it works
 
 ```php
 // Vulnerable code
@@ -16,7 +16,7 @@ $query = "SELECT * FROM users WHERE email = '$email'";
 // This returns ALL users from the database
 ```
 
-#### Prevention:
+#### Prevention
 
 ```php
 // Use prepared statements (parameterized queries)
@@ -39,13 +39,13 @@ $query->setParameter('email', $email);
 
 An attacker injects JavaScript code into a web page that other users will see.
 
-#### Types:
+#### Types
 
 1. **Stored XSS** — malicious script is saved to the database (e.g., in a comment) and displayed to all users
 2. **Reflected XSS** — malicious script is in the URL and reflected back in the response
 3. **DOM-based XSS** — the script is executed by client-side JavaScript
 
-#### How it works:
+#### How it works
 
 ```php
 // Vulnerable — output user data without escaping
@@ -55,7 +55,7 @@ echo "<h1>Hello, " . $_GET['name'] . "</h1>";
 // The script runs in the victim's browser and steals their cookies
 ```
 
-#### Prevention:
+#### Prevention
 
 ```php
 // Escape output
@@ -67,7 +67,8 @@ echo "<h1>Hello, " . htmlspecialchars($_GET['name'], ENT_QUOTES, 'UTF-8') . "</h
 ```
 
 Also set these HTTP headers:
-```
+
+```text
 Content-Security-Policy: default-src 'self'
 X-Content-Type-Options: nosniff
 ```
@@ -78,16 +79,18 @@ X-Content-Type-Options: nosniff
 
 An attacker tricks a logged-in user into performing an action on a website without their knowledge.
 
-#### How it works:
+#### How it works
 
 1. User is logged in to their bank at `bank.com`
 2. User visits a malicious page that contains:
+
 ```html
 <img src="https://bank.com/transfer?to=attacker&amount=1000">
 ```
-3. The browser sends the request to `bank.com` with the user's cookies → transfer happens
 
-#### Prevention:
+1. The browser sends the request to `bank.com` with the user's cookies → transfer happens
+
+#### Prevention
 
 ```php
 // 1. CSRF tokens — include a unique token in every form
@@ -113,7 +116,7 @@ session.cookie_samesite = "Lax"  // or "Strict"
 
 An attacker loads your website inside an invisible iframe on their page. When the user clicks on the attacker's page, they actually click on your website.
 
-#### How it works:
+#### How it works
 
 ```html
 <!-- Attacker's page -->
@@ -124,9 +127,9 @@ An attacker loads your website inside an invisible iframe on their page. When th
 <iframe src="https://bank.com/transfer?to=attacker&amount=1000"></iframe>
 ```
 
-#### Prevention:
+#### Prevention
 
-```
+```text
 # HTTP Headers
 X-Frame-Options: DENY
 Content-Security-Policy: frame-ancestors 'none'
@@ -143,16 +146,16 @@ $response->headers->set('X-Frame-Options', 'DENY');
 
 An attacker tries many passwords (or usernames) to gain access to an account.
 
-#### How it works:
+#### How it works
 
-```
+```text
 POST /login  email=admin@site.com&password=123456
 POST /login  email=admin@site.com&password=password
 POST /login  email=admin@site.com&password=admin123
 ... thousands more attempts
 ```
 
-#### Prevention:
+#### Prevention
 
 ```php
 // Rate limiting
@@ -171,6 +174,7 @@ public function login(Request $request, RateLimiterFactory $loginLimiter): Respo
 ```
 
 Other protections:
+
 - Account lockout after N failed attempts
 - CAPTCHA after failed attempts
 - Two-factor authentication (2FA)
@@ -182,7 +186,7 @@ Other protections:
 
 An attacker makes the server send HTTP requests to internal resources that should not be accessible from outside.
 
-#### How it works:
+#### How it works
 
 ```php
 // Vulnerable — fetch any URL the user provides
@@ -194,7 +198,7 @@ $content = file_get_contents($url);
 // Attacker sends: ?url=file:///etc/passwd  → read local files
 ```
 
-#### Prevention:
+#### Prevention
 
 ```php
 function fetchExternalUrl(string $url): string
@@ -228,13 +232,13 @@ function fetchExternalUrl(string $url): string
 
 An attacker steals a user's session ID to impersonate them.
 
-#### How it works:
+#### How it works
 
 1. Attacker gets the session ID through XSS, network sniffing, or session fixation
 2. Attacker sends requests with the stolen session ID
 3. Server thinks the attacker is the legitimate user
 
-#### Prevention:
+#### Prevention
 
 ```php
 // Secure session configuration (php.ini or Symfony config)

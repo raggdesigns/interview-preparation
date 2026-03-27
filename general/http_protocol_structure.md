@@ -4,16 +4,16 @@ HTTP (HyperText Transfer Protocol) is a text-based protocol used for communicati
 
 An HTTP request has four parts:
 
-```
+```text
 [METHOD] [URL] [HTTP VERSION]
 [HEADERS]
 [EMPTY LINE]
 [BODY (optional)]
 ```
 
-#### Real example:
+#### Real example
 
-```
+```text
 POST /api/users HTTP/1.1
 Host: example.com
 Content-Type: application/json
@@ -26,6 +26,7 @@ Content-Length: 45
 #### 1. Request Line
 
 The first line contains three parts:
+
 - **Method** — what action to perform: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `OPTIONS`, `HEAD`
 - **URL** (path) — the resource: `/api/users`, `/products/123`
 - **HTTP version** — usually `HTTP/1.1` or `HTTP/2`
@@ -56,16 +57,16 @@ The body contains data sent to the server. GET and DELETE requests usually have 
 
 An HTTP response also has four parts:
 
-```
+```text
 [HTTP VERSION] [STATUS CODE] [STATUS TEXT]
 [HEADERS]
 [EMPTY LINE]
 [BODY]
 ```
 
-#### Real example:
+#### Real example
 
-```
+```text
 HTTP/1.1 201 Created
 Content-Type: application/json
 Location: /api/users/42
@@ -107,7 +108,7 @@ The actual data returned by the server — HTML page, JSON response, image, file
 
 HTTP/1.1 sends requests one after another on a connection. If one request is slow, it blocks the rest (head-of-line blocking). HTTP/2 solves this by multiplexing — sending multiple requests and responses at the same time on a single connection.
 
-```
+```text
 HTTP/1.1:
 Client ──req1──> Server ──res1──> Client ──req2──> Server ──res2──>
 
@@ -136,7 +137,7 @@ Client ──req1──>
 
 A browser loads a web page. Here is what happens:
 
-```
+```text
 1. Browser sends:
    GET /index.html HTTP/1.1
    Host: example.com

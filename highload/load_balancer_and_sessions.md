@@ -4,7 +4,7 @@ A load balancer distributes incoming traffic across multiple servers so that no 
 
 A load balancer sits between the client and your application servers. It receives all incoming requests and forwards them to one of the available backend servers.
 
-```
+```text
                         ┌──────────┐
                    ┌───→│ Server 1 │
                    │    └──────────┘
@@ -64,7 +64,7 @@ server {
 
 By default, PHP stores sessions as **files on the local server** (`/tmp/sess_abc123`). When you have multiple servers behind a load balancer, this breaks:
 
-```
+```text
 Request 1: User logs in → Load Balancer → Server 1
            Server 1 creates session file: /tmp/sess_abc123
 
@@ -98,17 +98,20 @@ upstream backend {
 ```
 
 **How it works:**
-```
+
+```text
 Request 1: User → LB → Server 1 (LB sets cookie: srv_id=server1)
 Request 2: User → LB sees cookie srv_id=server1 → Server 1 ✓
 Request 3: User → LB sees cookie srv_id=server1 → Server 1 ✓
 ```
 
 **Pros:**
+
 - Simple to configure
 - No changes to application code
 
 **Cons:**
+
 - If Server 1 crashes, all its users lose their sessions
 - Uneven load — some servers may get more "sticky" users than others
 - Cannot easily scale up/down
@@ -117,7 +120,7 @@ Request 3: User → LB sees cookie srv_id=server1 → Server 1 ✓
 
 Store sessions in a central place that all servers can access — typically **Redis** or **Memcached**. This is the standard solution in production.
 
-```
+```text
 ┌──────────┐     ┌──────────┐     ┌──────────┐
 │ Server 1 │     │ Server 2 │     │ Server 3 │
 └─────┬────┘     └─────┬────┘     └─────┬────┘
@@ -173,12 +176,14 @@ session_start();
 ```
 
 **Pros:**
+
 - Sessions survive server crashes
 - Any server can handle any request — true load balancing
 - Easy to scale up/down servers
 - Redis is fast — session reads take < 1ms
 
 **Cons:**
+
 - Redis becomes a single point of failure (mitigate with Redis Sentinel or Cluster)
 - Slight network latency for session reads (negligible in practice)
 
@@ -275,7 +280,7 @@ class HealthController extends AbstractController
 
 You have an e-commerce application running on 3 servers behind Nginx. Users are complaining about being randomly logged out:
 
-```
+```text
 Problem: Sessions stored in local files → users lose session when LB sends 
          them to a different server.
 
@@ -302,6 +307,7 @@ upstream app {
 ```
 
 Result:
+
 - Users never lose sessions — any server can handle any request
 - If Server 2 crashes, traffic goes to Server 1 and Server 3 — sessions still work
 - You can add Server 4 and Server 5 without any session issues

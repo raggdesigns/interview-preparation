@@ -1,6 +1,7 @@
 # PHP questions
 
 ## Language features
+
 - [Data types in PHP. Describe Resource and Callable types](data_types_in_php.md)
 - [this VS self, self VS static, parent VS self](this_vs_self_vs_parent.md)
 - [Magic constants list. Does magic constant's value depend on the place where it is called?](magic_constants.md)
@@ -25,12 +26,14 @@
 - [What are the main risks of using PHP as a daemon](main_risks_of_using_php_as_daemon_and_how_to_manage_them.md) (Swoole, ReactPHP, Roadrunner etc.) and how to manage them
 
 ## Traits
+
 - [Traits - how add them. Inheriting and Instantiating traits](traits.md)
 - [How traits are included on low level](traits.md)
 - [Can you add constant to a trait? How can you use that constant?](traits.md)
 - [Can you use private or protected methods in a trait?](traits.md)
 
 ## PHP versions
+
 - [New features in PHP7 (main differences from PHP5)](new_features_in_php7.md)
 - [New features in PHP7.4](new_features_in_php74.md)
 - [New features in PHP 8.0](new_features_in_php80.md)
@@ -41,6 +44,7 @@
 - [New features in PHP 8.5](new_features_in_php85.md)
 
 ## Tools
+
 - [Composer - purpose and possibilities](composer.md)
 - [composer install vs composer update](composer.md)
 - [Main steps of 'composer install' command](composer.md)
@@ -48,6 +52,7 @@
 ------
 
 ## [Tricky questions](tricky_questions.md)
+
 1. [Here is an array with keys 0, 1, 2, 3 and "Hello". What will be the key for the next value?](tricky_questions.md)
 2. [There are classes A, B, C with some restrictions: A with a public constructor, B with a private constructor, C extends B — which constructor will be inherited in class C?](tricky_questions.md)
 3. [How can you call a method with the same name from parent class inside child class?](tricky_questions.md)

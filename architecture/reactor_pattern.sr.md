@@ -1,13 +1,13 @@
 Reactor pattern je dizajn pattern za konkurentnost koji se koristi za efikasno rukovanje višestrukim simultanim I/O operacijama na neblokirajući način. Razdvaja rukovanje mrežom ili I/O operacijama od aplikacione logike, omogućavajući jednoj niti da upravlja višestrukim I/O operacijama. Pattern se često koristi u serverima i aplikacijama koje zahtevaju visoku skalabilnost i responzivnost.
 
-### Ključne komponente:
+### Ključne komponente
 
 - **Reactor**: Komponenta koja demultipleksira i prosleđuje I/O događaje odgovarajućem handler-u.
 - **Handlers**: Komponente odgovorne za rukovanje I/O događajima. Handler-i obavljaju neblokirajuće operacije ili zadatke.
 - **Event Demultiplexer**: Sistemski poziv koji blokira čekanje I/O događaja i obaveštava reactor kada se dogodi jedan ili više događaja.
 - **Synchronous Event Demultiplexer**: Mehanizam koji reactor koristi da blokira i čeka događaje, a zatim ih prosleđuje odgovarajućim handler-ima.
 
-### Kako funkcioniše:
+### Kako funkcioniše
 
 1. Aplikacija registruje interes za određene I/O operacije kod reactor-a, specificirajući handler koji treba biti pozvan kada je operacija spremna.
 2. Reactor koristi event demultiplexer da blokira i čeka da se dogodi neka od registrovanih operacija.
@@ -15,13 +15,13 @@ Reactor pattern je dizajn pattern za konkurentnost koji se koristi za efikasno r
 4. Reactor zatim prosleđuje kontrolu odgovarajućem handler-u.
 5. Handler obrađuje događaj bez blokiranja i vraća kontrolu reactor-u.
 
-### Prednosti:
+### Prednosti
 
 - **Skalabilnost**: Omogućava rukovanje hiljadama istovremenih konekcija u jednoj niti, izbegavajući troškove prebacivanja konteksta niti.
 - **Responzivnost**: Poboljšava responzivnost aplikacije korišćenjem neblokirajućih I/O operacija.
 - **Iskorišćenost resursa**: Efikasno korišćenje resursa, jer manji broj niti može upravljati mnogim konekcijama.
 
-### Primer u PHP-u:
+### Primer u PHP-u
 
 PHP biblioteke zasnovane na događajima poput ReactPHP implementiraju Reactor pattern, pružajući event loop za asinhrono rukovanje I/O operacijama.
 

@@ -3,7 +3,7 @@ events. Instead of storing just the current state of the data in a domain, event
 actions carried out on that data. The events are stored in an append-only log and can be used to reconstruct past
 states, audit changes, and drive application state forward.
 
-### Key Concepts of Event Sourcing:
+### Key Concepts of Event Sourcing
 
 - **Events**: Immutable records that capture a fact or action in the system, such as 'UserRegistered' or 'OrderPlaced'.
   Each event represents a state change.
@@ -13,7 +13,7 @@ states, audit changes, and drive application state forward.
 - **Event Handlers**: Logic that reacts to events, either by updating state, triggering side effects, or producing new
   events.
 
-### Benefits:
+### Benefits
 
 - **Auditability**: Since all changes are stored as events, it provides a complete history of the state changes.
 - **Flexibility**: New features can be added by introducing new events and handlers without modifying existing code.
@@ -61,7 +61,7 @@ class EventStore {
 }
 ```
 
-### Usage:
+### Usage
 
 ```php
 $eventStore = new EventStore();

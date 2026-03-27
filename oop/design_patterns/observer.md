@@ -4,19 +4,19 @@ The Observer pattern is a behavioral design pattern where an object, known as th
 
 The Observer pattern allow a bunch of objects to be notified by central object if something happens.
 
-### Key Concepts of the Observer Pattern:
+### Key Concepts of the Observer Pattern
 
 - **Subject**: The entity being observed. It maintains a list of observers and notifies them of changes to its state.
 - **Observer**: An interface or abstract class defining the operations to be used to notify this object of changes in the subject's state.
 - **ConcreteObserver**: Implements the Observer interface and defines how to react to notifications from the Subject.
 
-### Benefits:
+### Benefits
 
 - **Loose Coupling**: The subject and observers are loosely coupled. The subject doesn't know the details of the observers, only that they implement the Observer interface.
 - **Dynamic Relationships**: You can add and remove observers dynamically at runtime without modifying the subject or the other observers.
 - **Broadcast Communication**: Changes to the subject's state can be broadcast to all interested observers simultaneously.
 
-### Example in PHP:
+### Example in PHP
 
 Consider a simple example where a `Product` class (Subject) notifies a list of observer classes when its price changes.
 
@@ -68,7 +68,7 @@ class PriceObserver implements Observer {
 }
 ```
 
-### Usage:
+### Usage
 
 ```php
 $product = new Product();

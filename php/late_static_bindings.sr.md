@@ -31,6 +31,7 @@ U ovom primeru, čak i kada je `test()` pozvan na `ChildClass`, izlaz je "Parent
 Da bi se rešilo ovo ograničenje, PHP je uveo ključnu reč `static` za upotrebu umesto `self` kako bi se referencirala pozvana klasa, a ne klasa gde je metoda definisana.
 
 **Refaktorisani primer**:
+
 ```php
 class ParentClass {
     public static function who() {

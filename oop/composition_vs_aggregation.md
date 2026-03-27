@@ -5,6 +5,7 @@ Composition and Aggregation are two fundamental concepts in object-oriented desi
 Composition is a strong "has-a" relationship where the composed object cannot exist independently of the composite object. If the composite object is destroyed, its composed objects are also destroyed. Composition implies ownership and lifecycle management of the composed objects by the composite object.
 
 **Characteristics**:
+
 - **Strong Ownership**: The composite object has full responsibility for the lifecycle of the composed objects.
 - **Lifetime**: The composed objects' lifetime is tied to the lifetime of the composite object.
 - **Single Owner**: Composed objects are not shared among composite objects.
@@ -37,6 +38,7 @@ In this example, a `Car` object owns an `Engine` object, and the `Engine`'s life
 Aggregation is a weaker "has-a" relationship compared to composition. It indicates a relationship where the child can exist independently of the parent. It is a form of association with a one-way relationship, implying that an aggregate object is a collection of other objects.
 
 **Characteristics**:
+
 - **Loose Ownership**: The parent object does not have direct control over the lifecycle of its children.
 - **Independent Lifecycle**: Child objects can exist independently of the parent object.
 - **Shared Ownership**: Child objects can be associated with multiple parent objects.

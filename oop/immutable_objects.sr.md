@@ -1,12 +1,12 @@
 Imutabilni objekti su objekti čije stanje se ne može menjati nakon što su kreirani. Ovaj koncept je centralan za funkcionalano programiranje i koristan je i u objektno-orijentisanom programiranju za kreiranje jednostavnijeg, bezbednog za niti i manje koda sklonog greškama. Imutabilni objekti pomažu u upravljanju sporednim efektima, čineći ponašanje aplikacije predvidljivijim i lakšim za razumevanje.
 
-### Ključne karakteristike imutabilnih objekata:
+### Ključne karakteristike imutabilnih objekata
 
 - **Finalno stanje**: Jednom instanciran, polja ili svojstva imutabilnog objekta se ne mogu menjati.
 - **Bezbednost niti**: Imutabilni objekti su prirodno bezbedni za niti jer se njihovo stanje ne može promeniti, eliminisuci potrebu za sinhronizacijom.
 - **Jednostavnost**: Pojednostavljuju razvoj jer je njihovo stanje uvek predvidljivo.
 
-### Prednosti:
+### Prednosti
 
 - **Lakoća upotrebe i bezbednost**: Imutabilni objekti su laki za upotrebu i razmatranje jer se njihovo stanje ne može neočekivano promeniti, smanjujući greške povezane sa promenama stanja.
 - **Pogodnost za keširanje**: Pošto se ne mogu menjati, imutabilni objekti su bezbedni za keširanje, što može značajno poboljšati performanse.

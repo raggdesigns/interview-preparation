@@ -1,19 +1,19 @@
 Onion arhitektura je pattern softverske arhitekture koji za cilj ima da jezgro aplikacije (domenski model i poslovna logika) drži nezavisnim od infrastrukture i tehničkih detalja. Naglašava razdvajanje nadležnosti slojevitim pristupom aplikaciji tako da spoljne zavisnosti (poput baza podataka i framework-a) ne utiču na osnovni kod.
 
-### Osnovni koncepti Onion arhitekture:
+### Osnovni koncepti Onion arhitekture
 
 - **Osnovna domena**: U centru arhitekture, sadrži domenski model i poslovna pravila.
 - **Aplikacioni sloj**: Okružuje domenski sloj, sadrži aplikacionu logiku i definiše kako se domenski objekti koriste. Koordinira tok podataka do i od domene i može takođe implementirati interfejse definisane u domenskom sloju.
 - **Domenski servisi**: Enkapsuliraju poslovnu logiku koja se prirodno ne uklapa u domenski objekat, i smešteni su u osnovne ili aplikacione slojeve u zavisnosti od njihovih zavisnosti.
 - **Infrastrukturni sloj**: Najspoljniji sloj, sadrži kod koji komunicira sa spoljnim sistemima (bazama podataka, servisima trećih strana, UI). Ovaj sloj implementira interfejse definisane u aplikacionom sloju.
 
-### Principi:
+### Principi
 
 - **Inverzija zavisnosti**: Unutrašnji slojevi definišu interfejse koje spoljni slojevi implementiraju, invertirajući tradicionalno upravljanje zavisnostima.
 - **Razdvajanje nadležnosti**: Različiti aspekti aplikacije su fizički odvojeni u različite slojeve.
 - **Nezavisnost jezgra**: Jezgro aplikacije ostaje nezavisno od framework-a i baza podataka, olakšavajući testiranje i održavanje.
 
-### Prednosti:
+### Prednosti
 
 - **Fleksibilnost**: Odvajanjem jezgra aplikacije od infrastrukturnih briga, postaje lakše menjati ili zamenjivati spoljne komponente bez uticaja na osnovnu logiku.
 - **Održivost**: Dobro organizovana baza koda, gde su nadležnosti čisto odvojene, lakša je za razumevanje i održavanje.

@@ -63,4 +63,3 @@ Consider an Autonomous Vehicles Platform leveraging future trends in microservic
 
 By embracing these trends, the platform can deliver safer, more efficient, and user-friendly autonomous driving
 experiences, showcasing the potential of evolving microservices architecture in cutting-edge applications.
-

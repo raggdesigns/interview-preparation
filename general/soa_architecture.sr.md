@@ -9,7 +9,7 @@ Servis u SOA ima četiri ključne karakteristike:
 3. **Labavo spregnuti** — može se promeniti bez uticaja na druge servise
 4. **Višekratno upotrebljiv** — više aplikacija može koristiti isti servis
 
-```
+```text
 ┌──────────────────────────────────────────────────┐
 │                    Preduzeće                      │
 │                                                  │
@@ -33,7 +33,7 @@ Servis u SOA ima četiri ključne karakteristike:
 
 U monolitu, sve funkcionalnosti žive u jednoj velikoj aplikaciji:
 
-```
+```text
 Monolit:
 ┌──────────────────────────────────────┐
 │  Narudžbine + Plaćanja + Korisnici +  │
@@ -65,19 +65,21 @@ SOA i mikroservisi su povezani, ali različiti:
 | Tipičan kontekst | Preduzeća (banke, telekomunikacije) | Startapi, moderne web aplikacije |
 
 Razmislite ovako:
+
 - **SOA** = "Hajde da organizujemo naše poslovne sisteme u višekratno upotrebljive servise povezane kroz centralni bus"
 - **Mikroservisi** = "Hajde da razlomimo naš aplikaciju na sitne, nezavisne servise koji svaki rade jednu stvar"
 
 ### Enterprise Service Bus (ESB)
 
 ESB je centralna komponenta u SOA koja obrađuje:
+
 - **Rutiranje poruka** — usmeravanje zahteva na pravi servis
 - **Transformaciju protokola** — konverzija SOAP-a u REST, XML-a u JSON
 - **Obogaćivanje poruka** — dodavanje podataka iz drugih servisa
 - **Obradu grešaka** — ponovni pokušaji, redovi mrtvih pisama
 - **Orkestraciju** — koordinacija višekoračnih poslovnih procesa
 
-```
+```text
 Klijentski Zahtev: "Kreiraj Narudžbinu"
        │
        ▼
@@ -108,7 +110,7 @@ U mikroservisima, nema ESB-a. Servisi komuniciraju direktno ili putem laganih br
 
 Banka koristi SOA za povezivanje različitih sistema:
 
-```
+```text
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │ Mobilna App │     │  Web Portal │     │ ATM Sistem  │
 └──────┬──────┘     └──────┬──────┘     └──────┬──────┘
@@ -166,12 +168,14 @@ class OrderController extends AbstractController
 ### Kada Koristiti SOA
 
 **SOA ima smisla kada:**
+
 - Imate veliko preduzeće sa mnogo aplikacija kojima je potrebno deliti servise
 - Različiti timovi ili odeljenja trebaju koristiti istu poslovnu logiku
 - Trebate integrisati nasleđene sisteme (SOAP) sa modernim (REST)
 - Trebate centralizovano upravljanje i monitoring
 
 **SOA je preterivanje kada:**
+
 - Imate jednu aplikaciju
 - Vaš tim je mali (< 10 programera)
 - Ne trebate deliti servise između aplikacija

@@ -4,7 +4,7 @@ CSRF (Cross-Site Request Forgery) is an attack where a malicious website tricks 
 
 The attack exploits the fact that browsers automatically send cookies (including session cookies) with every request to a website.
 
-#### Step-by-Step:
+#### Step-by-Step
 
 1. **User logs in** to `bank.com`. The browser stores a session cookie.
 2. **User visits** a malicious website (`evil.com`) while still logged in to `bank.com`.
@@ -19,14 +19,14 @@ The attack exploits the fact that browsers automatically send cookies (including
 <script>document.getElementById('attack').submit();</script>
 ```
 
-4. **The browser sends** the request to `bank.com` with the user's session cookie attached.
-5. **bank.com receives** the request and sees a valid session → it processes the transfer.
+1. **The browser sends** the request to `bank.com` with the user's session cookie attached.
+2. **bank.com receives** the request and sees a valid session → it processes the transfer.
 
 The user never intended to make the transfer. They did not even see the form — it was hidden and submitted automatically.
 
 #### Why It Works
 
-```
+```text
 User's browser has cookie: session_id=abc123
 
 When evil.com sends request to bank.com:
@@ -42,6 +42,7 @@ The server cannot tell the difference between a legitimate request from the user
 ### What CSRF Can Do
 
 CSRF attacks can perform any action the user is allowed to do:
+
 - Transfer money
 - Change email or password
 - Change account settings
@@ -171,7 +172,7 @@ REST APIs that use token-based authentication (Bearer tokens in Authorization he
 - The token must be explicitly added by JavaScript
 - An attacker's page cannot access the token (Same-Origin Policy)
 
-```
+```text
 // Cookie-based auth — VULNERABLE to CSRF
 POST /api/transfer
 Cookie: session_id=abc123    ← sent automatically by browser

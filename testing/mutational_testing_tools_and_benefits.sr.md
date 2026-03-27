@@ -15,24 +15,28 @@ Infection je okvir za mutaciono testiranje dizajniran specifično za PHP. Automa
 **Primer upotrebe**:
 
 Prvo instalirajte Infection putem Composera:
-```
+
+```text
 composer require --dev infection/infection
 ```
+
 Zatim pokrenite Infection na svom test suiteu:
-```
+
+```text
 vendor/bin/infection
 ```
 
 Infection će prijaviti broj mutanata koje test suite nije uhvatio, pružajući uvid u potencijalne slabosti.
 
-2. **Humbug**
+1. **Humbug**
 
 Humbug je još jedan alat za mutaciono testiranje u PHP-u, mada je manje aktivno održavan u poredenju sa Infection-om. Služi sličnoj svrsi: proceni efikasnosti test suitea mutiranjem izvornog koda i proverom neotkrivenih mutanata.
 
 **Primer upotrebe**:
 
 Nakon instalacije Humbug-a, možete ga konfigurisati putem `humbug.json.dist` fajla i pokrenuti sa:
-```
+
+```text
 vendor/bin/humbug
 ```
 

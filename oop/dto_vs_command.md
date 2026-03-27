@@ -3,6 +3,7 @@
 A DTO is an object that carries data between processes, aiming to reduce the number of method calls, especially in a network environment. It is commonly used to transfer data from the server to the client to be displayed, but not for business logic or database interactions. DTOs are often serialized into formats like JSON or XML for easy transmission.
 
 **Characteristics**:
+
 - Used to encapsulate data for transfer.
 - Simplifies data structure, often flattening complex data.
 - Immutable: once created, it should not be altered.
@@ -36,6 +37,7 @@ function getUserData($userId) {
 A Command Object encapsulates all the information needed to perform an action or trigger an event later. This includes the method name, the object that owns the method, and values for the method parameters. Command Objects are part of the command pattern, which separates the object that invokes the operation from the one that knows how to perform it.
 
 **Characteristics**:
+
 - Encapsulates a request as an object.
 - Contains all information required for the action: method name, parameters.
 - Can be extended to include undo functionality.

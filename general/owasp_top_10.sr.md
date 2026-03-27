@@ -24,6 +24,7 @@ public function deleteUser(int $userId): Response
 ```
 
 Česti primeri:
+
 - Promena ID-a korisnika u URL-u da biste videli tuđe podatke (`/api/users/123` → `/api/users/456`)
 - Pristup admin endpointima bez admin uloge
 - Zaobilaženje provera pristupa modifikacijom API zahteva
@@ -47,6 +48,7 @@ $hash = password_hash($password, PASSWORD_ARGON2ID);
 ```
 
 Takođe uključuje:
+
 - Nekorišćenje HTTPS-a
 - Izlaganje osetljivih podataka u logovima ili porukama grešaka
 - Korišćenje slabih ili zastarelih TLS verzija
@@ -67,6 +69,7 @@ $stmt->execute([$_GET['email']]);
 ```
 
 Drugi tipovi injekcija:
+
 - **Command Injection**: `exec("ping " . $_GET['host'])` — napadač šalje `; rm -rf /`
 - **LDAP Injection**: injektovanje u LDAP upite
 - **XSS** je takođe forma injekcije (injektovanje JavaScript-a u HTML)
@@ -78,6 +81,7 @@ Drugi tipovi injekcija:
 Sama arhitektura aplikacije ima bezbednosne nedostatke. Radi se o nedostajućim bezbednosnim zahtevima u fazi dizajna, a ne o greškama u kodu.
 
 Primeri:
+
 - Nema ograničenja brzine na endpoint-u za reset lozinke (dozvoljava brute force)
 - Bezbednosna pitanja sa lako pogodivim odgovorima
 - Nema ograničenja na broj stavki koje korisnik može da doda u korpu (iscrpljivanje resursa)
@@ -87,7 +91,7 @@ Primeri:
 
 Aplikacija ili server su nepravilno konfigurisani, ostavljajući bezbednosne rupe.
 
-```
+```text
 # Loše — debug mod u produkciji
 APP_ENV=dev
 APP_DEBUG=true
@@ -98,6 +102,7 @@ APP_DEBUG=false
 ```
 
 Česti primeri:
+
 - Podrazumevane lozinke na admin nalozima
 - Nepotrebne funkcije omogućene (listanje direktorijuma, debug toolbar)
 - Nedostaju bezbednosna zaglavlja (`X-Frame-Options`, `Content-Security-Policy`)
@@ -117,6 +122,7 @@ composer update --with-all-dependencies
 ```
 
 Prevencija:
+
 - Redovno ažurirajte zavisnosti
 - Pratite bezbednosna upozorenja (Symfony Security Advisories, GitHub Dependabot)
 - Uklonite nekorišćene zavisnosti
@@ -127,6 +133,7 @@ Prevencija:
 Problemi sa sistemima za prijavu, upravljanjem sesijama ili verifikacijom identiteta.
 
 Primeri:
+
 - Dozvoljavanje slabih lozinki (`123456`)
 - Nema zaštite od brute force napada (nema ograničenja brzine pri prijavi)
 - ID-ovi sesija u URL-ovima
@@ -164,6 +171,7 @@ public function login(string $email, string $password): bool
 Neverifikovanje integriteta ažuriranja softvera, CI/CD pipeline-ova ili podataka. Na primer, korišćenje biblioteka iz nepouzdanih izvora bez provere njihovog integriteta.
 
 Primeri:
+
 - Neverifikovanje checksum-ova preuzetih paketa
 - Nesiguran CI/CD pipeline (napadač može injektovati zlonamerni kod tokom build-a)
 - Nesigurna deserijalizacija — deserijalizacija nepouzdanih podataka može dovesti do izvršavanja koda
@@ -181,6 +189,7 @@ $data = json_decode($_POST['data'], true);
 Nepravilno logovanje bezbednosnih događaja. Bez dobrog logovanja, ne možete detektovati napade.
 
 Šta logovati:
+
 - Neuspele pokušaje prijave
 - Neuspehe kontrole pristupa
 - Neuspehe validacije unosa

@@ -6,6 +6,7 @@ U PHP-u, razumevanje razlika između `this`, `self`, `static` i `parent` je klju
 - **`self`**: Referiše na trenutnu klasu. Koristi se za pristup statičkim propertijima, konstantama i metodama. Za razliku od `$this`, `self` ne referiše na instancu klase već na samu klasu.
 
 **Ključne razlike**:
+
 - `$this` se koristi unutar konteksta objekta za referenciranje samog objekta, dok se `self` koristi unutar konteksta klase za referenciranje same klase, čak i u instancama.
 
 ### self vs static
@@ -14,6 +15,7 @@ U PHP-u, razumevanje razlika između `this`, `self`, `static` i `parent` je klju
 - **`static`**: U kontekstu late static bindings, `static` referiše na pozivajuću klasu. Za razliku od `self`, koji uvek referiše na klasu u kojoj se koristi, `static` se može koristiti za referenciranje klase koja je inicijalno pozvana pri pokretanju.
 
 **Ključne razlike**:
+
 - `self` se razrešava na klasu u kojoj se koristi, što možda nije uvek klasa koja je pozvana. `static`, međutim, koristi PHP-ovu mogućnost late static bindings za referenciranje klase koja je pozvana pri pokretanju, podržavajući polimorfno ponašanje.
 
 ### parent vs self
@@ -22,6 +24,7 @@ U PHP-u, razumevanje razlika između `this`, `self`, `static` i `parent` je klju
 - **`self`**: Referiše na samu trenutnu klasu.
 
 **Ključne razlike**:
+
 - Koristite `parent` kada trebate pristupiti metodi ili propertiju u roditeljskoj klasi koji je možda bio prepisan u trenutnoj klasi. `self` se koristi za pristup elementima koji su sadržani unutar trenutne klase.
 
 ### Primeri

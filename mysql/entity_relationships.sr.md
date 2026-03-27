@@ -25,6 +25,7 @@ CREATE TABLE user_profiles (
 `UNIQUE` ograničenje na `user_id` garantuje da svaki korisnik može imati samo jedan profil. Bez `UNIQUE`, postalo bi relacija jedan-prema-mnogo.
 
 **Kada koristiti 1:1:**
+
 - Odvoji retko pristupane podatke od često pristupanih podataka (performanse)
 - Čuvaj opcionalne informacije u posebnoj tabeli da bi glavna tabela bila čista
 - Bezbednost — osetljivi podaci (npr. naplata) u posebnoj tabeli sa različitim pravilima pristupa
@@ -161,6 +162,7 @@ class User
 ```
 
 Ključni Doctrine termini:
+
 - **vlasnik strane** (owning side) — strana koja ima `JoinColumn` ili `JoinTable` (ova strana piše u bazu podataka)
 - **inverzna strana** (inverse side) — koristi `mappedBy` (samo za čitanje, ne pokre SQL)
 - Uvek dodaj/uklanjaj entitete na **vlasničkoj strani** da bi promene bile persistirane
@@ -198,7 +200,7 @@ FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
 
 Gradiš e-commerce platformu. Model podataka izgleda ovako:
 
-```
+```text
 users (1) ──── (N) orders
                       │
 orders (1) ──── (N) order_items (N) ──── (1) products

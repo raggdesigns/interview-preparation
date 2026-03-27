@@ -134,6 +134,7 @@ $report->printInfo(); // "Info"
 When PHP compiles a class that uses a trait, it effectively copies the trait's methods and properties into the class. The result is the same as if you typed those methods directly in the class. This happens at compile time, not at runtime.
 
 This means:
+
 - Trait methods become part of the class
 - `$this` inside a trait refers to the object of the class using the trait
 - Traits do not exist as separate objects in memory

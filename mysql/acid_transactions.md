@@ -35,6 +35,7 @@ COMMIT;
 ```
 
 Consistency is enforced through:
+
 - **Constraints** — NOT NULL, UNIQUE, FOREIGN KEY, CHECK
 - **Triggers** — custom validation logic
 - **Application logic** — your PHP code validates data before saving
@@ -45,7 +46,7 @@ Isolation means that concurrent transactions do not interfere with each other. E
 
 **The problem without isolation:**
 
-```
+```text
 Transaction A: reads balance = 1000
 Transaction B: reads balance = 1000
 Transaction A: sets balance = 1000 - 200 = 800
@@ -82,6 +83,7 @@ SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;
 Durability means that once a transaction is committed, the data is permanently saved. Even if the server crashes, loses power, or the disk fails — the committed data survives.
 
 How databases ensure durability:
+
 - **Write-Ahead Log (WAL)** — changes are first written to a log file on disk, then to the actual data files. If the server crashes, it replays the log on restart
 - **Flushing to disk** — the COMMIT command forces data to be written to persistent storage before returning success to the client
 - **Replication** — data is copied to other servers for redundancy

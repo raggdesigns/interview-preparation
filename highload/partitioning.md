@@ -3,6 +3,7 @@ Partitioning is splitting a large database table into smaller pieces called **pa
 ### Why Partition a Table?
 
 When a table has millions or billions of rows:
+
 - Queries become slow because indexes are huge
 - INSERT operations slow down because indexes need to be updated
 - Maintenance operations (backup, ALTER TABLE) take a very long time
@@ -91,6 +92,7 @@ SELECT * FROM orders WHERE created_at BETWEEN '2024-01-01' AND '2024-12-31';
 ```
 
 You can verify with `EXPLAIN`:
+
 ```sql
 EXPLAIN SELECT * FROM orders WHERE created_at = '2024-06-15';
 -- Shows: partitions: p2024  (only one partition scanned)
@@ -99,6 +101,7 @@ EXPLAIN SELECT * FROM orders WHERE created_at = '2024-06-15';
 #### Smaller Indexes
 
 Each partition has its own index. Instead of one huge B-tree index covering 100 million rows, you have multiple smaller indexes. Smaller indexes:
+
 - Fit better in memory (buffer pool)
 - Have fewer levels → fewer disk reads
 - Are faster to search
@@ -113,7 +116,7 @@ Some storage configurations allow reading from multiple partitions in parallel, 
 
 When inserting into a partitioned table, MySQL only needs to update the index of the target partition, not a massive global index:
 
-```
+```text
 Non-partitioned table:
   INSERT → update one huge index (100M entries) → slow
 

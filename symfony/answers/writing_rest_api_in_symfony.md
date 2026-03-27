@@ -102,4 +102,3 @@ format them before sending to the client.
 Building a REST API in Symfony involves setting up a project, creating controllers for handling API requests, and
 configuring routing. Utilize the Serializer and Validator components for data transformation and validation. Proper
 exception handling ensures a robust API.
-

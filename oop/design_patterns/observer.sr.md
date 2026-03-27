@@ -4,19 +4,19 @@ Observer obrazac je bihejvioralni dizajnerski obrazac gde objekat, poznat kao su
 
 Observer obrazac dozvoljava grupi objekata da budu obavešteni od strane centralnog objekta kada se nešto dogodi.
 
-### Ključni koncepti Observer obrasca:
+### Ključni koncepti Observer obrasca
 
 - **Subjekt (Subject)**: Entitet koji se posmatra. Održava listu posmatrača i obaveštava ih o promenama svog stanja.
 - **Posmatrač (Observer)**: Interfejs ili apstraktna klasa koja definiše operacije koje se koriste za obaveštavanje ovog objekta o promenama stanja subjekta.
 - **Konkretni posmatrač (ConcreteObserver)**: Implementira Observer interfejs i definiše kako reagovati na obaveštenja od Subjekta.
 
-### Prednosti:
+### Prednosti
 
 - **Labavo spajanje**: Subjekt i posmatrači su labavo spregnuti. Subjekt ne zna detalje posmatrača, samo da implementiraju Observer interfejs.
 - **Dinamički odnosi**: Posmatrači se mogu dinamički dodavati i uklanjati u vreme izvršavanja bez menjanja subjekta ili ostalih posmatrača.
 - **Broadcast komunikacija**: Promene stanja subjekta mogu biti istovremeno emitovane svim zainteresovanim posmatračima.
 
-### Primer u PHP-u:
+### Primer u PHP-u
 
 Razmotrimo jednostavan primer gde klasa `Product` (Subjekt) obaveštava listu klasa posmatrača kada se promeni njena cena.
 
@@ -68,7 +68,7 @@ class PriceObserver implements Observer {
 }
 ```
 
-### Upotreba:
+### Upotreba
 
 ```php
 $product = new Product();

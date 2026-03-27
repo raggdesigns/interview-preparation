@@ -5,6 +5,7 @@ Introduced in PHP 7, the `yield from` syntax is an enhancement to generators, pr
 The `yield from` statement is used within a generator function to yield all values from another generator, array, or any object that implements the `Traversable` interface. It essentially flattens nested generators, making it easier to compose generators together.
 
 **Example**:
+
 ```php
 function generatorA() {
     yield 1;
@@ -36,6 +37,7 @@ In this example, `generatorA()` yields values from `generatorB()` seamlessly as 
 Another powerful feature of `yield from` is its ability to return a final expression from a generator. The value returned by the inner generator can be captured by the outer generator.
 
 **Example**:
+
 ```php
 function generatorWithReturn() {
     yield 1;

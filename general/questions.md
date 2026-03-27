@@ -7,22 +7,26 @@
 - [How JWT authorization works](how_jwt_authorization_works.md)
 
 ## REST API
+
 - [REST API architecture](rest_api_architecture.md)
 - [REST API VS JSON RPC](rest_api_vs_json_rpc.md)
 - [REST API - PUT request specification](rest_api_put_request_specification.md)
 - [REST API (HTTP) - POST vs PUT vs PATCH](rest_api_post_vs_put_vs_patch.md)
 
 ## HTTP
+
 - [HTTP protocol: request and response structure](http_protocol_structure.md)
 - [HTTP streaming](http_streaming.md)
 - [4** VS 5** errors](http_4xx_vs_5xx_errors.md)
 
 ## Web services and architecture
+
 - [SOAP vs REST (including WSDL)](soap_vs_rest.md)
 - [SOA architecture](soa_architecture.md)
 - [Data structures overview (hash table, linked list, tree, stack, queue)](data_structures_overview.md)
 
 ## Security
+
 - [OWASP Top 10](owasp_top_10.md)
 - [Main attacks on web applications and how to prevent them](web_application_attacks.md)
 - [What is CSRF](csrf.md)

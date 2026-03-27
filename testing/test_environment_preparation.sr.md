@@ -142,28 +142,28 @@ Kreirati `Makefile` za automatizovanje pripreme okruženja:
 .PHONY: test test-setup test-db test-unit test-integration test-functional
 
 test-setup: test-db
-	@echo "Test environment ready"
+ @echo "Test environment ready"
 
 test-db:
-	php bin/console doctrine:database:drop --env=test --force --if-exists
-	php bin/console doctrine:database:create --env=test
-	php bin/console doctrine:migrations:migrate --env=test --no-interaction
-	php bin/console doctrine:fixtures:load --env=test --no-interaction
+ php bin/console doctrine:database:drop --env=test --force --if-exists
+ php bin/console doctrine:database:create --env=test
+ php bin/console doctrine:migrations:migrate --env=test --no-interaction
+ php bin/console doctrine:fixtures:load --env=test --no-interaction
 
 test-unit:
-	php bin/phpunit --testsuite=Unit
+ php bin/phpunit --testsuite=Unit
 
 test-integration: test-setup
-	php bin/phpunit --testsuite=Integration
+ php bin/phpunit --testsuite=Integration
 
 test-functional: test-setup
-	php bin/phpunit --testsuite=Functional
+ php bin/phpunit --testsuite=Functional
 
 test: test-setup
-	php bin/phpunit
+ php bin/phpunit
 
 test-coverage:
-	XDEBUG_MODE=coverage php bin/phpunit --coverage-html coverage/
+ XDEBUG_MODE=coverage php bin/phpunit --coverage-html coverage/
 ```
 
 ### Docker podešavanje za testove
@@ -269,7 +269,7 @@ jobs:
 
 Organizovati testove da odražavaju izvorni kod:
 
-```
+```text
 tests/
 ├── bootstrap.php
 ├── Unit/                           # No database, no kernel

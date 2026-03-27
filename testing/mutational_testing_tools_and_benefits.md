@@ -15,24 +15,28 @@ Infection is a mutation testing framework designed specifically for PHP. It auto
 **Usage Example**:
 
 First, install Infection via Composer:
-```
+
+```text
 composer require --dev infection/infection
 ```
+
 Then, run Infection against your test suite:
-```
+
+```text
 vendor/bin/infection
 ```
 
 Infection will report the number of mutants that were not caught by the test suite, providing insights into potential weaknesses.
 
-2. **Humbug**
+1. **Humbug**
 
 Humbug is another tool for mutation testing in PHP, although it's less actively maintained compared to Infection. It serves a similar purpose: evaluating the effectiveness of a test suite by mutating the source code and checking for undetected mutants.
 
 **Usage Example**:
 
 After installing Humbug, you can configure it via a `humbug.json.dist` file and run it with:
-```
+
+```text
 vendor/bin/humbug
 ```
 

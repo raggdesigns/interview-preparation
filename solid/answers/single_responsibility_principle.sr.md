@@ -3,6 +3,7 @@
 Single Responsibility Principle (SRP), jedan od SOLID principa objektno-orijentisanog dizajna, navodi da klasa treba da ima samo jedan razlog za promenu. To znači da svaka klasa treba da bude odgovorna za jedan deo funkcionalnosti koji softver pruža, i ta odgovornost treba da bude u potpunosti enkapsulirana unutar klase.
 
 ## Način razmišljanja
+
 - Grupišite zajedno stvari koje se menjaju iz istog razloga.
 - Odvojite one stvari koje se menjaju iz različitih razloga.
 - Držite zajedno samo srodni sadržaj.
@@ -31,7 +32,7 @@ $userManager->sendEmail('john.doe@example.com');
 
 ## Refaktorisan kod koji primenjuje SRP
 
-```
+```text
 class UserManager {
     public function createUser($userData) {
         // Logic to create a user
@@ -51,6 +52,7 @@ class UserNotifier {
 $userManager = new UserManager();
 $userManager->createUser(['name' => 'John Doe', 'email' => 'john.doe@example.com']);
 ```
+
 Da bi se poštovao SRP, gornji scenario možemo refaktorisati tako što ga podelimo u dve klase: jednu za upravljanje podacima korisnika (`UserManager`) i drugu za obradu obaveštenja korisnicima (`UserNotifier`).
 
 ## Objašnjenje

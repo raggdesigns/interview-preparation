@@ -45,4 +45,3 @@ example, may store driver and rider IDs, but detailed profiles are managed by th
 Changes to a rider's profile are published as events by the Rider Service, which the Trip Service can consume to update
 its view of rider data. Event sourcing and CQRS enable the Trip Service to manage trip states and queries efficiently,
 despite the decentralized data model.
-

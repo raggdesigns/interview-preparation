@@ -38,4 +38,3 @@ With service discovery in place, the Recommendation Service can dynamically disc
 Service and User Profile Service to generate recommendations. This allows the platform to adapt to changes, such as the
 deployment of new service instances or the failure of existing ones, ensuring uninterrupted and optimized service to
 users.
-

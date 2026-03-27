@@ -8,7 +8,7 @@ U nastavku je pojednostavljen primer koda koji ilustruje upotrebu Anti-Corruptio
 
 #### Domenski model (E-commerce sistem)
 
-```
+```text
 class Product {
     private $id;
     private $name;
@@ -28,7 +28,7 @@ class Product {
 
 #### Eksterni model (Sistem zaliha)
 
-```
+```text
 class ExternalProduct {
     public $productId;
     public $description;
@@ -43,7 +43,7 @@ class ExternalProduct {
 
 ACL uključuje prevodilac koji konvertuje instance `ExternalProduct` iz sistema zaliha u instance `Product` za e-commerce domen.
 
-```
+```text
 class ProductTranslator {
     public static function translate(ExternalProduct $externalProduct): Product {
         $id = $externalProduct->productId;
@@ -60,7 +60,7 @@ class ProductTranslator {
 
 Ovako biste mogli koristiti ACL da preuzmete podatke o proizvodima iz eksternog sistema zaliha i konvertujete ih u domenski model e-commerce aplikacije.
 
-```
+```text
 // Simulate fetching an external product representation
 $externalProduct = new ExternalProduct();
 $externalProduct->productId = "123";
@@ -76,7 +76,7 @@ $product = ProductTranslator::translate($externalProduct);
 
 #### Zaključak
 
-```
+```text
 This example abstracts a lot of the complexities that might exist in real-world scenarios, such as dealing with APIs,
 error handling, and more sophisticated translation logic. However, it demonstrates the core idea behind the
 Anti-Corruption Layer: isolating your domain model from external systems by translating between different models, thus

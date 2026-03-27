@@ -1,18 +1,18 @@
 Adapter obrazac je strukturalni dizajnerski obrazac koji omogućava objektima sa nekompatibilnim interfejsima da sarađuju. Funkcioniše kreiranjem mosta između dva nekompatibilna interfejsa, omogućavajući im da rade zajedno bez menjanja njihovog postojećeg koda. Ovaj obrazac je posebno koristan u sistemima gde nove komponente treba integrisati i raditi zajedno sa postojećim kodom bez ikakvih modifikacija postojećih komponenti.
 
-### Ključni koncepti Adapter obrasca:
+### Ključni koncepti Adapter obrasca
 
 - **Ciljni interfejs (Target Interface)**: Ovo je interfejs koji klijent očekuje ili koristi.
 - **Adaptee**: Klasa koja ima nekompatibilan interfejs, koji treba prilagoditi za rad sa klijentskim kodom.
 - **Adapter**: Klasa koja implementira ciljni interfejs i enkapsulira instancu Adaptee klase. Prevodi pozive sa ciljnog interfejsa u oblik koji Adaptee može razumeti.
 
-### Prednosti:
+### Prednosti
 
 - **Kompatibilnost**: Dozvoljava inače nekompatibilnim klasama da rade zajedno.
 - **Ponovna upotrebljivost**: Omogućava ponovnu upotrebu postojećeg koda, čak i ako ne odgovara traženim interfejsima.
 - **Fleksibilnost**: Uvodi samo minimalni nivo indirekcije u sistem, dodajući fleksibilnost bez značajnog opterećenja.
 
-### Primer u PHP-u:
+### Primer u PHP-u
 
 Zamislite sistem logovanja gde novi klijentski kod koristi `Logger` interfejs, ali postoji klasa `FileLogger` koja ne implementira ovaj interfejs.
 

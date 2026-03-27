@@ -24,6 +24,7 @@ public function deleteUser(int $userId): Response
 ```
 
 Common examples:
+
 - Changing the user ID in a URL to see someone else's data (`/api/users/123` → `/api/users/456`)
 - Accessing admin endpoints without admin role
 - Bypassing access checks by modifying API requests
@@ -47,6 +48,7 @@ $hash = password_hash($password, PASSWORD_ARGON2ID);
 ```
 
 Also includes:
+
 - Not using HTTPS
 - Exposing sensitive data in logs or error messages
 - Using weak or deprecated TLS versions
@@ -67,6 +69,7 @@ $stmt->execute([$_GET['email']]);
 ```
 
 Other injection types:
+
 - **Command Injection**: `exec("ping " . $_GET['host'])` — attacker sends `; rm -rf /`
 - **LDAP Injection**: injecting into LDAP queries
 - **XSS** is also a form of injection (injecting JavaScript into HTML)
@@ -78,6 +81,7 @@ Other injection types:
 The application architecture itself has security flaws. This is about missing security requirements at the design stage, not about bugs in code.
 
 Examples:
+
 - No rate limiting on password reset endpoint (allows brute force)
 - Security questions with easily guessable answers
 - No limits on how many items a user can add to a cart (resource exhaustion)
@@ -87,7 +91,7 @@ Examples:
 
 The application or server is configured incorrectly, leaving security holes.
 
-```
+```text
 # Bad — debug mode in production
 APP_ENV=dev
 APP_DEBUG=true
@@ -98,6 +102,7 @@ APP_DEBUG=false
 ```
 
 Common examples:
+
 - Default passwords on admin accounts
 - Unnecessary features enabled (directory listing, debug toolbar)
 - Missing security headers (`X-Frame-Options`, `Content-Security-Policy`)
@@ -117,6 +122,7 @@ composer update --with-all-dependencies
 ```
 
 Prevention:
+
 - Regularly update dependencies
 - Monitor security advisories (Symfony Security Advisories, GitHub Dependabot)
 - Remove unused dependencies
@@ -127,6 +133,7 @@ Prevention:
 Problems with login systems, session management, or identity verification.
 
 Examples:
+
 - Allowing weak passwords (`123456`)
 - No brute force protection (no rate limiting on login)
 - Session IDs in URLs
@@ -164,6 +171,7 @@ public function login(string $email, string $password): bool
 Not verifying the integrity of software updates, CI/CD pipelines, or data. For example, using libraries from untrusted sources without checking their integrity.
 
 Examples:
+
 - Not verifying checksums of downloaded packages
 - Insecure CI/CD pipeline (attacker can inject malicious code during build)
 - Insecure deserialization — deserializing untrusted data can lead to code execution
@@ -181,6 +189,7 @@ $data = json_decode($_POST['data'], true);
 Not logging security events properly. Without good logging, you cannot detect attacks.
 
 What to log:
+
 - Failed login attempts
 - Access control failures
 - Input validation failures

@@ -149,7 +149,7 @@ try {
 
 ### When to Use Each
 
-#### Use Pessimistic Locking When:
+#### Use Pessimistic Locking When
 
 - Many transactions compete for the same rows (high contention)
 - The cost of a failed transaction is high (e.g., financial operations)
@@ -174,7 +174,7 @@ try {
 }
 ```
 
-#### Use Optimistic Locking When:
+#### Use Optimistic Locking When
 
 - Conflicts are rare (low contention)
 - Transactions can be long (e.g., user editing a form for minutes)
@@ -200,7 +200,7 @@ try {
 
 An online store has a product with 3 items in stock. Two customers try to buy at the same time.
 
-#### With Optimistic Locking:
+#### With Optimistic Locking
 
 ```php
 // Customer A reads: stock = 3, version = 1
@@ -218,7 +218,7 @@ UPDATE products SET stock = 1, version = 3 WHERE id = 1 AND version = 2;
 // → 1 row affected → success!
 ```
 
-#### With Pessimistic Locking:
+#### With Pessimistic Locking
 
 ```php
 // Customer A:

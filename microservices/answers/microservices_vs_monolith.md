@@ -8,7 +8,7 @@ When developing software applications, architects must decide between two main a
 A Monolithic Architecture is a traditional model of software structure where all the components of the application (interface, business logic, database interactions, etc.) are tightly integrated and deployed as a single unit.
 ```
 
-#### Example:
+#### Example
 
 Consider a web application developed as a monolith:
 
@@ -25,7 +25,7 @@ All reside within a single codebase and are deployed together. Any update or cha
 
 Microservices Architecture, on the other hand, breaks down the application into smaller, independent services. Each service runs in its own process and communicates with others over a well-defined interface using lightweight mechanisms, typically HTTP-based APIs.
 
-#### Example:
+#### Example
 
 Imagine an e-commerce platform built using microservices:
 
@@ -38,7 +38,7 @@ Imagine an e-commerce platform built using microservices:
 
 Each service is developed, deployed, and scaled independently, allowing for more flexible development and deployment practices.
 
-### Key Differences:
+### Key Differences
 
 - **Deployment**: In a monolithic architecture, any change necessitates redeploying the entire application, whereas microservices allow for independent deployment of services.
 - **Scalability**: Microservices can be individually scaled, providing a more efficient use of resources compared to scaling the entire monolithic application.

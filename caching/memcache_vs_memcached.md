@@ -5,6 +5,7 @@ In the context of caching solutions for web applications, Memcache and Memcached
 Memcache, often referred to in the context of PHP, is a high-performance distributed memory caching system designed to speed up dynamic web applications by reducing database load. It refers to the whole technology and ecosystem around caching solutions that use the Memcache protocol.
 
 **Key Features**:
+
 - Lightweight and simple to use.
 - API support in multiple languages.
 - Lacks some advanced features compared to Memcached.
@@ -14,6 +15,7 @@ Memcache, often referred to in the context of PHP, is a high-performance distrib
 Memcached is an extension and a daemon for PHP providing an interface to the Memcached caching system. While "Memcache" can also refer to the daemon, "Memcached" specifically refers to the newer extension for PHP that offers more features and better performance.
 
 **Key Features**:
+
 - Offers more robust and extensive features than the Memcache extension.
 - Supports newer protocols and commands.
 - Provides better performance and more efficient memory usage.
@@ -32,6 +34,7 @@ Memcached is an extension and a daemon for PHP providing an interface to the Mem
 ### Example Usage in PHP
 
 **Memcache**:
+
 ```php
 $memcache = new Memcache;
 $memcache->connect('localhost', 11211);
@@ -40,6 +43,7 @@ echo $memcache->get('key');
 ```
 
 **Memcached**:
+
 ```php
 $memcached = new Memcached;
 $memcached->addServer('localhost', 11211);

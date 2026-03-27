@@ -13,6 +13,7 @@ interface PaymentGateway
 ```
 
 **Pravila za interfejse:**
+
 - Sve metode su public (nema private ili protected)
 - Nema tela metoda (osim u PHP 8.0+ sa podrazumevanim implementacijama — retko)
 - Nema svojstava (samo konstante)
@@ -70,6 +71,7 @@ abstract class AbstractNotificationSender
 ```
 
 **Pravila za apstraktne klase:**
+
 - Mogu imati apstraktne I konkretne metode
 - Mogu imati svojstva (uključujući private)
 - Mogu imati konstruktore
@@ -114,6 +116,7 @@ I `EmailSender` i `SmsSender` dobijaju `sendWithRetry()` i `log()` besplatno —
 ### Kada Koristiti Interfejs
 
 Koristite interfejs kada:
+
 - Treba da definišete **ugovor** koji više nepovezanih klasa prati
 - Trebate **više implementacija** koje ne dele kod
 - Želite da omogućite **dependency injection** i lako testiranje
@@ -142,6 +145,7 @@ class OrderService
 ### Kada Koristiti Apstraktnu Klasu
 
 Koristite apstraktnu klasu kada:
+
 - Više klasa deli **zajedničko ponašanje** (ne samo ugovor)
 - Želite da pružite **podrazumevane implementacije** koje podklase nasleđuju
 - Treba da definišete **šablonsku metodu** (fiksni algoritam sa prilagodljivim koracima)

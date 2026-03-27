@@ -47,4 +47,3 @@ Consider a Social Media Platform that heavily relies on microservices for handli
 - **Notification Service**: Sends notifications based on user activity and preferences.
 
 The platform uses horizontal scaling and auto-scaling for the Content Delivery and User Activity services to handle spikes in user traffic, especially during high-engagement events. Load balancing ensures an even distribution of requests, enhancing user experience. Caching is heavily utilized in the Content Delivery Service to reduce latency and backend load, while partitioning helps in managing the large datasets of the User Activity Service efficiently.
-

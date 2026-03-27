@@ -3,6 +3,7 @@ Singleton obrazac osigurava da klasa ima samo jednu instancu u celoj aplikaciji 
 ### Struktura
 
 Singleton klasa ima tri ključne karakteristike:
+
 1. **Privatni konstruktor** — sprečava kreiranje instanci pomoću `new`
 2. **Statička promenljiva instance** — čuva jedinu instancu
 3. **Statička metoda** — vraća instancu, kreirajući je pri prvom pozivu

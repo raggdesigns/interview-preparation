@@ -21,7 +21,8 @@ print_r($arr);
 ```
 
 Output:
-```
+
+```text
 Array
 (
     [0] => a
@@ -35,7 +36,7 @@ Array
 
 **Key rule:** PHP ignores string keys when calculating the next integer index. It only looks at the highest integer key (which is 3), and adds 1 to get 4.
 
-#### Tricky variation:
+#### Tricky variation
 
 ```php
 $arr = [
@@ -185,7 +186,7 @@ function findSecondLargest(array $numbers): int|float
 
 **Step-by-step example** with `[3, 1, 7, 5, 2]`:
 
-```
+```text
 Start:   first = -∞,  second = -∞
 
 num = 3: 3 > -∞ → first = 3,  second = -∞
@@ -205,7 +206,7 @@ Result: first = 7, second = 5 ✓
 
 `empty()` checks if a value is "empty" (falsy). `is_null()` checks if a value is exactly `null`.
 
-#### What `empty()` considers empty:
+#### What `empty()` considers empty
 
 ```php
 empty('');        // true — empty string
@@ -221,7 +222,7 @@ empty(1);         // false
 empty([1, 2]);    // false
 ```
 
-#### What `is_null()` considers null:
+#### What `is_null()` considers null
 
 ```php
 is_null(null);    // true
@@ -232,7 +233,7 @@ is_null(false);   // false
 is_null([]);      // false
 ```
 
-#### Key difference table:
+#### Key difference table
 
 | Value | `empty()` | `is_null()` |
 |-------|-----------|-------------|
@@ -245,7 +246,7 @@ is_null([]);      // false
 | `'hello'` | `false` | `false` |
 | `1` | `false` | `false` |
 
-#### Another important difference:
+#### Another important difference
 
 `empty()` does **not** trigger a notice for undefined variables:
 

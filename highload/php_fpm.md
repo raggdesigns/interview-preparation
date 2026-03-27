@@ -7,6 +7,7 @@ PHP-FPM has a **master process** and **worker processes**.
 #### Master Process
 
 The master process starts when PHP-FPM is launched. Its job is:
+
 - Read configuration files
 - Create and manage worker processes
 - Listen on a socket (TCP or Unix) for incoming requests
@@ -15,13 +16,14 @@ The master process starts when PHP-FPM is launched. Its job is:
 #### Worker Processes
 
 Each worker process handles one request at a time. A worker:
+
 1. Receives a FastCGI request from the master
 2. Initializes the PHP environment (load extensions, autoload classes)
 3. Executes the PHP script
 4. Sends the response back through the master
 5. Resets its state and waits for the next request
 
-```
+```text
 Master Process (PID 1)
 ├── Worker 1 (PID 100) ← handling request
 ├── Worker 2 (PID 101) ← handling request
@@ -107,7 +109,7 @@ Nginx is a web server that handles HTTP connections. It does **not** execute PHP
 
 #### The Full Request Flow
 
-```
+```text
 Client (Browser)
     │
     │ HTTP request: GET /api/users
@@ -170,6 +172,7 @@ server {
 ```
 
 What happens:
+
 1. Request for `/css/style.css` → Nginx serves the file directly (no PHP involved)
 2. Request for `/api/users` → `try_files` fails → rewrites to `/index.php` → passes to PHP-FPM
 3. PHP-FPM worker runs `index.php` → Symfony/Laravel router → controller → response
@@ -189,7 +192,8 @@ What happens:
 The most important setting. Too low → requests wait in queue. Too high → server runs out of memory.
 
 Formula:
-```
+
+```text
 max_children = Available Memory / Average Memory per Worker
 
 Example:
@@ -202,6 +206,7 @@ Example:
 ```
 
 Check actual memory per worker:
+
 ```bash
 # Show memory of PHP-FPM workers
 ps -eo pid,rss,command | grep php-fpm | awk '{print $1, $2/1024 " MB", $3}'
@@ -232,6 +237,7 @@ curl http://localhost/fpm-status
 ```
 
 Key metrics to watch:
+
 - **listen queue** — requests waiting for a free worker (should be 0)
 - **active processes** — workers currently handling requests
 - **max children reached** — if this is > 0, you need more workers

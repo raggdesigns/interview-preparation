@@ -3,21 +3,21 @@ works by creating a bridge between two incompatible interfaces, enabling them to
 existing code. This pattern is especially useful in systems where new components need to be integrated and work together
 with existing code without any modifications to the existing components.
 
-### Key Concepts of the Adapter Pattern:
+### Key Concepts of the Adapter Pattern
 
 - **Target Interface**: This is the interface that the client expects or uses.
 - **Adaptee**: The class that has the incompatible interface, which needs to be adapted to work with the client code.
 - **Adapter**: The class that implements the Target interface and encapsulates an instance of the Adaptee class. It
   translates calls from the Target interface into a form that the Adaptee can understand.
 
-### Benefits:
+### Benefits
 
 - **Compatibility**: Allows otherwise incompatible classes to work together.
 - **Reusability**: Enables the reuse of existing code, even if it does not match the required interfaces.
 - **Flexibility**: Introduces only a minimal level of indirection to the system, adding flexibility without significant
   overhead.
 
-### Example in PHP:
+### Example in PHP
 
 Imagine a logging system where the new client code uses a Logger interface, but there's an existing class `FileLogger`
 that doesn't implement this interface.

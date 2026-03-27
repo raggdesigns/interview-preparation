@@ -54,6 +54,7 @@ $label = match($status) {
 ```
 
 Važne razlike od `switch`-a:
+
 - `match` koristi striktno poređenje (`===`), a ne labavo (`==`)
 - `match` vraća vrednost
 - Nema potrebe za `break` — izvršava se samo jedna grana

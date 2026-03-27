@@ -54,6 +54,7 @@ $service = new OrderService(new FakePaymentGateway(alwaysSucceeds: true));
 ```
 
 Three forms of DI:
+
 1. **Constructor injection** — most common and recommended
 2. **Setter injection** — `setLogger(LoggerInterface $logger)` — for optional dependencies
 3. **Method injection** — pass dependency to a specific method call
@@ -162,13 +163,14 @@ class RegistrationService
 ```
 
 Other examples of IoC:
+
 - **Event dispatcher** — you register listeners, the framework calls them when events happen
 - **HTTP kernel** — you write controllers, the framework calls them when a route matches
 - **Lifecycle hooks** — the framework calls `setUp()` and `tearDown()` in PHPUnit
 
 ### How DI, Composition, and IoC Relate
 
-```
+```text
 ┌─────────────────────────────────────────────────┐
 │  IoC (Principle)                                │
 │  "The framework controls the flow"              │

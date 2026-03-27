@@ -117,7 +117,7 @@ try {
 
 Both `Error` and `Exception` implement the `Throwable` interface:
 
-```
+```text
 Throwable
 ├── Error
 │   ├── TypeError

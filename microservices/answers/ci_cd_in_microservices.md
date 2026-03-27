@@ -42,4 +42,3 @@ Each service utilizes a CI/CD pipeline for rapid development and deployment, ens
 algorithms can be deployed swiftly, transaction processing is continuously optimized, and account management features
 evolve based on user feedback. Infrastructure as Code ensures that all services operate in a secure, compliant
 environment with the ability to scale resources as needed.
-

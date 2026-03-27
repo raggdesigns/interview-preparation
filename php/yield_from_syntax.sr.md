@@ -5,6 +5,7 @@ Uvedena u PHP 7, sintaksa `yield from` je poboljšanje generatora, pružajući z
 Naredba `yield from` se koristi unutar generator funkcije za yield svih vrednosti iz drugog generatora, niza ili bilo kog objekta koji implementira interfejs `Traversable`. U suštini spljoštava ugnježdene generatore, olakšavajući komponovanje generatora zajedno.
 
 **Primer**:
+
 ```php
 function generatorA() {
     yield 1;
@@ -36,6 +37,7 @@ U ovom primeru, `generatorA()` besprekorno yield-uje vrednosti iz `generatorB()`
 Još jedna moćna mogućnost `yield from` je njegova sposobnost vraćanja konačnog izraza iz generatora. Vrednost koju vraća unutrašnji generator može biti uhvaćena od strane spoljašnjeg generatora.
 
 **Primer**:
+
 ```php
 function generatorWithReturn() {
     yield 1;

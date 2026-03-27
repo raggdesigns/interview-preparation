@@ -31,6 +31,7 @@ In this example, even though `test()` is called on `ChildClass`, the output is "
 To address this limitation, PHP introduced the `static` keyword for use in place of `self` to refer to the called class rather than the class where the method is defined.
 
 **Refactored Example**:
+
 ```php
 class ParentClass {
     public static function who() {

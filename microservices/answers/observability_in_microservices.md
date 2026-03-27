@@ -36,4 +36,3 @@ Consider an Online Payment Gateway composed of several microservices:
 - **Account Service**: Manages user accounts and authentication.
 
 Observability in this system ensures that performance metrics from the Transaction Service are monitored in real-time, allowing for immediate detection of issues affecting transaction processing. Centralized logging captures logs from all services, enabling quick diagnosis of failures or security breaches detected by the Fraud Detection Service. Distributed tracing allows for tracing a user's transaction flow through the system, identifying any bottlenecks or failures that occur during the payment process.
-
