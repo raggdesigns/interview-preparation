@@ -16,7 +16,7 @@ interface PaymentGateway
 
 - Sve metode su public (nema private ili protected)
 - Nema tela metoda (osim u PHP 8.0+ sa podrazumevanim implementacijama — retko)
-- Nema svojstava (samo konstante)
+- Nema properties (samo konstante)
 - Klasa može da implementira **više** interfejsa
 - Ne može biti instancirana
 
@@ -73,7 +73,7 @@ abstract class AbstractNotificationSender
 **Pravila za apstraktne klase:**
 
 - Mogu imati apstraktne I konkretne metode
-- Mogu imati svojstva (uključujući private)
+- Mogu imati properties (uključujući private)
 - Mogu imati konstruktore
 - Klasa može da nasledi samo **jednu** apstraktnu klasu (jednostruko nasleđivanje)
 - Ne može biti instancirana
@@ -106,7 +106,7 @@ I `EmailSender` i `SmsSender` dobijaju `sendWithRetry()` i `log()` besplatno —
 | Karakteristika | Interfejs | Apstraktna Klasa |
 |----------------|-----------|-----------------|
 | Tela metoda | Ne (samo potpisi) | Da (apstraktne + konkretne) |
-| Svojstva | Ne (samo konstante) | Da |
+| Properties | Ne (samo konstante) | Da |
 | Konstruktor | Ne | Da |
 | Višestruko nasleđivanje | Da (`implements A, B, C`) | Ne (samo jedan `extends`) |
 | Modifikatori pristupa | Samo `public` | `public`, `protected`, `private` |

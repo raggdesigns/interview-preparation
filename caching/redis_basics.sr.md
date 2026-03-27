@@ -1,4 +1,4 @@
-Redis je open-source, in-memory skladište struktura podataka, koje se koristi kao baza podataka, keš i posrednik poruka. Podržava strukture podataka kao što su stringovi, hash-ovi, liste, skupovi, sortirani skupovi sa upitima opsega, bitmape, hyperloglogs, geoprostorni indeksi sa upitima radijusa i tokovi. Redis ima ugrađenu replikaciju, Lua skriptovanje, LRU evikaciju, transakcije i različite nivoe persistencije na disku, i pruža visoku dostupnost putem Redis Sentinel i automatsko particionisanje sa Redis Cluster-om.
+Redis je open-source, in-memory skladište struktura podataka, koje se koristi kao baza podataka, cache i posrednik poruka. Podržava strukture podataka kao što su stringovi, hash-ovi, liste, skupovi, sortirani skupovi sa upitima opsega, bitmape, hyperloglogs, geoprostorni indeksi sa upitima radijusa i tokovi. Redis ima ugrađenu replikaciju, Lua skriptovanje, LRU evikaciju, transakcije i različite nivoe persistencije na disku, i pruža visoku dostupnost putem Redis Sentinel i automatsko particionisanje sa Redis Cluster-om.
 
 ### Ključne funkcionalnosti
 
@@ -24,7 +24,7 @@ Redis je open-source, in-memory skladište struktura podataka, koje se koristi k
 
 ### Početak rada sa Redis-om u PHP-u
 
-Da bi koristio Redis kao sloj keširanje ili skladište sesija u PHP-u, trebaš instaliranu i konfigurisanu `redis` ekstenziju sa tvojim PHP okruženjem.
+Da bi koristio Redis kao sloj za caching ili skladište sesija u PHP-u, trebaš instaliranu i konfigurisanu `redis` ekstenziju sa tvojim PHP okruženjem.
 
 ```php
 $redis = new Redis();
@@ -37,4 +37,4 @@ U ovom primeru, uspostavlja se konekcija sa Redis serverom, postavlja se ključ 
 
 ### Zaključak
 
-Redis-ova kombinacija visokih performansi, podrške za bogate tipove podataka i robusnih funkcionalnosti kao što su replikacija i persistencija čine ga odličnim izborom za implementaciju keširanje, upravljanja sesijama i kao NoSQL baze podataka opšte namene. Njegov jednostavan model i atomske operacije dozvoljavaju programerima da grade složene funkcionalnosti uz minimalni napor.
+Redis-ova kombinacija visokih performansi, podrške za bogate tipove podataka i robusnih funkcionalnosti kao što su replikacija i persistencija čine ga odličnim izborom za implementaciju caching-a, upravljanja sesijama i kao NoSQL baze podataka opšte namene. Njegov jednostavan model i atomske operacije dozvoljavaju programerima da grade složene funkcionalnosti uz minimalni napor.

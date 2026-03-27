@@ -237,9 +237,9 @@ Ukupno vidljiva stranica: ~380-1760ms
 | Server push | Nije podržan | Server može da gura resurse pre nego što ih klijent traži |
 | Head-of-line blokiranje | Da (jedan spor odgovor blokira ostale) | Ne (tokovi su nezavisni) |
 
-## Slojevi Keširanja
+## Slojevi Caching-a
 
-Više slojeva keširanja smanjuje ponavljanje posla:
+Više slojeva caching-a smanjuje ponavljanje posla:
 
 ```text
 Keš pretraživača       -> Čuva resurse lokalno (CSS, JS, slike)
@@ -261,19 +261,19 @@ Keš upita baze podataka -> MySQL kešira rezultate upita interno
 
 ### P: Šta se dešava kada unesete URL u pretraživač?
 
-**O:** Šest glavnih koraka: (1) **DNS rezolucija** — pretraživač prevodi domen u IP adresu, proveravajući keš pretraživača, OS keš i ISP resolver. (2) **TCP rukovanje** — trosmerno rukovanje (SYN, SYN-ACK, ACK) uspostavlja pouzdanu konekciju. (3) **TLS rukovanje** — za HTTPS, klijent i server pregovaraju o enkripciji i razmenjuju ključeve. (4) **HTTP zahtev** — pretraživač šalje GET zahtev sa zaglavljima (Host, Accept, Cookie). (5) **Obrada na serveru** — web server rutira do aplikacije, koja upituje bazu podataka i generiše HTML. (6) **Renderovanje** — pretraživač parsira HTML, preuzima CSS/JS/slike, gradi DOM i crta stranicu.
+**O:** Šest glavnih koraka: (1) **DNS rezolucija** — pretraživač prevodi domen u IP adresu, proveravajući cache pretraživača, OS cache i ISP resolver. (2) **TCP rukovanje** — trosmerno rukovanje (SYN, SYN-ACK, ACK) uspostavlja pouzdanu konekciju. (3) **TLS rukovanje** — za HTTPS, klijent i server pregovaraju o enkripciji i razmenjuju ključeve. (4) **HTTP zahtev** — pretraživač šalje GET zahtev sa zaglavljima (Host, Accept, Cookie). (5) **Obrada na serveru** — web server rutira do aplikacije, koja upituje bazu podataka i generiše HTML. (6) **Renderovanje** — pretraživač parsira HTML, preuzima CSS/JS/slike, gradi DOM i crta stranicu.
 
 ### P: Koja je razlika između HTTP i HTTPS?
 
 **O:** HTTPS dodaje **TLS enkriptovani sloj** između TCP-a i HTTP-a. Podaci su enkriptovani u prenosu, tako da čak i ako su paketi presretnuti (man-in-the-middle), ne mogu se čitati. HTTPS takođe pruža **autentikaciju** (server dokazuje svoj identitet putem sertifikata potpisanog od strane pouzdanog CA) i **integritet** (podaci ne mogu biti modifikovani u prenosu bez detekcije). Cena je 1-2 dodatna povratna puta za TLS rukovanje, što je zanemarljivo sa modernim hardverom.
 
-### P: Kako funkcioniše DNS keširanje?
+### P: Kako funkcioniše DNS caching?
 
-**O:** DNS odgovori uključuju vrednost **TTL** (Time to Live) koja određuje koliko dugo rezultat može biti keširan. Kada pretraživač razreši `shop.com` na `93.184.216.34` sa TTL=3600, svaki sloj u lancu (pretraživač, OS, ruter, ISP resolver) kešira ovo mapiranje na 1 sat. Naknadni zahtevi preskakuju celu DNS hijerarhiju. Niži TTL-ovi (300s) omogućavaju brže preusmeravanje (npr. prelaz na rezervni server), dok viši TTL-ovi (86400s) smanjuju DNS saobraćaj, ali odlažu propagaciju promena IP-a.
+**O:** DNS odgovori uključuju vrednost **TTL** (Time to Live) koja određuje koliko dugo rezultat može biti cached. Kada pretraživač razreši `shop.com` na `93.184.216.34` sa TTL=3600, svaki sloj u lancu (pretraživač, OS, ruter, ISP resolver) cache-ira ovo mapiranje na 1 sat. Naknadni zahtevi preskakuju celu DNS hijerarhiju. Niži TTL-ovi (300s) omogućavaju brže preusmeravanje (npr. prelaz na rezervni server), dok viši TTL-ovi (86400s) smanjuju DNS saobraćaj, ali odlažu propagaciju promena IP-a.
 
 ## Zaključak
 
-Jedan URL zahtev pokreće DNS rezoluciju, TCP i TLS rukovanja, HTTP zahtev-odgovor, obradu na strani servera i renderovanje u pretraživaču. Svaki sloj — DNS, transport, bezbednost, aplikacija, keširanje — služi specifičnoj svrsi u činjenju veba pouzdanim, bezbednim i brzim. HTTP/2 i CDN keširanje su najimpresivnije moderne optimizacije, eliminišući overhead konekcije i smanjujući latenciju serviranjem sadržaja sa edge lokacija blizu korisnika.
+Jedan URL zahtev pokreće DNS rezoluciju, TCP i TLS rukovanja, HTTP zahtev-odgovor, obradu na strani servera i renderovanje u pretraživaču. Svaki sloj — DNS, transport, bezbednost, aplikacija, caching — služi specifičnoj svrsi u činjenju veba pouzdanim, bezbednim i brzim. HTTP/2 i CDN caching su najimpresivnije moderne optimizacije, eliminišući overhead konekcije i smanjujući latenciju serviranjem sadržaja sa edge lokacija blizu korisnika.
 
 ## Vidi Takođe
 

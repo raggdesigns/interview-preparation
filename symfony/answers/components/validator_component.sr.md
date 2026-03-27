@@ -5,7 +5,7 @@ Validator Component je fleksibilan sistem za validaciju PHP objekata prema skupu
 
 ## Osnovni koncepti
 
-- **Ograničenja (Constraints)**: Pravila koja opisuju logiku validacije za svojstva ili getter metode PHP objekata.
+- **Ograničenja (Constraints)**: Pravila koja opisuju logiku validacije za properties ili getter metode PHP objekata.
 - **Validatori ograničenja (Constraint Validators)**: Rukuju logikom validacije za svako ograničenje, proveravajući da li podaci ispunjavaju navedene uslove.
 - **Validacione grupe**: Omogućavaju specificiranje grupa ograničenja za uslovno validiranje objekata.
 - **Lista kršenja (Violation List)**: Prikuplja i prijavljuje greške validacije.
@@ -14,13 +14,13 @@ Validator Component je fleksibilan sistem za validaciju PHP objekata prema skupu
 
 - **Odvajanje zavisnosti**: Odvaja logiku validacije od poslovne logike, čineći kod modularnim i lakšim za održavanje.
 - **Višekratna upotreba**: Ograničenja i prilagođeni validatori mogu biti ponovo korišćeni u različitim delovima aplikacije ili čak u različitim projektima.
-- **Fleksibilnost**: Podržava validaciju javnih svojstava, getter metoda i prilagođenih scenarija validacije.
+- **Fleksibilnost**: Podržava validaciju javnih properties, getter metoda i prilagođenih scenarija validacije.
 
 ## Primer upotrebe
 
 ### Definisanje ograničenja
 
-Možete definisati ograničenja direktno na svojstvima entiteta ili modela:
+Možete definisati ograničenja direktno na properties entiteta ili modela:
 
 ```php
 use Symfony\Component\Validator\Constraints as Assert;

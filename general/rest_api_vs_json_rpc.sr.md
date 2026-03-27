@@ -331,7 +331,7 @@ final class JsonRpcHandler
 | Endpoint-i | Mnogi (`/payments`, `/customers/42/balance`) | Jedan (`/api`) |
 | HTTP metode | GET, POST, PUT, PATCH, DELETE | Samo POST |
 | Status kodovi | Puna HTTP semantika (201, 404, 409...) | Uvek 200 (greške u telu odgovora) |
-| Keširanje | Ugrađeno putem HTTP keširanja zaglavlja | Nije kešibilno (sve POST) |
+| Caching | Ugrađeno putem HTTP caching zaglavlja | Nije cacheable (sve POST) |
 | Otkrivanje | URL-ovi su samodokumentujući | Nazivi metoda zahtevaju dokumentaciju |
 | Batch obrada | Nije nativna (potrebna prilagođena implementacija) | Ugrađena (niz zahteva) |
 | Format greške | HTTP status + telo odgovora | Strukturirani objekat greške sa kodovima |
@@ -362,11 +362,11 @@ Izaberite JSON-RPC kada:
 
 ### P: Kada biste koristili JSON-RPC umesto REST-a?
 
-**O:** JSON-RPC je bolji za **internu komunikaciju servis-ka-servisu** gde operacije ne mapiraju čisto na CRUD (npr. "prenos sredstava između računa," "preračunavanje cena," "spajanje korisničkih naloga"). Takođe je bolji kada su potrebni **batch zahtevi** — slanje više poziva u jednom HTTP zahtevu. REST je bolji za javne API-je gde su keširabilnost, otkrivost i standardna HTTP semantika važni.
+**O:** JSON-RPC je bolji za **internu komunikaciju servis-ka-servisu** gde operacije ne mapiraju čisto na CRUD (npr. "prenos sredstava između računa," "preračunavanje cena," "spajanje korisničkih naloga"). Takođe je bolji kada su potrebni **batch zahtevi** — slanje više poziva u jednom HTTP zahtevu. REST je bolji za javne API-je gde su mogućnost caching-a, otkrivost i standardna HTTP semantika važni.
 
-### P: Kako se keširanje razlikuje između REST-a i JSON-RPC-a?
+### P: Kako se caching razlikuje između REST-a i JSON-RPC-a?
 
-**O:** REST prirodno koristi HTTP keširanje — `GET /products/42` može biti keširan od strane CDN-ova, pretraživača i reverse proxy-ja koristeći standardna `Cache-Control` i `ETag` zaglavlja. JSON-RPC šalje sve kao POST na jedan endpoint, koji HTTP keš neće keširati podrazumevano. Za keširanje JSON-RPC odgovora, potrebno je keširanje na nivou aplikacije (npr. Redis), što zahteva više posla.
+**O:** REST prirodno koristi HTTP caching — `GET /products/42` može biti cached od strane CDN-ova, pretraživača i reverse proxy-ja koristeći standardna `Cache-Control` i `ETag` zaglavlja. JSON-RPC šalje sve kao POST na jedan endpoint, koji HTTP cache neće cache-irati podrazumevano. Za caching JSON-RPC odgovora, potreban je caching na nivou aplikacije (npr. Redis), što zahteva više posla.
 
 ### P: Koje su prednosti batch zahteva JSON-RPC-a?
 
@@ -374,7 +374,7 @@ Izaberite JSON-RPC kada:
 
 ## Zaključak
 
-REST modelira API-je oko resursa i HTTP semantike, čineći ga idealnim za javne CRUD API-je sa ugrađenim keširanjem i otkrivošću. JSON-RPC modelira API-je oko poziva procedura sa jednostavnijim protokolom (jedan endpoint, strukturirane greške, podrška za batch), čineći ga boljim za interne servise sa složenim operacijama. Većina aplikacija koristi REST za javni API i razmatra JSON-RPC ili gRPC za internu komunikaciju servisa gde je mapiranje na CRUD nezgodno.
+REST modelira API-je oko resursa i HTTP semantike, čineći ga idealnim za javne CRUD API-je sa ugrađenim caching-om i otkrivošću. JSON-RPC modelira API-je oko poziva procedura sa jednostavnijim protokolom (jedan endpoint, strukturirane greške, podrška za batch), čineći ga boljim za interne servise sa složenim operacijama. Većina aplikacija koristi REST za javni API i razmatra JSON-RPC ili gRPC za internu komunikaciju servisa gde je mapiranje na CRUD nezgodno.
 
 ## Vidi Takođe
 

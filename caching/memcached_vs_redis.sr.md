@@ -1,10 +1,10 @@
-Memcached i Redis su oba in-memory skladišta podataka koja se koriste za keširanje u web aplikacijama. Imaju različite arhitekture i funkcionalnosti, tako da izbor zavisi od tvojih potreba.
+Memcached i Redis su oba in-memory skladišta podataka koja se koriste za caching u web aplikacijama. Imaju različite arhitekture i funkcionalnosti, tako da izbor zavisi od tvojih potreba.
 
 ### Arhitektura
 
-**Memcached** je jednostavan keš ključ-vrednost. Čuva podatke u memoriji i koristi višenitnu arhitekturu. Dizajniran je za jednu svrhu — keširanje — i to radi dobro.
+**Memcached** je jednostavan cache ključ-vrednost. Čuva podatke u memoriji i koristi višenitnu arhitekturu. Dizajniran je za jednu svrhu — caching — i to radi dobro.
 
-**Redis** je server struktura podataka. Jednonitni je (glavni nit) ali može efikasno upravljati mnogim konekcijama koristeći I/O multipleksiranje. Redis podržava mnogo više od samog keširanje.
+**Redis** je server struktura podataka. Jednonitni je (glavni nit) ali može efikasno upravljati mnogim konekcijama koristeći I/O multipleksiranje. Redis podržava mnogo više od samog caching-a.
 
 ### Tipovi podataka
 
@@ -22,7 +22,7 @@ Memcached čuva samo stringove (ili serijalizovane podatke kao stringove). Redis
 
 ### Persistencija
 
-**Memcached**: Nema persistencije. Svi podaci se gube kada se server restartuje. Čisto je keš.
+**Memcached**: Nema persistencije. Svi podaci se gube kada se server restartuje. Čisto je cache.
 
 **Redis**: Podržava dve metode persistencije:
 
@@ -70,8 +70,8 @@ Oba su izuzetno brza jer čuvaju podatke u memoriji. Za jednostavne get/set oper
 
 ### Kada koristiti Memcached
 
-- Trebaš samo jednostavno keširanje ključ-vrednost
-- Hoćeš višenitni keš za visoko-propusne jednostavne operacije
+- Trebaš samo jednostavan caching ključ-vrednost
+- Hoćeš višenitni cache za visoko-propusne jednostavne operacije
 - Ne trebaš persistenciju
 - Hoćeš najjednostavnije moguće podešavanje
 
@@ -98,7 +98,7 @@ $data = unserialize($mc->get('user:123'));
 $redis = new Redis();
 $redis->connect('localhost', 6379);
 
-// Jednostavan keš
+// Jednostavan cache
 $redis->setex('user:123', 3600, serialize($userData));
 
 // Sortirani skup za liderboard
@@ -125,22 +125,22 @@ $redis->expire($key, 60); // Resetuj brojač svakih 60 sekundi
 | Pub/Sub | Ne | Da |
 | Lua skriptovanje | Ne | Da |
 | Transakcije | Ne | Da (MULTI/EXEC) |
-| Slučaj upotrebe | Jednostavno keširanje | Keširanje + strukture podataka + poruke |
+| Slučaj upotrebe | Jednostavan caching | Caching + strukture podataka + poruke |
 
 ### Realni scenario
 
 Gradiš e-commerce platformu. Trebaš:
 
-1. **Keširanje stranica** — oba Memcached i Redis rade dobro
+1. **Caching stranica** — oba Memcached i Redis rade dobro
 2. **Korpa za kupovinu** — Redis je bolji (tip podataka hash prirodno čuva stavke korpe)
 3. **Rangiranje proizvoda** — Redis sortirani skupovi ovo savršeno obrađuju
 4. **Skladište sesija** — Redis podržava persistenciju, pa sesije preživljavaju restartove
 5. **Obaveštenja u realnom vremenu** — Redis pub/sub ovo obrađuje
 
-Za jednostavan blog koji treba samo keširanje stranica, Memcached je dovoljan i jednostavniji. Za složenu aplikaciju sa višestrukim potrebama keširanje, Redis je bolji izbor jer pokriva više slučajeva upotrebe sa jednim alatom.
+Za jednostavan blog koji treba samo caching stranica, Memcached je dovoljan i jednostavniji. Za složenu aplikaciju sa višestrukim potrebama za caching, Redis je bolji izbor jer pokriva više slučajeva upotrebe sa jednim alatom.
 
 ### Zaključak
 
-Memcached je brz, jednostavan, višenitni keš ključ-vrednost. Redis je bogat funkcijama server struktura podataka sa persistencijom, replikacijom i mnogo tipova podataka. Za većinu modernih aplikacija, Redis je preferirani izbor jer obrađuje više slučajeva upotrebe. Memcached još uvek ima vrednost kada trebaš samo jednostavno keširanje sa višenitnim performansama.
+Memcached je brz, jednostavan, višenitni cache ključ-vrednost. Redis je bogat funkcijama server struktura podataka sa persistencijom, replikacijom i mnogo tipova podataka. Za većinu modernih aplikacija, Redis je preferirani izbor jer obrađuje više slučajeva upotrebe. Memcached još uvek ima vrednost kada trebaš samo jednostavan caching sa višenitnim performansama.
 
 > Vidi takođe: [Osnove Redis-a](redis_basics.sr.md) za dublji pogled na tipove podataka i komande Redis-a.

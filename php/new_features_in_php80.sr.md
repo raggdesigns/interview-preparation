@@ -62,7 +62,7 @@ Važne razlike od `switch`-a:
 
 ### Promocija konstruktora
 
-Deklarišite i dodelite propertije direktno u parametrima konstruktora:
+Deklarišite i dodelite properties direktno u parametrima konstruktora:
 
 ```php
 // Before PHP 8.0

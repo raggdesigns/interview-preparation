@@ -1,4 +1,4 @@
-Popularni PHP frejmvorci koriste mnoge obrasce dizajna za rešavanje uobičajenih problema. Poznavanje koji obrasci se koriste pomaže vam da razumete unutrašnjost frejmvorka i odgovorite na pitanja na intervjuima.
+Popularni PHP framework-ci koriste mnoge obrasce dizajna za rešavanje uobičajenih problema. Poznavanje koji obrasci se koriste pomaže vam da razumete unutrašnjost framework-a i odgovorite na pitanja na intervjuima.
 
 ### Obrasci u Symfony-u
 
@@ -53,7 +53,7 @@ Sigurnosni firewall-ovi takođe koriste ovaj obrazac — svaki autentifikator po
 
 #### 4. Decorator
 
-Symfony koristi dekoratore za dodavanje ponašanja servisima. Na primer, dodavanje keširanja repozitorijumu:
+Symfony koristi dekoratore za dodavanje ponašanja servisima. Na primer, dodavanje caching-a repozitorijumu:
 
 ```yaml
 services:
@@ -161,7 +161,7 @@ class UserObserver
 
 #### 4. Strategy (Guards, Drivers)
 
-Autentifikacioni gards, keš drajveri, red drajveri — svi koriste Strategy obrazac:
+Autentifikacioni gards, cache drajveri, red drajveri — svi koriste Strategy obrazac:
 
 ```php
 // Different cache strategies, same interface

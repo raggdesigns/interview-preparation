@@ -8,9 +8,9 @@ Evolutivni dizajn je temeljni princip microservices arhitektura, koji naglašava
 - **Dekovani Servisi**: Dizajnirajte servise da budu labavo spojeni, omogućavajući im da evoluiraju nezavisno.
 - **Modularnost**: Održavajte visoku modularnost unutar servisa kako biste olakšali jednostavne izmene i poboljšanja.
 
-### Refaktorisanje i Tehnički Dug
+### Refactoring i Tehnički Dug
 
-Redovno refaktorišite microservices kako biste poboljšali kvalitet koda i rešili tehnički dug, osiguravajući da sistem ostane održiv i skalabilan.
+Redovno radite refactoring microservices-a kako biste poboljšali kvalitet koda i rešili tehnički dug, osiguravajući da sistem ostane održiv i skalabilan.
 
 ### Continuous Integration i Deployment (CI/CD)
 

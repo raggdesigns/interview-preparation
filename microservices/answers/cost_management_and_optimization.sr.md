@@ -18,9 +18,9 @@ Implementirajte autoscaling da biste automatski prilagodili broj instanci micros
 
 Razmotrite korišćenje serverless computing modela za microservices sa promenljivim opterećenjima ili malim prometom, smanjujući troškove plaćanjem samo za vreme izvršavanja funkcija.
 
-### Keširanje
+### Caching
 
-Koristite keširanje strateški da biste smanjili opterećenje na back-end servisima i bazama podataka, što može smanjiti broj potrebnih instanci i, posledično, troškove.
+Koristite caching strateški da biste smanjili opterećenje na back-end servisima i bazama podataka, što može smanjiti broj potrebnih instanci i, posledično, troškove.
 
 ### Deljeni Servisi
 
@@ -32,7 +32,7 @@ Iskoristite ekonomiju obima konsolidacijom infrastrukture i kupovinom resursa na
 
 ### Redovni Pregled i Optimizacija
 
-Kontinuirano pratite performanse servisa i troškove, i redovno pregledajte arhitekturalne odluke. Refaktorisanje ili re-arhitektura servisa može dovesti do značajnih ušteda.
+Kontinuirano pratite performanse servisa i troškove, i redovno pregledajte arhitekturalne odluke. Refactoring ili re-arhitektura servisa može dovesti do značajnih ušteda.
 
 ### Izazovi
 
@@ -53,4 +53,4 @@ Razmotrimo E-Learning Platformu koja koristi microservices za isporuku sadržaja
 - **Subscription Service**: Obrađuje planove pretplate i plaćanja.
 - **Analytics Service**: Prikuplja podatke o korišćenju za optimizaciju sadržaja.
 
-Implementacijom autoscaling-a, Content Delivery Service može prilagoditi svoje resurse tokom vršnih i van-vršnih sati, optimizujući troškove. Analytics Service, sa promenljivim opterećenjima, koristi serverless model, smanjujući operativne troškove. Deljeni mehanizmi keširanja smanjuju pozive prema backend servisu za User Management i Subscription servise, dodatno optimizujući korišćenje resursa i troškove.
+Implementacijom autoscaling-a, Content Delivery Service može prilagoditi svoje resurse tokom vršnih i van-vršnih sati, optimizujući troškove. Analytics Service, sa promenljivim opterećenjima, koristi serverless model, smanjujući operativne troškove. Deljeni mehanizmi caching-a smanjuju pozive prema backend servisu za User Management i Subscription servise, dodatno optimizujući korišćenje resursa i troškove.

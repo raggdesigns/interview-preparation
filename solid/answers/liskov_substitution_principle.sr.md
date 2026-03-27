@@ -29,7 +29,7 @@ letTheBirdFly(new Ostrich()); // Throws an exception
 
 U ovom primeru, `Ostrich` je podklasa klase `Bird`. Međutim, nisu sve ptice sposobne za let, što čini metodu `fly` neprikladnom za `Ostrich`, čime se krši LSP.
 
-### Refaktorisan kod koji primenjuje LSP
+### Refactored kod koji primenjuje LSP
 
 Da bi se poštovao LSP, trebalo bi da redizajniramo hijerarhiju klasa kako bismo osigurali da podklase mogu da se koriste umesto bazne klase.
 

@@ -73,7 +73,7 @@ class Book {
 }
 ```
 
-Za rešavanje ovih problema, razvojni tim treba da refaktoriše model, tretirajući `Book` kao Entitet umesto Value Object-a. Ovo uključuje dodeljivanje jedinstvenog identifikatora svakoj instanci `Book-a`, omogućavajući sistemu da razlikuje različite primerke istog naslova.
+Za rešavanje ovih problema, razvojni tim treba da uradi refactoring modela, tretirajući `Book` kao Entitet umesto Value Object-a. Ovo uključuje dodeljivanje jedinstvenog identifikatora svakoj instanci `Book-a`, omogućavajući sistemu da razlikuje različite primerke istog naslova.
 
 ### Zaključak
 

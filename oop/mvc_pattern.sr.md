@@ -1,4 +1,4 @@
-MVC (Model-View-Controller) je arhitekturalni obrazac koji razdvaja logiku aplikacije u tri međusobno povezane komponente. Uveden je 1970-ih za desktop aplikacije, a sada je standardni obrazac za veb frejmvorke kao što su Symfony, Laravel, Ruby on Rails i ASP.NET.
+MVC (Model-View-Controller) je arhitekturalni obrazac koji razdvaja logiku aplikacije u tri međusobno povezane komponente. Uveden je 1970-ih za desktop aplikacije, a sada je standardni obrazac za veb framework-e kao što su Symfony, Laravel, Ruby on Rails i ASP.NET.
 
 ### Tri komponente
 

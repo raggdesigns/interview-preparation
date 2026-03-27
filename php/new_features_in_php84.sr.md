@@ -2,7 +2,7 @@ PHP 8.4 je objavljen u novembru 2024. godine. Doneo je property hookove, asimetr
 
 ### Property hooks
 
-Property hookovi vam omogućavaju da definišete `get` i `set` ponašanje direktno na propertiju, bez pisanja posebnih getter/setter metoda:
+Property hookovi vam omogućavaju da definišete `get` i `set` ponašanje direktno na property-ju, bez pisanja posebnih getter/setter metoda:
 
 ```php
 class User
@@ -30,7 +30,7 @@ $user->email = 'John@Example.com'; // Stored as "john@example.com"
 echo $user->email; // "JOHN@EXAMPLE.COM" (get hook applies)
 ```
 
-Ovo zamenjuje uobičajeni obrazac privatnog propertija + javnih getter/setter metoda:
+Ovo zamenjuje uobičajeni obrazac privatnog property-ja + javnih getter/setter metoda:
 
 ```php
 // Before PHP 8.4
@@ -56,9 +56,9 @@ class User
 }
 ```
 
-#### Virtuelni propertiji
+#### Virtuelni properties
 
-Ako propertij ima samo `get` hook i nema `set`, postaje virtuelni (izračunati) propertij koji ne koristi memoriju za skladištenje:
+Ako property ima samo `get` hook i nema `set`, postaje virtuelni (izračunati) property koji ne koristi memoriju za skladištenje:
 
 ```php
 class Rectangle
@@ -79,7 +79,7 @@ echo $r->area; // 15
 
 ### Asimetrična vidljivost
 
-Možete postaviti različitu vidljivost za čitanje i pisanje propertija:
+Možete postaviti različitu vidljivost za čitanje i pisanje property-ja:
 
 ```php
 class BankAccount
@@ -101,11 +101,11 @@ echo $account->balance;  // OK — public read
 $account->owner = 'Bob'; // Error! Private write — only inside the class
 ```
 
-Ovo eliminiše potrebu za readonly u mnogim slučajevima, jer još uvek možete menjati propertij unutar klase.
+Ovo eliminiše potrebu za readonly u mnogim slučajevima, jer još uvek možete menjati property unutar klase.
 
 ### `new` bez zagrada
 
-Kada kreirate objekat i odmah pozivate metodu ili pristupate propertiju, više ne trebate dodatne zagrade:
+Kada kreirate objekat i odmah pozivate metodu ili pristupate property-ju, više ne trebate dodatne zagrade:
 
 ```php
 // Before PHP 8.4
@@ -272,4 +272,4 @@ Property hookovi rukuju validacijom i transformacijom inline. Asimetrična vidlj
 
 ### Zaključak
 
-PHP 8.4 je uveo property hookove (get/set logika na propertijima), asimetričnu vidljivost (`public private(set)`), `new` bez zagrada za lančanje, lazy objekte, nove funkcije za nizove (`array_find`, `array_any`, `array_all`), atribut `#[\Deprecated]` i multibyte trim funkcije. Property hookovi i asimetrična vidljivost su najveće promene — smanjuju boilerplate i čine klase čistijim.
+PHP 8.4 je uveo property hookove (get/set logika na properties), asimetričnu vidljivost (`public private(set)`), `new` bez zagrada za lančanje, lazy objekte, nove funkcije za nizove (`array_find`, `array_any`, `array_all`), atribut `#[\Deprecated]` i multibyte trim funkcije. Property hookovi i asimetrična vidljivost su najveće promene — smanjuju boilerplate i čine klase čistijim.

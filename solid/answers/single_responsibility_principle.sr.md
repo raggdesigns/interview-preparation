@@ -30,7 +30,7 @@ $userManager->createUser(['name' => 'John Doe']);
 $userManager->sendEmail('john.doe@example.com');
 ```
 
-## Refaktorisan kod koji primenjuje SRP
+## Refactored kod koji primenjuje SRP
 
 ```text
 class UserManager {
@@ -53,15 +53,15 @@ $userManager = new UserManager();
 $userManager->createUser(['name' => 'John Doe', 'email' => 'john.doe@example.com']);
 ```
 
-Da bi se poštovao SRP, gornji scenario možemo refaktorisati tako što ga podelimo u dve klase: jednu za upravljanje podacima korisnika (`UserManager`) i drugu za obradu obaveštenja korisnicima (`UserNotifier`).
+Da bi se poštovao SRP, gornji scenario možemo refactoring-ovati tako što ga podelimo u dve klase: jednu za upravljanje podacima korisnika (`UserManager`) i drugu za obradu obaveštenja korisnicima (`UserNotifier`).
 
 ## Objašnjenje
 
-Refaktorisanjem koda sada imamo dve klase, svaka sa jednom odgovornošću. `UserManager` je odgovoran samo za zadatke upravljanja korisnicima, a `UserNotifier` se bavi slanjem obaveštenja korisnicima. Ovo je u skladu sa SRP i čini naš kod modularnim, lakšim za razumevanje i održavanje.
+Refactoring-om koda sada imamo dve klase, svaka sa jednom odgovornošću. `UserManager` je odgovoran samo za zadatke upravljanja korisnicima, a `UserNotifier` se bavi slanjem obaveštenja korisnicima. Ovo je u skladu sa SRP i čini naš kod modularnim, lakšim za razumevanje i održavanje.
 
 ## Prednosti primene SRP
 
 - **Poboljšana modularnost**: Svaka klasa ima jasan, jedinstven fokus, što je čini lakšom za razumevanje i izmenu.
 - **Lakoća testiranja**: Manje klase sa jednom odgovornošću lakše je testirati jediničnim testovima.
 - **Niže sprezanje**: Razdvajanje klasa dovodi do fleksibilnijeg i lakšeg za održavanje koda.
-- **Lakše refaktorisanje i dodavanje funkcionalnosti**: Sa dobro razdvojenim odgovornostima, dodavanje novih funkcionalnosti ili menjanje postojećeg ponašanja postaje manje rizično i složeno.
+- **Lakši refactoring i dodavanje funkcionalnosti**: Sa dobro razdvojenim odgovornostima, dodavanje novih funkcionalnosti ili menjanje postojećeg ponašanja postaje manje rizično i složeno.

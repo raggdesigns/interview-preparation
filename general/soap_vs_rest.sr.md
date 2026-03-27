@@ -62,7 +62,7 @@ Accept: application/json
 | Obrada grešaka | SOAP Fault (XML) | HTTP status kodovi (404, 500...) |
 | Bezbednost | WS-Security (ugrađena) | HTTPS + OAuth/JWT |
 | Performanse | Sporije (overhead XML parsiranja) | Brže (JSON je lagan) |
-| Keširanje | Teško | Lako (GET zahtevi su kešibilni) |
+| Caching | Teško | Lako (GET zahtevi su cacheable) |
 | Kriva učenja | Visoka | Niska |
 
 ### WSDL — Web Services Description Language

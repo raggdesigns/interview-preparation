@@ -17,7 +17,7 @@ REST je definisan sa šest ograničenja. API koji ih sve prati naziva se "RESTfu
 |------------|---------|--------|
 | Client-Server | Klijent i server su nezavisni | Pretraživač ne zna za bazu podataka; API ne zna za UI |
 | Stateless | Svaki zahtev sadrži sve potrebne informacije | Server ne čuva sesiju između zahteva; token se šalje svaki put |
-| Cacheable | Odgovori moraju deklarisati da li su kešibilni | `Cache-Control: max-age=3600` na listi proizvoda |
+| Cacheable | Odgovori moraju deklarisati da li su cacheable | `Cache-Control: max-age=3600` na listi proizvoda |
 | Uniform Interface | Konzistentne URL i metod konvencije | `GET /products/42` uvek vraća proizvod #42 |
 | Layered System | Klijent ne može znati da li razgovara sa serverom ili proxy-jem | CDN, load balancer ili API gateway mogu biti između |
 | Code on Demand (opciono) | Server može slati izvršni kod | Retko se koristi; JavaScript preuzima pretraživač |
@@ -262,7 +262,7 @@ Standardni HTTP status kodovi:
 
 ### P: Šta čini API RESTful?
 
-**O:** API je RESTful kada prati šest REST ograničenja: **razdvajanje klijent-server**, **bezdržavnost** (nema serverske sesije), **kešibilnost** (odgovori ukazuju da li mogu biti keširani), **uniformni interfejs** (konzistentna URL struktura sa HTTP glagolima), **slojeviti sistem** (proxy-ji/CDN-ovi mogu biti između klijenta i servera) i opciono **kod na zahtev**. U praksi, većina API-ja dostiže Nivo 2 Richardson Maturity Model-a — koriste resurse kao URL-ove i HTTP glagole za akcije — ali preskaču Nivo 3 (HATEOAS).
+**O:** API je RESTful kada prati šest REST ograničenja: **razdvajanje klijent-server**, **bezdržavnost** (nema serverske sesije), **cacheable** (odgovori ukazuju da li mogu biti cached), **uniformni interfejs** (konzistentna URL struktura sa HTTP glagolima), **slojeviti sistem** (proxy-ji/CDN-ovi mogu biti između klijenta i servera) i opciono **kod na zahtev**. U praksi, većina API-ja dostiže Nivo 2 Richardson Maturity Model-a — koriste resurse kao URL-ove i HTTP glagole za akcije — ali preskaču Nivo 3 (HATEOAS).
 
 ### P: Kako dizajnirate URL-ove za ugnezđene resurse?
 

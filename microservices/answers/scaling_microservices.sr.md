@@ -35,8 +35,8 @@ Poboljšava vreme odgovora i smanjuje opterećenje na instancee servisa privreme
 ### Strategije
 
 - **Implementirati elastični load balancing**: Koristiti elastične load balancere koji se automatski prilagodjuju promenama u saobraćaju i broju instanci.
-- **Bezstanjski dizajn**: Dizajnirati servise da budu bezstanjski gde je moguće, pojednostavljujući skaliranje i deplojment.
-- **Distribuirano keširanje**: Koristiti distribuirana rešenja za keširanje radi nezavisnog skaliranja keširanja od instanci servisa.
+- **Bezstanjski dizajn**: Dizajnirati servise da budu bezstanjski gde je moguće, pojednostavljujući skaliranje i deployment.
+- **Distribuirani caching**: Koristiti distribuirana rešenja za caching radi nezavisnog skaliranja caching-a od instanci servisa.
 
 ### Primer: Platforma društvenih mreža
 

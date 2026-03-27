@@ -4,7 +4,7 @@ Usvajanje arhitekture mikroservisa ne utiče samo na tehnološke odluke, već i 
 
 ### Međufunkcionalni timovi
 
-Mikroservisi zagovaraju male, autonomne međufunkcionalne timove, od kojih je svaki odgovoran za jedan ili više specifičnih servisa. Ovi timovi poseduju sve veštine neophodne za životni ciklus servisa, od razvoja do deplojmenta i održavanja.
+Mikroservisi zagovaraju male, autonomne međufunkcionalne timove, od kojih je svaki odgovoran za jedan ili više specifičnih servisa. Ovi timovi poseduju sve veštine neophodne za životni ciklus servisa, od razvoja do deployment-a i održavanja.
 
 ### Konvejov zakon (Conway's Law)
 
@@ -21,14 +21,14 @@ DDD igra značajnu ulogu u strukturiranju timova i servisa. Uskladjivanjem timov
 ### Izazovi
 
 - **Komunikacioni overhead**: Kako se broj servisa i timova povećava, upravljanje komunikacijom postaje izazovno.
-- **Koordinacija**: Koordinacija deplojmenta i promena između timova zahteva efikasne strategije i alate.
+- **Koordinacija**: Koordinacija deployment-a i promena između timova zahteva efikasne strategije i alate.
 - **Konzistentnost**: Održavanje konzistentnosti praksi i tehnologija u svim timovima može biti teško.
 
 ### Strategije
 
 - **Vlasništvo nad servisima**: Dodeljivati jasno vlasništvo nad servisima specifičnim timovima, osiguravajući odgovornost i fokus.
 - **Komunikacija između timova**: Uspostaviti komunikacione kanale i redovne sinhronizacije između timova radi olakšavanja koordinacije i razmene znanja.
-- **Zajednički alati i prakse**: Usvojiti zajedničke alate i prakse u svim timovima radi pojednostavljivanja razvojnih i deplojment procesa.
+- **Zajednički alati i prakse**: Usvojiti zajedničke alate i prakse u svim timovima radi pojednostavljivanja razvojnih i deployment procesa.
 
 ### Primer: Platforma za finansijske usluge
 
@@ -39,4 +39,4 @@ Razmotrimo platformu za finansijske usluge koja koristi mikroservise za svoju ra
 - **Tim za detekciju prevara**: Razvija servise za detekciju i sprečavanje lažnih aktivnosti.
 - **Infrastrukturni tim**: Pruža podršku platformi i alatima za razvoj i operacije.
 
-Svaki tim radi autonomno, vlasnik je svojih servisa od koncepcije do deplojmenta, podržan zajedničkim infrastrukturnim timom koji osigurava konzistentne DevOps prakse. Ova struktura olakšava brzi razvoj i iteraciju, omogućavajući platformi da se brzo prilagodi promenljivim finansijskim regulativama i potrebama korisnika.
+Svaki tim radi autonomno, vlasnik je svojih servisa od koncepcije do deployment-a, podržan zajedničkim infrastrukturnim timom koji osigurava konzistentne DevOps prakse. Ova struktura olakšava brzi razvoj i iteraciju, omogućavajući platformi da se brzo prilagodi promenljivim finansijskim regulativama i potrebama korisnika.

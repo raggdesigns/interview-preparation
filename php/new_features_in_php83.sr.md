@@ -1,4 +1,4 @@
-PHP 8.3 je objavljen u novembru 2023. godine. Doneo je poboljšanja readonly propertijima, konstantama klase i dodao korisne nove funkcije.
+PHP 8.3 je objavljen u novembru 2023. godine. Doneo je poboljšanja readonly properties, konstantama klase i dodao korisne nove funkcije.
 
 ### Typed konstante klase
 
@@ -96,9 +96,9 @@ class Dog extends Animal
 }
 ```
 
-### Duboko kloniranje readonly propertija
+### Duboko kloniranje readonly properties
 
-U PHP 8.2, niste mogli menjati readonly propertije čak ni unutar `__clone()`. PHP 8.3 to ispravlja:
+U PHP 8.2, niste mogli menjati readonly properties čak ni unutar `__clone()`. PHP 8.3 to ispravlja:
 
 ```php
 readonly class Address
@@ -206,4 +206,4 @@ Ako neko kasnije preimenuje `handleRequest` u roditeljskoj klasi, atribut `#[Ove
 
 ### Zaključak
 
-PHP 8.3 je dodao typed konstante klase, `json_validate()` za brzu proveru JSON-a, atribut `#[Override]` za hvatanje prekinutih prepisivanja metoda, duboko kloniranje readonly propertija, dinamičko dohvatanje konstanti klase i nove Randomizer metode. Ove mogućnosti poboljšavaju bezbednost koda i čine svakodnevne zadatke jednostavnijim.
+PHP 8.3 je dodao typed konstante klase, `json_validate()` za brzu proveru JSON-a, atribut `#[Override]` za hvatanje prekinutih prepisivanja metoda, duboko kloniranje readonly properties, dinamičko dohvatanje konstanti klase i nove Randomizer metode. Ove mogućnosti poboljšavaju bezbednost koda i čine svakodnevne zadatke jednostavnijim.

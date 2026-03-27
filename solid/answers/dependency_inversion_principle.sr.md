@@ -50,13 +50,13 @@ class ElectricPowerSwitch {
 
 U ovom primeru, `ElectricPowerSwitch` direktno zavisi od konkretne klase `LightBulb`, čime se krši DIP.
 
-### Refaktorisan kod koji primenjuje DIP
+### Refactored kod koji primenjuje DIP
 
 Da bi se poštovao DIP, trebali bismo se oslanjati na apstrakcije umesto na konkretne klase.
 
 # Dependency Inversion Principle (DIP) — primeri koda sa detaljnim komentarima
 
-### Refaktorisan kod koji primenjuje DIP sa komentarima
+### Refactored kod koji primenjuje DIP sa komentarima
 
 ```php
 // Abstraction (Interface) - Demonstrates "Abstractions should not depend on details."
@@ -106,7 +106,7 @@ class ElectricPowerSwitch {
 }
 ```
 
-U ovim refaktorisanim primerima:
+U ovim refactored primerima:
 
 - Interfejs `SwitchableDeviceInterface` je apstrakcija od koje zavise i modul visokog nivoa (`ElectricPowerSwitch`)
   i modul niskog nivoa (`LightBulb`). Ovaj dizajn je u skladu sa DIP razdvajanjem modula jednih od drugih

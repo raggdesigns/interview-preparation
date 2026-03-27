@@ -18,7 +18,7 @@ Implementirati distribuirano praćenje radi praćenja puta zahteva kroz mikroser
 
 - **Složenost**: Distribuirana priroda mikroservisa uvodi složenost u agregiranju i korelaciji podataka iz više izvora.
 - **Obim**: Veliki obim podataka koji generišu mikroservisi može preopteretiti tradicionalne sisteme monitoringa i logovanja.
-- **Dinamično okruženje**: Dinamičko skaliranje i deplojment mikroservisa zahteva da se alati za observability automatski prilagodjuju promenama u sistemu.
+- **Dinamično okruženje**: Dinamičko skaliranje i deployment mikroservisa zahteva da se alati za observability automatski prilagodjuju promenama u sistemu.
 
 ### Strategije
 

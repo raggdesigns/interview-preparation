@@ -13,7 +13,7 @@ HTTP status kodovi su trocifeni brojevi koji govore klijentu šta se desilo sa n
 | 301 | Moved Permanently | Resurs je trajno premešten na novu URL adresu. Pretraživači i pretraživači ažuriraju svoje veze. |
 | 302 | Found | Resurs je privremeno na drugoj URL adresi. Klijent treba da nastavi da koristi originalnu URL adresu. |
 | 303 | See Other | Nakon POST-a, preusmerite na GET endpoint (npr. nakon slanja obrasca) |
-| 304 | Not Modified | Resurs se nije promenio od poslednjeg zahteva — koristite keširanu verziju |
+| 304 | Not Modified | Resurs se nije promenio od poslednjeg zahteva — koristite cached verziju |
 | 307 | Temporary Redirect | Kao 302 ali garantuje da je HTTP metoda sačuvana (POST ostaje POST) |
 | 308 | Permanent Redirect | Kao 301 ali garantuje da je HTTP metoda sačuvana |
 

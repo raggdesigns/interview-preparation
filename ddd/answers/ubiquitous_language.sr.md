@@ -6,7 +6,7 @@ Razmotrimo e-commerce aplikaciju da ilustrujemo koncept Ubiquitous Language. U o
 
 Kroz ove razgovore, mogu definisati termine kao što su:
 
-- **Product (Proizvod)**: Artikal koji je naveden za prodaju na e-commerce platformi. Ima svojstva poput naziva, opisa, cene i količine na stanju.
+- **Product (Proizvod)**: Artikal koji je naveden za prodaju na e-commerce platformi. Ima properties poput naziva, opisa, cene i količine na stanju.
 
 - **Order (Narudžbina)**: Zahtev koji je kupac napravio za kupovinu jednog ili više proizvoda. Narudžbina uključuje detalje poput datuma narudžbine, adrese za dostavu i statusa narudžbine (npr. pending, shipped, delivered).
 
@@ -14,7 +14,7 @@ Kroz ove razgovore, mogu definisati termine kao što su:
 
 - **Cart (Korpa)**: Kolekcija proizvoda koje kupac namerava da kupi. Korpa može biti ažurirana dodavanjem ili uklanjanjem proizvoda i pretvara se u narudžbinu kada kupac završi kupovinu.
 
-U ovom kontekstu, ovi termini imaju specifična značenja koja razumeju svi članovi tima. Na primer, kada programer radi na "Order" delu sistema, tačno razume šta je narudžbina, koja svojstva ima i kako se odnosi prema drugim entitetima kao što su proizvodi i kupci.
+U ovom kontekstu, ovi termini imaju specifična značenja koja razumeju svi članovi tima. Na primer, kada programer radi na "Order" delu sistema, tačno razume šta je narudžbina, koje properties ima i kako se odnosi prema drugim entitetima kao što su proizvodi i kupci.
 
 ### Prednosti Ubiquitous Language
 

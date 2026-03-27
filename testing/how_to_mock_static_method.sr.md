@@ -10,7 +10,7 @@ ponašanja.
 
 ### Rešenja za mockovanje statičkih metoda
 
-1. **Refaktorisanje za korišćenje Dependency Injection-a**: Jedan pristup za povećanje testabilnosti statičkih metoda jeste refaktorisanje
+1. **Refactoring za korišćenje Dependency Injection-a**: Jedan pristup za povećanje testabilnosti statičkih metoda jeste refactoring
    koda za korišćenje dependency injection-a, zamenom poziva statičkih metoda pozivima metoda na interfejsu ili nadklasi,
    koje se onda mogu mockirati.
 
@@ -20,9 +20,9 @@ ponašanja.
 ### Primer u PHP-u korišćenjem PHPUnit-a
 
 Od PHPUnit-a 9, direktna podrška za mockovanje statičkih metoda je ograničena i generalno se ne preporučuje. Međutim, možete zaobići
-ovo ograničenje refaktorisanjem ili korišćenjem biblioteka trećih strana poput Mockery-ja koje podržavaju mockovanje statičkih metoda.
+ovo ograničenje refactoring-om ili korišćenjem biblioteka trećih strana poput Mockery-ja koje podržavaju mockovanje statičkih metoda.
 
-**Pristup refaktorisanjem**:
+**Pristup refactoring-om**:
 
 Umesto direktnog pozivanja statičke metode unutar klase, možete apstrahovati funkcionalnost iza interfejsa i
 koristiti dependency injection da obezbedite bilo pravu implementaciju ili mock objekat tokom testiranja.
@@ -60,7 +60,7 @@ $consumer = new ConsumerClass($mock);
 
 **Korišćenje Mockery-ja za direktno mockovanje statičkih metoda**:
 
-Ako refaktorisanje nije izvodljivo i potrebno je direktno mockirati statičku metodu, možete koristiti Mockery, PHP mocking
+Ako refactoring nije izvodljiv i potrebno je direktno mockirati statičku metodu, možete koristiti Mockery, PHP mocking
 okvir koji podržava ovu funkcionalnost.
 
 ```php
@@ -79,6 +79,6 @@ ponašanje unapred definisanom povratnom vrednošću.
 ### Zaključak
 
 Mockovanje statičkih metoda zahteva pažljivo razmatranje zbog potencijalnog globalnog stanja i izazova postizanja
-izolacije u testovima. Kad god je moguće, refaktorišite prema korišćenju dependency injection-a radi poboljšanja testabilnosti.
+izolacije u testovima. Kad god je moguće, uradite refactoring prema korišćenju dependency injection-a radi poboljšanja testabilnosti.
 Kada je direktno mockovanje statičkih metoda neophodno, razmotrite korišćenje specijalizovanih alata poput Mockery-ja, razumevajući
 implikacije i ograničenja takvog pristupa.

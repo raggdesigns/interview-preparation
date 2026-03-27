@@ -30,7 +30,7 @@ U ovom primeru, čak i kada je `test()` pozvan na `ChildClass`, izlaz je "Parent
 
 Da bi se rešilo ovo ograničenje, PHP je uveo ključnu reč `static` za upotrebu umesto `self` kako bi se referencirala pozvana klasa, a ne klasa gde je metoda definisana.
 
-**Refaktorisani primer**:
+**Refactored primer**:
 
 ```php
 class ParentClass {
@@ -56,7 +56,7 @@ Sada `static::who()` ispravno identifikuje da je `ChildClass` bila pozvana klasa
 
 ### Ključne napomene
 
-- **Ključna reč `static::`**: Koristi se za pristup statičkim metodama ili propertijima u kontekstu klase koja je pozvana.
+- **Ključna reč `static::`**: Koristi se za pristup statičkim metodama ili properties u kontekstu klase koja je pozvana.
 - **Fleksibilnost u nasleđivanju**: Omogućava fleksibilnije prepisivanje metoda u hijerarhijama klasa.
 - **Slučajevi upotrebe**: Posebno korisno za factory patterne, singleton patterne u podklasama i sve situacije gde podklase mogu prepisivati statičke metode.
 - **Razmatranje performansi**: Imajte na umu da korišćenje late static bindings-a može imati blagi uticaj na performanse zbog dinamičke prirode određivanja pozvane klase.

@@ -89,7 +89,7 @@ X-Request-Id: abc-123
 | `Content-Length` | Veličina tela | `62` |
 | `Location` | URL novokreiranog resursa | `/api/users/42` |
 | `Set-Cookie` | Slanje kolačića klijentu | `session_id=abc; HttpOnly` |
-| `Cache-Control` | Pravila keširanja | `max-age=3600` |
+| `Cache-Control` | Pravila caching-a | `max-age=3600` |
 | `Access-Control-Allow-Origin` | CORS zaglavlje | `*` |
 
 #### 3. Telo

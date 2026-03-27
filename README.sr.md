@@ -10,7 +10,7 @@ Kolekcija beleški i odgovora za teme iz intervjua iz softverskog inženjerstva,
 | Folder | Opis |
 |--------|------|
 | [architecture/](architecture/questions.sr.md) | CQRS, Event Sourcing, Hexagonal, Onion, Reactor pattern |
-| [caching/](caching/questions.sr.md) | Redis, Memcached, dobre prakse kešovanja |
+| [caching/](caching/questions.sr.md) | Redis, Memcached, dobre prakse caching-a |
 | [ddd/](ddd/questions.sr.md) | Domain-Driven Design: bounded contexts, agregati, događaji, entiteti |
 | [general/](general/questions.sr.md) | Web osnove: HTTP, REST API, autentikacija, autorizacija |
 | [highload/](highload/questions.sr.md) | Optimizacija performansi, sharding, alati za analizu baze podataka |

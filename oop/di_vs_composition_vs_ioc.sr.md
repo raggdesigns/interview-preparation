@@ -119,7 +119,7 @@ $urgentAdmin = new NotificationService([
 
 ### Inversion of Control (IoC)
 
-IoC je **princip**, ne specifična tehnika. Znači da frejmvork kontroliše tok vašeg programa, a ne vaš kod. Pišete komponente, a frejmvork odlučuje kada da ih kreira, kada da ih pozove i kako da ih poveže.
+IoC je **princip**, ne specifična tehnika. Znači da framework kontroliše tok vašeg programa, a ne vaš kod. Pišete komponente, a framework odlučuje kada da ih kreira, kada da ih pozove i kako da ih poveže.
 
 **Bez IoC** — vaš kod kontroliše sve:
 
@@ -134,7 +134,7 @@ $registrationService = new RegistrationService($userRepo, $mailer);
 $registrationService->register('john@example.com', 'John');
 ```
 
-**Sa IoC** — frejmvork kontroliše kreiranje objekata i povezivanje:
+**Sa IoC** — framework kontroliše kreiranje objekata i povezivanje:
 
 ```php
 // Symfony — you only define the class and type-hint dependencies
@@ -164,16 +164,16 @@ class RegistrationService
 
 Drugi primeri IoC-a:
 
-- **Event dispatcher** — registrujete listenere, frejmvork ih poziva kada se događaji dese
-- **HTTP kernel** — pišete kontrolere, frejmvork ih poziva kada se ruta poklopi
-- **Lifecycle hooks** — frejmvork poziva `setUp()` i `tearDown()` u PHPUnit-u
+- **Event dispatcher** — registrujete listenere, framework ih poziva kada se događaji dese
+- **HTTP kernel** — pišete kontrolere, framework ih poziva kada se ruta poklopi
+- **Lifecycle hooks** — framework poziva `setUp()` i `tearDown()` u PHPUnit-u
 
 ### Kako DI, Kompozicija i IoC su Povezani
 
 ```text
 ┌─────────────────────────────────────────────────┐
 │  IoC (Princip)                                  │
-│  "Frejmvork kontroliše tok"                     │
+│  "Framework kontroliše tok"                     │
 │                                                 │
 │  ┌──────────────────┐  ┌────────────────────┐   │
 │  │  DI (Tehnika)    │  │ Event Dispatching  │   │
@@ -189,7 +189,7 @@ Drugi primeri IoC-a:
 └─────────────────────────────────────────────────┘
 ```
 
-- **IoC** je najširi koncept — princip koji kaže da frejmvork treba da kontroliše vaš kod, a ne obrnuto
+- **IoC** je najširi koncept — princip koji kaže da framework treba da kontroliše vaš kod, a ne obrnuto
 - **DI** je jedna specifična tehnika za postizanje IoC-a — umesto kreiranja zavisnosti, primate ih
 - **Kompozicija** se tiče strukture objekta ("ima") — nezavisna je od IoC-a, ali DI olakšava kompoziciju jer zavisnosti dolaze spolja
 
@@ -283,7 +283,7 @@ class InvoiceGenerator
 
 Problemi: ne može se testirati bez baze podataka, ne može se promeniti PDF biblioteka, ne može se promeniti provajder emaila, ranjivost SQL injekcije.
 
-Refaktorisano sa sva tri koncepta:
+Refactored sa sva tri koncepta:
 
 ```php
 // After — DI + Composition + IoC
@@ -315,6 +315,6 @@ Sada svaka zavisnost može biti zamenjena ili mock-ovana nezavisno. IoC kontejne
 
 ### Zaključak
 
-Dependency Injection je obrazac — klasa prima svoje zavisnosti umesto da ih kreira. Kompozicija je princip dizajna — izgradnja složenih objekata od jednostavnijih koristeći relacije "ima". Inversion of Control je arhitekturni princip — frejmvork kontroliše kreiranje objekata i tok programa, a ne vaš kod. DI je jedna tehnika za implementaciju IoC-a. Kompozicija radi nezavisno ali ima koristi od DI-ja jer zavisnosti dolaze spremne za upotrebu. U modernom PHP-u (Symfony, Laravel), sva tri rade zajedno: definirate klase sa type-hint konstruktorima (DI), komponujete ih od manjih saradnika (Kompozicija), a kontejner frejmvorka automatski kreira i povezuje sve (IoC).
+Dependency Injection je obrazac — klasa prima svoje zavisnosti umesto da ih kreira. Kompozicija je princip dizajna — izgradnja složenih objekata od jednostavnijih koristeći relacije "ima". Inversion of Control je arhitekturni princip — framework kontroliše kreiranje objekata i tok programa, a ne vaš kod. DI je jedna tehnika za implementaciju IoC-a. Kompozicija radi nezavisno ali ima koristi od DI-ja jer zavisnosti dolaze spremne za upotrebu. U modernom PHP-u (Symfony, Laravel), sva tri rade zajedno: definirate klase sa type-hint konstruktorima (DI), komponujete ih od manjih saradnika (Kompozicija), a kontejner framework-a automatski kreira i povezuje sve (IoC).
 
 > Pogledajte takođe: [Service Locator VS DI Container](service_locator_vs_di_container.sr.md), [Registry pattern VS Service Locator](registry_pattern_vs_service_locator.sr.md), [Kompozicija VS Nasleđivanje](composition_vs_inheritance.sr.md)

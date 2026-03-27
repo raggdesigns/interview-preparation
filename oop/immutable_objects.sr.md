@@ -2,14 +2,14 @@ Imutabilni objekti su objekti čije stanje se ne može menjati nakon što su kre
 
 ### Ključne karakteristike imutabilnih objekata
 
-- **Finalno stanje**: Jednom instanciran, polja ili svojstva imutabilnog objekta se ne mogu menjati.
+- **Finalno stanje**: Jednom instanciran, polja ili properties imutabilnog objekta se ne mogu menjati.
 - **Bezbednost niti**: Imutabilni objekti su prirodno bezbedni za niti jer se njihovo stanje ne može promeniti, eliminisuci potrebu za sinhronizacijom.
 - **Jednostavnost**: Pojednostavljuju razvoj jer je njihovo stanje uvek predvidljivo.
 
 ### Prednosti
 
 - **Lakoća upotrebe i bezbednost**: Imutabilni objekti su laki za upotrebu i razmatranje jer se njihovo stanje ne može neočekivano promeniti, smanjujući greške povezane sa promenama stanja.
-- **Pogodnost za keširanje**: Pošto se ne mogu menjati, imutabilni objekti su bezbedni za keširanje, što može značajno poboljšati performanse.
+- **Pogodnost za caching**: Pošto se ne mogu menjati, imutabilni objekti su bezbedni za caching, što može značajno poboljšati performanse.
 - **Bezbednost hash ključa**: Odlični su kao ključevi za mapu ili elementi skupa jer se njihov hash kod ne menja.
 
 ### Primer u PHP-u

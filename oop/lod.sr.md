@@ -1,4 +1,4 @@
-Demeterov zakon, poznat i kao Zakon Demetre (Law of Demeter, LoD) ili Princip minimalnog znanja, je smernica dizajnirana da promoviše labavo spajanje u softverskim dizajnima. Formulisan je na Northeastern University krajem 1980-ih, nazvan po grčkoj boginji Demetri, kao šaljivi nagoveštaj svog porekla. Princip naglašava da bi dati objekat trebalo da pretpostavi što manje o strukturi ili svojstvima svega ostalog sa čime interaguje, uključujući svoje podkomponente.
+Demeterov zakon, poznat i kao Zakon Demetre (Law of Demeter, LoD) ili Princip minimalnog znanja, je smernica dizajnirana da promoviše labavo spajanje u softverskim dizajnima. Formulisan je na Northeastern University krajem 1980-ih, nazvan po grčkoj boginji Demetri, kao šaljivi nagoveštaj svog porekla. Princip naglašava da bi dati objekat trebalo da pretpostavi što manje o strukturi ili properties svega ostalog sa čime interaguje, uključujući svoje podkomponente.
 
 ### Ključne tačke Demetrovog zakona
 

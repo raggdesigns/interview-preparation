@@ -11,8 +11,8 @@ razumljivosti koda.
 3. **Napišite kod**: Implementirajte funkcionalnost potrebnu da bi test prošao.
 4. **Ponovo pokrenite testove**: Ponovo pokrenite testove. Ako novi test prolazi, pređite na sledeću funkcionalnost.
    Ako ne, ispravite kod dok test ne prodje.
-5. **Refaktorišite**: Očistite novi kod, osiguravajući da se dobro uklapa u postojeći dizajn i da se pridržava
-   standarda kodiranja. Proverite da testovi i dalje prolaze nakon refaktorisanja.
+5. **Uradite refactoring**: Očistite novi kod, osiguravajući da se dobro uklapa u postojeći dizajn i da se pridržava
+   standarda kodiranja. Proverite da testovi i dalje prolaze nakon refactoring-a.
 
 Ovaj ciklus se ponavlja za svaki novi deo funkcionalnosti.
 
@@ -51,7 +51,7 @@ class Calculator {
 ```
 
 Nakon implementacije funkcije `add`, ponovnim pokretanjem testa trebalo bi da prodje. Sledeći korak bi bio
-refaktorisanje ako je potrebno, a zatim prelaz na sledeći deo funkcionalnosti ili poboljšanje.
+refactoring ako je potreban, a zatim prelaz na sledeći deo funkcionalnosti ili poboljšanje.
 
 ### Zaključak
 

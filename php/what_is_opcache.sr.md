@@ -15,7 +15,7 @@ Na intervjuima, ova tema testira da li razumete stvarne osnove performansi u pro
 Tok zahteva sa OPCache-om:
 
 1. Prvi zahtev kompajlira PHP fajl i skladišti opkodove u deljenu memoriju.
-2. Sledeći zahtevi ponovo koriste keširane opkodove.
+2. Sledeći zahtevi ponovo koriste cached opkodove.
 3. Troškovi procesora i latencija odziva opadaju jer se ponovljeno kompajliranje izbegava.
 
 ## Zašto je važno
@@ -37,19 +37,19 @@ opcache.revalidate_freq=2
 
 Kako brzo objasniti ove opcije:
 
-- `memory_consumption`: veličina keša za opkodove
-- `max_accelerated_files`: broj keširanih skripti
+- `memory_consumption`: veličina cache-a za opkodove
+- `max_accelerated_files`: broj cached skripti
 - `validate_timestamps` i `revalidate_freq`: kako se detektuju promene koda
 
 ## Razmatranja pri uvođenju
 
 - U razvoju, validacija timestamp-a je obično omogućena.
-- U produkciji, timovi često smanjuju provere i resetuju keš tokom uvođenja.
+- U produkciji, timovi često smanjuju provere i resetuju cache tokom uvođenja.
 - Nakon uvođenja, zagrejte kritične rute da biste izbegli skokove latencije pri prvom pogotku.
 
 ## Česte greške
 
-- Previše mali keš uzrokuje česta izbacivanja.
+- Previše mali cache uzrokuje česta izbacivanja.
 - Velika baza koda sa niskim `max_accelerated_files` smanjuje stopu pogodaka.
 - Netačan proces uvođenja može privremeno posluživati zastareli kod.
 

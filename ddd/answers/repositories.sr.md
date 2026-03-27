@@ -39,13 +39,13 @@ Ovaj pristup čvrsto spaja domenski model sa mehanizmom pristupa podacima, otež
 
 ### Korektivna akcija
 
-Korektivna akcija uključuje refaktorisanje logike pristupa podacima iz domenskih entiteta ili servisa u namenske klase repozitorijuma. Domenski entiteti treba da se fokusiraju na poslovnu logiku, dok repozitorijumi obrađuju sve operacije persistencije:
+Korektivna akcija uključuje refactoring logike pristupa podacima iz domenskih entiteta ili servisa u namenske klase repozitorijuma. Domenski entiteti treba da se fokusiraju na poslovnu logiku, dok repozitorijumi obrađuju sve operacije persistencije:
 
 1. **Definiši interfejs repozitorijuma** koji odražava operacije nalik kolekcijama koje domenski model treba za interakciju sa domenskim entitetima.
 2. **Implementiraj repozitorijum** u infrastrukturnom sloju, gde koristi specifičan mehanizam pristupa podacima (ORM, SQL, itd.) za ispunjavanje operacija repozitorijuma.
 3. **Injektuj implementaciju repozitorijuma** u domenske servise ili aplikacione servise koji trebaju da interaguju sa domenskim entitetima, održavajući razdvajanje između domenke logike i logike pristupa podacima.
 
-#### Nakon refaktorisanja
+#### Nakon refactoring-a
 
 Klasa `Post` se fokusira isključivo na domenku logiku, a posebni `PostRepository` obrađuje sav pristup podacima, pridržavajući se interfejsa repozitorijuma definisanog gore.
 

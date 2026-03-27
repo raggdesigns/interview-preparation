@@ -1,4 +1,4 @@
-Magične metode su posebne metode u PHP-u koje počinju dvostrukim donjim crtama (`__`). PHP ih automatski poziva u određenim situacijama. Ne pozivate ih direktno — aktiviraju se određenim radnjama kao što su kreiranje objekta, pristup propertiju ili konverzija objekta u string.
+Magične metode su posebne metode u PHP-u koje počinju dvostrukim donjim crtama (`__`). PHP ih automatski poziva u određenim situacijama. Ne pozivate ih direktno — aktiviraju se određenim radnjama kao što su kreiranje objekta, pristup property-ju ili konverzija objekta u string.
 
 ### Lista magičnih metoda
 
@@ -6,10 +6,10 @@ Magične metode su posebne metode u PHP-u koje počinju dvostrukim donjim crtama
 |--------|----------------|
 | `__construct()` | Kada se kreira novi objekat |
 | `__destruct()` | Kada se objekat uništava |
-| `__get($name)` | Kada se čita propertij koji ne postoji ili nije dostupan |
-| `__set($name, $value)` | Kada se piše u propertij koji ne postoji ili nije dostupan |
-| `__isset($name)` | Kada se `isset()` ili `empty()` pozove na nedostupnom propertiju |
-| `__unset($name)` | Kada se `unset()` pozove na nedostupnom propertiju |
+| `__get($name)` | Kada se čita property koji ne postoji ili nije dostupan |
+| `__set($name, $value)` | Kada se piše u property koji ne postoji ili nije dostupan |
+| `__isset($name)` | Kada se `isset()` ili `empty()` pozove na nedostupnom property-ju |
+| `__unset($name)` | Kada se `unset()` pozove na nedostupnom property-ju |
 | `__call($name, $args)` | Kada se poziva metoda koja ne postoji ili nije dostupna |
 | `__callStatic($name, $args)` | Isto kao `__call` ali za statičke metode |
 | `__toString()` | Kada se objekat koristi kao string (npr. u `echo`) |
@@ -48,7 +48,7 @@ $db = new DatabaseConnection('localhost', 'root', 'secret'); // "Connected to da
 
 #### `__get()` i `__set()`
 
-Ove metode presreću pristup propertijima koji ne postoje ili su privatni/zaštićeni.
+Ove metode presreću pristup properties koji ne postoje ili su privatni/zaštićeni.
 
 ```php
 class Config
@@ -180,4 +180,4 @@ echo $log; // "[2024-01-15 10:30:00] ERROR: Database connection failed"
 
 ### Zaključak
 
-Magične metode vam omogućavaju da kontrolišete kako se PHP objekti ponašaju u posebnim situacijama — kada se kreiraju, uništavaju, štampaju, kloniraju ili kada neko pristupa nedostajućim propertijima ili metodama. Moćne su, ali treba ih koristiti pažljivo jer mogu otežati razumevanje koda. Najčešće korišćene su `__construct()`, `__toString()`, `__get()`/`__set()` i `__clone()`.
+Magične metode vam omogućavaju da kontrolišete kako se PHP objekti ponašaju u posebnim situacijama — kada se kreiraju, uništavaju, štampaju, kloniraju ili kada neko pristupa nedostajućim properties ili metodama. Moćne su, ali treba ih koristiti pažljivo jer mogu otežati razumevanje koda. Najčešće korišćene su `__construct()`, `__toString()`, `__get()`/`__set()` i `__clone()`.

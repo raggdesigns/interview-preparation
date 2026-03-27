@@ -198,7 +198,7 @@ final class CheckoutService
    - Nikada slepo ne ponavljajte ne-idempotentne operacije.
 
 3. **Dizajn fallback-a**
-   - Odlučite o poslovno bezbednom fallback-u: keširani podaci, odložena obrada, delimičan odgovor, ili eksplicitno otkazivanje.
+   - Odlučite o poslovno bezbednom fallback-u: cached podaci, odložena obrada, delimičan odgovor, ili eksplicitno otkazivanje.
    - Neka ponašanje fallback-a bude predvidivo za klijente.
 
 4. **Podešavanje praga**

@@ -145,7 +145,7 @@ $service->createOrder($data);
 
 Postoji nekoliko slučajeva gde je Service Locator-slični obrazac prihvatljiv:
 
-1. **Migracija legacy koda** — kada postepeno refaktorišete na DI
+1. **Migracija legacy koda** — kada postepeno radite refactoring na DI
 2. **Service subscribers** — Symfony-jev `ServiceSubscriberInterface` je kontrolisana forma Service Locator-a za performanse (leno učitavanje retko korišćenih servisa)
 
 ```php
@@ -192,7 +192,7 @@ class InvoiceService
 }
 ```
 
-Refaktorišete ga da koristi DI:
+Radite refactoring da koristi DI:
 
 ```php
 class InvoiceService

@@ -4,7 +4,7 @@
 
 - [Kako Mocks rade ispod haube](how_mocks_work_under_the_hood.sr.md)
 - [Kako mock-ovati statičnu metodu](how_to_mock_static_method.sr.md)
-- [Kako mock-ovati svojstvo objekta koje je kreirano interno (unutar konstruktora/metode)](how_to_mock_an_object_property_that_was_created_internally_inside_constructor_method.sr.md)
+- [Kako mock-ovati property objekta koji je kreiran interno (unutar konstruktora/metode)](how_to_mock_an_object_property_that_was_created_internally_inside_constructor_method.sr.md)
 - [Kako mock-ovati spoljni API (dva načina)](how_to_mock_external_api_two_ways.sr.md)
 - [Symfony podešavanja za testiranje](symfony_testing_settings.sr.md)
 - [Kako mock-ovati final klasu](mocking_final_classes.sr.md)

@@ -17,7 +17,7 @@ Na primer, ako validaciona logika koja pripada domenskom modelu (poput osiguranj
 
 ### Korektivna akcija
 
-Korektivna akcija bi uključivala refaktorisanje pogrešno postavljene poslovne logike nazad u domenski sloj. U našem primeru, to znači premeštanje validacione logike za ukupan iznos narudžbine u odgovarajući domenski servis ili entitet unutar **Domenskog sloja**. Ovo osigurava da su poslovna pravila enkapsulirana unutar domenskog modela, gde i pripadaju, poboljšavajući održivost i razumljivost koda.
+Korektivna akcija bi uključivala refactoring pogrešno postavljene poslovne logike nazad u domenski sloj. U našem primeru, to znači premeštanje validacione logike za ukupan iznos narudžbine u odgovarajući domenski servis ili entitet unutar **Domenskog sloja**. Ovo osigurava da su poslovna pravila enkapsulirana unutar domenskog modela, gde i pripadaju, poboljšavajući održivost i razumljivost koda.
 
 ### Zaključak
 

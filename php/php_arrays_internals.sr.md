@@ -165,7 +165,7 @@ $first = $queue->dequeue();  // 'job1' — O(1)
 
 ### Realni scenario
 
-Gradite sloj keširanja koji skladišti podatke o korisnicima u memoriji tokom zahteva:
+Gradite sloj za caching koji skladišti podatke o korisnicima u memoriji tokom zahteva:
 
 ```php
 // Bad approach — searching by value is O(n) per lookup

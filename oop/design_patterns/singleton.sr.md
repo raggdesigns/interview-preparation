@@ -91,7 +91,7 @@ Uprkos nedostacima, Singleton ima legitimnu upotrebu:
 1. **Skup konekcija sa bazom podataka** — želite tačno jedan skup konekcija deljenih kroz aplikaciju
 2. **Konfiguracija** — konfiguracija aplikacije učitana jednom i deljena
 3. **Pristup hardveru** — jedinstven pristup štampaču, serijskom portu, itd.
-4. **Keširanje u memoriji** — deljeni keš unutar jednog zahteva
+4. **Caching u memoriji** — deljeni cache unutar jednog zahteva
 
 > Vidi takođe: [Pozitivni primeri upotrebe Singleton obrasca](../positive_examples_of_singleton_pattern_usage.sr.md) za više detalja.
 

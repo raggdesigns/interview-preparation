@@ -250,7 +250,7 @@ Zbog toga se PHP često naziva "shared-nothing arhitekturom" — svaki zahtev je
 
 ### P: Šta su race conditions i kako ih PHP izbegava?
 
-**O:** Race condition nastaje kada dve niti istovremeno pristupaju deljenom promenljivom stanju, uzrokujući nepredvidljive rezultate. PHP uglavnom izbegava ovo jer je svaki FPM worker zasebni proces sa sopstvenom memorijom — nema ničeg deljenog za konkurenciju. Međutim, race conditions se i dalje mogu pojaviti na **nivou baze podataka** (dva zahteva ažuriraju isti red) ili sa deljenim resursima kao što su fajlovi i keš. Ovo se rešava zaključavanjem, transakcijama i atomičnim operacijama, ne PHP jezičkim funkcionalnostima.
+**O:** Race condition nastaje kada dve niti istovremeno pristupaju deljenom promenljivom stanju, uzrokujući nepredvidljive rezultate. PHP uglavnom izbegava ovo jer je svaki FPM worker zasebni proces sa sopstvenom memorijom — nema ničeg deljenog za konkurenciju. Međutim, race conditions se i dalje mogu pojaviti na **nivou baze podataka** (dva zahteva ažuriraju isti red) ili sa deljenim resursima kao što su fajlovi i cache. Ovo se rešava zaključavanjem, transakcijama i atomičnim operacijama, ne PHP jezičkim funkcionalnostima.
 
 ## Zaključak
 

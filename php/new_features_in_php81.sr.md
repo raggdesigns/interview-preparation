@@ -65,7 +65,7 @@ echo Suit::Hearts->isRed(); // true
 
 ### Readonly properties
 
-Propertij koji se može postaviti samo jednom i ne može se menjati nakon toga:
+Property koji se može postaviti samo jednom i ne može se menjati nakon toga:
 
 ```php
 class User

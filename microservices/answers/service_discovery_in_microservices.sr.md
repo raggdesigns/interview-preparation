@@ -37,5 +37,5 @@ Razmotrimo platformu za strimovanje videa koja koristi mikroservise za svoju arh
 
 Sa otkrivanjem servisa na mestu, servis za preporuke može dinamički otkrivati i komunicirati sa servisom za sadržaj
 i servisom za korisničke profile radi generisanja preporuka. Ovo omogućava platformi da se prilagodjava promenama,
-kao što su deplojment novih instanci servisa ili kvar postojećih, osiguravajući neprekidnu i optimizovanu uslugu
+kao što su deployment novih instanci servisa ili kvar postojećih, osiguravajući neprekidnu i optimizovanu uslugu
 korisnicima.

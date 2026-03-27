@@ -1,8 +1,8 @@
-PHP 8.2 je objavljen u decembru 2022. godine. Fokusirao se na bezbednije klase, zastarevanje dinamičkih propertija i dodavanje novih mogućnosti tipova.
+PHP 8.2 je objavljen u decembru 2022. godine. Fokusirao se na bezbednije klase, zastarevanje dinamičkih properties i dodavanje novih mogućnosti tipova.
 
 ### Readonly klase
 
-Umesto označavanja svakog propertija kao `readonly`, možete celu klasu učiniti readonly:
+Umesto označavanja svakog property-ja kao `readonly`, možete celu klasu učiniti readonly:
 
 ```php
 // PHP 8.1 — mark each property
@@ -24,7 +24,7 @@ readonly class Point
 }
 ```
 
-U readonly klasi, svi propertiji su automatski readonly. Ne možete dodati propertije koji nisu readonly ili propertije bez tipa.
+U readonly klasi, svi properties su automatski readonly. Ne možete dodati properties koji nisu readonly ili properties bez tipa.
 
 ### Disjunktivni normalni oblik (DNF) tipova
 
@@ -41,9 +41,9 @@ function process((Countable&Iterator)|null $data): void
 }
 ```
 
-### Zastarevanje dinamičkih propertija
+### Zastarevanje dinamičkih properties
 
-Kreiranje propertija koji nisu deklarisani u klasi sada je zastarelo:
+Kreiranje properties koji nisu deklarisani u klasi sada je zastarelo:
 
 ```php
 class User
@@ -56,7 +56,7 @@ $user->name = 'John';    // OK — declared property
 $user->age = 30;          // Deprecated in PHP 8.2! Not declared in the class
 ```
 
-Ako i dalje trebate dinamičke propertije, koristite atribut `#[AllowDynamicProperties]`:
+Ako i dalje trebate dinamičke properties, koristite atribut `#[AllowDynamicProperties]`:
 
 ```php
 #[AllowDynamicProperties]
@@ -211,4 +211,4 @@ $total->amount = 0; // Error: Cannot modify readonly property
 
 ### Zaključak
 
-PHP 8.2 je dodao readonly klase, DNF tipove (kombinovanje union i intersection tipova), zastarevanje dinamičkih propertija, dozvolio konstante u traitovima, uveo `true`/`false`/`null` kao samostalne tipove, dodao `#[SensitiveParameter]` za bezbednost i novu Random ekstenziju. Mogućnost readonly klase je posebno važna za izgradnju value objekata i DTO-ova.
+PHP 8.2 je dodao readonly klase, DNF tipove (kombinovanje union i intersection tipova), zastarevanje dinamičkih properties, dozvolio konstante u traitovima, uveo `true`/`false`/`null` kao samostalne tipove, dodao `#[SensitiveParameter]` za bezbednost i novu Random ekstenziju. Mogućnost readonly klase je posebno važna za izgradnju value objekata i DTO-ova.

@@ -91,13 +91,13 @@ Evo šta se dešava korak po korak kada pokrenete `composer install`:
 
 2. **Provera već instaliranih paketa** — Composer gleda u `vendor/` direktorijum šta je već instalirano. Poredi instalirane pakete sa lock datotekom.
 
-3. **Preuzimanje nedostajućih paketa** — Za pakete koji još nisu instalirani, Composer ih preuzima iz konfigurisanog repozitorijuma (obično Packagist) ili iz keša.
+3. **Preuzimanje nedostajućih paketa** — Za pakete koji još nisu instalirani, Composer ih preuzima iz konfigurisanog repozitorijuma (obično Packagist) ili iz cache-a.
 
 4. **Instalacija paketa u `vendor/`** — Preuzeti paketi se raspakuju u `vendor/` direktorijum, svaki u sopstvenom folderu (npr. `vendor/symfony/http-foundation/`).
 
 5. **Generisanje autoloader-a** — Composer kreira `vendor/autoload.php` i datoteke u `vendor/composer/`. Ovaj autoloader mapira namespace-ove i nazive klasa na putanje datoteka.
 
-6. **Pokretanje post-install skripti** — Ako `composer.json` definiše skripte za `post-install-cmd` događaj, one se sada pokreću. Symfony, na primer, čisti keš i instalira assete u ovom koraku.
+6. **Pokretanje post-install skripti** — Ako `composer.json` definiše skripte za `post-install-cmd` događaj, one se sada pokreću. Symfony, na primer, čisti cache i instalira assete u ovom koraku.
 
 ```text
 composer install

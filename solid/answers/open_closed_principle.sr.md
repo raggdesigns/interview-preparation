@@ -28,9 +28,9 @@ echo $reportGenerator->generateReport('Report Content', 'HTML');
 
 U ovom primeru, svaki put kada je potreban novi format izveštaja, klasa `ReportGenerator` mora da se modifikuje, čime se krši OCP.
 
-### Refaktorisan kod koji primenjuje Open/Closed Principle
+### Refactored kod koji primenjuje Open/Closed Principle
 
-Da bi se poštovao OCP, možemo refaktorisati kod definisanjem zajedničkog interfejsa za generisanje izveštaja i proširivanjem za različite formate izveštaja. Ovaj pristup omogućava dodavanje novih formata bez modifikacije postojeće baze koda.
+Da bi se poštovao OCP, možemo refactoring-ovati kod definisanjem zajedničkog interfejsa za generisanje izveštaja i proširivanjem za različite formate izveštaja. Ovaj pristup omogućava dodavanje novih formata bez modifikacije postojeće baze koda.
 
 ```php
 interface ReportGeneratorInterface {
@@ -59,7 +59,7 @@ printReport(new JsonReportGenerator(), 'Report Content');
 
 ### Objašnjenje
 
-U refaktorisanom kodu:
+U refactored kodu:
 
 - `ReportGeneratorInterface` definiše standard za generisanje izveštaja.
 - `HtmlReportGenerator` i `JsonReportGenerator` implementiraju ovaj interfejs, svaki obrađujući određeni format izveštaja.

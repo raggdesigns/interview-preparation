@@ -1,8 +1,8 @@
-Reflection u PHP-u je skup klasa koje vam omogućavaju da pregledate strukturu koda pri pokretanju. Možete ispitivati klase, metode, propertije, parametre i još mnogo toga — bez otvaranja izvornog koda. Zamislite to kao PHP koji gleda sebe u ogledalo.
+Reflection u PHP-u je skup klasa koje vam omogućavaju da pregledate strukturu koda pri pokretanju. Možete ispitivati klase, metode, properties, parametre i još mnogo toga — bez otvaranja izvornog koda. Zamislite to kao PHP koji gleda sebe u ogledalo.
 
 ### Šta Reflection može da uradi?
 
-- Saznati koje metode i propertije klasa ima
+- Saznati koje metode i properties klasa ima
 - Proveriti parametre metoda (nazive, tipove, podrazumevane vrednosti)
 - Čitati PHP atribute (anotacije)
 - Pristupiti privatnim/zaštićenim članovima
@@ -121,7 +121,7 @@ function validate(object $form): array
 }
 ```
 
-### Praktična upotreba 3: Pristup privatnim propertijima u testovima
+### Praktična upotreba 3: Pristup privatnim properties u testovima
 
 ```php
 class UserServiceTest extends TestCase

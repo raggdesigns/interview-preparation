@@ -44,7 +44,7 @@
 - [Nepromenljivi objekti](immutable_objects.sr.md)
 - [Zašto servisne klase treba da budu bez stanja](stateless_service.sr.md)
 - [KISS, DRY, YAGNI - objasnite skraćenice](kiss_dry_yagni.sr.md)
-- [Refaktorisanje legacy koda: tehnike, obrasci, pristup](refactoring_legacy_code.sr.md)
+- [Refactoring legacy koda: tehnike, obrasci, pristup](refactoring_legacy_code.sr.md)
 - [DTO vs Command](dto_vs_command.sr.md) (napomena: dto se obično serijalizuje, ali command objekat ne)
 - [Separation of Concerns](soc.sr.md)
 - [Reactor obrazac](../architecture/reactor_pattern.sr.md)

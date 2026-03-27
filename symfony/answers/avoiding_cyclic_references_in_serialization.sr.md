@@ -4,7 +4,7 @@ Ciklične reference nastaju pri serijalizaciji objekata koji se međusobno refer
 
 ## Korišćenje grupa serijalizacije
 
-Grupe serijalizacije u bibliotekama kao što su JMS Serializer ili Symfony Serializer omogućavaju vam da specificirate koje svojstvê objekta treba serijalizovati. Kategorizacijom ovih svojstava u grupe, možete kontrolisati dubinu serijalizacije i izbegavati ciklične reference.
+Grupe serijalizacije u bibliotekama kao što su JMS Serializer ili Symfony Serializer omogućavaju vam da specificirate koje properties objekta treba serijalizovati. Kategorizacijom ovih properties u grupe, možete kontrolisati dubinu serijalizacije i izbegavati ciklične reference.
 
 ### Primer
 

@@ -179,7 +179,7 @@ class ProductController
 }
 ```
 
-Kada refaktorišete na DI Container, i Registry i Service Locator postaju nepotrebni:
+Kada uradite refactoring na DI Container, i Registry i Service Locator postaju nepotrebni:
 
 ```php
 // Symfony — dependencies are injected automatically

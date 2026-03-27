@@ -78,7 +78,7 @@ Symfony i Doctrine koriste ove dizajn obrasce da bi pružili robustan, fleksibil
 - **Singleton**: Kontejner servisa deluje slično Singletonu unutar opsega svakog zahteva.
 - **Service Locator**: Koristi se unutar `\Symfony\Component\DependencyInjection\ServiceLocator` za dinamičko preuzimanje servisa.
 - **Decorator**: Klase koje se mogu pratiti kao `TraceableEventDispatcher` implementiraju Decorator obrazac za poboljšanu funkcionalnost.
-- **Adapter**: Apstrahuje razlike u drajverima keša, omogućavajući uniformno upravljanje kešom kroz različite pozadine.
+- **Adapter**: Apstrahuje razlike u cache drajverima, omogućavajući uniformno upravljanje cache-om kroz različite pozadine.
 - **Observer+Mediator**: `EventDispatcher` kombinuje ove obrasce za rukovanje događajima i komunikaciju servisa.
 - **Command Bus**: Messenger komponenta služi kao command bus, rukujući slanjem i obradom komandi.
 - **Factory**: Ekstenzivno se koristi za kreiranje i konfiguraciju servisa, kao u `ArgumentMetadataFactory`.

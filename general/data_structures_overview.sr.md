@@ -266,7 +266,7 @@ RPOP order_queue  # Gets the first message added (FIFO)
 
 | Struktura | Pristup | Pretraga | Umetanje | Brisanje | Primena |
 |-----------|---------|----------|----------|----------|---------|
-| Hash tabela | O(1) po ključu | O(n) po vrednosti | O(1) | O(1) | Konfiguracija, keš, tabele pretraživanja |
+| Hash tabela | O(1) po ključu | O(n) po vrednosti | O(1) | O(1) | Konfiguracija, cache, tabele pretraživanja |
 | Linked list | O(n) | O(n) | O(1) na krajevima | O(1) ako je pronađen | Radno opterećenje sa intenzivnim umetanjem |
 | Binary Search Tree | O(log n) | O(log n) | O(log n) | O(log n) | Indeksi baza, sortirani podaci |
 | Stek | O(1) samo vrh | O(n) | O(1) | O(1) | Undo, call stack, parsiranje |

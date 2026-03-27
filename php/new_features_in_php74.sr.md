@@ -2,7 +2,7 @@ PHP 7.4 je objavljen u novembru 2019. godine. Uveo je nekoliko važnih mogućnos
 
 ### Typed properties
 
-Pre PHP 7.4, propertiji klase nisu mogli imati deklaracije tipova. Sada mogu:
+Pre PHP 7.4, properties klase nisu mogli imati deklaracije tipova. Sada mogu:
 
 ```php
 class User
@@ -142,7 +142,7 @@ class DogFactory extends AnimalFactory
 
 ### Realni scenario
 
-Refaktorišete servis za registraciju korisnika. Pre PHP 7.4, kod izgleda ovako:
+Radite refactoring servisa za registraciju korisnika. Pre PHP 7.4, kod izgleda ovako:
 
 ```php
 class RegistrationService

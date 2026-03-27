@@ -35,7 +35,7 @@ class RobotWorker implements WorkerInterface {
 
 U ovom primeru, `RobotWorker` je primoran da implementira metodu `eat`, koju ne koristi, čime se krši ISP.
 
-### Refaktorisan kod koji primenjuje ISP
+### Refactored kod koji primenjuje ISP
 
 Da bi se poštovao ISP, trebalo bi da definišemo više, specifičnijih interfejsa.
 
@@ -74,5 +74,5 @@ class RobotWorker implements WorkableInterface {
 ### Prednosti primene ISP
 
 - **Smanjeni neželjeni efekti**: Promene u nepovezanim interfejsima ne utiču na klijente.
-- **Povećana fleksibilnost sistema**: Olakšava refaktorisanje, promenu i ponovnu implementaciju sistema.
+- **Povećana fleksibilnost sistema**: Olakšava refactoring, promenu i ponovnu implementaciju sistema.
 - **Lakše za razumevanje**: Klijenti nisu primorani da implementiraju interfejse koje ne koriste, čineći bazu koda čistijom i lakšom za razumevanje.

@@ -1,8 +1,8 @@
-U kontekstu rešenja za keširanje za web aplikacije, Memcache i Memcached se često pominju. Uprkos sličnosti u imenima, oni se odnose na dva povezana ali različita entiteta. Razumevanje razlika između njih je ključno za programere kada odlučuju koji koristiti u projektima.
+U kontekstu rešenja za caching za web aplikacije, Memcache i Memcached se često pominju. Uprkos sličnosti u imenima, oni se odnose na dva povezana ali različita entiteta. Razumevanje razlika između njih je ključno za programere kada odlučuju koji koristiti u projektima.
 
 ### Memcache
 
-Memcache, koji se često pominje u kontekstu PHP-a, je visoko-performansni distribuirani sistem keširanje u memoriji dizajniran za ubrzavanje dinamičnih web aplikacija smanjujući opterećenje baze podataka. Odnosi se na celu tehnologiju i ekosistem oko rešenja keširanje koji koriste Memcache protokol.
+Memcache, koji se često pominje u kontekstu PHP-a, je visoko-performansni distribuirani sistem za caching u memoriji dizajniran za ubrzavanje dinamičnih web aplikacija smanjujući opterećenje baze podataka. Odnosi se na celu tehnologiju i ekosistem oko rešenja za caching koji koriste Memcache protokol.
 
 **Ključne karakteristike**:
 
@@ -12,7 +12,7 @@ Memcache, koji se često pominje u kontekstu PHP-a, je visoko-performansni distr
 
 ### Memcached
 
-Memcached je ekstenzija i demon za PHP koji pruža interfejs prema Memcached sistemu keširanje. Dok "Memcache" može takođe referisati na demon, "Memcached" posebno referira na noviju PHP ekstenziju koja nudi više funkcionalnosti i bolje performanse.
+Memcached je ekstenzija i demon za PHP koji pruža interfejs prema Memcached sistemu za caching. Dok "Memcache" može takođe referisati na demon, "Memcached" posebno referira na noviju PHP ekstenziju koja nudi više funkcionalnosti i bolje performanse.
 
 **Ključne karakteristike**:
 
@@ -27,7 +27,7 @@ Memcached je ekstenzija i demon za PHP koji pruža interfejs prema Memcached sis
 
 - **Skup funkcionalnosti**: Memcached generalno nudi nadskup funkcionalnosti pronađenih u Memcache-u, uključujući neke napredne opcije kao što je podrška za binarni protokol, što može dovesti do efikasnije mrežne upotrebe.
 
-- **Performanse**: Dok su oba dizajnirana kao visoko-performansna rešenja keširanje, Memcached-ova upotreba libmemcached biblioteke može ponuditi bolje performanse i efikasnost u određenim scenarijima.
+- **Performanse**: Dok su oba dizajnirana kao visoko-performansna rešenja za caching, Memcached-ova upotreba libmemcached biblioteke može ponuditi bolje performanse i efikasnost u određenim scenarijima.
 
 - **Kompatibilnost**: Memcache je stariji i može biti kompatibilniji sa nasleđenim aplikacijama. Međutim, za nove projekte, Memcached se često preporučuje zbog proširenog skupa funkcionalnosti i aktivnog razvoja.
 

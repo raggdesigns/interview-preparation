@@ -131,7 +131,7 @@ $report->printInfo(); // "Info"
 
 ### Kako se traitovi uključuju na niskom nivou
 
-Kada PHP kompajlira klasu koja koristi trait, efektivno kopira metode i propertije traita u klasu. Rezultat je isti kao da ste direktno napisali te metode u klasi. Ovo se dešava pri kompajliranju, a ne pri pokretanju.
+Kada PHP kompajlira klasu koja koristi trait, efektivno kopira metode i properties traita u klasu. Rezultat je isti kao da ste direktno napisali te metode u klasi. Ovo se dešava pri kompajliranju, a ne pri pokretanju.
 
 Ovo znači:
 

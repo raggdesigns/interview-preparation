@@ -29,7 +29,7 @@ Koristi ih prvo kada je kašnjenje specifično za upit.
 
 ### 2) Metrike engine-a baze podataka
 
-- Dashboardi engine-a (stopa pogotka bafera/keša, aktivne konekcije, čekanje na zaključavanje)
+- Dashboardi engine-a (stopa pogotka bafera/cache-a, aktivne konekcije, čekanje na zaključavanje)
 - Metrike hosta (CPU, pritisak memorije, kašnjenje diska)
 
 Koristi ih kada se mnogi upiti usporavaju odjednom.

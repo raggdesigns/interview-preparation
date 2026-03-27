@@ -1,22 +1,22 @@
-Mockovanje svojstva objekta koje je kreisano interno unutar konstruktora ili metode predstavlja jedinstveni izazov u unit
+Mockovanje property-ja objekta koji je kreiran interno unutar konstruktora ili metode predstavlja jedinstveni izazov u unit
 testiranju. Uključuje kreiranje mocka za objekat koji nije prosleđen kao zavisnost, već je direktno instanciran
-unutar objekta koji se testira. Ovaj scenario često zahteva kombinaciju refaktorisanja i korišćenja naprednih tehnika mockovanja.
+unutar objekta koji se testira. Ovaj scenario često zahteva kombinaciju refactoring-a i korišćenja naprednih tehnika mockovanja.
 
-### Strategije za mockovanje interno kreiranih svojstava
+### Strategije za mockovanje interno kreiranih properties
 
-1. **Refaktorisanje za Dependency Injection**: Najjednostavniji način za omogućavanje mockovanja internih objekata jeste
-   refaktorisanje koda da koristi dependency injection. Ovo omogućava da se zavisnost prosledi u konstruktor ili metodu
+1. **Refactoring za Dependency Injection**: Najjednostavniji način za omogućavanje mockovanja internih objekata jeste
+   refactoring koda da koristi dependency injection. Ovo omogućava da se zavisnost prosledi u konstruktor ili metodu
    spolja, što olakšava zamenu mockom tokom testiranja.
 
-2. **Korišćenje Reflection za manipulaciju svojstvima**: Ako refaktorisanje nije moguće ili praktično, možete koristiti reflection
-   za direktnu izmenu privatnih ili zaštićenih svojstava, što vam omogućava da injektujete mock objekte nakon instanciranja.
+2. **Korišćenje Reflection za manipulaciju properties**: Ako refactoring nije moguć ili praktičan, možete koristiti reflection
+   za direktnu izmenu privatnih ili zaštićenih properties, što vam omogućava da injektujete mock objekte nakon instanciranja.
 
 ### Primer u PHP-u
 
-**Pristup refaktorisanjem**:
+**Pristup refactoring-om**:
 
 Razmotrite klasu `ReportGenerator` koja interno kreira instancu `DataFetcher`-a. Da biste testirali `ReportGenerator`
-nezavisno, možete je refaktorisati da prima instancu `DataFetcher`-a kao zavisnost.
+nezavisno, možete je refactoring-ovati da prima instancu `DataFetcher`-a kao zavisnost.
 
 ```php
 class DataFetcher {
@@ -39,11 +39,11 @@ class ReportGenerator {
 }
 ```
 
-Sa ovim refaktorisanjem, možete lako proslediti mockovan `DataFetcher` objekat kada testirate `ReportGenerator`.
+Sa ovim refactoring-om, možete lako proslediti mockovan `DataFetcher` objekat kada testirate `ReportGenerator`.
 
 **Korišćenje Reflection-a**:
 
-Ako ne možete da refaktorišete klasu `ReportGenerator`, možete koristiti reflection da postavite svojstvo `dataFetcher` na mock
+Ako ne možete da uradite refactoring klase `ReportGenerator`, možete koristiti reflection da postavite property `dataFetcher` na mock
 objekat.
 
 ```php
@@ -64,7 +64,7 @@ oprezno jer zaobilazi enkapsulaciju, što potencijalno vodi do krhkih testova.
 
 ### Zaključak
 
-Mockovanje svojstava objekta kreiranih interno zahteva pažljivo razmatranje dizajna koda i strategije testiranja.
-Kad god je moguće, preferujte refaktorisanje za korišćenje dependency injection-a, jer promoviše čistiji, lakše testabilni kod. Kada
-refaktorisanje nije opcija, korišćenje reflection-a za manipulaciju svojstvima objekata može biti moćna, mada manje idealna,
+Mockovanje properties objekta kreiranih interno zahteva pažljivo razmatranje dizajna koda i strategije testiranja.
+Kad god je moguće, preferujte refactoring za korišćenje dependency injection-a, jer promoviše čistiji, lakše testabilni kod. Kada
+refactoring nije opcija, korišćenje reflection-a za manipulaciju properties objekata može biti moćna, mada manje idealna,
 alternativa.

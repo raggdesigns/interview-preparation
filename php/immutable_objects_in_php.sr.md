@@ -113,7 +113,7 @@ $doubled = $total->multiply(2);   // NEW object: 242 EUR
 
 Ključna pravila za kreiranje imutabilnih objekata:
 
-- Koristite `readonly` svojstva (PHP 8.1+) ili samo privatna svojstva bez setter-a
+- Koristite `readonly` properties (PHP 8.1+) ili samo privatne properties bez setter-a
 - Nikada ne modifikujte interno stanje — umesto toga vraćajte **novu instancu**
 - Duboko kopirajte sve mutabilne objekte prosleđene konstruktoru
 
@@ -159,4 +159,4 @@ $discounted = $laptop->withDiscount(10); // New Product at 899.10 EUR
 
 ### Zaključak
 
-Imutabilni objekti postoje kako bi sprečili greške uzrokovane slučajnim promenama stanja. Jednom kreirani, ne mogu biti modifikovani — svaka "promena" proizvodi novi objekat. PHP-ov `DateTimeImmutable` je najčešći primer. Koristite `readonly` svojstva (PHP 8.1+) i vraćajte nove instance iz metoda za modifikaciju kako biste kreirali sopstvene imutabilne objekte.
+Imutabilni objekti postoje kako bi sprečili greške uzrokovane slučajnim promenama stanja. Jednom kreirani, ne mogu biti modifikovani — svaka "promena" proizvodi novi objekat. PHP-ov `DateTimeImmutable` je najčešći primer. Koristite `readonly` properties (PHP 8.1+) i vraćajte nove instance iz metoda za modifikaciju kako biste kreirali sopstvene imutabilne objekte.

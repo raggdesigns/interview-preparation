@@ -7,7 +7,7 @@ Na intervjuima, ova tema proverava da li možeš debagovati u ispravnom redosled
 
 - Možeš čitati SQL i izvršavati `EXPLAIN`
 - Poznaješ osnove kašnjenja zahteva (p95, prag timeout-a)
-- Razumeš indekse i poništavanje keša na osnovnom nivou
+- Razumeš indekse i poništavanje cache-a na osnovnom nivou
 
 ## Brzi tok trijage
 
@@ -24,9 +24,9 @@ Na intervjuima, ova tema proverava da li možeš debagovati u ispravnom redosled
 - Izbegavaj selektovanje kolona koje ne vraćaš.
 - Zameni paginaciju zasnovanu na offsetu sa cursor/keyset paginacijom za duboke stranice.
 
-### 2) Keširanje na nivou odgovora
+### 2) Caching na nivou odgovora
 
-- Keširaj stabilne odgovore sa ključevima zasnovanim na parametrima filtera.
+- Cache-iraj stabilne odgovore sa ključevima zasnovanim na parametrima filtera.
 - Koristi kratki TTL plus eksplicitno poništavanje pri pisanju.
 
 ### 3) Arhitektura pristupa podacima
@@ -77,9 +77,9 @@ Rezultat (primer metrika):
 
 - Počni sa merenjem, ne pretpostavkama.
 - Objasni zašto je svaka optimizacija odabrana za ovaj obrazac upita.
-- Pomeni kompromise: zastarelost keša, kašnjenje replike, overhead pisanja indeksa.
+- Pomeni kompromise: zastarelost cache-a, kašnjenje replike, overhead pisanja indeksa.
 
 ## Zaključak
 
-Za spore GET endpoint-e, put sa najvećom vrednošću je: identifikuj spori upit, popravi obrazac pristupa i indeksiranje, zatim dodaj keširanje i skaliranje čitanja samo kada je potrebno.
+Za spore GET endpoint-e, put sa najvećom vrednošću je: identifikuj spori upit, popravi obrazac pristupa i indeksiranje, zatim dodaj caching i skaliranje čitanja samo kada je potrebno.
 Ovo čuva odgovor nepromenjenim dok pravi performanse predvidivim.

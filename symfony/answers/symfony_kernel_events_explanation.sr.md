@@ -26,7 +26,7 @@ Symfony-jev HttpKernel komponent dispečuje nekoliko dogadjaja tokom obrade HTTP
 ## kernel.response
 
 - **Opis**: Dispečuje se nakon što kontroler vrati odgovor, omogućavajući dalje izmene odgovora pre nego što se pošalje klijentu.
-- **Slučaj upotrebe**: Koristan za izmenu odgovora, postavljanje dodatnih zaglavlja ili logiku keširanje.
+- **Slučaj upotrebe**: Koristan za izmenu odgovora, postavljanje dodatnih zaglavlja ili logiku caching-a.
 
 ## kernel.finish_request
 

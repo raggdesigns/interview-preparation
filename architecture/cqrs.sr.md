@@ -60,7 +60,7 @@ U ovom primeru, metoda `createUser` obavlja i operaciju komande (dodavanje koris
 
 ### Ispravna primena CQRS-a
 
-Da bismo se pridržavali CQRS-a, razdvajamo odgovornosti komande i upita u različite metode ili čak različite klase. Evo kako biste mogli refaktorisati gornji primer da ispravno primeni CQRS:
+Da bismo se pridržavali CQRS-a, razdvajamo odgovornosti komande i upita u različite metode ili čak različite klase. Evo kako biste mogli refactoring-ovati gornji primer da ispravno primeni CQRS:
 
 ```php
 // Command class responsible for user creation (write operations)
@@ -94,7 +94,7 @@ class UserQueryService {
 }
 ```
 
-U refaktorisanom primeru:
+U refactored primeru:
 
 - Klasa `UserCommandService` rukuje operacijom komande za kreiranje korisnika. Odgovorna je za operacije pisanja i ne vraća nikakve podatke, pridržavajući se dela komande u CQRS-u.
 - Klasa `UserQueryService` rukuje operacijom upita. Inicijalizuje se podacima o korisnicima (potencijalno prosleđenim iz `UserCommandService`), i obavlja samo operacije čitanja, pridržavajući se dela upita u CQRS-u.

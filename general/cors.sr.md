@@ -313,7 +313,7 @@ nelmio_cors:
             max_age: 3600
 ```
 
-Sada pregledač dozvoljava frontendu da upućuje API pozive. Preflight se kešira na 1 sat (`max_age: 3600`), tako da su naredni zahtevi brži.
+Sada pregledač dozvoljava frontendu da upućuje API pozive. Preflight se cache-ira na 1 sat (`max_age: 3600`), tako da su naredni zahtevi brži.
 
 ### Zaključak
 

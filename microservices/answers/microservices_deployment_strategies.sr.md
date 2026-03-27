@@ -36,7 +36,7 @@ Poboljšava vremena odziva i smanjuje opterećenje na instancama servisa privrem
 
 - **Implementacija Elastic Load Balancing-a**: Koristite elastične load balancer-e koji se automatski prilagođavaju promenama u saobraćaju i broju instanci.
 - **Dizajn bez Stanja**: Dizajnirajte servise da budu bezstanjski gde je to moguće, pojednostavljujući skaliranje i postavljanje.
-- **Distribuirano Keširanje**: Koristite distribuirana rešenja keširanja za skaliranje keširanja nezavisno od instanci servisa.
+- **Distribuirani Caching**: Koristite distribuirana rešenja za caching za skaliranje caching-a nezavisno od instanci servisa.
 
 ### Primer: Platforma Društvenih Mreža
 
