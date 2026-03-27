@@ -43,6 +43,7 @@ This applies to all organizational patterns in the repo:
 
 - `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `LICENSE` (standard open-source, stay English)
 - `.github/` templates (GitHub UI is English)
+- `docs/` directory (internal specs and design documents, not interview content)
 - Code blocks, variable names, technical terms without natural Serbian equivalents
 
 ## Translation Rules
@@ -50,7 +51,7 @@ This applies to all organizational patterns in the repo:
 - **Script:** Serbian Latin (Latinica) only. Never Cyrillic.
 - **Code blocks:** Keep entirely in English (including comments and variable names)
 - **Technical terms:** Use the Serbian term where a natural equivalent exists. Keep English for terms that are universally used in Serbian dev communities (e.g., "dependency injection", "singleton", "factory").
-- **Internal links:** Serbian files link to other Serbian files:
+- **Internal links:** All internal markdown links in `.sr.md` files must point to the corresponding `.sr.md` target. This applies to both intra-domain links in `questions.sr.md` and cross-domain links in `README.sr.md`:
   ```markdown
   > Pogledajte takođe: [Event Sourcing](event_sourcing.sr.md)
   ```
@@ -60,7 +61,7 @@ This applies to all organizational patterns in the repo:
 
 ### Pre-commit Hook
 
-A shell script configured in `.claude/settings.json` that runs on every commit. It performs three checks:
+A shell script at `scripts/translation-sync-hook.sh`, configured in `.claude/settings.json` as a pre-commit hook. It scans only `.md` files (non-`.sr.md`) in the commit and performs three checks:
 
 1. **Missing translations:** New `.md` file added without a corresponding `.sr.md` -> warning
 2. **Stale translations:** Existing `.md` file modified but corresponding `.sr.md` not modified in the same commit -> warning
@@ -77,10 +78,10 @@ Example output:
 [translation-sync] WARNING: New file testing/load_testing.md — no Serbian translation found (testing/load_testing.sr.md)
 ```
 
-Files excluded from hook checks:
+The hook only checks `.md` files that are not `.sr.md` files. Additionally, these paths are excluded:
 - `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `LICENSE`
 - `.github/**`
-- `package.json`, config files
+- `docs/**`
 
 ### Coverage Report Script
 
@@ -88,7 +89,7 @@ A standalone script at `scripts/translation-coverage.sh` that can be run on dema
 
 - Total English files vs. translated files (count and percentage)
 - List of missing translations
-- List of potentially stale translations (English file newer than Serbian counterpart)
+- List of potentially stale translations (using `git log -1 --format=%ct -- <file>` to compare last-commit timestamps, not filesystem mtime)
 - Per-domain breakdown
 
 Example output:
@@ -136,7 +137,7 @@ Priority based on file count and interview relevance:
 2. **Index files:** All 13 `questions.md` files (enables Serbian navigation immediately)
 3. **Topic files by domain:**
    - `general` (20 files) — foundational interview topics
-   - `oop` (36 files) — core OOP concepts and design patterns
+   - `oop` (36 files) — core OOP concepts and design patterns (includes `design_patterns/` subfolder)
    - `php` (34 files) — language-specific knowledge
    - `architecture` (6 files) — system design
    - `microservices` (22 files) — distributed systems
@@ -145,15 +146,16 @@ Priority based on file count and interview relevance:
    - `highload` (12 files) — scalability
    - `ddd` (9 files) — domain-driven design
    - `mysql` (7 files) — database concepts
-   - `symfony` (15 files) — framework-specific
+   - `symfony` (22 files) — framework-specific (includes `answers/components/` subfolder)
    - `caching` (5 files) — caching strategies
    - `javascript` (3 files) — JS fundamentals
 
-Total: ~202 files to translate.
+Total: 197 translatable files (excluding `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `LICENSE`, `.github/`, `docs/`). Plus 2 root docs (`README.md`, `TOPIC_TEMPLATE.md`) = 199 files.
 
 ## Implementation Notes
 
 - Translation will be batched across multiple Claude Code sessions using parallel agents per domain
 - Each agent translates one domain at a time to avoid conflicts
+- Small domains can be grouped into a single batch (e.g., caching + javascript + solid = 14 files)
 - The hook and coverage script are implemented first, before any translation begins
 - CI/CD: existing markdown linting and link checking should be extended to cover `.sr.md` files (markdownlint already picks up all `.md` files by glob; link checker needs to validate `.sr.md` internal links)
