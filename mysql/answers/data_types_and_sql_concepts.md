@@ -389,6 +389,113 @@ ROLLBACK;
 --   → Skips locked rows (useful for job queues)
 ```
 
+**How to choose the lock mode (quick decision guide):**
+
+1. Need to read rows safely, but not modify those rows directly? → `FOR SHARE`
+2. Need to read and then update/delete those same rows? → `FOR UPDATE`
+3. Need `FOR UPDATE`, but cannot afford waiting? → `FOR UPDATE NOWAIT`
+4. Building a multi-worker queue and want each worker to grab different rows? → `FOR UPDATE SKIP LOCKED`
+
+**1) `SELECT ... FOR SHARE`**
+
+- **What it guarantees:** You can read stable row values while blocking concurrent writers.
+- **What others can do:** Other transactions can still read (including `FOR SHARE`), but cannot update/delete locked rows until you commit.
+- **Typical use case:** Validation before creating dependent records (e.g., check customer/account state).
+
+```sql
+-- Tx A: Validate customer before creating an order
+START TRANSACTION;
+SELECT id, status, credit_limit
+FROM customers
+WHERE id = 42
+FOR SHARE;
+
+-- safe to use values for business checks here
+INSERT INTO orders (customer_id, total) VALUES (42, 120.00);
+COMMIT;
+
+-- Tx B (at same time):
+UPDATE customers SET credit_limit = 5000 WHERE id = 42;
+-- waits until Tx A commits
+```
+
+**Why this mode:** You protect against concurrent modifications while still allowing high read concurrency.
+
+**2) `SELECT ... FOR UPDATE`**
+
+- **What it guarantees:** Exclusive lock for read-then-write flow on the selected rows.
+- **What others can do:** Conflicting lock attempts and writes wait.
+- **Typical use case:** Inventory decrement, seat reservation, money transfer.
+
+```sql
+-- Reserve one seat safely
+START TRANSACTION;
+SELECT available_seats
+FROM flights
+WHERE id = 42
+FOR UPDATE;
+
+UPDATE flights
+SET available_seats = available_seats - 1
+WHERE id = 42 AND available_seats > 0;
+COMMIT;
+```
+
+**Why this mode:** It prevents lost updates/overselling when multiple transactions target the same row.
+
+**3) `SELECT ... FOR UPDATE NOWAIT` (MySQL 8.0+)**
+
+- **What it guarantees:** Same lock semantics as `FOR UPDATE`, but with immediate failure if lock cannot be acquired.
+- **What others can do:** If someone already holds the lock, your statement errors instantly.
+- **Typical use case:** Low-latency APIs/UI flows where fast retry is better than blocking.
+
+```sql
+START TRANSACTION;
+SELECT id, balance
+FROM wallets
+WHERE user_id = 7
+FOR UPDATE NOWAIT;
+
+-- If row is locked elsewhere: immediate error
+-- Application pattern: catch error -> return "resource busy, retry"
+```
+
+**Why this mode:** Avoids long waits and lock pile-ups under high contention.
+
+**4) `SELECT ... FOR UPDATE SKIP LOCKED` (MySQL 8.0+)**
+
+- **What it guarantees:** Locks only currently free rows and ignores rows already locked by others.
+- **What others can do:** Multiple workers can proceed concurrently without blocking each other on the same rows.
+- **Typical use case:** Job queue consumers.
+
+```sql
+-- Worker grabs next pending jobs without waiting on locked ones
+START TRANSACTION;
+
+SELECT id
+FROM jobs
+WHERE status = 'pending'
+ORDER BY id
+LIMIT 10
+FOR UPDATE SKIP LOCKED;
+
+-- Then mark selected jobs as processing in the same transaction
+-- (ids returned above)
+UPDATE jobs
+SET status = 'processing', worker_id = 3
+WHERE id IN (101, 102, 103);
+
+COMMIT;
+```
+
+**Why this mode:** Maximizes throughput for parallel workers by eliminating lock wait time on already-claimed rows.
+
+**Practical notes:**
+
+- Use these clauses with `START TRANSACTION`; in autocommit mode, locks are released at statement end.
+- Add proper indexes to avoid locking/scanning more rows than intended.
+- Keep transactions short to reduce contention and deadlock risk.
+
 ##### Optimistic Locking
 
 Assumes conflicts are **rare**. Does NOT lock the row. Instead, it detects conflicts at write time by checking if the data changed since it was read, typically using a `version` column or `updated_at` timestamp.

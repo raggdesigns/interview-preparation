@@ -7,6 +7,7 @@
 - [Sharding. Vertical vs Horizontal sharding](sharding.md)
 - [Partitioning - benefits for read and write operations](partitioning.md)
 - [How to deal with deadlocks in MySQL](deadlocks_in_mysql.md)
+- [Circuit breaker pattern](circuit_breaker_pattern.md)
 - [Optimistic/pessimistic lock](optimistic_pessimistic_lock.md)
 - [Load balancer and sessions](load_balancer_and_sessions.md)
 
