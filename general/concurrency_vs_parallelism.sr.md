@@ -7,7 +7,7 @@ Konkurentnost i paralelizam se oba bave više zadataka istovremeno, ali rešavaj
 ## Preduslovi
 
 - [Kako internet funkcioniše](how_internet_works.sr.md) — životni ciklus mrežnog zahteva
-- [PHP-FPM](../highload/php_fpm.md) — kako PHP rukuje konkurentnim zahtevima
+- [PHP-FPM](../highload/php_fpm.sr.md) — kako PHP rukuje konkurentnim zahtevima
 
 ## Osnovna ideja
 
@@ -258,6 +258,6 @@ Konkurentnost (struktura) i paralelizam (izvršavanje) rešavaju različita uska
 
 ## Vidi takođe
 
-- [PHP-FPM](../highload/php_fpm.md) — upravljanje pool procesima
-- [Async JavaScript](../javascript/async_javascript.md) — event loop u drugom jeziku
-- [Optimizacija sporih GET endpointa](../highload/optimizing_slow_get_endpoint.md) — praktična optimizacija performansi
+- [PHP-FPM](../highload/php_fpm.sr.md) — upravljanje pool procesima
+- [Async JavaScript](../javascript/async_javascript.sr.md) — event loop u drugom jeziku
+- [Optimizacija sporih GET endpointa](../highload/optimizing_slow_get_endpoint.sr.md) — praktična optimizacija performansi

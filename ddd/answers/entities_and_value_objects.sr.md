@@ -78,4 +78,4 @@ Razlika između Entiteta i Value Objects nije samo akademska; ima praktične imp
 
 ### Vidi takođe
 
-- [Entitet vs DTO vs Value Object (OOP perspektiva)](../../oop/entity_vs_data_transfer_object_vs_value_object.md)
+- [Entitet vs DTO vs Value Object (OOP perspektiva)](../../oop/entity_vs_data_transfer_object_vs_value_object.sr.md)
