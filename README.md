@@ -15,6 +15,7 @@ A collection of notes and answers for software engineering interview topics, org
 | [general/](general/questions.md) | Web fundamentals: HTTP, REST API, authentication, authorization |
 | [highload/](highload/questions.md) | Performance optimization, sharding, database analysis tools |
 | [microservices/](microservices/questions.md) | Microservices architecture, patterns, deployment, monitoring |
+| [observability/](observability/questions.md) | Metrics, logs, traces, Prometheus, Grafana, OpenTelemetry, SLOs, alerting |
 | [mysql/](mysql/questions.md) | Indices, engines, data types, SQL concepts |
 | [oop/](oop/questions.md) | OOP principles, design patterns, composition, GRASP |
 | [php/](php/questions.md) | PHP language features, sessions, generators, OPCache |
