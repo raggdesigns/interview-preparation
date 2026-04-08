@@ -9,6 +9,7 @@ A collection of notes and answers for software engineering interview topics, org
 
 | Folder | Description |
 |--------|-------------|
+| [agentic-ai/](agentic-ai/questions.md) | LLM fundamentals, prompt engineering, tool calling, Claude Code, MCP, sub-agents, RAG, cost optimization |
 | [architecture/](architecture/questions.md) | CQRS, Event Sourcing, Hexagonal, Onion, Reactor pattern |
 | [caching/](caching/questions.md) | Redis, Memcached, caching best practices |
 | [ddd/](ddd/questions.md) | Domain-Driven Design: bounded contexts, aggregates, events, entities |
