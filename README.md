@@ -14,6 +14,7 @@ A collection of notes and answers for software engineering interview topics, org
 | [ddd/](ddd/questions.md) | Domain-Driven Design: bounded contexts, aggregates, events, entities |
 | [general/](general/questions.md) | Web fundamentals: HTTP, REST API, authentication, authorization |
 | [highload/](highload/questions.md) | Performance optimization, sharding, database analysis tools |
+| [message-brokers/](message-brokers/questions.md) | RabbitMQ, Kafka, delivery semantics, idempotency, outbox pattern, queue topologies |
 | [microservices/](microservices/questions.md) | Microservices architecture, patterns, deployment, monitoring |
 | [mysql/](mysql/questions.md) | Indices, engines, data types, SQL concepts |
 | [oop/](oop/questions.md) | OOP principles, design patterns, composition, GRASP |
