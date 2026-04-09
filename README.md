@@ -18,6 +18,7 @@ A collection of notes and answers for software engineering interview topics, org
 | [microservices/](microservices/questions.md) | Microservices architecture, patterns, deployment, monitoring |
 | [mysql/](mysql/questions.md) | Indices, engines, data types, SQL concepts |
 | [oop/](oop/questions.md) | OOP principles, design patterns, composition, GRASP |
+| [performance-testing/](performance-testing/questions.md) | Load/stress/soak/spike testing, k6, profiling PHP, bottleneck identification, capacity planning |
 | [php/](php/questions.md) | PHP language features, sessions, generators, OPCache |
 | [solid/](solid/questions.md) | SOLID principles with PHP examples |
 | [symfony/](symfony/questions.md) | Symfony framework: components, lifecycle, DI, routing |
