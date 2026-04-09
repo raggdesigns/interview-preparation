@@ -18,7 +18,7 @@ The key mental shift: a DLX is just a normal RabbitMQ exchange. It's not a speci
 
 ### The minimal DLX setup
 
-```
+```text
 # Main exchange + queue
 exchange.declare('orders', type='topic', durable=True)
 queue.declare(
@@ -49,7 +49,7 @@ A DLX isn't just for permanent failures — it's also the mechanism for retrying
 
 The retry queue's TTL is the backoff delay. Want 30-second backoff? TTL of 30000ms. Want exponential backoff? Multiple retry queues with increasing TTLs (10s, 1m, 10m), routed based on a retry count in message headers.
 
-```
+```text
 main queue
     │ (consumer nacks)
     ▼
@@ -67,7 +67,7 @@ Retry loops are great until they never terminate. A genuinely broken message wil
 
 The fix: track a retry count and hard-stop at a limit. RabbitMQ doesn't track this natively; you do it in message headers:
 
-```
+```text
 on consumer failure:
     retries = message.headers.get('x-retries', 0) + 1
     if retries > 5:

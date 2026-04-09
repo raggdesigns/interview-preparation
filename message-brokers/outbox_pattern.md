@@ -47,7 +47,7 @@ The flow:
 1. **Inside the request transaction:** write the business data *and* an outbox row describing the event to the same database, in the same transaction.
 2. **Separately, a relay process:** read unpublished outbox rows, publish them to the broker, mark them as published.
 
-```
+```text
 ┌────────────────────────────────────────────────┐
 │ Transaction (atomic):                          │
 │                                                │
@@ -91,6 +91,7 @@ CREATE TABLE outbox (
 ```
 
 Key design choices:
+
 - **Payload stored as JSON/JSONB.** The outbox doesn't care about the schema; it just stores and forwards.
 - **Partial index on unpublished rows.** The relay scans for unpublished events; a partial index makes this cheap even when the table has millions of published rows.
 - **`published_at` timestamp, not a boolean.** Useful for debugging latency and for garbage collection.
@@ -147,6 +148,7 @@ The usual idempotency key is the outbox row ID, which is a stable identifier tha
 ### Garbage collection
 
 The outbox table grows forever if you don't clean it up. Periodic deletion of published rows older than N days is the simple approach. You want N to be long enough that:
+
 - You can diagnose issues by looking at published rows.
 - You have a replay window if a downstream consumer needs to re-read recent events.
 

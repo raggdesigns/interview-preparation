@@ -40,11 +40,13 @@ The classic mistake: nacking with `requeue=true` on a poison message (a message 
 `basic.qos(prefetch_count=N)` tells the broker: "don't send me more than N unacknowledged messages at a time". Without it, the broker default is **unlimited** — it dumps the entire queue into the first consumer that connects.
 
 This single setting is the most common misconfiguration I see. Without a prefetch limit:
+
 - One consumer receives thousands of messages and its memory explodes.
 - Other consumers sit idle because the first one has everything.
 - If that consumer crashes, thousands of messages are redelivered at once to whoever picks them up.
 
 **How to pick prefetch:**
+
 - **Long slow jobs** (each task takes seconds or more): `prefetch_count=1`. Each consumer handles one message at a time; load balances naturally; crashes only lose one in-flight message.
 - **Fast tasks** (each task takes milliseconds): `prefetch_count=10-100`. The overhead of acknowledging per message starts to matter; batching some delivery is a win.
 - **Very fast tasks** (sub-millisecond, e.g. metric fan-out): even higher, or use a separate streaming system.
@@ -79,7 +81,8 @@ Durability + persistence protects against broker restarts *after* the broker has
 **Publisher confirms** fix this. When confirms are enabled, the broker sends an ack back to the producer for every message it has successfully accepted (and persisted to disk, if applicable). The producer knows the message is safe only after receiving the confirm.
 
 Pseudocode:
-```
+
+```text
 channel.confirm_select()  # enable confirms
 
 channel.basic_publish(..., properties={'delivery_mode': 2})

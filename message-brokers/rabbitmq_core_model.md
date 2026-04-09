@@ -64,7 +64,7 @@ This is the kind of detail that separates "I read a tutorial" from "I've debugge
 
 ### A minimal end-to-end flow
 
-```
+```text
 # Producer side
 channel.exchange_declare('orders', type='topic', durable=True)
 channel.basic_publish(

@@ -7,24 +7,28 @@
 ### The libraries — what to actually use
 
 **`php-amqplib/php-amqplib`** (pure PHP)
+
 - No extension needed, so it runs anywhere PHP runs.
 - More flexible but more verbose.
 - Slower than the C extension on pure throughput.
 - The default for most Symfony Messenger setups when the extension isn't available.
 
 **`ext-amqp`** (the C extension)
+
 - Wraps the RabbitMQ C client. Faster, lower memory.
 - Needs to be installed at the system level, which complicates Docker images and shared hosting.
 - Has a slightly different API than php-amqplib.
 - Worth it for high-throughput consumers or producers; overkill for occasional publishes.
 
 **Symfony Messenger** (the abstraction)
+
 - Not a library, a component. Sits on top of either of the above.
 - Gives you a message bus, routing, middleware, retries, DLQ handling, serializer support, and a CLI consumer worker.
 - Handles the boring parts: connection lifecycle, worker loop, graceful shutdown, retry strategy, DLQ binding.
 - On a greenfield Symfony project, this is what I reach for first. On legacy or non-Symfony projects, raw php-amqplib.
 
 **My decision rule:**
+
 - Symfony project → Symfony Messenger with the AMQP transport.
 - Non-Symfony project → raw php-amqplib with your own worker loop.
 - Extreme throughput → ext-amqp; consider whether a different language is more appropriate.
@@ -79,6 +83,7 @@ process_name=%(program_name)s_%(process_num)02d
 ```
 
 The important bits:
+
 - **`--time-limit=3600`** — worker exits after an hour so Supervisor restarts it with a fresh PHP process. Prevents slow memory creep.
 - **`--memory-limit=256M`** — worker exits if it crosses a memory threshold.
 - **`stopwaitsecs=60`** — Supervisor gives the worker up to 60 seconds to finish the current message before sending SIGKILL. This is what makes shutdowns graceful.
@@ -120,6 +125,7 @@ framework:
 ```
 
 What this gives you out of the box:
+
 - Exchange + queue + binding declared on first use (if `auto_setup: true`) or managed via a deploy command.
 - Retry with exponential backoff (1s, 2s, 4s, up to 30s).
 - Failed messages after max retries go to a `failed` transport (Doctrine-backed here for easy inspection).

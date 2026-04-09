@@ -17,7 +17,7 @@
 
 The publisher sets a routing key; the exchange delivers the message to every queue bound with a binding key that **exactly matches** the routing key.
 
-```
+```text
 publish(exchange='tasks', routing_key='email.send', body=...)
 
 queue 'email_worker' bound with key 'email.send'  → receives
@@ -25,6 +25,7 @@ queue 'pdf_worker'   bound with key 'pdf.render'  → ignores
 ```
 
 Use it when:
+
 - You have a fixed set of known task types.
 - Each task has exactly one queue (or a small known set) that should handle it.
 - The routing key *is* the task name: `email.send`, `pdf.render`, `report.generate`.
@@ -34,10 +35,11 @@ Mental model: direct is "named pipes". Each routing key is an address; queues bi
 ### topic — the event bus
 
 Routing keys are dot-separated strings (`order.created.eu`, `user.signup.premium`). Bindings are patterns with two wildcards:
+
 - `*` matches exactly one word.
 - `#` matches zero or more words.
 
-```
+```text
 publish(exchange='events', routing_key='order.created.eu')
 
 queue 'eu_billing'    bound with 'order.*.eu'      → receives (matches)
@@ -47,6 +49,7 @@ queue 'user_events'   bound with 'user.#'          → ignores
 ```
 
 Use it when:
+
 - Events have hierarchical structure you want to filter on.
 - Different consumers care about different slices of the event stream.
 - You expect new consumers to be added later with their own filtering needs.
@@ -59,7 +62,7 @@ Mental model: topic is "publish-subscribe with pattern matching". The producer e
 
 Ignores the routing key entirely. Every queue bound to the exchange receives every message.
 
-```
+```text
 publish(exchange='cache_invalidation', routing_key='anything', body=...)
 
 queue 'web_01_cache'  → receives
@@ -68,11 +71,13 @@ queue 'web_03_cache'  → receives
 ```
 
 Use it when:
+
 - Every consumer needs every message.
 - Routing is meaningless because the answer is always "yes, deliver".
 - You want the absolute simplest broadcast semantics.
 
 Classic uses:
+
 - **Cache invalidation** across a fleet of web servers.
 - **WebSocket push** where every connected server needs to relay the event.
 - **Pub/sub where all subscribers are equal peers.**
@@ -83,7 +88,7 @@ You can always achieve fanout behavior with topic + `#`. The reason fanout exist
 
 Instead of routing on a key, headers exchanges route on message headers. Bindings specify key-value pairs to match, plus an `x-match` parameter: `all` (match every header) or `any` (match at least one).
 
-```
+```text
 publish with headers = {format: 'pdf', priority: 'high'}
 
 binding 'pdf_worker_high' with {format: 'pdf', priority: 'high', x-match: 'all'}
@@ -105,7 +110,7 @@ My rule: never publish to the default exchange in production code. Always declar
 
 ### How to pick — a decision tree
 
-```
+```text
 Are you broadcasting to all consumers?
 ├── Yes → fanout
 └── No → Do you want to filter by hierarchical patterns?
