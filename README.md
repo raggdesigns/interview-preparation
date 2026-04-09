@@ -14,6 +14,7 @@ A collection of notes and answers for software engineering interview topics, org
 | [caching/](caching/questions.md) | Redis, Memcached, caching best practices |
 | [ddd/](ddd/questions.md) | Domain-Driven Design: bounded contexts, aggregates, events, entities |
 | [devops/](devops/questions.md) | Docker, Kubernetes, CI/CD, IaC, deployment strategies, 12-factor, secrets management |
+| [event-driven/](event-driven/questions.md) | Event-driven architecture, CQRS, event sourcing, sagas, outbox/inbox |
 | [general/](general/questions.md) | Web fundamentals: HTTP, REST API, authentication, authorization |
 | [highload/](highload/questions.md) | Performance optimization, sharding, database analysis tools |
 | [message-brokers/](message-brokers/questions.md) | RabbitMQ, Kafka, delivery semantics, idempotency, outbox pattern, queue topologies |
