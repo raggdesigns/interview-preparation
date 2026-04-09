@@ -54,7 +54,7 @@ The simplest approach: **measure the ratio under load testing.**
 
 Run your load test suite at 1x, 2x, and 3x current traffic. Record resource usage at each level. Plot traffic vs resource consumption. For most web services, the relationship is roughly linear up to a saturation point, then degrades.
 
-```
+```text
 RPS:  500   1000   1500   2000   2500
 CPU:  20%    40%    60%    80%    95% ← saturation
 Mem:  4GB    4GB    4GB    5GB    8GB ← memory pressure starts here
@@ -71,6 +71,7 @@ Apply the forecast to the model:
 "In 6 months, organic traffic will be 1.34x = 670 RPS. Black Friday will be 3x = 1500 RPS."
 
 From the model:
+
 - At 670 RPS: 27% CPU, comfortable. No changes needed for organic growth.
 - At 1500 RPS: 60% CPU, 150 DB connections, p95 ~200ms. Manageable but approaching the discomfort zone.
 - At 2000 RPS (if the event is bigger than expected): saturation. Need to pre-scale.
@@ -124,15 +125,18 @@ Interviewers often ask "how would you design a system to handle X million reques
 - 100 million requests/day ≈ 1200 RPS average → ~3000 RPS peak → 30 servers at 100 RPS each.
 
 **Storage:**
+
 - 1 KB per row × 1 million rows/day = 1 GB/day = ~365 GB/year.
 - With indexes and overhead: ~2-3x raw data = ~1 TB/year.
 
 **Memory:**
+
 - A typical PHP worker uses 50-100 MB.
 - 20 workers × 100 MB = 2 GB for PHP alone.
 - Add database buffer pool, cache, OS overhead → 8-16 GB per server is typical.
 
 **Database:**
+
 - PostgreSQL on SSD handles 5,000-50,000 simple queries/second depending on complexity.
 - A connection pool of 100-200 handles most workloads.
 - Read replicas for read-heavy workloads at 70%+ read ratio.

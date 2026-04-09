@@ -29,6 +29,7 @@
 - **Large plugin ecosystem.** Custom samplers, listeners, timers — JMeter's plugin system is unmatched.
 
 **The downsides:**
+
 - **XML-based test plans (`.jmx` files)** are essentially impossible to review in a code review. Diff is meaningless.
 - **Resource-heavy.** One OS thread per virtual user. A single JMeter instance struggles past 500-1000 VUs. Distributed mode adds complexity.
 - **GUI dependency for authoring.** While CLI execution works, creating and editing tests usually requires the GUI. This fights CI and version control workflows.
@@ -46,6 +47,7 @@ JMeter is the right choice when you need protocol breadth, when non-developers w
 - **Grafana ecosystem.** k6 integrates natively with Prometheus, InfluxDB, Grafana, and the Grafana Cloud k6 managed platform.
 
 **The downsides:**
+
 - **Limited to HTTP, WebSocket, gRPC.** No JDBC, no JMS, no LDAP. Extensions exist for some protocols but coverage is narrower.
 - **No GUI.** Non-developers may struggle.
 - **Reports are basic** (console summary). For rich HTML reports, you need an external output + Grafana dashboard.
@@ -62,6 +64,7 @@ k6 is the default choice for modern backend teams that own their tests, use CI, 
 - **Enterprise Java environments** where Maven/Gradle integration matters.
 
 **The downsides:**
+
 - **Scala/Java learning curve.** Even for experienced developers, Gatling's DSL has sharp corners.
 - **Build tool dependency.** Typically run via Maven or Gradle, which adds ceremony.
 - **Smaller community than JMeter or k6.**
@@ -71,7 +74,7 @@ Gatling is the right choice when the team is JVM-native, user journeys are compl
 
 ### The decision framework I'd use
 
-```
+```text
 Do you need non-HTTP protocols (JDBC, JMS, LDAP)?
 ├── Yes → JMeter
 └── No → Is the team JVM-native and wants built-in reports?
@@ -80,6 +83,7 @@ Do you need non-HTTP protocols (JDBC, JMS, LDAP)?
 ```
 
 For most PHP/backend teams doing HTTP load testing:
+
 - **k6 is the default.** Simple, CI-native, efficient, JavaScript.
 - **JMeter if the team or organization already uses it** and switching would be disruptive.
 - **Gatling if the team is mixed PHP/Java** or wants Gatling's report quality without building Grafana dashboards.
@@ -87,6 +91,7 @@ For most PHP/backend teams doing HTTP load testing:
 ### Using multiple tools
 
 It's also fine to use more than one. I've seen teams that use:
+
 - **k6 in CI** for automated smoke and load tests on every deploy.
 - **JMeter or Gatling** for quarterly deep-dive stress tests run by a performance team.
 - **Custom scripts (curl, wrk, hey)** for quick one-off benchmarks.

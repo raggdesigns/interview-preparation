@@ -13,7 +13,8 @@ Run the system at the expected production load — the number of concurrent user
 **The question it answers:** does the system meet its performance requirements under normal conditions?
 
 **The shape:**
-```
+
+```text
 Users ──────────────────────────────────
        │                              │
        │    steady state at target    │
@@ -25,12 +26,14 @@ Users ────────────────────────�
 Ramp up gradually to the target load (100 VUs, 500 RPS, whatever your production baseline is), hold for 10-30 minutes, ramp down. Measure throughout.
 
 **What to measure:**
+
 - Response time (p50, p95, p99) — are they within SLO?
 - Error rate — is it near zero under normal load?
 - Throughput (RPS actually served) — does it match the injection rate?
 - Resource usage (CPU, memory, DB connections, queue depth) — is the system comfortable or already strained?
 
 **When to run:**
+
 - Before every major release.
 - After infrastructure changes (new instance types, new database, new cache).
 - As a baseline before stress/soak/spike tests.
@@ -44,7 +47,8 @@ Gradually increase load beyond expected levels until the system fails. The goal 
 **The question it answers:** at what load does the system degrade unacceptably, and how does it fail?
 
 **The shape:**
-```
+
+```text
 Users ─────────────────────────────────╲
        │              │               │ ╲ system breaks here
        │  target load │  beyond target│
@@ -56,6 +60,7 @@ Users ────────────────────────�
 Start at baseline, keep ramping — 2x, 3x, 5x expected load. Watch response times degrade, error rates rise, resources saturate. Note the exact point where the system crosses from "degraded" to "broken".
 
 **What you learn:**
+
 - **The breaking point.** "We handle 2000 RPS; at 3500, p99 goes above 5s; at 4000, we start returning 503s."
 - **The failure mode.** Does it degrade gracefully (slow but responsive) or collapse (avalanche of errors, cascade failure)?
 - **The bottleneck.** What saturates first — CPU? Database connections? Memory? A downstream service?
@@ -72,7 +77,8 @@ Run the system at normal load for a long duration — 12 hours, 24 hours, 72 hou
 **The question it answers:** are there slow leaks — memory, connections, file handles, database bloat — that accumulate over hours or days?
 
 **The shape:**
-```
+
+```text
 Users ──────────────────────────────────
        │                              │
        │   normal load, long time     │
@@ -81,6 +87,7 @@ Users ────────────────────────�
 ```
 
 **What you're looking for:**
+
 - **Memory leaks.** Memory usage trending upward over hours. Common in PHP long-running workers (Messenger consumers, Swoole/RoadRunner workers).
 - **Connection leaks.** Database or broker connections not being returned to the pool.
 - **File descriptor exhaustion.** Sockets or files opened and never closed.
@@ -100,7 +107,8 @@ Hit the system with a sudden, dramatic increase in traffic — 10x in seconds �
 **The question it answers:** does the system handle sudden traffic surges without cascading failure?
 
 **The shape:**
-```
+
+```text
 Users ─────╱╲───────────────────────────
        │  ╱  ╲                         │
        │ ╱    ╲  sharp spike          │
@@ -110,6 +118,7 @@ Users ─────╱╲─────────────────�
 ```
 
 **What you're looking for:**
+
 - **Auto-scaling response time.** If HPA is configured, how fast does it add pods? Fast enough to matter during the spike?
 - **Queue behavior.** Do message queues absorb the burst and drain normally after?
 - **Connection pool behavior.** Does the pool exhaust during the spike? Does it recover?
@@ -136,6 +145,7 @@ Users ─────╱╲─────────────────�
 ### Making results actionable
 
 A performance test result is only useful if it produces one of these:
+
 1. **"We're fine."** Document the baseline for future comparison.
 2. **"We'll break at X."** Document X, plan for it (scale before reaching X, or accept the risk).
 3. **"We have a leak."** File a ticket, quantify the leak rate, prioritize the fix.

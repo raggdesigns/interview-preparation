@@ -51,6 +51,7 @@ Tom Wilkie's RED method is the request-level complement to USE. For every servic
 RED tells you the service-level health. It doesn't tell you *why* the service is slow — that's where you drill down with USE on the service's resources.
 
 The typical debugging flow:
+
 1. **RED on the top-level service.** "Duration spiked; errors are up."
 2. **RED on each downstream dependency.** "The database is slow."
 3. **USE on the database's resources.** "Disk I/O is saturated."
@@ -63,17 +64,20 @@ RED surfaces the symptom; USE localizes the cause.
 When someone says "the system is slow", I work through this:
 
 **Step 1: Where is the time going?**
+
 - Check distributed traces for a slow request. Which span is dominating?
 - If no traces, check application logs with timing. Which phase is slow?
 - If no logs, use server-side timing middleware to break request time into: PHP processing, DB queries, cache calls, external APIs.
 
 **Step 2: Is it the application or the infrastructure?**
+
 - **Application:** CPU-bound PHP code, N+1 queries, missing caching, excessive serialization.
 - **Infrastructure:** database connection pool full, disk I/O saturated, memory pressure causing swap, network latency.
 
 Check infrastructure first (it's faster to check) via USE on the resources the application touches.
 
 **Step 3: If it's the database...**
+
 - Check `pg_stat_activity` for long-running queries.
 - Check `pg_stat_statements` for the heaviest queries by total time.
 - Run `EXPLAIN ANALYZE` on the worst ones (see [../postgresql/postgres_query_planning_explain.md](../postgresql/postgres_query_planning_explain.md)).
@@ -81,10 +85,12 @@ Check infrastructure first (it's faster to check) via USE on the resources the a
 - Check disk I/O — is the database doing more I/O than expected? (Missing index causing sequential scans.)
 
 **Step 4: If it's the application code...**
+
 - Profile with Blackfire, Tideways, or Xdebug (see [profiling_php_applications.md](profiling_php_applications.md)).
 - Look for N+1 queries, excessive object hydration, heavy serialization, uncached repeated computations.
 
 **Step 5: If it's a downstream service...**
+
 - Check the downstream service's RED metrics.
 - Add circuit breakers or timeouts if the downstream is degraded.
 - Cache downstream responses if appropriate.
@@ -105,6 +111,7 @@ Check infrastructure first (it's faster to check) via USE on the resources the a
 ### The "it's always the database" heuristic
 
 In PHP applications, the bottleneck is the database 60-70% of the time. Not because databases are slow, but because:
+
 - PHP is fast at CPU work relative to I/O.
 - Most requests make multiple database calls.
 - Missing indexes, N+1 patterns, and large result sets are common mistakes.
@@ -127,6 +134,7 @@ Both use the same frameworks; the difference is whether you're injecting load or
 ### The meta-principle
 
 Every performance investigation follows the same structure:
+
 1. **Observe the symptom** (RED on the service).
 2. **Localize the component** (trace or timing breakdown).
 3. **Identify the resource** (USE on the component's resources).
