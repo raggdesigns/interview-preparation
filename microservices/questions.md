@@ -64,3 +64,9 @@ Below is a list of questions related to microservices, each linked to a markdown
 
 21. [What testing strategies are effective for microservices?](./answers/testing_strategies_for_microservices.md)  
     *Approaches to testing in microservices to ensure functionality and reliability.*
+
+22. [How to draw service boundaries](service_boundaries_how_to_draw_them.md)  
+    *Bounded contexts, the entity trap, and the modular-monolith approach.*
+
+23. [API versioning strategies](api_versioning_strategies.md)  
+    *URL path vs header vs content negotiation, expand-contract, deprecation.*

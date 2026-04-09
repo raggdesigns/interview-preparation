@@ -16,6 +16,11 @@
 - How to cover [SymfonyCasts Parser](https://github.com/glaphire/symfonycasts_parser) with functional tests
 - [Test environment - how to prepare it (all aspects)](test_environment_preparation.md)
 
+## Test strategy
+
+- [Integration vs unit vs e2e testing (test pyramid, testing trophy)](integration_vs_unit_vs_e2e.md)
+- [Contract testing (Pact, consumer-driven)](contract_testing.md)
+
 ## Other
 
 - [TDD](tdd.md)
