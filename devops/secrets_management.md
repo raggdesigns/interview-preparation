@@ -14,6 +14,7 @@
 - **OAuth client secrets** — not public-facing but still sensitive.
 
 What's **not** a secret (even though it feels sensitive):
+
 - Database hostname, port, username
 - Public API endpoints
 - Feature flag values
@@ -55,6 +56,7 @@ Every secrets management practice exists to prevent one or more of these.
 Vault is a dedicated secrets management system. It stores secrets encrypted, exposes them via an API, supports access control policies, audit logging, automatic rotation, and dynamic secret generation (creating short-lived database credentials on demand).
 
 **Key features:**
+
 - **Static secrets** — you write a secret, Vault stores it encrypted, apps fetch it with a token.
 - **Dynamic secrets** — Vault generates a new, short-lived credential each time. For databases, Vault can create a user with a TTL and clean it up automatically.
 - **Encryption as a service** — apps send plaintext to Vault's encrypt endpoint and get ciphertext back, without ever seeing the encryption key.
@@ -127,11 +129,13 @@ database:
 ```
 
 **Pros:**
+
 - Secrets are in the repo, next to the code that uses them. Version history, code review, the normal git workflow.
 - No extra infrastructure beyond a KMS.
 - Works for GitOps workflows (the config repo holds encrypted secrets).
 
 **Cons:**
+
 - Rotation requires re-encrypting and committing new versions.
 - Access control is KMS-level, not per-secret.
 - Still requires discipline to not accidentally decrypt and commit plaintext.

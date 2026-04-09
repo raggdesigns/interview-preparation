@@ -8,7 +8,7 @@
 
 A typical pipeline looks like this, and each stage has a reason to exist:
 
-```
+```text
 ┌──────────┐   ┌──────┐   ┌──────┐   ┌───────┐   ┌────────┐   ┌────────┐   ┌────────┐
 │  Commit  │─→ │ Lint │─→ │ Test │─→ │ Build │─→ │  Scan  │─→ │ Deploy │─→ │ Verify │
 └──────────┘   └──────┘   └──────┘   └───────┘   └────────┘   └────────┘   └────────┘
@@ -81,6 +81,7 @@ The build stage produces the container image that will be deployed everywhere. B
 ```
 
 Note the **two tags**:
+
 - `commit SHA` — immutable, points at this specific build forever.
 - `latest-main` — mutable alias for "the most recent successful build of main".
 
@@ -119,7 +120,7 @@ If verification fails, **roll back automatically**. Don't rely on an alert and a
 
 A typical environment pipeline:
 
-```
+```text
 commit → CI (lint, test, build, scan)
    │
    ▼ (auto)

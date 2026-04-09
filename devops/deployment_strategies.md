@@ -9,6 +9,7 @@
 **What it is:** pods are replaced one at a time (or a few at a time) with the new version. At any given moment, some pods are running version N and some are running N+1.
 
 **How Kubernetes does it:**
+
 - `maxSurge` — how many extra pods can exist temporarily during the roll. Default 25%.
 - `maxUnavailable` — how many pods can be unavailable during the roll. Default 25%.
 
@@ -24,11 +25,13 @@ spec:
 "At most 1 extra pod during the roll, zero unavailable" — the safe default: new pods start up *before* old ones are terminated, capacity never dips below target.
 
 **Pros:**
+
 - Zero downtime if done right.
 - No extra infrastructure — the same cluster, same nodes.
 - Automatic rollback on failure (Kubernetes keeps rolling until the new version is healthy, or reverts).
 
 **Cons:**
+
 - **Mixed versions during the roll.** Both N and N+1 are handling traffic simultaneously. Any change that's not backward-compatible will break — API schema changes, database schema changes, shared cache key changes.
 - **All-or-nothing at the endpoint level.** You can't route specific users to the new version; the load balancer doesn't care which version it picks.
 - **Rollback is another rolling deploy.** If N+1 is broken, you roll back by deploying N again — which takes as long as any other deploy.
@@ -39,7 +42,7 @@ spec:
 
 **What it is:** two complete environments exist — "blue" (current production) and "green" (the new version). You deploy the new version to green, test it, then flip a switch (usually at the load balancer or DNS level) to direct traffic from blue to green.
 
-```
+```text
 Before:             During:             After:
 [users]→[blue]      [users]→[blue]      [users]→[green]
         [green]             [green]             [blue]
@@ -47,17 +50,20 @@ Before:             During:             After:
 ```
 
 **Pros:**
+
 - **Fast rollback.** If green is broken, flip back to blue instantly.
 - **Clean cutover.** There's no "mixed versions handling traffic" window.
 - **Test before cutover.** You can run smoke tests, integration tests, and synthetic checks against green before any users see it.
 - **Database migrations can happen on green in advance** (if the schema is backward-compatible).
 
 **Cons:**
+
 - **Doubles infrastructure cost** during the deploy. Both environments are running at full capacity.
 - **Complex for stateful systems.** If green and blue share a database, schema migrations break the "instant rollback" promise — you can't roll back a schema change trivially. In practice, blue-green works best for stateless services.
 - **Network topology changes.** Switching traffic between environments is usually done at the load balancer, ingress, or DNS level, and each has its own quirks (DNS TTLs, connection draining).
 
 **When to use:**
+
 - When you need fast rollback and the cost of running two environments is acceptable.
 - For services where mixed versions during a roll would cause real problems.
 - For major infrastructure changes (new cluster, new region) where you want a full parallel stack.
@@ -66,7 +72,7 @@ Before:             During:             After:
 
 **What it is:** you deploy a small number of pods running the new version alongside the old one, then route a small percentage of traffic to the new pods — 1%, then 5%, then 25%, then 100% — monitoring metrics at each step. If metrics degrade, you stop or roll back.
 
-```
+```text
 Step 1: 100% traffic → version N     (5% pods running N+1 in background, receiving no traffic)
 Step 2:  95% → N, 5% → N+1            (initial canary)
 Step 3:  75% → N, 25% → N+1           (if step 2 metrics are healthy)
@@ -74,18 +80,21 @@ Step 4:   0% → N, 100% → N+1          (full rollout)
 ```
 
 **Pros:**
+
 - **Catches problems early.** If the new version has a bug, you see it on 5% of traffic, not 100%.
 - **Real-user validation.** Some bugs only appear under production load patterns; synthetic tests don't catch them.
 - **Gradual confidence building.** Each successful step increases your confidence in the rollout.
 - **Automated with the right tooling.** Flagger, Argo Rollouts, and similar tools can drive canary rollouts based on metrics.
 
 **Cons:**
+
 - **Requires traffic-splitting infrastructure.** Istio, Linkerd, or an ingress controller that supports weighted routing. Not trivial to set up.
 - **Metrics-based rollback requires good metrics.** If you can't measure "is this version healthy?" automatically, canary is just a manual rolling deploy with extra steps.
 - **Mixed versions, same as rolling.** Compatibility concerns apply.
 - **Longer deploy time.** Canary rollouts take longer than rolling deploys because each step is monitored.
 
 **When to use:**
+
 - High-stakes services where a broken deploy is costly.
 - When you have the observability to judge "is this new version healthier than the old one?" automatically.
 - For changes whose impact is hard to predict (new algorithms, performance optimizations, dependency upgrades).
@@ -102,6 +111,7 @@ return $this->oldCheckoutFlow();
 ```
 
 **Pros:**
+
 - **Deploy != release.** You can deploy 20 times a day without any user seeing a behavior change. Release is a separate, instant, reversible decision.
 - **Per-user targeting.** Enable the feature for your internal team, beta users, or a random 5% — not a traffic-percentage approximation.
 - **Instant rollback.** Toggle the flag off. No deploy, no container restart, no database change.
@@ -109,12 +119,14 @@ return $this->oldCheckoutFlow();
 - **Works with any deployment model.** Rolling, blue-green, canary — orthogonal.
 
 **Cons:**
+
 - **Complexity tax.** Every flag is a branch in the code. Flags that stick around forever become technical debt. Establish a policy: flags have an expiration date and a clean-up plan.
 - **Testing surface grows combinatorially.** Every flag doubles the paths through the code. You can't test every combination.
 - **Runtime evaluation cost.** Flag checks happen on every request; they need to be fast.
 - **Flag management infrastructure.** You need a tool (LaunchDarkly, Unleash, Flagsmith, or a homegrown system) to manage flags at scale.
 
 **When to use:**
+
 - Always, for anything user-facing that you want to be able to toggle.
 - Especially for risky changes — new algorithms, new UX, external integrations.
 - For decoupling deploys from releases so deploys become boring.
@@ -152,6 +164,7 @@ Never do expand+contract in one deploy. The mixed-version window during a rollin
 Every deploy strategy needs an automated rollback path. "We'll roll back manually if it breaks" is not a plan; it's a promise you won't be able to keep at 3 a.m.
 
 **Automated rollback requires:**
+
 - **Metrics that indicate health.** Error rate, latency, success rate. If you can't measure it, you can't automate the decision.
 - **A threshold for rollback.** "Rollback if error rate exceeds 2% for 3 minutes."
 - **A fast rollback mechanism.** Rolling back should take seconds, not minutes. Blue-green and feature flags are faster than another rolling deploy.

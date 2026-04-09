@@ -81,6 +81,7 @@ spec:
 ```
 
 Details that matter:
+
 - The `emptyDir` volume gives both containers a shared location for the FPM socket.
 - nginx config is in a ConfigMap so it can be updated without rebuilding the image.
 - Probes target nginx (the public-facing container).
@@ -176,6 +177,7 @@ The classic problem: you deploy a new version with a database migration. Three a
 Option 2 (Job) is usually the cleanest. It runs once, blocks the deploy until it succeeds, and leaves a completed Job object behind for debugging.
 
 **Migration hazards:**
+
 - **Non-backward-compatible migrations** — old pods still running during a rolling deploy will crash against the new schema. Always make migrations backward-compatible in one step: add columns, then ship code, then remove old columns in a later deploy.
 - **Long migrations** — locking a production table for 10 minutes is a real outage. Use online DDL tools (gh-ost, pt-online-schema-change) or migrate in phases.
 - **Migration failures** — you need a plan for "the migration failed halfway through". The plan should not involve panicking at 3 a.m.
@@ -187,6 +189,7 @@ Doctrine's EntityManager enters a closed state when a database query fails insid
 For CLI workers that process many messages, it's a serious problem. One DB hiccup during message N closes the EntityManager; messages N+1, N+2, ... all fail for the same reason — not because the database is broken, but because the worker's state is corrupted.
 
 Fixes:
+
 - **Catch the exception and restart the worker.** Simplest. Let Kubernetes recreate the pod. Messenger's `--time-limit` combined with a retry strategy handles this naturally.
 - **Clear and reset the EntityManager.** `$entityManager->clear()` and recreate it. More complex but avoids the restart overhead.
 - **Don't reuse the EntityManager across messages.** Get a fresh one per message. Heavy but bulletproof.

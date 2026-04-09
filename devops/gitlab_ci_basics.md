@@ -265,6 +265,7 @@ trigger_downstream:
 ### Self-hosted runners
 
 GitLab runners are open source and commonly self-hosted, especially for teams on self-hosted GitLab. Types:
+
 - **Shell executor** — runs jobs directly on the runner machine. Simple, not isolated.
 - **Docker executor** — runs each job in a fresh Docker container. The default choice.
 - **Kubernetes executor** — each job runs as a pod. Scales well, integrates with existing K8s infrastructure.
@@ -282,6 +283,7 @@ deploy:
 ```
 
 Variables can be:
+
 - **Protected** — only exposed to jobs running on protected branches or tags.
 - **Masked** — hidden in job logs.
 - **Environment-scoped** — only exposed to jobs running against specific environments.

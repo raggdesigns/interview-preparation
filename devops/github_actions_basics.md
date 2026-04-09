@@ -72,6 +72,7 @@ jobs:
 ```
 
 What this does:
+
 - Triggers on push to main or any pull request.
 - Spins up a MySQL 8.0 service container alongside the job.
 - Sets up PHP 8.3 with the extensions the app needs.
@@ -88,6 +89,7 @@ What this does:
 - **`release`** — trigger on GitHub release events. Useful for publishing artifacts.
 
 **Path filters** are worth knowing:
+
 ```yaml
 on:
   push:
@@ -96,6 +98,7 @@ on:
       - 'composer.*'
       - '.github/workflows/ci.yml'
 ```
+
 Don't run the CI pipeline when someone edits the README.
 
 ### Reusable actions — where the ecosystem lives
@@ -199,6 +202,7 @@ The `actions/cache` action saves and restores directories keyed on a hash. The p
 - **`restore-keys`** — fallback prefixes. If the exact key doesn't match, restore from the most recent partial match.
 
 Effective caching is the difference between 2-minute and 8-minute jobs. Cache everything that's slow to regenerate:
+
 - Composer dependencies (by lockfile hash)
 - Docker build cache (GitHub Actions cache backend for buildx)
 - Node modules

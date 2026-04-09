@@ -9,6 +9,7 @@
 Before IaC, infrastructure was built by clicking around in cloud consoles and ssh'ing into servers to configure them. That has obvious problems: no audit trail, no reviewability, no reproducibility, manual errors, drift between what's documented and what's actually running.
 
 IaC fixes this by making infrastructure:
+
 - **Versioned** — git history shows exactly what changed, when, by whom.
 - **Reviewable** — infrastructure changes go through the same PR flow as code changes.
 - **Reproducible** — the same config produces the same infrastructure. New environments are trivial to spin up.
@@ -116,6 +117,7 @@ module "billing_service" {
 Modules let you encapsulate "how we deploy a service" in one place and call it many times. Well-designed modules accept narrow inputs and produce narrow outputs, just like good functions.
 
 **Module sources:**
+
 - Local path (`./modules/...`)
 - Git URL
 - Terraform Registry (for public modules; also hosts an organization-private registry)
@@ -152,12 +154,14 @@ const db = new aws.rds.Instance("app", {
 ```
 
 **Pulumi's pitch:**
+
 - **Real programming language.** Loops, conditionals, functions, type systems, IDE support.
 - **No custom DSL to learn.** Your team already knows TypeScript or Python.
 - **Better testing.** Unit-test your infrastructure logic like any other code.
 - **Reuse through normal language constructs.** No HCL-specific module mechanism needed.
 
 **Pulumi's downsides:**
+
 - **Smaller community** than Terraform. Fewer examples, fewer modules, fewer StackOverflow answers.
 - **Stateful programming temptation.** People write imperative code and forget that Pulumi is declarative under the hood.
 - **Harder to review.** HCL forces simple configs; TypeScript lets you hide logic behind abstractions that are harder to read at review time.
@@ -202,6 +206,7 @@ Ansible is older than Terraform and was originally designed for configuring exis
 ```
 
 **Key concepts:**
+
 - **Inventory** — the list of hosts Ansible manages, grouped by role.
 - **Playbooks** — ordered lists of tasks to run against hosts.
 - **Roles** — reusable collections of tasks, templates, and variables.
@@ -209,11 +214,13 @@ Ansible is older than Terraform and was originally designed for configuring exis
 - **Templates** — Jinja2-templated files that can be rendered with host-specific variables.
 
 **When Ansible is the right tool:**
+
 - **Configuring long-lived VMs or bare metal.** Installing packages, writing config files, managing users, setting up system services. Ansible excels here.
 - **Ad-hoc operations.** Running a command across a fleet. "Restart this service on all prod nodes." One-liner.
 - **Environments without containers.** If you're running traditional VMs, Ansible is often the backbone of your config management.
 
 **When it's not:**
+
 - **Provisioning cloud resources.** Ansible can do this via cloud modules, but it's awkward compared to Terraform.
 - **Containerized workloads.** The container image is the configuration; Ansible has nothing to do.
 - **Anything requiring a diff-and-apply model.** Ansible runs tasks; it doesn't show you a plan before applying.
@@ -236,6 +243,7 @@ Drift is when the actual infrastructure no longer matches the IaC definition. So
 **Drift detection** — running Terraform plan against current state will show changes IaC wants to make. If those changes are unexpected, something outside IaC touched the infrastructure.
 
 **Preventing drift:**
+
 - **Lock down manual access.** Production changes should go through IaC, not console clicks. Audit and restrict IAM to enforce this.
 - **Run plan on a schedule.** Detect drift proactively, not after the next apply.
 - **Prefer additive, not overwriting, IaC patterns.** Data resources that *read* existing state are more tolerant of drift than resources that *own* everything.
