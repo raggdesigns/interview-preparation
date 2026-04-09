@@ -21,6 +21,7 @@ A collection of notes and answers for software engineering interview topics, org
 | [observability/](observability/questions.md) | Metrics, logs, traces, Prometheus, Grafana, OpenTelemetry, SLOs, alerting |
 | [mysql/](mysql/questions.md) | Indices, engines, data types, SQL concepts |
 | [oop/](oop/questions.md) | OOP principles, design patterns, composition, GRASP |
+| [performance-testing/](performance-testing/questions.md) | Load/stress/soak/spike testing, k6, profiling PHP, bottleneck identification, capacity planning |
 | [php/](php/questions.md) | PHP language features, sessions, generators, OPCache |
 | [postgresql/](postgresql/questions.md) | PostgreSQL vs MySQL, indexes, MVCC/VACUUM, JSONB, EXPLAIN, LISTEN/NOTIFY |
 | [solid/](solid/questions.md) | SOLID principles with PHP examples |
