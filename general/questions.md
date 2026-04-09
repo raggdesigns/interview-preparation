@@ -25,6 +25,10 @@
 - [SOA architecture](soa_architecture.md)
 - [Data structures overview (hash table, linked list, tree, stack, queue)](data_structures_overview.md)
 
+## Real-time communication
+
+- [WebSockets vs SSE vs long polling](websockets_vs_sse_vs_long_polling.md)
+
 ## Security
 
 - [OWASP Top 10](owasp_top_10.md)

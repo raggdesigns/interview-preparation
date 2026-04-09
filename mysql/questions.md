@@ -14,3 +14,4 @@
 - [Entity relationships (1:1, 1:N, M:N, pivot tables)](entity_relationships.md)
 - [ACID transactions](acid_transactions.md)
 - [EXPLAIN query analysis](explain_query_analysis.md)
+- [Isolation levels and locking (Read Committed, Repeatable Read, gap locks, deadlocks)](isolation_levels_and_locking.md)
