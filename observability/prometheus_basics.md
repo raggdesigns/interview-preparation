@@ -18,6 +18,7 @@ Prometheus is built around a few simple ideas:
 ### The data model
 
 A Prometheus metric is identified by:
+
 - **Metric name** — `http_requests_total`, `http_request_duration_seconds`, etc.
 - **Labels** — key-value pairs that distinguish series. `{method="POST", status="200", endpoint="/api/orders"}`.
 
@@ -32,12 +33,13 @@ Prometheus has four metric types that the client libraries expose:
 #### Counter
 
 A value that only goes up (except when it resets to zero on process restart). Used for:
+
 - Total requests handled
 - Total errors
 - Total bytes sent
 - Total messages processed
 
-```
+```text
 http_requests_total{method="POST", status="200", endpoint="/orders"} 4521
 ```
 
@@ -52,13 +54,14 @@ rate(http_requests_total[5m])
 #### Gauge
 
 A value that can go up or down:
+
 - Memory usage
 - CPU usage
 - Number of active connections
 - Queue depth
 - Temperature
 
-```
+```text
 nodejs_heap_size_used_bytes 234567890
 ```
 
@@ -67,13 +70,14 @@ Gauges are queried directly — the value at scrape time is the value. No need f
 #### Histogram
 
 A distribution of observations across predefined buckets, plus a sum and count. Used for:
+
 - Request duration
 - Response size
 - Anything where percentiles matter
 
 A histogram with bucket boundaries `[0.1, 0.5, 1.0, 5.0]` produces multiple time series:
 
-```
+```text
 http_request_duration_seconds_bucket{le="0.1"} 3500
 http_request_duration_seconds_bucket{le="0.5"} 4800
 http_request_duration_seconds_bucket{le="1.0"} 4950
@@ -95,7 +99,7 @@ histogram_quantile(0.99, rate(http_request_duration_seconds_bucket[5m]))
 
 Similar to a histogram but the quantiles are computed on the client side and reported directly. Sum and count are also reported.
 
-```
+```text
 http_request_duration_seconds{quantile="0.5"} 0.12
 http_request_duration_seconds{quantile="0.95"} 0.45
 http_request_duration_seconds{quantile="0.99"} 1.2
@@ -118,6 +122,7 @@ scrape_configs:
 Each target is scraped every 15 seconds. The target exposes `/metrics` in the Prometheus text format.
 
 **Service discovery** is more practical than static configs for real deployments. Prometheus can discover targets via:
+
 - **Kubernetes** — auto-discover pods, services, endpoints based on labels and annotations.
 - **Consul** — service registry integration.
 - **EC2, GCP, Azure, Kubernetes** — cloud-native discovery.
@@ -140,12 +145,14 @@ Prometheus discovers the pods and scrapes them automatically.
 Prometheus uses **pull-based scraping** — it connects to targets and asks for metrics. Most other systems (Datadog, InfluxDB, etc.) use **push-based reporting** — targets push their metrics to the system.
 
 **Pull advantages:**
+
 - **Discovery is centralized.** Prometheus decides what to scrape; targets don't need to know where Prometheus is.
 - **Target health is implicit.** A target that can't be scraped triggers an `up{}` metric going to 0.
 - **Easy to debug.** You can curl the `/metrics` endpoint yourself.
 - **Works well with dynamic environments.** Kubernetes service discovery makes scraping new pods automatic.
 
 **Pull disadvantages:**
+
 - **Firewall concerns.** Prometheus needs network access to targets.
 - **Short-lived jobs.** Jobs that start, run, and exit before the next scrape can't be pulled. Solution: the **Pushgateway** — a push-compatible accumulator that Prometheus scrapes.
 
@@ -156,42 +163,53 @@ For most container workloads, pull is the right model. Short-lived tasks use the
 PromQL is a functional language designed for time-series math. A few patterns that cover most real queries:
 
 **Current value of a metric:**
+
 ```promql
 node_memory_MemAvailable_bytes
 ```
 
 **Filter by labels:**
+
 ```promql
 http_requests_total{job="billing", status=~"5.."}
 ```
+
 Returns all 5xx responses from the billing job.
 
 **Rate over a time window:**
+
 ```promql
 rate(http_requests_total[5m])
 ```
+
 Requests per second averaged over the last 5 minutes.
 
 **Aggregation across labels:**
+
 ```promql
 sum by (status) (rate(http_requests_total[5m]))
 ```
+
 Total request rate, summed across all dimensions, split out by status code.
 
 **Percentiles from histograms:**
+
 ```promql
 histogram_quantile(0.99,
   sum by (le) (rate(http_request_duration_seconds_bucket[5m]))
 )
 ```
+
 p99 request duration across all instances.
 
 **Ratios (error rates):**
+
 ```promql
 sum(rate(http_requests_total{status=~"5.."}[5m]))
   /
 sum(rate(http_requests_total[5m]))
 ```
+
 5xx rate as a fraction of total requests.
 
 PromQL has plenty more — joins, offsets, subqueries, label manipulation — but these five patterns cover most day-to-day queries.
@@ -234,6 +252,7 @@ groups:
 ```
 
 Key parts:
+
 - **`expr`** — the query that defines "is this bad?". Returning at least one result means the alert is active.
 - **`for: 5m`** — require the condition to persist for 5 minutes before firing. Smooths out brief spikes.
 - **`labels`** — attached to the alert, used for routing in Alertmanager.
@@ -242,6 +261,7 @@ Key parts:
 ### Alertmanager — routing and deduplication
 
 Prometheus fires alerts; **Alertmanager** routes them. It handles:
+
 - **Grouping.** Related alerts (all from the same service) are batched into one notification.
 - **Deduplication.** If the same alert fires from multiple Prometheus instances (HA), only one notification goes out.
 - **Silencing.** Temporarily suppress specific alerts (e.g., during planned maintenance).
@@ -255,6 +275,7 @@ Separating fire-detection (Prometheus) from routing (Alertmanager) lets you evol
 Every unique combination of metric name + label values is a new time series. Prometheus holds all series in memory. Cardinality explosions kill Prometheus deployments.
 
 **High-cardinality fields you must not put in labels:**
+
 - User IDs
 - Request IDs
 - Trace IDs
@@ -263,6 +284,7 @@ Every unique combination of metric name + label values is a new time series. Pro
 - Timestamps
 
 **Acceptable labels:**
+
 - Service name
 - HTTP method (small enum)
 - HTTP status code (small enum)

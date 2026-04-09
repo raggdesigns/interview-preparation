@@ -8,7 +8,7 @@
 
 Traditional log line:
 
-```
+```text
 [2026-04-09 14:23:11] ERROR: User 12345 failed to log in from 192.168.1.42
 ```
 
@@ -63,11 +63,13 @@ Then the log-specific fields — whatever's relevant to the event:
 The single most common structured logging mistake is putting dynamic values into the message:
 
 **Wrong:**
+
 ```json
 {"level": "info", "message": "User 12345 bought 3 widgets for $45.99"}
 ```
 
 **Right:**
+
 ```json
 {
   "level": "info",
@@ -94,6 +96,7 @@ Five standard levels (some frameworks have more; these five are enough):
 - **`fatal`** — the process can't continue. Should be rare; usually logged right before the process exits.
 
 **Common misuse:**
+
 - Everything logged as `info` because people don't think about levels.
 - `error` used for expected exceptions that are handled (overreacting to non-problems → alert fatigue).
 - `debug` left on in production (verbose and expensive).
@@ -153,6 +156,7 @@ The twelve-factor principle [twelve_factor_app.md](../devops/twelve_factor_app.m
 - **Heroku, Fly.io, Railway, Render** — all capture stdout.
 
 Writing to a log file inside a container creates three problems:
+
 1. The platform doesn't pick it up.
 2. The file grows without bound (no rotation).
 3. Logs are lost when the container restarts.
@@ -164,6 +168,7 @@ Solution: write JSON to stdout. Done.
 Logs are a data store. Sensitive data in logs is a data leak waiting to happen.
 
 **What not to log:**
+
 - Passwords (obviously)
 - Credit card numbers, CVVs
 - Session tokens, API keys, refresh tokens
@@ -172,6 +177,7 @@ Logs are a data store. Sensitive data in logs is a data leak waiting to happen.
 - Authentication headers
 
 **What to do instead:**
+
 - **Scrub sensitive fields at the logger level.** Define a list of field names that should be redacted and enforce it in middleware.
 - **Log IDs, not values.** `user_id=12345` is fine; `email=user@example.com` may not be.
 - **Redact at the edges.** Incoming HTTP request logs should strip `Authorization`, `Cookie`, etc.

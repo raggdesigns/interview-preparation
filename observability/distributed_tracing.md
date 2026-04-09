@@ -9,6 +9,7 @@
 A **trace** is a tree of **spans** representing a single request's execution across services and components.
 
 A **span** is a named operation with:
+
 - A start time and duration
 - A unique span ID
 - A parent span ID (or no parent, if it's the root)
@@ -19,7 +20,7 @@ A **span** is a named operation with:
 
 Visually, a trace looks like this:
 
-```
+```text
 trace: 4bf92f3577b34da6a3ce929d0e0e4736
 ┌──────────────────────────────────────────────────────────┐
 │ POST /checkout                                    [450ms]│
@@ -41,6 +42,7 @@ trace: 4bf92f3577b34da6a3ce929d0e0e4736
 ```
 
 One glance tells you:
+
 - The checkout took 450ms end-to-end.
 - Of that, 320ms was the payment service.
 - Of the payment service's 320ms, 275ms was calling Stripe.
@@ -61,9 +63,11 @@ The value proposition: "don't make me piece this together from timestamps".
 A trace only works if the context — the trace ID and current span ID — flows from the caller to the callee. The propagation standard is W3C Trace Context.
 
 **HTTP:** the `traceparent` header.
-```
+
+```text
 traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01
 ```
+
 Format: `version-traceId-parentSpanId-flags`.
 
 **Message brokers:** the context is attached as message headers (`traceparent`, `tracestate`). Consumers extract and continue the trace.
@@ -88,6 +92,7 @@ Head sampling is cheap and predictable but blind: you might drop the trace that 
 **Tail sampling** — decide after the trace is complete. Spans are buffered (usually in the OTel Collector) until the trace is considered done (no new spans for N seconds), then a rule decides whether to keep it.
 
 Tail sampling rules can be outcome-based:
+
 - **Keep all traces with errors.** Rare and high-value.
 - **Keep all traces slower than p99 latency.** Rare and high-value.
 - **Sample 10% of normal traces.** Keep a statistical baseline.
@@ -99,7 +104,7 @@ Tail sampling is the production-quality approach. It requires the infrastructure
 
 **Attributes** are key-value metadata on spans. They're how you make traces queryable.
 
-```
+```text
 http.method = POST
 http.url = /api/checkout
 http.status_code = 200
@@ -112,7 +117,7 @@ Attributes turn traces from "a tree of operations" into "a queryable index". You
 
 **Events** are timestamped log-like entries within a span. "Started processing", "cache hit", "retry attempt 2". They're lighter than logs (no level, no structured schema) and tied to the span's timeline.
 
-```
+```text
 span: POST /checkout
   events:
     [  5ms] "cart validated"
@@ -152,6 +157,7 @@ The right pattern: every try/catch for an external call or meaningful operation 
 - **Datadog APM, New Relic, Honeycomb, Lightstep, AppDynamics** — commercial. Richer UIs, more features, per-span pricing.
 
 **The choice depends on:**
+
 - Scale (Tempo for massive, Jaeger for moderate).
 - Budget (Tempo/Jaeger for open-source, commercial for managed).
 - Integration (Tempo pairs naturally with Grafana if you already use it).
@@ -162,6 +168,7 @@ The right pattern: every try/catch for an external call or meaningful operation 
 A **service map** is an aggregated visualization of which services call which, based on trace data. Nodes are services; edges are calls between them, weighted by rate and colored by error rate or latency.
 
 Service maps answer different questions than individual traces:
+
 - **"Which services depend on billing?"** — look at the edges entering the billing node.
 - **"Where are errors concentrated?"** — red edges.
 - **"What's the shape of my architecture?"** — the whole graph.
@@ -197,6 +204,7 @@ Traces pivot you from "something is slow" to "this specific call is slow" to "he
 ### The cost model
 
 Tracing adds:
+
 - **CPU overhead** on the producer side (creating spans, serializing, sending). Small but measurable at high throughput.
 - **Network bandwidth** to the collector (especially with large traces and many attributes).
 - **Storage cost** at the backend (proportional to trace volume and retention).

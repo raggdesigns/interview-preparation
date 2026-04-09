@@ -11,16 +11,19 @@
 **What it is:** the time it takes to service a request.
 
 **What to measure:**
+
 - **Successful request latency.** How fast does the service respond when it works?
 - **Failed request latency, separately.** Errors often have very different latency characteristics than successes — and mixing them produces misleading averages. A quick rejection with a 400 can make your average look good while the slow 500s that users actually care about get buried.
 
 **What to care about:**
+
 - **p50 (median)** — typical user experience.
 - **p95 / p99** — tail experience, which is where users notice problems.
 - **p99.9** — the worst-case envelope for high-volume services.
 - **Not averages.** Averages hide tails. A service with 99 fast requests and 1 very slow request has a deceptively good average. Latency is only meaningful as percentiles.
 
 **Common shapes:**
+
 - **Healthy:** p50 and p99 are close together; tails are stable.
 - **Saturated:** p50 is fine, p99 blows up. Queues are forming somewhere.
 - **Broken:** p50 and p99 both spike. Something is fundamentally slow.
@@ -30,16 +33,19 @@
 **What it is:** the demand on your service. For a web service, it's usually requests per second. For a pub/sub system, messages per second. For a database, queries per second.
 
 **What to measure:**
+
 - **Requests per second** split by endpoint, method, status class.
 - **Bytes per second** (ingress/egress) for bandwidth-bound services.
 - **Active connections** for long-lived-connection services (WebSocket, gRPC streaming).
 
 **Why it matters beyond "how busy am I":**
+
 - **Context for other signals.** A latency spike at 100 RPS and at 10,000 RPS mean very different things. Traffic is the denominator for everything else.
 - **Anomaly detection.** A sudden drop in traffic is often the first sign of an upstream problem (your users can't reach you).
 - **Capacity planning.** Traffic trends over weeks and months drive provisioning decisions.
 
 **Common shapes:**
+
 - **Daily/weekly patterns.** Most human-facing services have predictable curves; breaks in the pattern are a signal.
 - **Sudden drops.** Usually a routing, DNS, or CDN issue — the service is fine, nobody can reach it.
 - **Sudden spikes.** Traffic surge, retry storm from a downstream failure, or an attack.
@@ -49,17 +55,20 @@
 **What it is:** the rate of failed requests.
 
 **What to measure:**
+
 - **Error rate** — errors per second, or percentage of total requests.
 - **Error class breakdown** — 4xx (client errors) vs 5xx (server errors). Distinguish them; they mean different things.
 - **Error type breakdown** — timeouts, connection failures, application exceptions, business-logic rejections.
 
 **What "error" means is non-trivial:**
+
 - **HTTP 4xx is usually a client problem.** Don't alert on overall 4xx rate; do alert on specific 401/403/429 spikes that indicate auth breakage or attack.
 - **HTTP 5xx is usually your problem.** These belong on dashboards and alerts.
 - **Silent failures are the worst.** A service that returns 200 with garbage data is a 100% "success" rate from the metric's perspective. Golden signals can't catch this; only semantic checks can.
 - **Business errors.** "Payment declined" isn't an infrastructure error, but it's a signal. Track business errors separately from technical errors so they don't pollute each other.
 
 **Common shapes:**
+
 - **Flat near-zero** — healthy.
 - **Gradual creep** — something is degrading; investigate before it becomes an incident.
 - **Sudden step** — a deploy, a config change, or a dependency failing.
@@ -70,6 +79,7 @@
 **What it is:** how "full" the service is. How close are you to the limits of your resources?
 
 **What to measure:**
+
 - **CPU utilization** (as a percentage of the limit, not of the host).
 - **Memory usage** vs the limit.
 - **Queue depth** — how much work is waiting?
@@ -78,6 +88,7 @@
 - **Disk I/O, disk space.**
 
 **Why saturation is the trickiest signal:**
+
 - **It's a leading indicator.** By the time errors spike, you're already broken. Saturation trending up gives you warning to scale or investigate before the symptom becomes user-visible.
 - **It's resource-specific.** Every resource has its own saturation metric and its own limit.
 - **It's non-linear.** A system at 60% CPU is usually fine; at 85% it's often fine too; at 95% it falls over. The relationship between saturation and performance is not smooth.
@@ -88,7 +99,7 @@
 
 The four golden signals fit on a single dashboard. The canonical layout:
 
-```
+```text
 ┌─────────────────┬─────────────────┐
 │  Latency (p50,  │  Traffic (rps)  │
 │   p95, p99)     │                 │
@@ -107,12 +118,14 @@ This is the single highest-leverage dashboard you can build. It's the starting p
 The key insight: **alert on user-visible symptoms, not on internal causes**. The golden signals are mostly user-visible (latency and errors), with saturation as a leading indicator.
 
 Good alert shapes:
+
 - **Error rate > 1% for 5 minutes** (user-visible failure rate)
 - **p99 latency > 1000ms for 10 minutes** (user-visible slowness)
 - **Queue depth > 500 for 5 minutes** (saturation approaching)
 - **Error budget burn rate above SLO target** (see [slo_sli_sla.md](slo_sli_sla.md))
 
 Bad alert shapes that golden-signal discipline avoids:
+
 - CPU > 80% — so what? If users are fine, the service is fine.
 - Memory > 90% — possibly normal; not user-visible until OOM.
 - Pod restart count — each restart is not necessarily a problem.

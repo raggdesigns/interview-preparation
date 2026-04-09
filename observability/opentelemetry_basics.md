@@ -73,7 +73,7 @@ A distributed trace only works if trace context propagates across every boundary
 
 **For HTTP**, the standard is the W3C Trace Context specification (`traceparent` header):
 
-```
+```text
 traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01
 ```
 
@@ -99,7 +99,7 @@ The OTel Collector is a separate process that sits between your applications and
 
 The Collector has three pipeline stages:
 
-```
+```text
 Receivers → Processors → Exporters
 ```
 
@@ -160,6 +160,7 @@ This Collector receives OTLP telemetry, batches and enriches it, and exports tra
 OTel defines **semantic conventions**: standard attribute names and values for common things. `http.method`, `http.status_code`, `db.system`, `messaging.destination`, `service.name`, `service.version`, etc.
 
 Following these conventions matters because:
+
 - **Dashboards and alerts that work across services.** If every service uses `http.status_code`, a single dashboard can show the status breakdown across all of them.
 - **Backend features light up.** Backends know the semantic conventions and provide special handling for them (e.g., auto-generating "HTTP" dashboards).
 - **Tool interoperability.** Switching from one backend to another doesn't break your queries if the attributes are standardized.
