@@ -72,6 +72,7 @@ These properties make LISTEN/NOTIFY a specific kind of tool: fast, lightweight, 
 **Logical replication** is PostgreSQL's mechanism for replicating specific tables (or all tables) to another PostgreSQL server — or to any consumer that understands the logical replication protocol. It's called "logical" because it replicates logical row changes (INSERT, UPDATE, DELETE) rather than physical WAL blocks.
 
 Compared to **physical replication** (streaming replication):
+
 - **Logical:** replicates row-level changes; works across major versions; supports selective table replication.
 - **Physical:** replicates WAL blocks; must replicate the entire cluster; same major version required.
 
@@ -101,13 +102,14 @@ The more interesting use case: **change data capture** with a non-PostgreSQL con
 
 The flow:
 
-```
+```text
 PostgreSQL → logical replication slot → Debezium → Kafka → downstream consumers
 ```
 
 Each row change in PostgreSQL becomes a JSON event on a Kafka topic, complete with before/after values, primary key, operation type, and transaction metadata. This is the production CDC pipeline for many teams.
 
 **Why this matters:**
+
 - **No application-level dual writes.** Changes to Postgres automatically flow to downstream systems.
 - **Schema changes are tracked.** Debezium handles schema evolution via its schema registry.
 - **Ordering is preserved** within a transaction.
@@ -162,7 +164,7 @@ My default: for new Postgres-first systems, logical replication + Debezium is th
 
 A common pattern: use logical replication for the durable change stream, and LISTEN/NOTIFY as a low-latency trigger for consumers waiting on an outbox-like table.
 
-```
+```text
 Producer → INSERT into outbox (same transaction as business change)
            NOTIFY outbox_new_row
 Consumer → LISTEN outbox_new_row

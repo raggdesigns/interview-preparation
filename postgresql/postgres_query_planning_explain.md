@@ -9,6 +9,7 @@
 When you send a query, PostgreSQL parses it, then the **planner** (also called the optimizer) considers many possible ways to execute it and picks the cheapest. For a simple query on one table, there might be only a few options. For a join between three tables with a filter and a sort, there can be hundreds.
 
 The planner estimates cost for each plan based on:
+
 - **Statistics** about the tables (row counts, value distributions, null fractions).
 - **Cost model parameters** (I/O cost, CPU cost, random-vs-sequential access).
 - **Index information** — which indexes exist and their selectivity.
@@ -55,6 +56,7 @@ For serious analysis, paste the JSON output into **explain.depesz.com** or **exp
 ### The structure of an EXPLAIN plan
 
 A plan is a tree of operations. Each node has:
+
 - **Node type** — the operation (Seq Scan, Index Scan, Nested Loop, Hash Join, etc.).
 - **Cost** — `cost=X..Y` where X is the startup cost, Y is the total cost (arbitrary units; relative).
 - **Rows** — estimated rows this node will produce.
@@ -64,7 +66,7 @@ A plan is a tree of operations. Each node has:
 
 A simple plan:
 
-```
+```text
 Index Scan using idx_orders_user_id on orders  (cost=0.43..8.45 rows=10 width=120) (actual time=0.015..0.023 rows=8 loops=1)
   Index Cond: (user_id = 42)
   Buffers: shared hit=3
@@ -138,7 +140,7 @@ LIMIT 20;
 
 Output (edited for brevity):
 
-```
+```text
 Limit (cost=400123.45..400125.67 rows=20 width=200) (actual time=8543.12..8543.45 rows=20 loops=1)
   Buffers: shared hit=1234 read=98765
   ->  Sort (cost=400123.45..400873.45 rows=300000 width=200) (actual time=8543.10..8543.22 rows=20 loops=1)
@@ -156,6 +158,7 @@ Execution Time: 8543.89 ms
 ```
 
 Reading this:
+
 - **The outer query took 8.5 seconds.** Slow.
 - **Seq Scan on orders.** Reading the entire orders table (15M rows) and filtering to 300K. This is the problem.
 - **Filter removed 14.7M rows.** The filter is very selective. An index on `(status, created_at)` would let the planner use an index scan instead.
@@ -171,7 +174,7 @@ CREATE INDEX idx_orders_pending_recent
 
 A partial index on recent pending orders. Very small, very fast for this exact query. After creating it and running `ANALYZE`:
 
-```
+```text
 Limit (actual time=0.432..0.456 rows=20 loops=1)
   ->  Nested Loop (actual time=0.428..0.450 rows=20 loops=1)
         ->  Index Scan using idx_orders_pending_recent on orders o (actual time=0.012..0.032 rows=20 loops=1)
@@ -186,6 +189,7 @@ From 8.5 seconds to 0.5 milliseconds. The index scan directly finds the 20 relev
 ### The role of statistics
 
 The planner's decisions depend on statistics:
+
 - **Row count estimates** per table.
 - **Value distributions** per column (most common values, histogram boundaries).
 - **Correlation** between logical order and physical order.
@@ -194,6 +198,7 @@ The planner's decisions depend on statistics:
 Statistics are collected by `ANALYZE` (automatically by autovacuum or manually). Stale statistics lead to bad plans.
 
 **Symptoms of stale stats:**
+
 - Estimates wildly different from actuals.
 - The planner picks sequential scans on indexed columns.
 - Queries that used to be fast suddenly aren't.
@@ -251,7 +256,7 @@ The output aggregates queries by shape (with parameters normalized), so you see 
 
 The `auto_explain` extension logs the plan of any query that exceeds a threshold.
 
-```
+```text
 shared_preload_libraries = 'auto_explain'
 auto_explain.log_min_duration = 500ms
 auto_explain.log_analyze = on
