@@ -187,6 +187,7 @@ k6 runs from the command line and exits with a non-zero code on threshold violat
 ```
 
 Or just:
+
 ```yaml
 - name: Install k6
   run: |

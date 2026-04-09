@@ -9,6 +9,7 @@
 The fundamental rule of performance work: **measure before optimizing**. Developers consistently guess wrong about where time is spent. The function you think is slow usually isn't; the function you didn't suspect is usually the one allocating memory 50,000 times in a loop.
 
 Profiling gives you:
+
 - **Call counts** — how many times each function was called. N+1 patterns jump out here.
 - **Wall time per function** — clock time including I/O waits.
 - **CPU time per function** — time spent on CPU, excluding I/O. Useful for identifying computation-heavy functions.
@@ -22,12 +23,14 @@ Profiling gives you:
 Blackfire is a commercial profiler from the Symfony team. It's the most production-oriented option: low overhead, can run on every request or on-demand, integrates with CI for automated profiling.
 
 **How it works:**
+
 1. Install the Blackfire probe (PHP extension) and agent on the server.
 2. Trigger a profile from the browser (via the Blackfire browser extension), CLI (`blackfire run php script.php`), or CI.
 3. The profile is collected and sent to Blackfire's servers for analysis.
 4. View the results in Blackfire's web UI: call graph, timeline, hot paths, recommendations.
 
 **Key features:**
+
 - **Timeline view** — horizontal timeline showing function execution over time. I/O waits, SQL queries, and CPU work are visually distinct.
 - **Call graph** — function-by-function breakdown with percentages. Click any function to see its callers and callees.
 - **Comparisons** — compare two profiles side by side. "Before vs after the optimization." This is the killer feature for verification.
@@ -42,6 +45,7 @@ Blackfire is a commercial profiler from the Symfony team. It's the most producti
 Tideways is a PHP-specific application performance monitoring tool. Like Blackfire but with a different focus: it's always-on monitoring rather than on-demand profiling.
 
 **Key differences from Blackfire:**
+
 - **Always-on tracing** — every request is traced (with sampling for detailed profiles).
 - **Transaction-level monitoring** — see the slowest transactions, error rates, throughput — similar to Datadog APM but PHP-specific.
 - **Database query analysis** — automatic N+1 detection, slow query highlighting.
@@ -64,11 +68,13 @@ xdebug.start_with_request = trigger  ; profile only when triggered
 Trigger with `XDEBUG_PROFILE=1` cookie or query parameter. The profiler writes a `.cachegrind` file that shows every function call, count, and time.
 
 **Strengths:**
+
 - **Free and open-source.** No account, no cloud service.
 - **Deep detail.** Every function call is recorded.
 - **Works locally.** No agent, no network, no third-party service.
 
 **Weaknesses:**
+
 - **Heavy overhead.** Xdebug profiling significantly slows execution (2-10x). Results reflect relative proportions, not absolute timing.
 - **Not for production.** The overhead and the file I/O make it unsuitable for live traffic.
 - **Clunky visualization.** KCachegrind is powerful but old; the learning curve is non-trivial.
@@ -91,11 +97,13 @@ $data = tideways_xhprof_disable();
 ```
 
 **Strengths:**
+
 - **Low overhead.** ~5% slowdown, acceptable for production sampling.
 - **Simple.** Enable, run, disable, read the data.
 - **Production-viable** for sampled profiling.
 
 **Weaknesses:**
+
 - **No built-in UI.** You need a separate tool to visualize (xhprof's web UI, xhgui, or custom).
 - **Less maintained** than commercial tools.
 - **No CI integration.** Manual process.
@@ -107,11 +115,13 @@ $data = tideways_xhprof_disable();
 Excimer is a PHP extension from Wikimedia that uses timer-based sampling instead of instrumentation. It periodically (every N microseconds) captures a stack trace, producing a statistical profile.
 
 **Strengths:**
+
 - **Near-zero overhead.** Sampling means the profiler only does work on timer interrupts.
 - **Production-safe.** Can run on every request.
 - **Flamegraph output.** Produces data suitable for flamegraphs, which are the best visualization for this kind of data.
 
 **Weaknesses:**
+
 - **Statistical, not exact.** Short functions may be missed entirely. Long functions are well-represented.
 - **Less precise for call counts.** It knows what was on the stack, not how many times a function was called.
 
@@ -133,16 +143,19 @@ Excimer is a PHP extension from Wikimedia that uses timer-based sampling instead
 ### Reading a profile — what to look for
 
 **Self time vs inclusive time:**
+
 - **Self time** — time spent in the function itself, excluding calls to other functions.
 - **Inclusive time** — time spent in the function plus all functions it calls.
 
 A function with high inclusive time but low self time is a caller — the bottleneck is inside something it calls. A function with high self time is doing the actual work — it's the bottleneck itself.
 
 **Call counts:**
+
 - A function called once with 500ms self time → the function itself is slow.
 - A function called 5000 times with 0.1ms self time each → the function is fine, but calling it 5000 times is the problem. Classic N+1.
 
 **Memory allocation:**
+
 - A function that allocates 100MB → probably creating large arrays or hydrating many objects. Look for ways to stream or paginate.
 - High allocation rate with low peak usage → frequent allocate-then-free cycles. May be GC pressure.
 
@@ -159,6 +172,7 @@ A function with high inclusive time but low self time is a caller — the bottle
 ### Flamegraphs — the visualization that works
 
 A **flamegraph** is a visualization where:
+
 - The X axis is the total time (or samples).
 - Each bar is a function.
 - Bars are stacked: the caller is below the callee.
@@ -173,6 +187,7 @@ Flamegraphs are the single best visualization for profiling data. They immediate
 The advanced practice: run a profiler on every CI build and fail if performance budgets are exceeded.
 
 **Blackfire supports this natively:**
+
 ```yaml
 # .blackfire.yml
 tests:
