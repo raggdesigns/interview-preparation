@@ -13,6 +13,7 @@ Declarative, not imperative. You don't say "start this pod" — you say "this de
 ### The unit of work: Pod
 
 A pod is the smallest deployable unit. It's one or more containers that share:
+
 - A network namespace (they can talk to each other on localhost).
 - Storage volumes (they can share files).
 - A lifecycle (they're scheduled together, die together).
@@ -40,12 +41,14 @@ Pods are ephemeral and their IPs change. You need a way for other pods (and exte
 A Service defines a stable virtual IP and DNS name in the cluster, plus a selector that matches a set of pods (by label). Traffic to the service gets load-balanced across the matching pods.
 
 **Service types:**
+
 - **ClusterIP** (default) — the service is reachable only from inside the cluster. Used for internal communication between services.
 - **NodePort** — the service is exposed on every node at a specific port. Rarely used in production.
 - **LoadBalancer** — the cloud provider provisions an external load balancer and routes traffic to the service. Used for services exposed to the internet.
 - **ExternalName** — a DNS alias to an external service outside the cluster. Used for legacy or third-party integrations.
 
 For most web apps you combine Deployment + Service + Ingress:
+
 - Deployment runs the pods.
 - ClusterIP Service gives them a stable internal address.
 - Ingress routes external HTTP traffic to the service based on hostname or path.
@@ -55,6 +58,7 @@ For most web apps you combine Deployment + Service + Ingress:
 **Ingress** is a declarative HTTP(S) router. You define rules: "traffic for `api.example.com` goes to service `api-backend`; traffic for `example.com/docs` goes to service `docs`". An Ingress controller (nginx, Traefik, Contour, etc., running in the cluster) reads the Ingress objects and configures itself to route accordingly.
 
 Ingress handles:
+
 - Hostname-based routing.
 - Path-based routing.
 - TLS termination (with cert-manager for automatic Let's Encrypt certs).
@@ -69,6 +73,7 @@ The alternative is exposing every service as a LoadBalancer, which gets expensiv
 **Secret** — same shape as ConfigMap but meant for sensitive data (passwords, tokens, certificates). Stored base64-encoded in etcd by default, which is not encryption — secrets are only "secret" in the sense that they're a separate object with access control. For real security you enable encryption at rest and use a proper secrets manager (see [secrets_management.md](secrets_management.md)).
 
 Both are injected into pods either as:
+
 - **Environment variables** — simple but limited (size, character set, live update).
 - **Mounted files** — more flexible, supports large data, and updates live when the ConfigMap/Secret changes (with a delay).
 
@@ -85,6 +90,7 @@ For stateless PHP apps, you rarely touch persistent storage — the database is 
 ### Namespaces
 
 A **Namespace** is a logical partition of the cluster. Objects in different namespaces don't collide. Namespaces are used for:
+
 - **Environment separation** — `dev`, `staging`, `prod` in the same cluster.
 - **Team separation** — each team owns a namespace.
 - **Application separation** — `frontend`, `backend`, `infra` in separate namespaces.
@@ -153,6 +159,7 @@ Scales the deployment between 2 and 20 pods to keep CPU around 70%. Requires res
 ### Namespaces I actually use
 
 In a typical setup:
+
 - `kube-system` — Kubernetes's own components. Don't touch.
 - `ingress-nginx` (or similar) — the Ingress controller.
 - `cert-manager` — TLS cert automation.

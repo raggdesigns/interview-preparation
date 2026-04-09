@@ -92,6 +92,7 @@ volumes:
 ```
 
 What's useful about this shape:
+
 - **One command to start** — `docker compose up` and everything comes up.
 - **Real services, not mocks** — MySQL, RabbitMQ, Redis are the real things, matching production behavior.
 - **Local-only conveniences** — Mailpit catches outgoing email so you can see it in the browser without sending real mail.
@@ -131,6 +132,7 @@ CMD ["php-fpm"]
 ```
 
 Key differences from production:
+
 - Xdebug installed.
 - Composer present in the image for running `composer install` interactively.
 - No code baked in; the volume bind mount provides it.
@@ -142,6 +144,7 @@ Key differences from production:
 The bind mount `./:/var/www/app:cached` is what makes code changes show up without rebuilding. The `:cached` flag is a Docker Desktop-specific optimization for macOS — it relaxes consistency guarantees in exchange for massively better performance. On Linux hosts it's a no-op.
 
 **Performance note:** file system access across the Docker host boundary is slow on macOS and Windows — much slower than on Linux. A large Symfony app with thousands of source files can be painful in dev. Mitigations:
+
 - **`cached` / `delegated` flags** on macOS.
 - **Named volumes for heavy directories** like `vendor/` and `var/cache/` — these don't change on every keystroke, so keeping them inside the container filesystem is a huge win.
 - **Mutagen** or similar file-sync tools for very large projects.
@@ -153,6 +156,7 @@ The bind mount `./:/var/www/app:cached` is what makes code changes show up witho
 The classic problem: your host user is UID 1000, the container runs as www-data (UID 33), files created inside the container are owned by 33, and you can't edit them on the host without `sudo`.
 
 Fixes, in increasing order of cleanliness:
+
 1. **Match UIDs at build time.** Pass `--build-arg UID=$(id -u)` and create the container user with that UID. Your dev image user matches your host user.
 2. **Use a separate user in dev.** Create a `dev` user in the dev Dockerfile with the UID you want.
 3. **Named volumes for directories the app writes to.** Cache, logs, uploads live in named volumes; you don't edit them from the host anyway.
@@ -179,6 +183,7 @@ Compose supports a layered override pattern:
 - `compose.prod.yaml` — production overrides, applied explicitly via `-f`.
 
 `.env` files are loaded automatically. I use:
+
 - `.env` — committed with safe defaults, dev-appropriate.
 - `.env.local` — gitignored, per-developer overrides.
 

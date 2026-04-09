@@ -7,6 +7,7 @@
 ### What goes in the image
 
 A PHP application image needs roughly:
+
 - The PHP runtime (FPM or CLI, depending on the image's role).
 - Required PHP extensions (pdo_mysql, intl, opcache, redis, amqp, etc.).
 - Composer dependencies, resolved against a lockfile.
@@ -15,6 +16,7 @@ A PHP application image needs roughly:
 - Health and readiness check scripts, if the orchestrator needs them.
 
 What does **not** go in the image:
+
 - Dev dependencies (unless this is a dev image).
 - Secrets (API keys, DB passwords, certs). These come in at runtime via env vars or mounted files.
 - Local config files from your dev machine.
@@ -115,6 +117,7 @@ A PHP Docker image serves one of two roles:
 The temptation is to use one image for both, with the entrypoint deciding which role. That's fine; the image is the same, just the CMD differs. What's **not** fine is treating the CLI processes as an afterthought — they have different lifecycle, memory, and logging needs than FPM workers.
 
 Key differences:
+
 - CLI processes are long-lived and memory leak accordingly. Time-limit and memory-limit them.
 - CLI processes need Supervisor or a similar restart mechanism if you're not running them in Kubernetes.
 - CLI processes under Kubernetes should be deployments with their own scaling, not sidecars of the FPM pod.
@@ -125,17 +128,20 @@ Key differences:
 This is a small but surprisingly religious debate.
 
 **Separate containers** (nginx + php-fpm in different pods/containers, communicating via TCP):
+
 - Each container does one thing, matches the Unix philosophy.
 - Scale nginx and FPM independently.
 - Different images from different teams (platform team maintains nginx; app team maintains PHP).
 - In Kubernetes, this is natural — nginx pod fronting multiple FPM deployments.
 
 **Same container** (nginx + php-fpm as sidecars in the same pod, communicating via Unix socket):
+
 - Lower latency (Unix socket vs TCP).
 - Simpler networking — no service-to-service routing inside the cluster for this pair.
 - Scale together.
 
 **Single container** (nginx + php-fpm managed by a supervisor inside one container):
+
 - Violates "one process per container" but some teams prefer the simplicity.
 - Harder to debug; logs are mixed; signals are awkward.
 
@@ -144,6 +150,7 @@ My default: separate containers in the same Kubernetes pod (nginx sidecar patter
 ### The FrankenPHP / RoadRunner alternative
 
 If you're starting fresh, consider the modern alternatives to nginx + FPM:
+
 - **FrankenPHP** — a modern PHP app server based on Caddy, supporting worker mode (app stays in memory between requests), HTTP/2 and HTTP/3 natively, and a single-binary deployment.
 - **RoadRunner** — a Go-based PHP app server with similar worker-mode semantics.
 
@@ -158,6 +165,7 @@ See [../php/frankenphp_roadrunner_swoole.md](../php/frankenphp_roadrunner_swoole
 - **Build cache works better.** Smaller layers fit in the cache more efficiently.
 
 Techniques:
+
 - **Alpine base images.** `php:8.3-fpm-alpine` is a fraction of the size of `php:8.3-fpm`. Gotcha: Alpine uses musl libc, which sometimes breaks native extensions. Test thoroughly.
 - **Multi-stage builds.** Don't ship Composer, build tools, or dev deps.
 - **`--no-dev`** on composer install.
@@ -167,7 +175,7 @@ Techniques:
 
 ### The `.dockerignore` file you should have
 
-```
+```text
 .git
 .gitignore
 .github
@@ -193,6 +201,7 @@ Missing `.dockerignore` causes two problems: slow builds (the daemon copies ever
 Every serious production image runs as a non-root user. The PHP official images typically have a `www-data` user for this purpose. Set `USER www-data` late in the Dockerfile (after installing packages, which requires root).
 
 Gotchas:
+
 - File permissions on mounted volumes need to match the UID of the runtime user. If your host user is UID 1000 and the container user is UID 33 (www-data on Debian), bind mounts produce permission errors. The fix: match UIDs, or use a named volume, or chown at container startup.
 - Writable paths inside the container need to be chowned to the user. Cache directories, log directories, file upload directories — these need to be writable.
 
