@@ -38,5 +38,5 @@ jobs:
         if: steps.changed.outputs.files != ''
         run: |
           for file in ${{ steps.changed.outputs.files }}; do
-            markdown-link-check -q "$file"
+            markdown-link-check -q -c .markdown-link-check.json "$file"
           done
