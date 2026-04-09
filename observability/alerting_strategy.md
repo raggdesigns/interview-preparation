@@ -65,6 +65,7 @@ The Google SRE Workbook's canonical multi-window multi-burn-rate pattern:
 Requiring both a long window and a short window prevents noise: a brief spike doesn't fire because the long window is still fine; a sustained problem fires because both windows cross the threshold.
 
 Why this is better than threshold alerts:
+
 - **It's calibrated to user impact.** The alert fires when you're actually on track to violate the SLO.
 - **Fewer false alarms.** Brief blips don't page.
 - **Consistent across services with different SLOs.** The same burn-rate logic works for a 99% and a 99.99% service.
@@ -103,6 +104,7 @@ A team's alerting strategy should be continuously measured against on-call load:
 - **False positive rate.** What percentage of pages were noise?
 
 A healthy on-call rotation has:
+
 - 0-3 pages per week.
 - <5 minute time to acknowledge.
 - Actionable rate above 80%.
@@ -120,6 +122,7 @@ Alert fatigue is the psychological state where on-call engineers stop taking ale
 - **Dismissing real incidents.** The real one comes in, and it looks like noise.
 
 The causes:
+
 - **Too many alerts.** Sheer volume.
 - **Non-actionable alerts.** Fire but have no clear response.
 - **Cause-based alerts.** Fire for conditions that don't affect users.
@@ -133,6 +136,7 @@ The fix is continuous pruning. Every incident retrospective should ask "should a
 Every alert should link to a runbook: a short document describing what the alert means, what to check, and how to respond.
 
 Minimum runbook content:
+
 - **What the alert means.** "Error rate for billing service exceeded 1% for 5 minutes."
 - **Impact.** "Some users are unable to complete checkouts. Revenue is directly affected."
 - **First checks.** "Check the billing service dashboard for error types. Check recent deploys. Check downstream payment provider status."
@@ -169,6 +173,7 @@ This exercise reveals both missing alerts and unnecessary ones.
 Alerting is ultimately about humans. The metric you care about isn't "did the alert fire when the condition was met"; it's "did the on-call engineer wake up, understand the problem, respond effectively, and return to sleep". Every design decision should optimize for that.
 
 This means:
+
 - **Fewer alerts are better.** Silence is the goal. The pager should be quiet most of the time.
 - **Clearer alerts are better.** The message, runbook, and context should minimize cognitive load at 3 a.m.
 - **Retrospectives are mandatory.** Every page should be reviewed, not just technically but for "was this the right alert?".

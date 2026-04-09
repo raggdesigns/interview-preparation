@@ -63,7 +63,7 @@ Grafana supports shared cursor and tooltip (hovering on one panel shows the same
 
 Instead of one dashboard per service, one dashboard with a `$service` variable that can be switched at the top:
 
-```
+```text
 [Service: billing ▼] [Environment: production ▼] [Time range: last 1h ▼]
 ```
 
@@ -80,6 +80,7 @@ Variables can be chained: `$environment` determines which `$service` options are
 Grafana annotations mark events on the time axis — deploys, incidents, config changes. When you see a metric change at 14:23, and there's an annotation "Deploy v1.4.2 at 14:23", the correlation is immediate.
 
 Annotation sources:
+
 - **Grafana API** — your deploy pipeline calls Grafana's API to add a deploy annotation.
 - **Prometheus** — query-based annotations (e.g., "mark moments when the error rate crossed 1%").
 - **Loki / Elasticsearch** — annotations from log events.
@@ -94,7 +95,7 @@ Clicking a panel should take you deeper. "Click the error count panel to open th
 
 The canonical service dashboard, based on the golden signals + USE framework:
 
-```
+```text
 ┌──────────────────────────────────────────────────────┐
 │ [Service ▼] [Env ▼] [Time ▼]                         │
 ├──────────────────────────────────────────────────────┤
@@ -121,6 +122,7 @@ Same layout for every service. Engineers read it instantly because they've seen 
 Grafana dashboards are JSON. You can (and should) check them into git and deploy them through CI, rather than clicking in the UI and hoping the changes survive.
 
 Options:
+
 - **Grafana API + raw JSON.** The simplest: export dashboards as JSON, commit them, apply via the API.
 - **Terraform + Grafana provider.** Declarative management of dashboards, alerts, data sources, folders.
 - **Grizzly** — dashboard-as-code with a nicer DSL than raw JSON.
@@ -134,6 +136,7 @@ Dashboards should be reviewable, versioned, and deployed consistently across env
 Grafana has its own alerting system (Grafana Managed Alerts, as of v8+), which can alert on any data source. This is tempting — you see a panel, you make an alert from it.
 
 But: **alerts from Prometheus via Alertmanager are usually better** because:
+
 - The alert lives next to the metric rule, not in a dashboard tool.
 - Alert evaluation is done by Prometheus, which is scaled for it.
 - Alertmanager has richer routing, deduplication, and inhibition.
@@ -164,12 +167,14 @@ The **home dashboard** for a service should be the overview with the golden sign
 Some things make dashboards durable; others guarantee they'll rot:
 
 **Durable:**
+
 - Using template variables so the dashboard works for new services automatically.
 - Querying metrics by standard naming conventions (so a new service that follows the convention shows up without changes).
 - Annotating deploys automatically from CI.
 - Keeping panels focused and few in number.
 
 **Rot-prone:**
+
 - Hard-coded service names.
 - Dashboards with 40 panels that nobody can read.
 - Panels created for a one-off investigation and never removed.

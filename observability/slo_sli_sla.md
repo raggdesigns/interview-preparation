@@ -95,6 +95,7 @@ Burn-rate alerting is the modern SRE pattern. Instead of "alert if error rate > 
 - **Very slow burn:** burn rate > 1 over 3 days → ticket, not page.
 
 This is smarter than threshold alerts because:
+
 - **It measures impact.** A 0.5% error rate on a 99% SLO is fine; on a 99.99% SLO it's catastrophic. Burn rate captures this automatically.
 - **It accounts for duration.** A brief spike burns a small chunk; a sustained spike burns a lot. Burn rate reflects both.
 - **Fewer false alarms.** A brief blip doesn't page unless it's bad enough to be a real problem at this SLO.
@@ -115,7 +116,7 @@ The Google SRE Workbook has the canonical burn-rate alerting table and PromQL pa
 
 #### HTTP availability
 
-```
+```text
 SLI = (requests with HTTP status 2xx or 3xx)
     / (total requests)
 ```
@@ -130,7 +131,7 @@ sum(rate(http_requests_total{user_facing="true"}[30d]))
 
 #### HTTP latency
 
-```
+```text
 SLI = (requests with latency ≤ 300ms)
     / (total requests)
 ```
@@ -143,7 +144,7 @@ sum(rate(http_request_duration_seconds_count[30d]))
 
 #### Message processing
 
-```
+```text
 SLI = (messages processed successfully)
     / (total messages received)
 ```
@@ -152,7 +153,7 @@ For queue-based workloads.
 
 #### Data freshness
 
-```
+```text
 SLI = (data queries where data.age ≤ 60 seconds)
     / (total data queries)
 ```

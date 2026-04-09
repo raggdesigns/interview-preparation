@@ -24,12 +24,14 @@ Metrics are numeric time series. Values sampled over time, aggregated at the sou
 - **Summary** — like histograms but computed differently. Mostly replaced by histograms in modern stacks.
 
 **What metrics are good at:**
+
 - **Alerting.** "Error rate > 5% for 3 minutes" is a metric query. Cheap to evaluate, easy to reason about.
 - **Dashboards.** Overview of system health at a glance.
 - **Capacity planning.** Historical trends of request volume, resource usage, growth.
 - **SLO tracking.** Percentage of requests below a latency threshold over a time window.
 
 **What metrics are bad at:**
+
 - **Debugging a specific request.** Metrics are aggregated; they tell you "5% of requests failed", not "which ones and why".
 - **High cardinality.** Every unique label combination is a separate time series. Labels like user ID or request ID explode the metric count and kill your metrics backend. Keep labels low-cardinality (HTTP method, status class, service name) and push user/request details to logs or traces.
 - **Rare events.** A metric that increments once a day is less useful than a log entry describing that event.
@@ -39,11 +41,13 @@ Metrics are numeric time series. Values sampled over time, aggregated at the sou
 Logs are timestamped events emitted as the system runs. Traditionally free-form strings; modern practice is **structured logs** — JSON documents with named fields that can be indexed and queried.
 
 **What logs are good at:**
+
 - **Debugging specific requests.** "Show me all logs for request ID xyz" is the canonical debugging query.
 - **Capturing events that don't fit the metric model.** Business events, audit trails, infrequent but important happenings.
 - **Rich context.** Stack traces, payloads, error messages — things you can't easily fit into a counter.
 
 **What logs are bad at:**
+
 - **Aggregation at scale.** Counting log events to compute rates is slow and expensive; use metrics instead.
 - **Cost.** High-volume services can produce terabytes of logs per day. Storage and indexing are the dominant cost of observability for most teams.
 - **Alerting.** You can alert on logs, but it's slower, more expensive, and noisier than alerting on metrics.
@@ -53,12 +57,14 @@ Logs are timestamped events emitted as the system runs. Traditionally free-form 
 A trace is a tree of causally-linked events across a single request's lifetime, typically spanning multiple services. Each node in the tree is a **span** — a named operation with a start time, duration, and optional attributes. Spans have parent-child relationships, forming the tree.
 
 **What traces are good at:**
+
 - **Finding latency bottlenecks.** "This request took 2 seconds — which step took most of it?" Traces show you immediately.
 - **Understanding cross-service flows.** "Which services does a checkout request touch?" A trace visualizes it.
 - **Debugging distributed errors.** An error in service C can be traced back to its trigger in service A.
 - **Characterizing unusual requests.** Why is this one request 10x slower than the median?
 
 **What traces are bad at:**
+
 - **Sampling trade-offs.** Tracing every request at high traffic is expensive; most teams sample. Sampled-out traces are gone forever.
 - **Overhead.** Tracing adds CPU and memory cost to the application. Usually small, but non-zero.
 - **Complexity.** Trace data is harder to query than metrics or logs. Trace UIs are specialized tools.
@@ -80,6 +86,7 @@ Each pillar contributes a piece. Metrics surfaced the problem, traces localized 
 The value of the three pillars multiplies when they're correlated — when you can jump from a metric to the traces that contributed to it, from a trace to the logs of the specific request, from a log line to the broader trace it came from.
 
 **Making correlation work:**
+
 - **Every log line includes the trace ID.** When you find an interesting log entry, you can pull up the full trace instantly.
 - **Every metric emission is tagged with the same dimensions you use in logs** (service name, environment). Gives you a common vocabulary.
 - **Every span has a link to the logs it emitted.** Modern trace UIs do this automatically when both data sources exist.
@@ -92,11 +99,13 @@ Without correlation, each pillar is a separate tool that you manually cross-refe
 Observability is expensive. For a moderately busy service, it's not unusual for metrics+logs+traces to cost more per month than the infrastructure running the actual service.
 
 **Cost by pillar (rough):**
+
 - **Metrics:** cheap per data point, but cardinality can explode costs if labels are unbounded. A counter with no labels is nearly free; the same counter with a `user_id` label can be thousands of dollars per month at moderate traffic.
 - **Logs:** usually the most expensive by volume. Verbose logging at debug level in production is a common bill-killer. Log sampling, log level discipline, and retention policies matter.
 - **Traces:** moderate per span, high if you sample everything. Most teams sample at 1-10% of traffic with always-on capture for errors and slow requests.
 
 **Cost discipline:**
+
 - **Sample traces.** 100% tracing is rarely necessary.
 - **Structure logs and enforce levels.** Debug logs in production are wasted money.
 - **Cap metric cardinality.** No user IDs in labels. Use traces for user-specific drilling.
