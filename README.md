@@ -13,13 +13,18 @@ A collection of notes and answers for software engineering interview topics, org
 | [architecture/](architecture/questions.md) | CQRS, Event Sourcing, Hexagonal, Onion, Reactor pattern |
 | [caching/](caching/questions.md) | Redis, Memcached, caching best practices |
 | [ddd/](ddd/questions.md) | Domain-Driven Design: bounded contexts, aggregates, events, entities |
+| [devops/](devops/questions.md) | Docker, Kubernetes, CI/CD, IaC, deployment strategies, 12-factor, secrets management |
 | [event-driven/](event-driven/questions.md) | Event-driven architecture, CQRS, event sourcing, sagas, outbox/inbox |
 | [general/](general/questions.md) | Web fundamentals: HTTP, REST API, authentication, authorization |
 | [highload/](highload/questions.md) | Performance optimization, sharding, database analysis tools |
+| [message-brokers/](message-brokers/questions.md) | RabbitMQ, Kafka, delivery semantics, idempotency, outbox pattern, queue topologies |
 | [microservices/](microservices/questions.md) | Microservices architecture, patterns, deployment, monitoring |
+| [observability/](observability/questions.md) | Metrics, logs, traces, Prometheus, Grafana, OpenTelemetry, SLOs, alerting |
 | [mysql/](mysql/questions.md) | Indices, engines, data types, SQL concepts |
 | [oop/](oop/questions.md) | OOP principles, design patterns, composition, GRASP |
+| [performance-testing/](performance-testing/questions.md) | Load/stress/soak/spike testing, k6, profiling PHP, bottleneck identification, capacity planning |
 | [php/](php/questions.md) | PHP language features, sessions, generators, OPCache |
+| [postgresql/](postgresql/questions.md) | PostgreSQL vs MySQL, indexes, MVCC/VACUUM, JSONB, EXPLAIN, LISTEN/NOTIFY |
 | [solid/](solid/questions.md) | SOLID principles with PHP examples |
 | [symfony/](symfony/questions.md) | Symfony framework: components, lifecycle, DI, routing |
 | [testing/](testing/questions.md) | PHPUnit, mocking, TDD, BDD, mutational testing |
