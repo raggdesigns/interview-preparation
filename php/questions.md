@@ -43,6 +43,13 @@
 - [New features in PHP 8.4](new_features_in_php84.md)
 - [New features in PHP 8.5](new_features_in_php85.md)
 
+## Runtime and internals
+
+- [PHP request lifecycle (FPM vs CLI vs long-lived runtimes)](php_request_lifecycle.md)
+- [PHP memory management (zvals, refcount, copy-on-write, circular refs)](php_memory_management.md)
+- [FrankenPHP, RoadRunner, Swoole — alternatives to PHP-FPM](frankenphp_roadrunner_swoole.md)
+- [Slim framework basics](slim_framework_basics.md)
+
 ## Tools
 
 - [Composer - purpose and possibilities](composer.md)
