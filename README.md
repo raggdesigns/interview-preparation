@@ -13,6 +13,7 @@ A collection of notes and answers for software engineering interview topics, org
 | [architecture/](architecture/questions.md) | CQRS, Event Sourcing, Hexagonal, Onion, Reactor pattern |
 | [caching/](caching/questions.md) | Redis, Memcached, caching best practices |
 | [ddd/](ddd/questions.md) | Domain-Driven Design: bounded contexts, aggregates, events, entities |
+| [event-driven/](event-driven/questions.md) | Event-driven architecture, CQRS, event sourcing, sagas, outbox/inbox |
 | [general/](general/questions.md) | Web fundamentals: HTTP, REST API, authentication, authorization |
 | [highload/](highload/questions.md) | Performance optimization, sharding, database analysis tools |
 | [microservices/](microservices/questions.md) | Microservices architecture, patterns, deployment, monitoring |
