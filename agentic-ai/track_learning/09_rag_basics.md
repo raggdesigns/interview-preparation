@@ -9,11 +9,13 @@
 A RAG system has two phases: an **offline indexing phase** and an **online query phase**.
 
 **Indexing (done ahead of time):**
+
 1. Split each document into chunks.
 2. For each chunk, compute an **embedding** — a dense vector representing the chunk's semantic meaning.
 3. Store the chunks and their vectors in a **vector database** (pgvector, Qdrant, Weaviate, Pinecone, Chroma, etc.).
 
 **Querying (done per request):**
+
 1. Take the user's question.
 2. Embed it with the same embedding model.
 3. Search the vector database for the top-K most similar chunks.
@@ -35,6 +37,7 @@ How you split documents determines the ceiling on retrieval quality. Bad chunkin
 - **Structurally wrong** — splitting in the middle of a code block, a table, or a logical section produces useless fragments.
 
 What works:
+
 - **Structural chunking.** Split on headings, paragraphs, sentence boundaries, code blocks. Respect the document's natural boundaries.
 - **Overlap.** 10–20% overlap between adjacent chunks so context that straddles a boundary is still retrievable.
 - **Metadata per chunk.** Store source URL, section, title, timestamp. You'll want these for filtering, display, and debugging.
@@ -108,7 +111,7 @@ You can't improve what you can't measure. A production RAG system needs an eval 
 
 ### A minimal architecture
 
-```
+```text
 User query
     ↓
 [Query preprocessing: rewrite, expand, translate]

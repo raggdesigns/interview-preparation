@@ -40,12 +40,14 @@
 ### What I automate vs what I keep manual
 
 I automate things that are **objective, repeatable, and low-blast-radius**:
+
 - Running linters and formatters after edits
 - Generating commit messages from diffs
 - Summarizing PRs
 - Scaffolding test files
 
 I keep **manual**:
+
 - Merging to main
 - Pushing to remotes
 - Any database-touching script

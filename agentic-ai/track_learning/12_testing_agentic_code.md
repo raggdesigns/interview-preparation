@@ -7,6 +7,7 @@
 ### What you're actually testing
 
 A typical agentic system has these components:
+
 1. **Prompt templates** — the instructions to the model.
 2. **Tool definitions and implementations** — the hands.
 3. **The agent loop** — the orchestration that runs the model, executes tools, feeds results back.
@@ -56,12 +57,14 @@ def test_agent_looks_up_user_then_sends_email():
 ```
 
 **What you assert on:**
+
 - **Which tools got called** — was the right action taken?
 - **In what order** — was the sequencing right?
 - **With what arguments** — did the model pass the correct data?
 - **Did the loop terminate** — or did it get stuck?
 
 **What you do NOT assert on:**
+
 - The exact text of the model's response. It's nondeterministic. You'll chase the test forever.
 - The exact wording of reasoning. Same reason.
 
@@ -86,6 +89,7 @@ def test_classifier_meets_accuracy_threshold():
 ```
 
 **Key discipline:**
+
 - Assert on **properties**, not exact output. "Category is 'billing'" — not "first word is 'Based'".
 - Use a **stable eval set** so runs are comparable over time.
 - **Baseline the metric** on the current prompt and alert on regression.
@@ -96,6 +100,7 @@ def test_classifier_meets_accuracy_threshold():
 A small number of high-level tests that run the entire agent with real (or recorded) tool calls against a real model. Expensive, slow, flaky, but irreplaceable for catching integration issues.
 
 Keep these:
+
 - **Few in number** — tens, not hundreds.
 - **Focused on happy path** — "user can do X end-to-end".
 - **Tolerant of text variance** — assert on properties of the final state, not on phrasing.

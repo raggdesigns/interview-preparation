@@ -33,7 +33,7 @@ The parent's prompt to the sub-agent should look like a well-written task ticket
 
 Template:
 
-```
+```text
 [Goal]
 One or two sentences describing what you want the sub-agent to do.
 
@@ -71,6 +71,7 @@ Parallelism is the biggest wall-time win of the sub-agent pattern. Three indepen
 Some harnesses let you define reusable sub-agent *types* — prompts + tool permissions + behavior — that the parent can dispatch by name. Claude Code, for example, supports this via `.claude/agents/` files.
 
 Typical specializations:
+
 - **Explore** — fast codebase exploration, read-only, optimized for search.
 - **Code reviewer** — audits a completed change against a plan and standards.
 - **Plan writer** — turns a spec into an implementation plan.
@@ -94,11 +95,13 @@ Specializations matter because they codify workflow. Without them, every dispatc
 ### The delegation contract, spelled out
 
 The parent's job:
+
 1. Decide *what* the sub-agent should do.
 2. Write a self-contained dispatch prompt with goal, context, constraints, and output format.
 3. Use the result as input to its own reasoning — never as a final answer by proxy.
 
 The sub-agent's job:
+
 1. Read the dispatch as the entire source of truth.
 2. Do the work.
 3. Report in the format requested, under the length budget.

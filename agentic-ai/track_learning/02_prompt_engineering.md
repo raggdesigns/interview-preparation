@@ -68,13 +68,13 @@ This is the single most important shift. A prompt is not a magic string. It's pa
 
 Bad:
 
-```
+```text
 You are a helpful assistant. Please classify the user's message and return JSON.
 ```
 
 Better:
 
-```
+```text
 You are a ticket classifier for a SaaS support system.
 
 Task: classify the ticket below into exactly one of these categories:

@@ -18,7 +18,7 @@ Always use level 3 when it's available. Level 2 when it isn't. Level 1 only for 
 
 At each decoding step, the model produces a probability distribution over every token in the vocabulary. Before sampling, the decoder computes which tokens are *legal* given the current state of the partially-generated document and the schema — and masks the rest to zero probability.
 
-For example, if the schema requires the next field to be an integer and the decoder has already emitted `"age": `, only tokens that can start an integer (`0-9`, `-`) are allowed. Everything else gets zeroed out. Sampling then picks from the legal tokens only.
+For example, if the schema requires the next field to be an integer and the decoder has already emitted `"age":`, only tokens that can start an integer (`0-9`, `-`) are allowed. Everything else gets zeroed out. Sampling then picks from the legal tokens only.
 
 This is elegant because it's essentially free in terms of quality — the model's preferences are preserved, just filtered — and it makes invalid output structurally impossible.
 
@@ -35,6 +35,7 @@ Support varies by provider, but most production systems handle:
 - **Descriptions** — `"description": "..."` on every field (the model reads these)
 
 Things that often *aren't* supported or work unreliably:
+
 - Complex regex patterns
 - Recursive schemas
 - `$ref` with external references
@@ -113,6 +114,7 @@ Now the model fills what's actually there, nulls what isn't, and the required fi
 Even with schema-enforced decoding, validate on the way in. Providers have bugs, schema support has edges, and you want your application to degrade gracefully when the contract is violated rather than crashing three layers deep. A thin validation layer at the boundary, using the same schema, catches everything.
 
 For the `agentic-ai` stack specifically:
+
 - **PHP:** `opis/json-schema` or `justinrainbow/json-schema`.
 - **TypeScript:** `zod`, `ajv`, or the native schema support in whatever SDK you use.
 - **Python:** `pydantic` (not technically JSON schema but close enough and ergonomic).
@@ -141,6 +143,7 @@ Schemas are part of your API contract. When they change, downstream code may bre
 ### The evolution story
 
 Schemas are not write-once. Over time you will:
+
 1. Add fields (safe, backward compatible).
 2. Add new enum values (safe for readers that accept unknown values).
 3. Tighten constraints (breaking — old responses may now fail validation).

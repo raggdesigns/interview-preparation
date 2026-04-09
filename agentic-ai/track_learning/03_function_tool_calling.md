@@ -49,7 +49,7 @@ This is a meaningful latency win, and worth designing for explicitly. Tools whos
 
 A typical agentic interaction is:
 
-```
+```text
 user: "Send a summary of yesterday's errors to the on-call channel"
 
 turn 1: model calls query_logs(start=yesterday, level=error)

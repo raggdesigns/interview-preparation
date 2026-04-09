@@ -32,7 +32,7 @@ The critical thing to understand: **the model never runs anything**. It only *as
 
 A realistic agentic turn looks like this:
 
-```
+```text
 prompt → model → tool_call(name, args)
                  ↓
            host executes tool

@@ -7,6 +7,7 @@
 ### The cost anatomy
 
 Every LLM call has two costs:
+
 - **Input tokens** (prompt tokens) — everything you send in.
 - **Output tokens** (completion tokens) — everything the model generates.
 
@@ -31,6 +32,7 @@ Rank ordering your actual bill by these categories is the single most useful thi
 Most providers now support caching a stable prefix of the prompt. If the first 4000 tokens of every call are identical — system prompt, instructions, few-shot examples — the provider can cache them and bill at a fraction of the normal rate (often 10-25% of the uncached price).
 
 **Rules to actually benefit:**
+
 - Put stable content at the start. Anything that changes per-request goes after.
 - Don't edit the cacheable prefix. Small edits invalidate the cache and you pay full price.
 - Measure cache hit rate. If it's low, your prompt structure is wrong.
@@ -48,6 +50,7 @@ A well-designed pipeline has 3-5 different models across different stages. The t
 Every token in the prompt is billed every turn. Shortening prompts and histories compounds across calls.
 
 Tactics:
+
 - **Summarize old turns.** After N turns, replace the raw history with a compressed summary.
 - **Drop tool results** once their information has been extracted into the conversation state.
 - **Prune retrieved context.** Return the top 3 chunks instead of the top 10.
@@ -59,6 +62,7 @@ Tactics:
 Output tokens are priced higher per unit. Reducing output length has outsized impact.
 
 Tactics:
+
 - **Request concise answers explicitly.** "Respond in under 100 words" works.
 - **Use structured output** instead of prose. JSON is denser than explanation.
 - **Stop sequences.** Define tokens that halt generation early.

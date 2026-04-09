@@ -34,6 +34,7 @@ Claude Code builds context from several sources on every turn:
 Slash commands are markdown files that act as reusable prompts. Writing `/commit` in the session expands to the contents of `.claude/commands/commit.md` (or the user-level equivalent). The command can contain arguments, instructions, and references to other files.
 
 I use slash commands for:
+
 - `/commit` — the repo's commit conventions and checks
 - `/review-pr` — a structured PR review prompt
 - `/simplify` — a code-simplification workflow
@@ -44,6 +45,7 @@ Shared slash commands live in the repo (`.claude/commands/`), personal ones live
 ### Hooks — safety rails the model can't bypass
 
 Hooks are shell commands that the harness runs automatically on events:
+
 - `PreToolUse` — before a specific tool runs
 - `PostToolUse` — after a tool runs
 - `SessionStart` — when a session begins
@@ -53,6 +55,7 @@ Hooks are shell commands that the harness runs automatically on events:
 The crucial property: **hooks run in the harness, not the model**. The model can't skip them, talk them out of running, or be prompt-injected into disabling them. That makes hooks the right place for hard invariants.
 
 Canonical uses:
+
 - Block edits to sensitive files (`.env`, secrets, production configs)
 - Run linters and formatters after every edit
 - Reject bash commands matching dangerous patterns
@@ -68,6 +71,7 @@ A subagent is a separate session spawned from the main one with its own context 
 Why this matters: exploration burns tokens. A codebase search that reads 40 files and reasons over all of them would balloon the main conversation; dispatching it to a subagent keeps the main context clean. The main session sees a 200-token summary instead of 40 file reads.
 
 I use subagents for:
+
 - **Exploration** — "find everything related to X"
 - **Parallel independent work** — multiple unrelated changes
 - **Heavy research** — reading long docs or many files

@@ -6,7 +6,7 @@
 
 ### The basic structure
 
-```
+```text
 Task → [Generate] → Draft answer
                         ↓
                     [Critique] → Issues found

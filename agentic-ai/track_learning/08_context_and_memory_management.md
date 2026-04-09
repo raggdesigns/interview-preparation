@@ -24,6 +24,7 @@ Treat the usable window as smaller than the marketing number — maybe 50-70% of
 ### What eats context
 
 In roughly descending order of waste:
+
 - **Unsummarized conversation history.** Every turn is replayed in full by default.
 - **Tool results.** Unbounded output from a file read or search is the classic window-killer.
 - **CLAUDE.md / system prompts bloated with never-needed details.**
@@ -63,6 +64,7 @@ Writing to memory is easy. Keeping memory *useful* is the hard part:
 Most providers support caching a stable prefix of the prompt. If your system prompt is 4000 tokens and unchanged across calls, the provider can cache the key-value attention state for that prefix and bill you at a fraction of the normal rate.
 
 Implications:
+
 - **Keep stable prefixes stable.** Any edit to the system prompt invalidates the cache.
 - **Put volatile content at the end.** User-specific or turn-specific data should go after the cacheable prefix, not threaded through it.
 - **Measure the hit rate.** Caching only pays off if you're actually reusing prefixes. A badly-structured prompt with scattered volatile content caches poorly.
@@ -72,6 +74,7 @@ Implications:
 Empirical finding: information placed in the middle of a long context is more likely to be ignored than the same information placed at the start or end. Models attend more reliably to the edges.
 
 Implications:
+
 - **Put critical instructions near the end.** System prompt at the top, conversation history in the middle, the current user request and critical constraints at the bottom.
 - **Don't rely on the model noticing something buried in a 30k-token blob of retrieved context.** If it matters, re-state it in the instructions section.
 
