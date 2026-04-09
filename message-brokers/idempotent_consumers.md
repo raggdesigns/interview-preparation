@@ -26,6 +26,7 @@ Each of these is normal operation. None of them are preventable at the broker la
 Some operations are naturally idempotent. When you can design your work to use them, you don't need any dedup machinery.
 
 **Naturally idempotent operations:**
+
 - **`SET` / `UPDATE` with fixed target value** — `user.email = 'x@y.com'`. Running twice is the same as once.
 - **`INSERT ... ON CONFLICT DO NOTHING`** — attempting to insert a row that already exists does nothing.
 - **`UPSERT` with deterministic keys** — create-or-update where the key is stable.
@@ -34,6 +35,7 @@ Some operations are naturally idempotent. When you can design your work to use t
 - **Deletes by ID** — deleting a row that's already gone is a no-op.
 
 **Operations that look natural but aren't:**
+
 - **INSERT without conflict handling** — fails on duplicate key, or creates two rows if the key isn't unique.
 - **INCREMENT / DECREMENT** — every call changes the state.
 - **APPEND to a list** — every call adds an item.
@@ -80,6 +82,7 @@ After this transaction, the message is either fully processed (dedupe + work bot
 - **Derived from business data** is even better when possible: an order ID + event type combination means you don't need a separate UUID.
 
 What doesn't work:
+
 - **The broker's delivery tag.** RabbitMQ's delivery tags are per-delivery, not per-message. Redeliveries get different tags.
 - **A monotonic counter.** If the producer is restarted, you need coordination to avoid reusing counters.
 - **A timestamp.** Millisecond-collision is real at scale; also doesn't survive clock skew.
@@ -101,6 +104,7 @@ The critical detail: **the dedupe check, the dedupe write, and the business work
 - **Ack sent, transaction not committed.** The broker thinks the message is handled; the work is pending and never will be. Lost work.
 
 The order matters:
+
 1. Start a database transaction.
 2. Attempt to insert the dedupe row. If it's a duplicate, commit (skip) and ack the message.
 3. Do the business work.
@@ -129,9 +133,11 @@ Some operations are stateful — they depend on the current state of the system.
 Two patterns:
 
 1. **Command + version check.** The command includes the expected current state. If the state doesn't match, the command is rejected. On retry, the rejection prevents double-application.
-   ```
+
+   ```text
    "Deduct $50 from account 42, expecting current balance of $200"
    ```
+
    First attempt succeeds, balance becomes $150. Retry attempt sees balance $150, not $200, rejects the command. Correct.
 
 2. **Event sourcing with deterministic IDs.** Each state change is an event with a stable ID. Rebuilding state from the event log dedupes naturally because inserting an event with a duplicate ID is a no-op.

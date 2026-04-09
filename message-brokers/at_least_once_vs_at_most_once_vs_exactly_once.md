@@ -17,6 +17,7 @@ The trade-off is explicit: you can pay in duplicates or pay in losses, and picki
 Delivery attempts at most once; acknowledgements happen *before* the consumer actually does the work (or there are no acknowledgements at all). If the consumer crashes, the message is gone.
 
 Use it when:
+
 - **Loss is tolerable.** Metrics, logs, telemetry, best-effort notifications. Losing 0.1% of data points is fine if you're sampling anyway.
 - **Throughput dominates.** The overhead of tracking acks is a measurable bottleneck and you've deliberately chosen to accept loss for speed.
 - **The data is self-healing.** Periodic full reconciliation makes message loss irrelevant because the next reconciliation will catch up.
@@ -28,6 +29,7 @@ RabbitMQ auto-ack mode is at-most-once. Kafka with `acks=0` is at-most-once. Bot
 Delivery attempts at least once; acknowledgements happen *after* the consumer processes the work. If the ack is lost (consumer crashes right after processing, network drops, broker thinks it wasn't received), the broker re-delivers, and the consumer processes the same message again.
 
 Use it when:
+
 - Anything matters. This is the default for all real work.
 
 The cost: **your consumers must be idempotent.** This is non-negotiable. At-least-once delivery means duplicates are a normal operating condition, not an exception. If your consumer sends an email on delivery, an at-least-once pipeline will occasionally send that email twice. If your consumer increments a counter in a database, the counter will occasionally be incremented twice. You fix this at the consumer, not at the broker.

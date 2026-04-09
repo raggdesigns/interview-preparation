@@ -8,7 +8,7 @@
 
 **Shape:** one queue, many consumers, each message goes to exactly one consumer.
 
-```
+```text
          ┌── Consumer 1 ──┐
          │                │
 Producer ──→ Queue ───────┤
@@ -19,17 +19,20 @@ Producer ──→ Queue ───────┤
 This is the canonical task-queue pattern. A single queue holds tasks, and a pool of workers consumes from it. Each task goes to exactly one worker — whichever is free next. Load balances naturally.
 
 **Use when:**
+
 - The work is a command, not an event — each task should be performed exactly once.
 - Multiple workers can handle the work in parallel without coordination.
 - You want to scale throughput by adding workers.
 
 **Examples:**
+
 - Sending emails
 - Rendering PDFs
 - Processing uploaded images
 - Running scheduled jobs against a task list
 
 **Key details:**
+
 - Use manual acks so a failing worker doesn't lose the task — another worker picks it up.
 - Set prefetch appropriately — usually low (1-10) for long-running tasks, higher for fast tasks.
 - Every worker runs the same code. Adding capacity is horizontal.
@@ -42,7 +45,7 @@ This is the canonical task-queue pattern. A single queue holds tasks, and a pool
 
 **Shape:** one producer, many independent consumers, each of whom gets every message.
 
-```
+```text
                 ┌── Consumer A
                 │
 Producer ── Exchange ── Consumer B
@@ -53,16 +56,19 @@ Producer ── Exchange ── Consumer B
 Every consumer gets a copy of every message. Each consumer processes independently and tracks its own state.
 
 **Use when:**
+
 - The message is an event — something happened, and multiple interested parties need to know.
 - Each consumer has its own reason to care (billing reacts, analytics reacts, cache reacts, notifications react, all to the same event).
 - You want to add new consumers later without touching the producer or existing consumers.
 
 **Examples:**
+
 - `order.created` → billing, inventory, analytics, email
 - `user.signup` → CRM sync, welcome email, audit log
 - `cache.invalidate` → every web server instance
 
 **Key details:**
+
 - Each consumer has its own queue. Do not share queues between consumers in this pattern.
 - The exchange is what fans out — usually fanout or topic.
 - Adding a new consumer = declare a new queue, bind it to the exchange, start a consumer. Zero producer changes.
@@ -72,6 +78,7 @@ Every consumer gets a copy of every message. Each consumer processes independent
 **In Kafka:** a topic consumed by multiple consumer groups. Each group has its own offset; each group processes every message independently.
 
 **Pub/sub vs work queue — the crucial distinction:**
+
 - In pub/sub, every *consumer type* gets every message.
 - In work queue, every *message* is handled once across all consumers of the same type.
 
@@ -81,7 +88,7 @@ Real systems usually combine both: "every consumer type gets every message, and 
 
 **Shape:** client sends a request, server processes it, server sends a response back to the client.
 
-```
+```text
                          ┌──────────────────┐
 Client ── request_queue ─→ Server processes │
                          └─────────┬────────┘
@@ -94,16 +101,19 @@ Client ←── reply_queue ──┤ publishes reply  │
 Classic sync-over-async. The client publishes a request, waits for a response on a reply queue, correlates them with a correlation ID.
 
 **Use when:**
+
 - You genuinely need a response (not just fire-and-forget).
 - The work is too expensive or risky to run synchronously over HTTP.
 - You want load balancing and retry semantics of a message queue for a request/response interaction.
 
 **Examples:**
+
 - Long-running calculations where the caller wants the result
 - Cross-service RPC that needs queuing semantics (retry, backpressure) more than HTTP gives you
 - Integration with external systems where the broker provides the reliability layer
 
 **Key details:**
+
 - The client declares an exclusive, auto-delete reply queue per request (or per session).
 - The client puts the reply queue name in a `reply_to` header.
 - The client puts a unique `correlation_id` in the message.
@@ -111,6 +121,7 @@ Classic sync-over-async. The client publishes a request, waits for a response on
 - The client reads replies from its reply queue and matches them by correlation ID.
 
 **Gotchas:**
+
 - **Timeout handling.** Unlike HTTP, there's no built-in timeout. The client has to implement one.
 - **Orphaned replies.** The client disconnects before the reply arrives; the reply goes to a dead queue. Use auto-delete reply queues.
 - **Is this actually what I want?** Most of the time, "I need an async RPC" is a smell. Usually you want either a proper sync call (HTTP with a retry policy) or fully decoupled async (fire-and-forget with eventual processing and a callback).
@@ -121,7 +132,7 @@ I reach for this pattern reluctantly. It's the right answer sometimes but not of
 
 **Shape:** one queue where higher-priority messages are delivered first, regardless of arrival order.
 
-```
+```text
 Producer ──→ Priority Queue ──→ Consumer
               ├── P10 message  ← delivered first
               ├── P10 message
@@ -132,19 +143,23 @@ Producer ──→ Priority Queue ──→ Consumer
 Consumers always get the highest-priority available message. Lower-priority messages wait.
 
 **Use when:**
+
 - Some work is genuinely more urgent than other work and you can't wait for natural FIFO order.
 - You have a mix of interactive and background tasks sharing the same worker pool.
 
 **Examples:**
+
 - User-triggered reports (high priority) vs scheduled nightly reports (low priority)
 - Password reset emails (high) vs marketing emails (low)
 
 **Key details (RabbitMQ specifically):**
+
 - Declare the queue with `x-max-priority` (e.g. 10) — you get priorities 0 through 9.
 - Publish messages with a `priority` header.
 - Higher `priority` values are delivered before lower ones.
 
 **Gotchas:**
+
 - **Priority ≠ absolute ordering.** RabbitMQ's priority queue gives "best effort" priority; under load, exact ordering may slip.
 - **Starvation.** Low-priority messages can wait forever if high-priority traffic never stops. Sometimes this is fine; sometimes you need a fairness mechanism.
 - **Many priorities is worse than few.** `x-max-priority=10` is fine; `x-max-priority=255` is a performance trap. Use a small number of priority levels — usually 2-5 is plenty.
@@ -156,7 +171,7 @@ Consumers always get the highest-priority available message. Lower-priority mess
 
 Real systems use combinations. A typical backend might look like:
 
-```
+```text
 API request ──┐
               │
               ▼
