@@ -13,10 +13,12 @@ This is the shape that separates PostgreSQL from MySQL's InnoDB, which uses an u
 ### Transaction visibility
 
 Every row in PostgreSQL has two hidden columns:
+
 - **`xmin`** — the transaction that created this row version.
 - **`xmax`** — the transaction that deleted this row version (0 if still current).
 
 Every transaction has a snapshot: a list of transaction IDs that were in-flight when the transaction started. A row version is visible to a transaction if:
+
 - Its `xmin` is committed and ≤ the transaction's snapshot start.
 - Its `xmax` is either 0 (not deleted) or a transaction that's still in-flight or committed *after* the snapshot.
 
@@ -25,6 +27,7 @@ This rule lets each transaction see a consistent view of the database without ev
 ### Dead tuples
 
 A row version becomes "dead" when no running transaction can still see it. Specifically:
+
 - **Deleted rows** — after the delete commits and any older snapshots are done.
 - **Updated rows (the old version)** — after the update commits and any older snapshots are done.
 - **Rolled-back inserts** — their row versions are dead immediately.
@@ -41,6 +44,7 @@ VACUUM is the background process that removes dead tuples and returns the space 
 4. **Prevents transaction ID wraparound.** (See below.)
 
 **Two flavors:**
+
 - **`VACUUM`** (non-blocking) — removes dead tuples, frees space for reuse *within* the table. Does not return space to the OS. The table stays the same size; new rows can fill the freed slots.
 - **`VACUUM FULL`** — rewrites the entire table, returning space to the OS. **Blocks reads and writes for the duration.** Basically never used on production tables because of the downtime; tools like `pg_repack` do the same job without blocking.
 
@@ -51,6 +55,7 @@ Regular VACUUM is what you want. VACUUM FULL is a last-resort cleanup for severe
 PostgreSQL runs an **autovacuum** daemon that periodically VACUUMs tables based on dead-tuple thresholds. You don't manually run VACUUM in normal operation; autovacuum handles it.
 
 The default thresholds:
+
 - **Vacuum when dead tuples > 20% of the table.**
 - **Analyze when 10% of rows have changed.**
 
@@ -70,6 +75,7 @@ ALTER TABLE big_table SET (
 ### Bloat — the silent performance killer
 
 Bloat is the accumulation of dead tuples that VACUUM hasn't reclaimed. The symptoms:
+
 - **Tables much larger than their row count suggests.**
 - **Slow sequential scans** because the scan has to walk through dead tuples.
 - **Slow index scans** because index pages also accumulate dead entries.
@@ -77,6 +83,7 @@ Bloat is the accumulation of dead tuples that VACUUM hasn't reclaimed. The sympt
 - **Slower queries across the board**, sometimes dramatically.
 
 **Causes of bloat:**
+
 - **Autovacuum not running often enough.** Usually a tuning problem.
 - **Long-running transactions** preventing VACUUM from cleaning up rows newer than their snapshot. The classic cause.
 - **Prepared transactions left hanging.** Same mechanism.
@@ -84,6 +91,7 @@ Bloat is the accumulation of dead tuples that VACUUM hasn't reclaimed. The sympt
 - **Massive updates or deletes in a single transaction**, overwhelming autovacuum.
 
 **Detecting bloat:**
+
 ```sql
 SELECT
   schemaname,
@@ -100,6 +108,7 @@ ORDER BY dead_pct DESC;
 A table with 40%+ dead tuples is a bloat problem that needs attention.
 
 **Fixing bloat:**
+
 - **`VACUUM FULL`** — blocks the table. Don't do it in production.
 - **`pg_repack`** — rebuilds the table concurrently. Standard tool for production bloat cleanup.
 - **Fix the root cause** — long-running transactions, autovacuum tuning, replication slots.
@@ -109,6 +118,7 @@ A table with 40%+ dead tuples is a bloat problem that needs attention.
 A transaction that stays open for hours holds a snapshot at its start time. As long as that snapshot exists, no row that was visible at snapshot time can be cleaned up — because the old transaction might still want to read it.
 
 **Symptoms:**
+
 - Autovacuum runs but reports "oldest xmin" very old.
 - Dead tuples accumulate across all tables, not just one.
 - Table and index sizes grow relentlessly.
@@ -129,12 +139,14 @@ ORDER BY xact_start;
 ```
 
 Common culprits:
+
 - **Application code that opens a transaction, does work, and forgets to commit.**
 - **BEGIN; ... walked away.** A manual DBA session left open.
 - **Idle-in-transaction connections.** Connection pools that keep connections open with active transactions.
 - **Reporting queries on read replicas** that run for hours with `hot_standby_feedback=on`, which holds back VACUUM on the primary.
 
 **Prevention:**
+
 - **`idle_in_transaction_session_timeout`** — Postgres will kill connections that sit idle in a transaction beyond this timeout. Set to something reasonable (minutes, not hours).
 - **Application-level transaction discipline** — don't hold transactions open across user interactions or external API calls.
 - **Monitoring** — alert on long-running transactions.
@@ -142,6 +154,7 @@ Common culprits:
 ### HOT updates — the optimization
 
 A "HOT" update (heap-only tuple) is PostgreSQL's optimization for updates that don't change any indexed columns. In a HOT update:
+
 - The new row version lives in the same page as the old one.
 - Indexes don't need to be updated (they still point to the old position, and a forwarding chain leads to the new version).
 - When the old version is eventually vacuumed, the HOT chain collapses.
@@ -149,10 +162,12 @@ A "HOT" update (heap-only tuple) is PostgreSQL's optimization for updates that d
 HOT updates are dramatically faster and cause less bloat. You want HOT updates as often as possible.
 
 **HOT requires:**
+
 1. The new version must fit in the same page as the old one (fillfactor matters).
 2. No indexed column can change.
 
 **Tuning for HOT:**
+
 - **`FILLFACTOR`** — the percentage of each page to fill on initial insert. Default 100. Lowering to 80-90 leaves room for HOT updates on frequently-updated tables.
 - **Indexes** — extra indexes on frequently-updated columns prevent HOT. Be deliberate about what you index.
 
@@ -163,6 +178,7 @@ PostgreSQL's transaction IDs are 32-bit integers. After ~4 billion transactions,
 PostgreSQL prevents this with a mechanism called **freezing**: rows older than a certain age have their `xmin` replaced with a special "frozen" marker that's visible to all future transactions. VACUUM does this as part of its work.
 
 **The failure mode:** if VACUUM can't keep up with the rate of new transactions, the oldest un-frozen transaction ID approaches the wraparound limit. PostgreSQL responds with:
+
 - **At 200 million transactions until wraparound:** warnings in the logs.
 - **At 40 million:** aggressive autovacuum kicks in.
 - **At 11 million:** refuses new transactions ("to prevent data corruption").

@@ -62,6 +62,7 @@ SELECT * FROM events WHERE attributes ?& ARRAY['amount', 'currency'];
 ```
 
 The distinction between `->` and `->>` is important:
+
 - **`->`** returns a JSONB value. Use when you want to keep chaining operators.
 - **`->>`** returns text. Use for the final extraction.
 
@@ -105,15 +106,19 @@ The `||` operator for merging is the most common pattern. `jsonb_set` is for dee
 GIN indexes make JSONB queries fast. Two index operator classes:
 
 **Default GIN (`jsonb_ops`):**
+
 ```sql
 CREATE INDEX idx_events_attrs ON events USING gin (attributes);
 ```
+
 Supports all JSONB operators including `@>`, `?`, `?|`, `?&`. Larger index, slower writes.
 
 **`jsonb_path_ops`:**
+
 ```sql
 CREATE INDEX idx_events_attrs_path ON events USING gin (attributes jsonb_path_ops);
 ```
+
 Only supports `@>` (containment). Smaller index, faster writes, faster containment queries. **Use this by default if you only need containment queries** (which is 80% of JSONB queries in practice).
 
 **Expression indexes** for specific fields:
@@ -186,6 +191,7 @@ Similarly, `data ->> 'field'` returns SQL NULL if `field` doesn't exist OR if it
 ### Size considerations
 
 JSONB is stored compactly but isn't free:
+
 - **Keys are stored per-row.** If every row has the same 20 keys, each row stores those keys. Normalized columns are more efficient for repeated structure.
 - **TOAST** — large JSONB values are compressed and stored out of line. Access is slower for huge blobs.
 - **Index size** — GIN indexes on JSONB can be surprisingly large.

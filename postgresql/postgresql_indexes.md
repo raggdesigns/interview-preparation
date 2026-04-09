@@ -15,12 +15,14 @@ CREATE INDEX idx_orders_user_id ON orders (user_id);
 ```
 
 Good for:
+
 - `WHERE user_id = 42`
 - `WHERE created_at > '2026-01-01'`
 - `ORDER BY created_at DESC`
 - `WHERE email LIKE 'alice%'` (prefix only)
 
 Not good for:
+
 - `WHERE email LIKE '%alice%'` (suffix or substring)
 - `WHERE array_col @> ARRAY[1]` (array containment)
 - `WHERE jsonb_col @> '{"status": "active"}'` (JSONB containment)
@@ -36,6 +38,7 @@ CREATE INDEX idx_sessions_token ON sessions USING hash (token);
 ```
 
 **Used rarely** because:
+
 - The speed advantage over B-tree is small.
 - B-tree covers the same query with extra flexibility.
 - Hash indexes used to be unlogged and unreliable pre-PG10. Now they're fine but the habit of avoiding them persists.
@@ -53,12 +56,14 @@ CREATE INDEX idx_events_attrs ON events USING gin (attrs jsonb_path_ops);  -- JS
 ```
 
 Good for:
+
 - **Arrays.** `WHERE tags @> ARRAY['sql', 'postgres']`
 - **Full-text search.** `WHERE to_tsvector(content) @@ to_tsquery('database & postgres')`
 - **JSONB containment.** `WHERE data @> '{"status": "active"}'`
 - **Trigram similarity** (with pg_trgm extension). `WHERE name % 'Postgres'`
 
 Trade-offs:
+
 - **Larger than B-tree** for the same data.
 - **Slower to update** — every write has to update inverted lists.
 - **GIN + `fastupdate=on`** amortizes write cost via a pending list that's flushed periodically. Speeds writes, slows some reads.
@@ -68,6 +73,7 @@ GIN is the index type for "multi-value columns" — arrays, documents, text corp
 #### 4. GIST — Generalized Search Tree
 
 A framework for custom index types. Out of the box, supports:
+
 - **Geometric types** (points, rectangles, polygons) with PostGIS.
 - **Range types** (`tsrange`, `int4range`) — containment and overlap queries.
 - **Full-text search** — alternative to GIN, with different trade-offs.
@@ -81,6 +87,7 @@ CREATE INDEX idx_locations_geom ON locations USING gist (geom);  -- PostGIS
 GIST is the extensible index type. PostGIS builds heavily on it for spatial indexes. It's also the right choice for range containment and exclusion constraints.
 
 **GIN vs GIST for full-text:**
+
 - GIN is faster for lookups, slower for updates.
 - GIST is slower for lookups, faster for updates.
 - For mostly-read full-text workloads → GIN. For frequently updated text → GIST.
@@ -94,10 +101,12 @@ CREATE INDEX idx_events_timestamp ON events USING brin (created_at);
 ```
 
 Good for:
+
 - **Append-only time-series tables** where rows are inserted in timestamp order.
 - **Data naturally correlated with physical storage order.** Sensor readings, log entries, analytics events.
 
 Trade-offs:
+
 - **Much smaller than B-tree** — orders of magnitude for large tables.
 - **Much coarser queries.** A BRIN lookup scans all blocks in the matching range, not just the rows.
 - **Useless if data is not ordered.** If rows are inserted randomly, BRIN indexes don't help.
@@ -126,6 +135,7 @@ The index only contains rows where `status = 'pending'`. Much smaller than a ful
 The planner uses a partial index when the query's WHERE clause is a provable superset of the index's WHERE clause. `WHERE user_id = 42 AND status = 'pending'` matches. `WHERE user_id = 42` does not (it might return non-pending rows).
 
 **When partial indexes shine:**
+
 - **"Active" subsets.** Most rows are "inactive" and you only query actives.
 - **Status filters.** Pending tasks, unfinished orders, unsent notifications.
 - **Soft-deleted rows.** `WHERE deleted_at IS NULL` is a common partial-index predicate.
@@ -142,6 +152,7 @@ SELECT * FROM users WHERE lower(email) = 'alice@example.com';
 ```
 
 Good for:
+
 - **Case-insensitive lookups.** `lower(email)` or `upper(name)`.
 - **Computed fields.** `date_trunc('day', created_at)` for day-level aggregation.
 - **JSON extraction.** `(data->>'user_id')` to index a field inside a JSONB blob.
@@ -181,6 +192,7 @@ Query: `SELECT total_amount FROM orders WHERE user_id = 42` — can be satisfied
 ### The cost of indexes
 
 Every index adds:
+
 - **Write cost.** Every INSERT and UPDATE has to update every index on the table. A table with 10 indexes is 10x the write work for every row touched.
 - **Storage cost.** Indexes can easily total more storage than the table data itself.
 - **Planning cost.** More indexes means more work for the query planner to evaluate them.

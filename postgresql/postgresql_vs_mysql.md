@@ -9,6 +9,7 @@
 #### Type system and data modeling
 
 **Postgres** has the richer type system by a wide margin:
+
 - **Native JSON and JSONB** — JSONB is indexable, queryable, and efficient; no bolt-on needed.
 - **Arrays** — first-class array types (`integer[]`, `text[]`) with operators and indexes.
 - **Range types** — `tsrange`, `int4range`, etc. Makes temporal and numeric range queries natural.
@@ -44,11 +45,13 @@ For complex analytical or reporting queries, PostgreSQL's query power is frequen
 Both databases use MVCC (multi-version concurrency control), but the implementations differ:
 
 **PostgreSQL** keeps multiple versions of each row in the same table, with old versions removed by a background process (VACUUM). This means:
+
 - **No read locks on rows being updated.** Readers and writers never block each other.
 - **Dead tuples accumulate.** Tables can bloat if VACUUM can't keep up. Autovacuum handles this but needs tuning at scale.
 - **Long-running transactions are expensive.** They prevent VACUUM from cleaning up anything newer than their snapshot.
 
 **MySQL (InnoDB)** keeps old versions in the undo log. The main table stays clean.
+
 - **No accumulation of dead tuples in the main table.** Undo log is managed separately.
 - **But the undo log can grow indefinitely with long-running transactions.**
 - **Readers still don't block writers in most cases.**
@@ -85,6 +88,7 @@ If your workload needs one of these, Postgres is essentially the only option. My
 **MySQL** famously has multiple storage engines (InnoDB, MyISAM, Memory). In practice, everyone uses InnoDB, which is a mature, battle-tested, transactional engine with strong write performance.
 
 **PostgreSQL** has one storage engine (heap + WAL + indexes), but work on pluggable engines is underway. The current heap engine is solid but has specific quirks:
+
 - **Write amplification on updates.** Because every update creates a new tuple (MVCC), updates on wide rows can be expensive.
 - **HOT updates** (heap-only tuples) mitigate this when no indexed columns change.
 - **Index maintenance on updates** — every updated row creates a new tuple, and all indexes need updating (unless HOT kicks in).
@@ -94,12 +98,14 @@ For pure write throughput on simple tables, MySQL often wins by 10-30% in benchm
 #### Operational characteristics
 
 **MySQL pros:**
+
 - Simpler operationally for common cases.
 - Broader hosting ecosystem (every cloud provider, every shared host, every PaaS).
 - Smaller memory footprint for a minimal deployment.
 - Easier replication setup.
 
 **PostgreSQL pros:**
+
 - More powerful tooling for observability (`pg_stat_statements`, `auto_explain`, etc.).
 - Better support for schema changes under load (concurrent index builds, minimal locking).
 - More flexible in cloud and on-prem deployments.
