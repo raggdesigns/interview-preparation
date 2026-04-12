@@ -1,14 +1,32 @@
 {
   "permissions": {
     "allow": [
-      "Bash(claude mcp:*)"
+      "Bash(claude mcp:*)",
+      "Bash(git add:*)",
+      "Bash(GIT_EDITOR=true git rebase --continue)",
+      "Bash(git commit:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh issue:*)",
+      "WebSearch",
+      "WebFetch(domain:www.byborgenterprises.com)",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:jobs.smartrecruiters.com)",
+      "WebFetch(domain:jobs.eu.lever.co)",
+      "WebFetch(domain:relocate.me)",
+      "WebFetch(domain:builtin.com)",
+      "WebFetch(domain:lu.linkedin.com)",
+      "WebFetch(domain:happeningnext.com)",
+      "WebFetch(domain:www.indeed.com)",
+      "Read(//Users/dradisic/Documents/Experiance/**)",
+      "Read(//Users/dradisic/Documents/**)"
     ]
   },
   "hooks": {
-    "PreCommit": [
+    "PreToolUse": [
       {
+        "matcher": "Bash(git commit*)",
         "command": "bash scripts/translation-sync-hook.sh",
-        "description": "Check translation sync status"
+        "description": "Check translation sync status before committing"
       }
     ]
   }
